@@ -1,0 +1,23 @@
+@reference "../../../config.css";
+
+@layer components {
+  .badge {
+    @apply focus:ring-ring inline-flex items-center rounded-sm px-2.5 py-0.5 text-xs font-semibold shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden;
+  }
+
+  .badge-primary {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary text-secondary-foreground;
+  }
+
+  .badge-danger {
+    @apply bg-danger text-danger-foreground;
+  }
+
+  .badge-outline {
+    @apply text-foreground border;
+  }
+}

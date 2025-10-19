@@ -1,0 +1,11 @@
+import { Lucide } from "@qds.dev/ui";
+import { component$ } from "@qwik.dev/core";
+import { Button } from "~/components/ui";
+
+export default component$(() => {
+  return (
+    <Button disabled>
+      <Lucide.Loader class="mr-2 h-5 w-5 animate-spin" /> Login with Email
+    </Button>
+  );
+});

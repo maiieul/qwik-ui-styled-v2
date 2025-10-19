@@ -1,0 +1,51 @@
+---
+title: Qwik UI | Styled Modal Component
+---
+
+import { ShowcaseHero, ShowcaseSheet } from './showcase-components';
+import ModalRawCode from '~/components/ui/modal/modal.tsx?raw';
+
+# Modal
+
+A window overlaid on either the primary window or another modal window, rendering the content underneath inert.
+
+<ShowcaseHero />
+
+## Installation
+
+### Run the following cli command or copy/paste the component code into your project
+
+```sh
+qwik-ui add modal
+```
+
+<CodeSnippet code={ModalRawCode} />
+
+## Usage
+
+```tsx
+import { Button, Modal } from '~/components/ui';
+```
+
+```tsx
+<Modal.Root bind:show={show}>
+  <Modal.Trigger>Open modal</Modal.Trigger>
+  <Modal.Content>
+    <Modal.Title>Title</Modal.Title>
+    <Modal.Description>Description</Modal.Description>
+    <div>...</div>
+    <footer>
+      <Button look="primary" onClick$={() => (show.value = false)}>
+        Save
+      </Button>
+    </footer>
+    <Modal.Close>
+      <LuX class="h-5 w-5" />
+    </Modal.Close>
+  </Modal.Content>
+</Modal.Root>
+```
+
+## Examples
+
+<ShowcaseSheet />

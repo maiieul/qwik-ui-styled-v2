@@ -1,0 +1,14 @@
+@reference "../../../config.css";
+
+@layer components {
+  .callout-description {
+    @apply col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed;
+  }
+
+  .callout-description.variant-outline {
+    @apply text-muted-foreground;
+  }
+  .callout-description.variant-danger {
+    @apply text-danger/80;
+  }
+}
