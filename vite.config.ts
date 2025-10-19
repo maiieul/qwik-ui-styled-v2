@@ -35,7 +35,7 @@ export default defineConfig(async (command: any, mode: any): Promise<UserConfig>
       icons(),
       qwikVite({
         lint: false,
-        debug: true,
+        debug: false,
       }),
       qwikRouter({
         mdxPlugins: {

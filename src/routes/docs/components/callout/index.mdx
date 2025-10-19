@@ -1,0 +1,46 @@
+---
+title: Qwik UI | Styled Callout Component
+---
+
+
+import { ShowcaseHero, ShowcaseDanger } from './showcase-components';
+import { CalloutCodeSnippets } from './code-snippets';
+
+# Callout
+
+Displays a callout for user attention.
+
+<ShowcaseHero />
+
+## Installation
+
+### Run the following cli command or copy/paste the component code into your project
+
+```sh
+qwik-ui add alert
+```
+
+<CalloutCodeSnippets />
+
+## Usage
+
+```tsx
+import { Alert } from '~/components/ui';
+```
+
+```tsx
+<Alert.Root>
+  <Terminal class="h-4 w-4" />
+  <Alert.Title>Heads up!</Alert.Title>
+  <Alert.Description>
+    You can add components and dependencies to your app using the cli.
+  </Alert.Description>
+</Alert.Root>
+```
+
+## Examples
+
+### Danger
+
+<ShowcaseDanger />
+

@@ -1,9 +1,10 @@
 import { type Component, type PropsOf, Slot, component$ } from "@qwik.dev/core";
 import { cn } from "@qwik-ui/utils";
 import { CodeCopy } from "../code-copy/code-copy";
-import { CodeSnippet } from "../code-snippet/code-snippet";
 import { Note } from "../note/note";
 import { DocsCallout } from "../docs-callout";
+import { CodeSnippet } from "./code-snippet";
+import { CodeSnippets } from "./code-snippets";
 
 export const components: Record<string, Component> = {
   p: component$<PropsOf<"p">>(({ ...props }) => {
@@ -132,5 +133,6 @@ export const components: Record<string, Component> = {
     );
   }),
   CodeSnippet,
+  CodeSnippets,
   DocsCallout,
 };

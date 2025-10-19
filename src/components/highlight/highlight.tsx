@@ -32,7 +32,7 @@ export const Highlight = component$(
         <div
           {...props}
           class={cn(
-            "tab-size dark:from-background dark:to-accent/30 max-h-[494px] max-w-full overflow-auto rounded-sm text-sm",
+            "tab-size dark:from-background dark:to-accent/30 max-h-118 max-w-full overflow-auto rounded-sm text-sm",
             props.class,
           )}
         >

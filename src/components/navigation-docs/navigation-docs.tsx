@@ -1,6 +1,6 @@
 import { PropsOf, component$ } from "@qwik.dev/core";
 import { useLocation } from "@qwik.dev/router";
-import { Badge } from "../ui";
+import { Badge, Button } from "../ui";
 
 export interface LinkGroup {
   name: string;
@@ -50,29 +50,30 @@ export const DocsNavigation = component$(
                   const isLinkActive = location.url.pathname === link.href;
                   return (
                     <li key={link.name + link.href}>
-                      <a
-                        class={[
-                          // buttonVariants({ look: "ghost" }),
-                          "rounded-base flex h-10 items-center font-sans",
-                          isLinkActive ||
-                          (location.url.pathname?.startsWith(
-                            "/docs/components/",
-                          ) &&
-                            link.name === "Components")
-                            ? "bg-accent text-accent-foreground font-bold"
-                            : "font-normal",
-                        ]}
-                        href={link.href}
-                      >
-                        <div class="flex w-full items-center justify-between">
-                          <span>{link.name}</span>
-                          {link.new && (
-                            <Badge variant="primary" class="ml-2">
-                              New
-                            </Badge>
-                          )}
-                        </div>
-                      </a>
+                      <Button look="ghost" asChild>
+                        <a
+                          class={[
+                            "",
+                            isLinkActive ||
+                            (location.url.pathname?.startsWith(
+                              "/docs/components/",
+                            ) &&
+                              link.name === "Components")
+                              ? "bg-accent text-accent-foreground font-bold"
+                              : "font-normal",
+                          ]}
+                          href={link.href}
+                        >
+                          <div class="flex w-full items-center justify-between">
+                            <span>{link.name}</span>
+                            {link.new && (
+                              <Badge variant="primary" class="ml-2">
+                                New
+                              </Badge>
+                            )}
+                          </div>
+                        </a>
+                      </Button>
                     </li>
                   );
                 })}

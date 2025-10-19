@@ -7,4 +7,5 @@
 ## Components
 
 - [Button](/docs/components/button/)
+- [Callout](/docs/components/callout/)
 - [Modal](/docs/components/modal/)
