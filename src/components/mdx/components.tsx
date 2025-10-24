@@ -116,14 +116,13 @@ export const components: Record<string, Component> = {
   }>(({ rawCodeString }) => {
     return (
       <div
-        class="code-example data-pagefind-ignore rounded-base relative mb-6 max-h-125"
+        class="code-example data-pagefind-ignore relative mb-6 max-h-125"
         data-pagefind-ignore="all"
       >
         <CodeCopy class="absolute top-3 right-3" code={rawCodeString} />
         <div
-          class={cn(
-            "rounded-base dark:from-background dark:to-accent/30 max-h-125 max-w-full overflow-y-auto border bg-linear-to-b from-slate-900 to-slate-800 p-6 text-sm",
-          )}
+          class="max-h-125 max-w-full overflow-y-auto rounded-md border p-6 text-sm shadow-md"
+          style={{ backgroundColor: "#1b1e28", color: "#a6accd" }}
         >
           <pre>
             <Slot />

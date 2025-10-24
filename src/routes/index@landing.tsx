@@ -39,13 +39,13 @@ export default component$(() => {
   return (
     <div class="flex flex-col items-center gap-8 py-24">
       <h1 class="text-center text-4xl leading-normal lg:text-5xl">
-        <span class="text-primary font-extrabold tracking-wide">Qwik</span>{" "}
-        <span class="text-secondary font-extrabold tracking-wide">UI</span>
+        <span class="font-extrabold tracking-wide text-primary">Qwik</span>{" "}
+        <span class="font-extrabold tracking-wide text-secondary">UI</span>
       </h1>
       <h2 class="text-center text-xl leading-normal font-bold lg:text-3xl">
         Headless & styled copy-paste components
         <br />
-        <span class="text-primary leading-normal">
+        <span class="leading-normal text-primary">
           automatically optimized for you
         </span>
       </h2>
@@ -56,12 +56,12 @@ export default component$(() => {
       <div class="mt-4 flex flex-wrap justify-center justify-items-center gap-14">
         <a href={`/docs/styled/introduction`}>
           <Card.Root class="ease-step relative block h-full max-w-md rounded-lg shadow-lg outline-1 duration-150 hover:scale-[1.025] focus:scale-[1.025]">
-            <Card.Image
+            <img
               src={`/images/qwik-ui-fluffy-creature-screen.webp`}
               width="300"
               height="300"
               alt={`styled kit`}
-              class="w-full rounded-t-sm"
+              class="w-full rounded-t-sm object-cover"
             />
             <Card.Header>
               <Card.Title class="text-xl">Styled</Card.Title>

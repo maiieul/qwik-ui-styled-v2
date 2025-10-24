@@ -1,58 +1,25 @@
 @reference "../../../config.css";
 
 @layer components {
-  /* base */
-  .btn {
-    @apply focus-visible:ring-ring inline-flex cursor-pointer items-center justify-center rounded-sm text-sm font-medium transition-all duration-100 focus-visible:ring-1 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50;
+  /* variants */
+  .btn.link {
+    @apply text-sky-500 underline decoration-sky-500 decoration-2 underline-offset-4 hover:text-sky-700 hover:decoration-sky-700 dark:hover:text-sky-400 dark:hover:decoration-sky-400;
   }
 
-  /* look: primary */
-  .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  .btn.altLink {
+    @apply text-purple-500 underline decoration-purple-500 decoration-2 underline-offset-4 hover:text-purple-700 hover:decoration-purple-700 dark:hover:text-purple-400 dark:hover:decoration-purple-400;
   }
 
-  /* look: secondary */
-  .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
+  /* sizes */
+  .btn.btn-sm {
+    @apply h-8 gap-1.5 px-3 has-[>svg]:px-2.5;
   }
 
-  /* look: Danger */
-  .btn-danger {
-    @apply bg-danger text-danger-foreground hover:bg-danger/90;
+  .btn.btn-md {
+    @apply h-9 px-4 py-2 has-[>svg]:px-3;
   }
 
-  /* look: outline */
-  .btn-outline {
-    @apply bg-background text-foreground hover:bg-accent border;
-  }
-
-  /* look: ghost */
-  .btn-ghost {
-    @apply text-accent-foreground hover:bg-accent;
-  }
-
-  /* look: link */
-  .btn-link {
-    @apply text-foreground hover:text-foreground/80 hover:bg-transparent hover:underline hover:underline-offset-2;
-  }
-
-  /* size: sm */
-  .btn-sm {
-    @apply h-8 px-2 py-1.5 text-sm;
-  }
-
-  /* size: md */
-  .btn-md {
-    @apply h-12 px-4 py-3 text-base;
-  }
-
-  /* size: lg */
-  .btn-lg {
-    @apply h-16 px-8 py-4 text-lg;
-  }
-
-  /* size: icon */
-  .btn-icon {
-    @apply h-10 w-10;
+  .btn.btn-lg {
+    @apply h-10 px-6 has-[>svg]:px-4;
   }
 }

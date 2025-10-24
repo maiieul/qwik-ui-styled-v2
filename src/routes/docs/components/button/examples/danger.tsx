@@ -4,7 +4,7 @@ import { Button } from "~/components/ui";
 export default component$(() => {
   return (
     <>
-      <Button look="danger">Danger</Button>
+      <Button variant="danger">Danger</Button>
     </>
   );
 });

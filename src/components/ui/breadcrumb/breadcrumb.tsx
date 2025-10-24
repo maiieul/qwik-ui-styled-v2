@@ -39,7 +39,7 @@ const Link = component$<PropsOf<"a"> & { asChild?: boolean }>((props) => {
     <Comp
       {...props}
       class={cn(
-        "text-muted-foreground hover:text-foreground transition-colors",
+        "text-neutral-muted-foreground transition-colors hover:text-foreground",
         props.class,
       )}
     >
@@ -63,7 +63,7 @@ const Page = component$<PropsOf<"span">>((props) => {
       aria-disabled="true"
       aria-current="page"
       {...props}
-      class={cn("text-foreground font-normal", props.class)}
+      class={cn("font-normal text-foreground", props.class)}
     >
       <Slot />
     </span>

@@ -1,0 +1,7 @@
+@reference "../../../config.css";
+
+@layer components {
+  .card-description {
+    @apply text-sm text-neutral-muted-foreground;
+  }
+}

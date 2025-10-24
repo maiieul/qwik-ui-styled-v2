@@ -2,7 +2,7 @@
 
 @layer components {
   .badge {
-    @apply focus:ring-ring inline-flex items-center rounded-sm px-2.5 py-0.5 text-xs font-semibold shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden;
+    @apply inline-flex items-center rounded-sm px-2.5 py-0.5 text-xs font-semibold shadow-sm transition-colors focus:ring-2 focus:ring-neutral-ring focus:ring-offset-2 focus:outline-hidden;
   }
 
   .badge-primary {
@@ -18,6 +18,6 @@
   }
 
   .badge-outline {
-    @apply text-foreground border;
+    @apply border text-foreground;
   }
 }

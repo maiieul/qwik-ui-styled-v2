@@ -1,5 +1,5 @@
 import { PropsOf, component$ } from "@qwik.dev/core";
-import { useLocation } from "@qwik.dev/router";
+import { Link, useLocation } from "@qwik.dev/router";
 import { Badge, Button } from "../ui";
 
 export interface LinkGroup {
@@ -50,8 +50,8 @@ export const DocsNavigation = component$(
                   const isLinkActive = location.url.pathname === link.href;
                   return (
                     <li key={link.name + link.href}>
-                      <Button look="ghost" asChild>
-                        <a
+                      <Button variant="ghost" asChild>
+                        <Link
                           class={[
                             "",
                             isLinkActive ||
@@ -72,7 +72,7 @@ export const DocsNavigation = component$(
                               </Badge>
                             )}
                           </div>
-                        </a>
+                        </Link>
                       </Button>
                     </li>
                   );

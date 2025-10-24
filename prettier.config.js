@@ -5,6 +5,7 @@
 
 const config = {
   plugins: ["prettier-plugin-tailwindcss"],
+  tailwindStylesheet: "./src/config.css",
 };
 
 export default config;

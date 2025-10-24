@@ -44,7 +44,7 @@ export const Sheet = component$<PropsOf<typeof Modal.Content>>(
           /> */}
           </div>
           <footer class="mt-6">
-            <Button look="primary" onClick$={() => (show.value = false)}>
+            <Button variant="primary" onClick$={() => (show.value = false)}>
               Save
             </Button>
           </footer>

@@ -28,13 +28,13 @@ function getIconByStatus(status?: NoteStatus) {
 function getBackgroundByStatus(status?: NoteStatus) {
   switch (status) {
     case NoteStatus.Info:
-      return "bg-primary/30 border-primary border-l-2 mb-4 rounded-base block";
+      return "bg-primary/30 border-primary border-l-2 mb-4 block";
     case NoteStatus.Warning:
-      return "bg-yellow-400/30 border-yellow-400 border-l-2 mb-4 rounded-base block";
+      return "bg-yellow-400/30 border-yellow-400 border-l-2 mb-4 block";
     case NoteStatus.Danger:
-      return "bg-danger/30 border-danger border-l-2 mb-4 rounded-base block";
+      return "bg-danger/30 border-danger border-l-2 mb-4 block";
     default:
-      return "bg-primary/30 border-primary border-l-2 mb-4 rounded-base block";
+      return "bg-primary/30 border-primary border-l-2 mb-4 block";
   }
 }
 

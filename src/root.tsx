@@ -1,8 +1,8 @@
-import { component$, isDev } from "@qwik.dev/core";
+import { component$, isDev, useStyles$ } from "@qwik.dev/core";
 import { QwikRouterProvider, RouterOutlet } from "@qwik.dev/router";
 import { RouterHead } from "./components/router-head/router-head";
 
-import "./config.css";
+import configStyles from "./config.css?inline";
 import { ThemeProvider } from "./components/use-theme/provider";
 import {
   ThemeBaseColors,
@@ -14,6 +14,7 @@ import {
 } from "@qwik-ui/utils";
 
 export default component$(() => {
+  useStyles$(configStyles);
   /**
    * The root of a QwikCity site always start with the <QwikCityProvider> component,
    * immediately followed by the document's <head> and <body>.

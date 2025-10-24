@@ -1,0 +1,28 @@
+@reference "../../../config.css";
+
+@layer components {
+  .card {
+    @apply rounded-xs border bg-card text-card-foreground shadow-md;
+  }
+
+  /* variants */
+  .card.card-primary {
+    @apply border-primary-border shadow-primary-shadow;
+  }
+
+  .card.card-secondary {
+    @apply border-secondary-border shadow-secondary-shadow;
+  }
+
+  .card.card-altPrimary {
+    @apply border-alt-primary-border shadow-alt-primary-shadow;
+  }
+
+  .card.card-altSecondary {
+    @apply border-alt-secondary-border shadow-alt-secondary-shadow;
+  }
+
+  .card.card-outline {
+    @apply bg-neutral text-neutral-foreground shadow-neutral-shadow;
+  }
+}

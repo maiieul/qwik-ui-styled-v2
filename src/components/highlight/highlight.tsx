@@ -21,18 +21,15 @@ export type HighlightProps = PropsOf<"div"> & {
 export const Highlight = component$(
   ({ code, copyCodeClass, language = "tsx", ...props }: HighlightProps) => {
     return (
-      <div class="rounded-base relative">
+      <div class="relative">
         <CodeCopy
-          class={[
-            "absolute top-3 right-3 text-white hover:bg-slate-800 hover:text-white",
-            copyCodeClass,
-          ]}
+          class={["absolute top-3 right-3", copyCodeClass]}
           code={code}
         />
         <div
           {...props}
           class={cn(
-            "tab-size dark:from-background dark:to-accent/30 max-h-118 max-w-full overflow-auto rounded-sm text-sm",
+            "tab-size max-h-118 max-w-full overflow-auto rounded-sm text-sm",
             props.class,
           )}
         >

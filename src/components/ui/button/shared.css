@@ -1,0 +1,36 @@
+@reference "../../../config.css";
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-xs text-sm font-medium transition-all focus-visible:ring-1 focus-visible:ring-neutral-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* shared variants */
+  .btn.primary {
+    @apply border border-primary-border bg-primary text-primary-foreground shadow-sm shadow-primary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn.secondary {
+    @apply border border-secondary-border bg-secondary text-secondary-foreground shadow-sm shadow-secondary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn.altPrimary {
+    @apply border border-alt-primary-border bg-alt-primary text-alt-primary-foreground shadow-sm shadow-alt-primary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn.altSecondary {
+    @apply border border-alt-secondary-border bg-alt-secondary text-alt-secondary-foreground shadow-sm shadow-alt-secondary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn.danger {
+    @apply border border-danger-border bg-danger text-danger-foreground shadow-sm shadow-danger-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn.outline {
+    @apply border bg-neutral text-neutral-foreground shadow-sm shadow-neutral-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn.ghost {
+    @apply border border-transparent text-foreground hover:border hover:border-neutral-border hover:bg-neutral hover:shadow-sm;
+  }
+}

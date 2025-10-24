@@ -24,8 +24,8 @@
   },
   "devDependencies": {
     "@eslint/js": "latest",
-    "@qds.dev/tools": "0.4.1",
-    "@qds.dev/ui": "0.4.1",
+    "@qds.dev/tools": "0.4.3",
+    "@qds.dev/ui": "0.4.3",
     "@qwik-ui/styled": "^0.4.1",
     "@qwik-ui/utils": "^0.3.3",
     "@qwik.dev/core": "link:../qwik-v2/packages/qwik",

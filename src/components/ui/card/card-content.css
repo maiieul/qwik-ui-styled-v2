@@ -1,0 +1,7 @@
+@reference "../../../config.css";
+
+@layer components {
+  .card-content {
+    @apply p-6 pt-0;
+  }
+}

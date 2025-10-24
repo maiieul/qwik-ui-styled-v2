@@ -1,16 +1,14 @@
 import { component$, useSignal } from "@qwik.dev/core";
 import { cn } from "@qwik-ui/utils";
 import { Lucide } from "@qds.dev/ui";
-import { Button, Modal } from "~/components/ui";
+import { Button, IconButton, Modal } from "~/components/ui";
 
 export default component$(() => {
   const show = useSignal(false);
   return (
     <Modal.Root bind:show={show}>
-      <Modal.Trigger
-      // class={[buttonVariants({ look: "outline" })]}
-      >
-        Open modal
+      <Modal.Trigger asChild>
+        <Button>Open modal</Button>
       </Modal.Trigger>
       <Modal.Content>
         <Modal.Title>Edit Profile</Modal.Title>
@@ -37,18 +35,14 @@ export default component$(() => {
           </div>
         </div>
         <footer>
-          <Button look="primary" onClick$={() => (show.value = false)}>
+          <Button variant="primary" onClick$={() => (show.value = false)}>
             Save
           </Button>
         </footer>
-        <Modal.Close
-          class={cn(
-            // buttonVariants({ size: "icon", look: "link" }),
-            "absolute top-2 right-3",
-          )}
-          type="submit"
-        >
-          <Lucide.X class="h-5 w-5" />
+        <Modal.Close asChild type="submit">
+          <IconButton class="absolute top-2 right-3">
+            <Lucide.X class="h-5 w-5" />
+          </IconButton>
         </Modal.Close>
       </Modal.Content>
     </Modal.Root>
