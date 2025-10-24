@@ -1,6 +1,6 @@
-import type { ThemeProviderProps } from './types';
+import type { ThemeProviderProps } from "./types";
 
-const colorSchemes = ['light', 'dark'];
+const colorSchemes = ["light", "dark"];
 
 export const ThemeScript = ({
   forcedTheme,
@@ -13,12 +13,12 @@ export const ThemeScript = ({
   attrs,
   nonce,
 }: ThemeProviderProps & { attrs: string[]; defaultTheme: string }) => {
-  const defaultSystem = defaultTheme === 'system';
+  const defaultSystem = defaultTheme === "system";
 
   // Code-golfing the amount of characters in the script
   const optimization = (() => {
-    if (attribute === 'class') {
-      const removeClasses = `c.remove(${attrs.map((t: string) => `'${t}'`).join(',')})`;
+    if (attribute === "class") {
+      const removeClasses = `c.remove(${attrs.map((t: string) => `'${t}'`).join(",")})`;
 
       return `var d=document.documentElement,c=d.classList;${removeClasses};`;
     }
@@ -28,7 +28,7 @@ export const ThemeScript = ({
 
   const fallbackColorScheme = (() => {
     if (!enableColorScheme) {
-      return '';
+      return "";
     }
 
     const fallback = colorSchemes.includes(defaultTheme) ? defaultTheme : null;
@@ -43,20 +43,25 @@ export const ThemeScript = ({
   const updateDOM = (name: string, literal = false, setColorScheme = true) => {
     const resolvedName = value ? value[name] : name;
     const val = literal ? `${name} || ''` : `'${resolvedName}'`;
-    let text = '';
+    let text = "";
 
     // MUCH faster to set colorScheme alongside HTML attribute/class
     // as it only incurs 1 style recalculation rather than 2
     // This can save over 250ms of work for pages with big DOM
-    if (enableColorScheme && setColorScheme && !literal && colorSchemes.includes(name)) {
+    if (
+      enableColorScheme &&
+      setColorScheme &&
+      !literal &&
+      colorSchemes.includes(name)
+    ) {
       text += `d.style.colorScheme = '${name}';`;
     }
 
-    if (attribute === 'class') {
+    if (attribute === "class") {
       if (literal || resolvedName) {
         text += `(${val}).split(' ').forEach(v => c.add(v))`;
       } else {
-        text += 'null';
+        text += "null";
       }
     } else {
       if (resolvedName) {
@@ -74,19 +79,19 @@ export const ThemeScript = ({
 
     if (enableSystem) {
       return `!function(){try{${optimization}var e=localStorage.getItem('${storageKey}');if('system'===e||(!e&&${defaultSystem})){var t='(prefers-color-scheme: dark)',m=window.matchMedia(t);if(m.media!==t||m.matches){${updateDOM(
-        'dark',
-      )}}else{${updateDOM('light')}}}else if(e){${value ? `var x=${JSON.stringify(value)};` : ''}${updateDOM(
-        value ? 'x[e]' : 'e',
+        "dark",
+      )}}else{${updateDOM("light")}}}else if(e){${value ? `var x=${JSON.stringify(value)};` : ""}${updateDOM(
+        value ? "x[e]" : "e",
         true,
       )}}${
-        !defaultSystem ? `else{${updateDOM(defaultTheme, false, false)}}` : ''
+        !defaultSystem ? `else{${updateDOM(defaultTheme, false, false)}}` : ""
       }${fallbackColorScheme}}catch(e){}}()`;
     }
 
     return `!function(){
-			try{${optimization}var e=localStorage.getItem('${storageKey}');if(e){${
-        value ? `var x=${JSON.stringify(value)};` : ''
-      }${updateDOM(value ? 'x[e]' : 'e', true)}}else{${updateDOM(
+			try{${optimization}var e=localStorage.getItem('${storageKey}');if(!e){localStorage.setItem('${storageKey}', '${defaultTheme}');};if(e){${
+        value ? `var x=${JSON.stringify(value)};` : ""
+      }${updateDOM(value ? "x[e]" : "e", true)}}else{${updateDOM(
         defaultTheme,
         false,
         false,

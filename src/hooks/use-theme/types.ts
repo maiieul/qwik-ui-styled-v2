@@ -1,12 +1,12 @@
-import { Signal } from '@qwik.dev/core';
+import { Signal } from "@qwik.dev/core";
 
 interface ValueObject {
   [themeName: string]: string;
 }
 
-export type SystemTheme = 'dark' | 'light';
+export type SystemTheme = "dark" | "light";
 
-export type Theme = 'dark' | 'light' | string | string[] | undefined;
+export type Theme = "dark" | "light" | string | undefined;
 
 export interface UseThemeProps {
   // system or light
@@ -22,12 +22,12 @@ export interface UseThemeProps {
   /** If `enableSystem` is true and the active theme is "system", this returns whether the system preference resolved to "dark" or "light". Otherwise, identical to `theme` */
   systemTheme: SystemTheme | undefined;
   /** List of all available theme names */
-  themes: string[] | string[][];
+  themes: string[];
 }
 
 export interface ThemeProviderProps {
   /** List of all available theme names */
-  themes?: string[] | string[][] | undefined;
+  themes?: string[] | undefined;
   /** Forced theme name for the current page */
   forcedTheme?: string | undefined;
   /** Whether to switch between dark and light themes based on prefers-color-scheme */
@@ -41,7 +41,7 @@ export interface ThemeProviderProps {
   /** Default theme name (for v0.0.12 and lower the default was light). If `enableSystem` is false, the default theme is light */
   defaultTheme?: string | undefined;
   /** HTML attribute modified based on the active theme. Accepts `class` and `data-*` (meaning any data attribute, `data-mode`, `data-color`, etc.) */
-  attribute?: 'class' | string | undefined;
+  attribute?: "class" | string | undefined;
   /** Mapping of theme name to HTML attribute value. Object where key is the theme name and value is the attribute value */
   value?: ValueObject | undefined;
   /** Nonce string to pass to the inline script for CSP headers */

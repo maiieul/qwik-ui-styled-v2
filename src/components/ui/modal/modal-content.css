@@ -1,0 +1,56 @@
+@reference "../../../global.css";
+
+/* TODO: fix ui-closed animations */
+@layer components {
+  .modal-content {
+    @apply bg-background text-foreground transition-discrete backdrop:backdrop-blur-xs fixed p-6 shadow-md transition-all backdrop:brightness-100;
+    @apply ui-open:animate-in ui-open:backdrop:animate-in ui-open:backdrop:fade-in not-ui-open:animate-out not-ui-open:backdrop:animate-out not-ui-open:backdrop:fade-out;
+  }
+
+  /* positions */
+  .modal-content.center {
+    @apply m-auto max-w-lg rounded-2xl border-2;
+    @apply ui-open:zoom-in-95 ui-open:fade-in ui-open:slide-in-from-bottom-2 ui-open:backdrop:fade-in not-ui-open:zoom-out-95 not-ui-open:fade-out not-ui-open:backdrop:fade-out;
+  }
+
+  .modal-content.top {
+    @apply inset-x-0 top-0 mb-auto w-full rounded-b-sm border-b-2 shadow-[1px_8px];
+    @apply ui-open:slide-in-from-top not-ui-open:slide-out-to-top;
+  }
+
+  .modal-content.bottom {
+    @apply inset-x-0 bottom-0 mt-auto w-full rounded-t-sm border-t-2 shadow-[1px_-8px];
+    @apply ui-open:slide-in-from-bottom not-ui-open:slide-out-to-bottom;
+  }
+
+  .modal-content.left {
+    @apply inset-y-0 left-0 mr-auto h-full max-w-sm rounded-r-sm border-r-2 shadow-[8px_1px];
+    @apply ui-open:slide-in-from-left not-ui-open:slide-out-to-left;
+  }
+
+  .modal-content.right {
+    @apply inset-y-0 right-0 ml-auto h-full max-w-sm rounded-l-sm border-l-2 shadow-[-8px_1px];
+    @apply ui-open:slide-in-from-right not-ui-open:slide-out-to-right;
+  }
+
+  /* variants */
+  .modal-content.primary {
+    @apply border-primary-border shadow-primary-shadow;
+  }
+
+  .modal-content.secondary {
+    @apply border-secondary-border shadow-secondary-shadow;
+  }
+
+  .modal-content.altPrimary {
+    @apply border-alt-primary-border shadow-alt-primary-shadow;
+  }
+
+  .modal-content.altSecondary {
+    @apply border-alt-secondary-border shadow-alt-secondary-shadow;
+  }
+
+  .modal-content.outline {
+    @apply bg-empty text-empty-foreground shadow-shadow;
+  }
+}

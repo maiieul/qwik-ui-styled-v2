@@ -1,0 +1,32 @@
+@reference "../../../global.css";
+
+@layer components {
+  .card {
+    @apply rounded-xs bg-card text-card-foreground border shadow-md;
+  }
+
+  /* variants */
+  .card.card-primary {
+    @apply border-primary-border shadow-primary-shadow;
+  }
+
+  .card.card-secondary {
+    @apply border-secondary-border shadow-secondary-shadow;
+  }
+
+  .card.card-altPrimary {
+    @apply border-alt-primary-border shadow-alt-primary-shadow;
+  }
+
+  .card.card-altSecondary {
+    @apply border-alt-secondary-border shadow-alt-secondary-shadow;
+  }
+
+  .card.card-outline {
+    @apply bg-empty text-foreground shadow-shadow;
+  }
+
+  .card.card-altOutline {
+    @apply border-alt-border shadow-alt-shadow;
+  }
+}

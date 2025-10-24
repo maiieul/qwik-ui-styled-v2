@@ -1,0 +1,403 @@
+/* Add compenents-3, components-4, etc. if needed */
+@layer theme, base, qds, qwik, components, components-2, utilities;
+@import "@qds.dev/ui/tailwind";
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  :root {
+    /* general surfaces and colors */
+    --background: white;
+    --foreground: var(--color-gray-950);
+    /* cards and popovers might be a bit more vivid than the general background color */
+    --card: var(--background);
+    --card-foreground: var(--color-gray-950);
+    --popover: var(--background);
+    --popover-foreground: var(--color-gray-950);
+
+    /* background/foreground pair for outline buttons, inputs, etc. */
+    --empty: var(--background);
+    --empty-foreground: var(--color-gray-950);
+
+    /* for hover/active/pressed states etc. */
+    --accent: var(--color-sky-100);
+    --accent-foreground: var(--color-gray-950);
+
+    /* for disabled/inactive states etc. */
+    --muted: var(--color-sky-100);
+    --muted-foreground: var(--color-gray-700);
+    /* general border, shadow and ring colors */
+    --border: var(--color-sky-400);
+    --shadow: var(--color-sky-200);
+    --ring: var(--color-sky-600);
+
+    --alt-card: var(--background);
+    --alt-card-foreground: var(--foreground);
+    --alt-popover: var(--background);
+    --alt-popover-foreground: var(--foreground);
+    --alt-empty: var(--background);
+    --alt-empty-foreground: var(--color-gray-950);
+    --alt-accent: var(--color-purple-400);
+    --alt-accent-foreground: var(--color-gray-950);
+    --alt-muted: var(--color-purple-200);
+    --alt-muted-foreground: var(--color-gray-700);
+    --alt-border: var(--color-purple-400);
+    --alt-shadow: var(--color-purple-200);
+    --alt-ring: var(--color-purple-600);
+
+    /* for highlighting main actions */
+    --primary: var(--color-sky-500);
+    --primary-foreground: white;
+    --primary-accent: var(--color-sky-600);
+    --primary-accent-foreground: var(--color-sky-50);
+    --primary-muted: var(--color-sky-500);
+    --primary-muted-foreground: var(--color-sky-200);
+    --primary-border: var(--color-sky-600);
+    --primary-shadow: var(--color-sky-500);
+    --primary-ring: var(--color-sky-700);
+
+    /* often in a lighter shade of primary colors, for valid but less important actions */
+    --secondary: var(--color-sky-200);
+    --secondary-foreground: var(--color-sky-700);
+    --secondary-accent: var(--color-sky-300);
+    --secondary-accent-foreground: var(--color-sky-800);
+    --secondary-muted: var(--color-sky-200);
+    --secondary-muted-foreground: var(--color-sky-600);
+    --secondary-border: var(--color-sky-400);
+    --secondary-shadow: var(--color-sky-300);
+    --secondary-ring: var(--color-sky-700);
+
+    --alt-primary: var(--color-purple-400);
+    --alt-primary-foreground: white;
+    --alt-primary-accent: var(--color-purple-600);
+    --alt-primary-accent-foreground: var(--color-purple-50);
+    --alt-primary-muted: var(--color-purple-400);
+    --alt-primary-muted-foreground: var(--color-purple-700);
+    --alt-primary-border: var(--color-purple-600);
+    --alt-primary-shadow: var(--color-purple-500);
+    --alt-primary-ring: var(--color-purple-700);
+
+    --alt-secondary: var(--color-purple-200);
+    --alt-secondary-foreground: var(--color-purple-700);
+    --alt-secondary-accent: var(--color-purple-300);
+    --alt-secondary-accent-foreground: var(--color-purple-600);
+    --alt-secondary-muted: var(--color-purple-100);
+    --alt-secondary-muted-foreground: var(--color-purple-400);
+    --alt-secondary-border: var(--color-purple-400);
+    --alt-secondary-shadow: var(--color-purple-300);
+    --alt-secondary-ring: var(--color-purple-700);
+
+    /* for form error messages etc. */
+    --foreground-danger: var(--color-rose-600);
+
+    /* for emphasizing errors or dangerous actions */
+    --danger: var(--color-red-600);
+    --danger-foreground: white;
+    --danger-accent: var(--color-red-700);
+    --danger-accent-foreground: white;
+    --danger-muted: var(--color-red-600);
+    --danger-muted-foreground: var(--color-red-300);
+    --danger-border: var(--color-red-600);
+    --danger-shadow: var(--color-red-200);
+    --danger-ring: var(--color-red-800);
+
+    /* Those tokens could be not insufficient. An alternative approach could be to set the sidebar colors through theming, with a .sidebar-light and .sidebar-dark class. This would allow to keep using the base tokens on sidebars too. */
+    --sidebar: var(--color-gray-700);
+    --sidebar-foreground: var(--color-gray-50);
+    --sidebar-accent: var(--color-gray-600);
+    --sidebar-accent-foreground: var(--color-gray-50);
+    --sidebar-muted: var(--color-gray-100);
+    --sidebar-muted-foreground: var(--color-gray-700);
+    --sidebar-border: var(--color-gray-800);
+    --sidebar-shadow: var(--color-gray-900);
+    --sidebar-ring: var(--color-gray-700);
+  }
+  /* In dark mode, shadows are less visible, so using more vivid colors can help create a better contrast between the elements on the page */
+  .dark {
+    /* general surfaces  */
+    --background: var(--color-gray-950);
+    --foreground: var(--color-gray-50);
+    /* cards and popovers might be a bit more vivid than the general background color */
+    --card: var(--color-gray-950);
+    --card-foreground: var(--color-gray-50);
+    --popover: var(--color-gray-900);
+    --popover-foreground: var(--color-gray-50);
+    /* background/foreground pair for empty buttons, inputs, etc. */
+    --empty: var(--color-gray-950);
+    --empty-foreground: var(--color-gray-50);
+
+    /* for hover/active/pressed states etc. */
+    --accent: var(--color-purple-800);
+    --accent-foreground: var(--color-gray-50);
+
+    /* for disabled/inactive states etc. */
+    --muted: var(--color-purple-800);
+    --muted-foreground: var(--color-gray-300);
+
+    /* general border, shadow and ring colors */
+    --border: var(--color-purple-900);
+    --shadow: var(--color-purple-950);
+    --ring: var(--color-purple-600);
+
+    --alt-card: var(--color-gray-950);
+    --alt-card-foreground: var(--color-gray-50);
+    --alt-popover: var(--color-gray-900);
+    --alt-popover-foreground: var(--color-gray-50);
+    --alt-empty: var(--color-gray-950);
+    --alt-empty-foreground: var(--color-gray-50);
+    --alt-accent: var(--color-sky-800);
+    --alt-accent-foreground: var(--color-sky-50);
+    --alt-muted: var(--color-sky-800);
+    --alt-muted-foreground: var(--color-gray-300);
+    --alt-border: var(--color-sky-900);
+    --alt-shadow: var(--color-sky-950);
+    --alt-ring: var(--color-sky-600);
+
+    /* for highlighting main actions */
+    --primary: var(--color-purple-500);
+    --primary-foreground: var(--color-purple-50);
+    --primary-accent: var(--color-purple-500);
+    --primary-accent-foreground: var(--color-purple-50);
+    --primary-muted: var(--color-purple-700);
+    --primary-muted-foreground: var(--color-purple-200);
+    --primary-border: var(--color-purple-600);
+    --primary-shadow: var(--color-purple-700);
+    --primary-ring: var(--color-purple-800);
+
+    /* often in a lighter shade of primary colors, for highlighting secondary actions */
+    --secondary: var(--color-purple-800);
+    --secondary-foreground: var(--color-purple-100);
+    --secondary-accent: var(--color-purple-700);
+    --secondary-accent-foreground: var(--color-purple-300);
+    --secondary-muted: var(--color-purple-800);
+    --secondary-muted-foreground: var(--color-purple-400);
+    --secondary-border: var(--color-purple-700);
+    --secondary-shadow: var(--color-purple-900);
+    --secondary-ring: var(--color-purple-800);
+
+    --alt-primary: var(--color-sky-600);
+    --alt-primary-foreground: var(--color-sky-50);
+    --alt-primary-accent: var(--color-sky-500);
+    --alt-primary-accent-foreground: var(--color-sky-50);
+    --alt-primary-muted: var(--color-sky-700);
+    --alt-primary-muted-foreground: var(--color-sky-200);
+    --alt-primary-border: var(--color-sky-700);
+    --alt-primary-shadow: var(--color-sky-800);
+    --alt-primary-ring: var(--color-sky-700);
+
+    --alt-secondary: var(--color-sky-800);
+    --alt-secondary-foreground: var(--color-sky-100);
+    --alt-secondary-accent: var(--color-sky-600);
+    --alt-secondary-accent-foreground: var(--color-sky-100);
+    --alt-secondary-muted: var(--color-sky-800);
+    --alt-secondary-muted-foreground: var(--color-sky-300);
+    --alt-secondary-border: var(--color-sky-700);
+    --alt-secondary-shadow: var(--color-sky-900);
+    --alt-secondary-ring: var(--color-sky-700);
+
+    --foreground-danger: var(--color-rose-700);
+
+    /* for emphasizing errors or dangerous actions */
+    --danger: var(--color-rose-700);
+    --danger-foreground: var(--color-rose-50);
+    --danger-accent: var(--color-rose-700);
+    --danger-accent-foreground: var(--color-rose-50);
+    --danger-muted: var(--color-rose-100);
+    --danger-muted-foreground: var(--color-rose-700);
+    --danger-border: var(--color-rose-800);
+    --danger-shadow: var(--color-rose-950);
+    --danger-ring: var(--color-rose-700);
+
+    /* those tokens could be insufficient. An alternative approach could be to set the sidebar colors through theming, with a .sidebar-light and .sidebar-dark class. This would allow to keep using the base tokens on sidebars too. */
+    --sidebar: var(--color-gray-700);
+    --sidebar-foreground: var(--color-gray-50);
+    --sidebar-accent: var(--color-gray-600);
+    --sidebar-accent-foreground: var(--color-gray-50);
+    --sidebar-muted: var(--color-gray-100);
+    --sidebar-muted-foreground: var(--color-gray-700);
+    --sidebar-border: var(--color-gray-800);
+    --sidebar-shadow: var(--color-gray-900);
+    --sidebar-ring: var(--color-gray-700);
+  }
+}
+
+@theme {
+  --color-purple-50: #f9f6fe;
+  --color-purple-100: #f1e9fe;
+  --color-purple-200: #e5d7fd;
+  --color-purple-300: #d1b8fa;
+  --color-purple-400: #ac7ef4;
+  --color-purple-500: #985eee;
+  --color-purple-600: #803edf;
+  --color-purple-700: #6c2cc4;
+  --color-purple-800: #5d29a0;
+  --color-purple-900: #4d2281;
+  --color-purple-950: #310c5f;
+
+  --color-sky-50: #eff8ff;
+  --color-sky-100: #def0ff;
+  --color-sky-200: #b6e2ff;
+  --color-sky-300: #75ccff;
+  --color-sky-400: #18b6f6;
+  --color-sky-500: #0093ee;
+  --color-sky-600: #0079d4;
+  --color-sky-700: #0060ab;
+  --color-sky-800: #00518d;
+  --color-sky-900: #064474;
+  --color-sky-950: #042b4d;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-empty: var(--empty);
+  --color-empty-foreground: var(--empty-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-shadow: var(--shadow);
+  --color-ring: var(--ring);
+
+  --color-alt-card: var(--alt-card);
+  --color-alt-card-foreground: var(--alt-card-foreground);
+  --color-alt-popover: var(--alt-popover);
+  --color-alt-popover-foreground: var(--alt-popover-foreground);
+  --color-alt-empty: var(--alt-empty);
+  --color-alt-empty-foreground: var(--alt-empty-foreground);
+  --color-alt-accent: var(--alt-accent);
+  --color-alt-accent-foreground: var(--alt-accent-foreground);
+  --color-alt-muted: var(--alt-muted);
+  --color-alt-muted-foreground: var(--alt-muted-foreground);
+  --color-alt-border: var(--alt-border);
+  --color-alt-shadow: var(--alt-shadow);
+  --color-alt-ring: var(--alt-ring);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-accent: var(--primary-accent);
+  --color-primary-accent-foreground: var(--primary-accent-foreground);
+  --color-primary-muted: var(--primary-muted);
+  --color-primary-muted-foreground: var(--primary-muted-foreground);
+  --color-primary-border: var(--primary-border);
+  --color-primary-shadow: var(--primary-shadow);
+  --color-primary-ring: var(--primary-ring);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-accent: var(--secondary-accent);
+  --color-secondary-accent-foreground: var(--secondary-accent-foreground);
+  --color-secondary-muted: var(--secondary-muted);
+  --color-secondary-muted-foreground: var(--secondary-muted-foreground);
+  --color-secondary-border: var(--secondary-border);
+  --color-secondary-shadow: var(--secondary-shadow);
+  --color-secondary-ring: var(--secondary-ring);
+
+  --color-alt-primary: var(--alt-primary);
+  --color-alt-primary-foreground: var(--alt-primary-foreground);
+  --color-alt-primary-accent: var(--alt-primary-accent);
+  --color-alt-primary-accent-foreground: var(--alt-primary-accent-foreground);
+  --color-alt-primary-muted: var(--alt-primary-muted);
+  --color-alt-primary-muted-foreground: var(--alt-primary-muted-foreground);
+  --color-alt-primary-border: var(--alt-primary-border);
+  --color-alt-primary-shadow: var(--alt-primary-shadow);
+  --color-alt-primary-ring: var(--alt-primary-ring);
+
+  --color-alt-secondary: var(--alt-secondary);
+  --color-alt-secondary-foreground: var(--alt-secondary-foreground);
+  --color-alt-secondary-accent: var(--alt-secondary-accent);
+  --color-alt-secondary-accent-foreground: var(
+    --alt-secondary-accent-foreground
+  );
+  --color-alt-secondary-muted: var(--alt-secondary-muted);
+  --color-alt-secondary-muted-foreground: var(--alt-secondary-muted-foreground);
+  --color-alt-secondary-border: var(--alt-secondary-border);
+  --color-alt-secondary-shadow: var(--alt-secondary-shadow);
+  --color-alt-secondary-ring: var(--alt-secondary-ring);
+
+  --color-foreground-danger: var(--foreground-danger);
+
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-danger-accent: var(--danger-accent);
+  --color-danger-accent-foreground: var(--danger-accent-foreground);
+  --color-danger-muted: var(--danger-muted);
+  --color-danger-muted-foreground: var(--danger-muted-foreground);
+  --color-danger-border: var(--danger-border);
+  --color-danger-shadow: var(--danger-shadow);
+  --color-danger-ring: var(--danger-ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-muted-foreground: var(--sidebar-muted-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-shadow: var(--sidebar-shadow);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --default-border-width: calc(0.75px + 1px);
+  --default-border-radius: 0rem;
+
+  --radius-xs: var(--default-border-radius);
+  --radius-sm: calc(var(--default-border-radius) + 0.125rem);
+  --radius-md: calc(var(--default-border-radius) + 0.375rem);
+  --radius-lg: calc(var(--default-border-radius) + 0.5rem);
+  --radius-xl: calc(var(--default-border-radius) + 0.75rem);
+  --radius-2xl: calc(var(--default-border-radius) + 1rem);
+  --radius-3xl: calc(var(--default-border-radius) + 1.5rem);
+  --shadow-2xs: 1px 2px var(--shadow);
+  --shadow-xs: 3px 4px var(--shadow);
+  --shadow-sm: 5px 6px var(--shadow);
+  --shadow-md: 7px 8px var(--shadow);
+  --shadow-lg: 9px 10px var(--shadow);
+  --shadow-xl: 11px 12px var(--shadow);
+  --shadow-2xl: 13px 14px var(--shadow);
+  --animate-accordion-down: collapsible-down 0.2s ease-out forwards;
+  --animate-accordion-up: collapsible-up 0.2s ease-out forwards;
+
+  --stroke-width: 2px;
+
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--qwikui-collapsible-content-height);
+    }
+  }
+  @keyframes collapsible-up {
+    from {
+      height: var(--qwikui-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@utility border-width-* {
+  border: --value(--border-width-*);
+}
+@utility stroke-width-* {
+  stroke: --value(--stroke-width-*);
+}
+@utility button-hocus {
+  transform: var(--button-hocus);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

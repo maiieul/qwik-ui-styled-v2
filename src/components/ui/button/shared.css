@@ -1,0 +1,36 @@
+@reference "../../../global.css";
+
+@layer components {
+  .btn {
+    @apply rounded-xs focus-visible:ring-ring inline-flex items-center justify-center text-sm font-medium transition-all focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* shared variants */
+  .btn.btn-primary {
+    @apply border-primary-border bg-primary text-primary-foreground shadow-primary-shadow border shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+  .btn.btn-altPrimary {
+    @apply border-alt-primary-border bg-alt-primary text-alt-primary-foreground shadow-alt-primary-shadow border shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn.btn-secondary {
+    @apply border-secondary-border bg-secondary text-secondary-foreground shadow-secondary-shadow border shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+  .btn.btn-altSecondary {
+    @apply border-alt-secondary-border bg-alt-secondary text-alt-secondary-foreground shadow-alt-secondary-shadow border shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn.btn-outline {
+    @apply bg-empty text-empty-foreground border shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+  .btn.btn-altOutline {
+    @apply border-alt-border bg-alt-empty text-alt-empty-foreground shadow-alt-shadow border shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn.btn-ghost {
+    @apply hover:border-border text-foreground hover:bg-empty border border-transparent hover:border hover:shadow-sm;
+  }
+  .btn.btn-altGhost {
+    @apply text-foreground shadow-alt-shadow hover:border-alt-border hover:bg-alt-empty border border-transparent hover:border hover:shadow-sm;
+  }
+}

@@ -1,11 +1,11 @@
 import { component$ } from "@qwik.dev/core";
-import { Button } from "~/components/ui";
 import { Lucide } from "@qds.dev/ui";
+import { IconButton } from "~/components/ui";
 
 export default component$(() => {
   return (
-    <Button size="icon">
+    <IconButton>
       <Lucide.Github />
-    </Button>
+    </IconButton>
   );
 });

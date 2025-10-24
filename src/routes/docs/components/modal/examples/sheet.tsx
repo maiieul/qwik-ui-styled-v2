@@ -1,7 +1,6 @@
 import { PropsOf, Slot, component$, useSignal } from "@qwik.dev/core";
-import { cn } from "@qwik-ui/utils";
 import { Lucide } from "@qds.dev/ui";
-import { Button, Modal } from "~/components/ui";
+import { Button, IconButton, Modal } from "~/components/ui";
 
 export default component$(() => {
   return (
@@ -22,10 +21,10 @@ export const Sheet = component$<PropsOf<typeof Modal.Content>>(
     const show = useSignal(false);
     return (
       <Modal.Root bind:show={show}>
-        <Modal.Trigger
-        // class={[buttonVariants({ look: "ghost" }), "w-20"]}
-        >
-          <Slot />
+        <Modal.Trigger asChild>
+          <Button>
+            <Slot />
+          </Button>
         </Modal.Trigger>
         <Modal.Content {...props}>
           <Modal.Title>Edit Profile</Modal.Title>
@@ -44,18 +43,12 @@ export const Sheet = component$<PropsOf<typeof Modal.Content>>(
           /> */}
           </div>
           <footer class="mt-6">
-            <Button look="primary" onClick$={() => (show.value = false)}>
-              Save
-            </Button>
+            <Button onClick$={() => (show.value = false)}>Save</Button>
           </footer>
-          <Modal.Close
-            class={cn(
-              // buttonVariants({ size: "icon", look: "link" }),
-              "absolute top-2 right-3",
-            )}
-            type="submit"
-          >
-            <Lucide.X class="h-5 w-5" />
+          <Modal.Close asChild type="submit">
+            <IconButton class="absolute right-3 top-2">
+              <Lucide.X />
+            </IconButton>
           </Modal.Close>
         </Modal.Content>
       </Modal.Root>

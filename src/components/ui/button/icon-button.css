@@ -1,0 +1,17 @@
+@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  /* sizes */
+  .btn.icon-btn-sm {
+    @apply size-8;
+  }
+
+  .btn.icon-btn-md {
+    @apply size-9;
+  }
+
+  .btn.icon-btn-lg {
+    @apply size-10;
+  }
+}

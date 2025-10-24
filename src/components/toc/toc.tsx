@@ -1,6 +1,6 @@
-import { ContentHeading } from '@qwik.dev/router';
-import { cn } from '@qwik-ui/utils';
-import { component$, useSignal, $, useOnWindow } from '@qwik.dev/core';
+import { ContentHeading } from "@qwik.dev/router";
+import { cn } from "@qwik-ui/utils";
+import { component$, useSignal, $, useOnWindow } from "@qwik.dev/core";
 
 export const DashboardTableOfContents = component$(
   ({ headings }: { headings: ContentHeading[] }) => {
@@ -25,30 +25,39 @@ interface Node extends ContentHeading {
 type Tree = Array<Node>;
 
 const TableOfContents = component$<TableOfContentsProps>(({ headings }) => {
-  const sanitizedHeadings = headings.map(({ text, id, level }) => ({ text, id, level }));
+  const sanitizedHeadings = headings.map(({ text, id, level }) => ({
+    text,
+    id,
+    level,
+  }));
   const itemIds = headings.map(({ id }) => id);
   const activeHeading = useActiveItem(itemIds);
   const tree = buildTree(sanitizedHeadings);
   const fixStartingBug: Node = { ...tree, children: [tree] };
-  return <RecursiveList tree={fixStartingBug} activeItem={activeHeading.value ?? ''} />;
+  return (
+    <RecursiveList
+      tree={fixStartingBug}
+      activeItem={activeHeading.value ?? ""}
+    />
+  );
 });
 
 function deltaToStrg(
   currNode: Node,
   nextNode: Node,
-): 'same level' | 'down one level' | 'up one level' | 'upwards discontinuous' {
+): "same level" | "down one level" | "up one level" | "upwards discontinuous" {
   const delta = currNode.level - nextNode.level;
   if (delta > 1) {
-    return 'upwards discontinuous';
+    return "upwards discontinuous";
   }
   if (delta === 1) {
-    return 'up one level';
+    return "up one level";
   }
   if (delta === 0) {
-    return 'same level';
+    return "same level";
   }
   if (delta === -1) {
-    return 'down one level';
+    return "down one level";
   }
 
   throw new Error(
@@ -68,7 +77,7 @@ function buildTree(nodes: ContentHeading[]) {
     childrenMap.set(nextNode.level, nextNode.children);
     const deltaStrg = deltaToStrg(currNode, nextNode);
     switch (deltaStrg) {
-      case 'upwards discontinuous': {
+      case "upwards discontinuous": {
         const delta = currNode.level - nextNode.level;
         if (childrenMap.has(delta - 1)) {
           const nthParent = childrenMap.get(delta - 1);
@@ -76,17 +85,17 @@ function buildTree(nodes: ContentHeading[]) {
         }
         break;
       }
-      case 'up one level': {
+      case "up one level": {
         const grandParent = childrenMap.get(currNode.level - 2);
         grandParent?.push(nextNode);
         break;
       }
-      case 'same level': {
+      case "same level": {
         const parent = childrenMap.get(currNode.level - 1);
         parent?.push(nextNode);
         break;
       }
-      case 'down one level': {
+      case "down one level": {
         currNode.children.push(nextNode);
         break;
       }
@@ -107,7 +116,7 @@ type RecursiveListProps = {
 const RecursiveList = component$<RecursiveListProps>(
   ({ tree, activeItem, limit = 3 }) => {
     return tree?.children?.length && tree.level < limit ? (
-      <ul class={cn('m-0 list-none', { 'pl-4': tree.level !== 1 })}>
+      <ul class={cn("m-0 list-none", { "pl-4": tree.level !== 1 })}>
         {tree.children.map((childNode) => (
           <li key={childNode.id} class="mt-0 list-none pt-2">
             <Anchor node={childNode} activeItem={activeItem} />
@@ -125,7 +134,7 @@ const useActiveItem = (itemIds: string[]) => {
   const activeId = useSignal<string>();
 
   useOnWindow(
-    'scroll',
+    "scroll",
     $(() => {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -135,7 +144,7 @@ const useActiveItem = (itemIds: string[]) => {
             }
           });
         },
-        { rootMargin: '0% 0% -85% 0%' },
+        { rootMargin: "0% 0% -85% 0%" },
       );
 
       itemIds.forEach((id) => {
@@ -175,15 +184,17 @@ const Anchor = component$<AnchorProps>(({ node, activeItem }) => {
           if (element) {
             const navbarHeight = 90;
             const position =
-              element.getBoundingClientRect().top + window.scrollY - navbarHeight;
-            window.scrollTo({ top: position, behavior: 'auto' });
+              element.getBoundingClientRect().top +
+              window.scrollY -
+              navbarHeight;
+            window.scrollTo({ top: position, behavior: "auto" });
           }
         }),
       ]}
       class={cn(
-        node.level > 2 && 'ml-2',
-        'inline-block no-underline transition-colors hover:text-foreground',
-        isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
+        node.level > 2 && "ml-2",
+        "inline-block no-underline transition-colors hover:text-foreground",
+        isActive ? "font-medium text-foreground" : "text-muted-foreground",
       )}
     >
       {node.text}

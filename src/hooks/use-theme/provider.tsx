@@ -43,7 +43,7 @@ export const ThemeProvider = component$<ThemeProviderProps>(
     const resolvedThemeSig = useSignal<Theme>(storageKey);
 
     const applyTheme = $(async (theme: Theme) => {
-      const attrs = value ? Object.values(value) : themes.flat();
+      const attrs = value ? Object.values(value) : themes;
 
       let resolved = theme;
       if (!resolved) return;
@@ -53,20 +53,18 @@ export const ThemeProvider = component$<ThemeProviderProps>(
         resolved = await getSystemTheme();
       }
 
-      // Join the array of attr if the theme is an array
-      const computedResolved = Array.isArray(resolved)
-        ? resolved.join(attribute === "class" ? " " : "-")
-        : resolved;
+      const computedResolved = resolved;
 
       const name = value ? value[computedResolved] : computedResolved;
 
       if (disableTransitionOnChange) disableAnimation();
       const d = document.documentElement;
-
       if (attribute === "class") {
         d.classList.remove(...attrs);
 
-        if (name) d.classList.add(...name.split(" "));
+        if (name) {
+          d.classList.add(...name.split(" "));
+        }
       } else {
         if (name) {
           d.setAttribute(attribute, name);
@@ -115,15 +113,11 @@ export const ThemeProvider = component$<ThemeProviderProps>(
       }),
     );
 
+    // Sync themeSig.value changes to localStorages
     useTask$(({ track }) => {
       track(() => themeSig.value);
       if (isServer) return;
-      localStorage.setItem(
-        storageKey,
-        Array.isArray(themeSig.value)
-          ? themeSig.value.join(" ")
-          : themeSig.value || "",
-      );
+      localStorage.setItem(storageKey, themeSig.value || "");
     });
 
     // Whenever theme or forcedTheme changes, apply it
@@ -133,7 +127,6 @@ export const ThemeProvider = component$<ThemeProviderProps>(
       if (themeSig.value !== "system") {
         resolvedThemeSig.value = themeSig.value;
       }
-
       applyTheme(forcedTheme ?? themeSig.value);
     });
 
@@ -146,14 +139,10 @@ export const ThemeProvider = component$<ThemeProviderProps>(
       systemTheme: (enableSystem ? resolvedThemeSig.value : undefined) as
         | SystemTheme
         | undefined,
-      themes: enableSystem
-        ? Array.isArray(themes[0])
-          ? [...(themes as string[][]), ["system"]]
-          : [...(themes as string[]), "system"]
-        : themes,
+      themes: enableSystem ? [...themes, "system"] : themes,
     });
 
-    const attrs = value ? Object.values(value) : themes.flat();
+    const attrs = value ? Object.values(value) : themes;
 
     return (
       <Fragment>

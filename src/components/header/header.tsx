@@ -1,180 +1,106 @@
-import { $, PropsOf, component$, useSignal, useStyles$ } from "@qwik.dev/core";
+import { $, PropsOf, component$, useSignal } from "@qwik.dev/core";
+
+import { Lucide } from "@qds.dev/ui";
+import { IconButton, Modal } from "~/components/ui";
 
 import { DocsNavigation } from "../navigation-docs/navigation-docs";
-import { useTheme } from "../use-theme/provider";
-import { Button } from "../ui";
 import { DiscordIcon } from "../icons/discord";
-import { GitHubIcon } from "../icons/gitHub";
-import { Modal } from "@qds.dev/ui";
-import { Lucide } from "@qds.dev/ui";
 import { LogoIcon } from "../icons/logo";
+import { useTheme } from "~/hooks/use-theme/provider";
+import MakeItYours from "../make-it-yours/make-it-yours";
+import { Theme } from "~/hooks/use-theme/types";
 export interface HeaderProps {
   showVersion?: boolean;
   showBottomBorder?: boolean;
 }
 
 export default component$(() => {
-  useStyles$(`
-    .sidebar-mobile::backdrop {
-      background: rgba(0,0,0,0.5);
-    }
-  
-    .sidebar-mobile {
-      animation: sidebarOpen 0.75s forwards cubic-bezier(0.6, 0.6, 0, 1);
-    }
-  
-    .sidebar-mobile::backdrop {
-      animation: sidebarFadeIn 0.75s forwards cubic-bezier(0.6, 0.6, 0, 1);
-    }
-  
-    .sidebar-mobile.modal-closing {
-      animation: sidebarClose 0.35s forwards cubic-bezier(0.6, 0.6, 0, 1);
-    }
-  
-    .sidebar-mobile.modal-closing::backdrop {
-      animation: sidebarFadeOut 0.35s forwards cubic-bezier(0.6, 0.6, 0, 1);
-    }
-
-    @keyframes sidebarOpen {
-      from {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0%);
-      }
-    }
-  
-    @keyframes sidebarClose {
-      from {
-        opacity: 1;
-        transform: translateX(0%);
-      }
-      to {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-    }
-  
-    @keyframes sidebarFadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-  
-    @keyframes sidebarFadeOut {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
-    }
-    `);
-
   const isSidebarOpenedSig = useSignal(false);
 
-  const { themeSig } = useTheme();
-
   return (
-    <Modal.Root
-      class={[
-        "bg-background sticky top-0 z-10 flex h-16 justify-center border-b",
-        themeSig.value?.includes("brutalist") && "border-b-2",
-      ]}
-      bind:show={isSidebarOpenedSig}
-    >
-      <header class="flex w-full items-center justify-between">
-        <section class="flex items-center justify-start">
-          <a href="/" aria-label="Qwik UI Logo" class="ml-4">
-            <LogoIcon class="hover:drop-shadow-accent block h-8 w-8 hover:drop-shadow-sm" />
-          </a>
-          <a href="/docs/getting-started/" class="ml-4">
-            Docs
-          </a>
-        </section>
+    <header class="bg-background shadow-xs fixed left-1/4 top-0 z-10 mt-4 flex h-14 w-full max-w-3xl items-center justify-between border">
+      <section class="flex items-center justify-start">
+        <a href="/" aria-label="Qwik UI Logo" class="ml-4">
+          <LogoIcon class="hover:drop-shadow-xs hover:drop-shadow-white block h-8 w-8" />
+        </a>
+        <a href="/docs/getting-started/" class="ml-4">
+          Docs
+        </a>
+      </section>
 
-        <div class="mr-4 flex items-center">
-          <div class="xs:space-x-4 flex items-center space-x-1">
-            <a
-              href="https://discord.gg/PVWUUejrez"
-              target="_blank"
-              // class={[buttonVariants({ size: "icon", look: "ghost" })]}
-            >
+      <div class="mr-4 flex items-center">
+        <div class="xs:space-x-4 flex items-center space-x-1">
+          <MakeItYours />
+          <IconButton asChild>
+            <a href="https://discord.gg/PVWUUejrez" target="_blank">
               <DiscordIcon />
             </a>
-            <a
-              target="_blank"
-              href="https://github.com/qwikifiers/qwik-ui"
-              aria-label="Qwik-UI GitHub repository"
-              // class={[buttonVariants({ size: "icon", look: "ghost" })]}
-            >
-              <GitHubIcon />
+          </IconButton>
+          <IconButton asChild>
+            <a href="https://github.com/qwikifiers/qwik-ui" target="_blank">
+              <Lucide.Github />
             </a>
-            <DarkModeToggle />
+          </IconButton>
+          <DarkModeToggle />
+          <Modal.Root>
             <Modal.Trigger
+              asChild
               aria-label="Toggle navigation"
-              class={[
-                // buttonVariants({ size: "icon", look: "ghost" }),
-                "flex lg:hidden",
-              ]}
+              class={["flex lg:hidden"]}
             >
-              <Lucide.Menu class="h-6 w-6" />
+              <IconButton>
+                <Lucide.Menu />
+              </IconButton>
             </Modal.Trigger>
-          </div>
+            <Modal.Content position="right">
+              <div class="mb-2 pb-4 pt-2">
+                <DocsNavigation class="bg-background max-w-80 overflow-auto" />
+              </div>
+              <Modal.Close
+                autoFocus
+                onClick$={() => (isSidebarOpenedSig.value = false)}
+                class="absolute right-6 top-6"
+              >
+                <Lucide.X />
+              </Modal.Close>
+            </Modal.Content>
+          </Modal.Root>
         </div>
-      </header>
-      <Modal.Content class="sidebar-mobile rounded-base bg-background text-foreground mr-0 ml-auto h-screen w-sm border-0 shadow-md">
-        <div class="mb-2 pt-2 pb-4">
-          <DocsNavigation class="bg-background max-w-80 overflow-auto" />
-        </div>
-        <button
-          autoFocus
-          onClick$={() => (isSidebarOpenedSig.value = false)}
-          class="absolute top-[26px] right-6"
-        >
-          <Lucide.X class="h-8 w-8" />
-        </button>
-      </Modal.Content>
-    </Modal.Root>
+      </div>
+    </header>
   );
 });
 
-const DarkModeToggle = component$<PropsOf<typeof Button>>(({ ...props }) => {
-  const { themeSig } = useTheme();
-  const switchLightDark = $(
-    (input: string | string[]): string | string[] | undefined => {
-      const switchWord = (word: string): string =>
-        word.includes("light")
-          ? word.replace("light", "dark")
-          : word.replace("dark", "light");
-      if (typeof input === "string") {
-        return switchWord(input);
-      } else if (Array.isArray(input)) {
-        return input.map((item) => switchWord(item));
+const DarkModeToggle = component$<PropsOf<typeof IconButton>>(
+  ({ ...props }) => {
+    const { themeSig } = useTheme();
+
+    const switchMode = $((theme: Theme): Theme => {
+      if (!theme) return "light";
+      if (theme.includes("light")) {
+        return theme.replace("light", "dark");
+      } else if (theme.includes("dark")) {
+        return theme.replace("dark", "light");
       }
-    },
-  );
-  return (
-    <Button
-      {...props}
-      aria-label="Toggle dark mode"
-      size="icon"
-      look="ghost"
-      onClick$={async () =>
-        (themeSig.value = await switchLightDark(themeSig.value || "light"))
-      }
-    >
-      <span class="hidden dark:block">
-        <Lucide.Moon class="h-6 w-6" />
-      </span>
-      <span class="block dark:hidden">
-        <Lucide.Sun class="h-6 w-6" />
-      </span>
-    </Button>
-  );
-});
+    });
+
+    return (
+      <IconButton
+        {...props}
+        aria-label="Toggle dark mode"
+        onClick$={async () => {
+          themeSig.value = await switchMode(
+            themeSig.value || localStorage.getItem("theme") || "light",
+          );
+        }}
+      >
+        <span class="hidden dark:block">
+          <Lucide.Moon class="size-5" />
+        </span>
+        <span class="block dark:hidden">
+          <Lucide.Sun class="size-5" />
+        </span>
+      </IconButton>
+    );
+  },
+);

@@ -1,13 +1,10 @@
 ---
-title: Qwik UI | Styled Modal Component
+title: Modal
+description: A popup window overlaid on either the primary window or another modal window, rendering the content underneath inert.
 ---
 
-import { ShowcaseHero, ShowcaseSheet } from './showcase-components';
-import ModalRawCode from '~/components/ui/modal/modal.tsx?raw';
-
-# Modal
-
-A window overlaid on either the primary window or another modal window, rendering the content underneath inert.
+import { ShowcaseHero, ShowcaseSheet } from "./showcase-components";
+import ModalRawCode from "~/components/ui/modal/index.tsx?raw";
 
 <ShowcaseHero />
 
@@ -24,7 +21,7 @@ qwik-ui add modal
 ## Usage
 
 ```tsx
-import { Button, Modal } from '~/components/ui';
+import { Button, Modal } from "~/components/ui";
 ```
 
 ```tsx
@@ -35,7 +32,7 @@ import { Button, Modal } from '~/components/ui';
     <Modal.Description>Description</Modal.Description>
     <div>...</div>
     <footer>
-      <Button look="primary" onClick$={() => (show.value = false)}>
+      <Button variant="primary" onClick$={() => (show.value = false)}>
         Save
       </Button>
     </footer>

@@ -24,7 +24,7 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
               return (
                 <Tabs.Trigger
                   key={rawSnippetTab.title}
-                  class="text-muted-foreground data-selected:text-foreground h-[44px] px-3 py-2"
+                  class="h-[44px] px-3 py-2 text-muted-foreground data-selected:text-foreground"
                 >
                   {rawSnippetTab.title}
                 </Tabs.Trigger>

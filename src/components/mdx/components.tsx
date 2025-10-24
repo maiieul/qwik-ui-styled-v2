@@ -34,10 +34,7 @@ export const components: Record<string, Component> = {
       <h2
         {...props}
         class={[
-          cn(
-            "mt-20 mb-8 scroll-mt-24 border-b-2 pb-2 text-2xl font-extrabold",
-            props.class,
-          ),
+          cn("mb-4 mt-12 scroll-mt-24 text-3xl font-extrabold", props.class),
         ]}
       >
         <Slot />
@@ -49,7 +46,7 @@ export const components: Record<string, Component> = {
       <h3
         {...props}
         class={[
-          cn("mt-8 mb-6 scroll-mt-20 text-xl font-semibold", props.class),
+          cn("mb-2 mt-8 scroll-mt-20 text-xl font-semibold", props.class),
         ]}
       >
         <Slot />
@@ -58,7 +55,7 @@ export const components: Record<string, Component> = {
   }),
   h4: component$<PropsOf<"h4">>(({ ...props }) => {
     return (
-      <h4 {...props} class={[cn("mt-6 mb-4 text-lg font-medium", props.class)]}>
+      <h4 {...props} class={[cn("mb-4 mt-6 text-lg font-medium", props.class)]}>
         <Slot />
       </h4>
     );
@@ -116,14 +113,13 @@ export const components: Record<string, Component> = {
   }>(({ rawCodeString }) => {
     return (
       <div
-        class="code-example data-pagefind-ignore rounded-base relative mb-6 max-h-125"
+        class="code-example data-pagefind-ignore max-h-125 relative mb-6"
         data-pagefind-ignore="all"
       >
-        <CodeCopy class="absolute top-3 right-3" code={rawCodeString} />
+        <CodeCopy class="absolute right-3 top-3" code={rawCodeString} />
         <div
-          class={cn(
-            "rounded-base dark:from-background dark:to-accent/30 max-h-125 max-w-full overflow-y-auto border bg-linear-to-b from-slate-900 to-slate-800 p-6 text-sm",
-          )}
+          class="max-h-125 max-w-full overflow-y-auto rounded-md border p-6 text-sm shadow-lg"
+          style={{ backgroundColor: "#1b1e28", color: "#a6accd" }}
         >
           <pre>
             <Slot />
