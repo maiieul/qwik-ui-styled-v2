@@ -18,10 +18,10 @@ export default component$(() => {
   const isSidebarOpenedSig = useSignal(false);
 
   return (
-    <header class="bg-background shadow-xs fixed left-1/4 top-0 z-10 mt-4 flex h-14 w-full max-w-3xl items-center justify-between border">
+    <header class="z-10 mt-4 flex h-14 w-full items-center justify-between border bg-background shadow-xs">
       <section class="flex items-center justify-start">
         <a href="/" aria-label="Qwik UI Logo" class="ml-4">
-          <LogoIcon class="hover:drop-shadow-xs hover:drop-shadow-white block h-8 w-8" />
+          <LogoIcon class="block h-8 w-8 hover:drop-shadow-xs hover:drop-shadow-white" />
         </a>
         <a href="/docs/getting-started/" class="ml-4">
           Docs
@@ -53,13 +53,13 @@ export default component$(() => {
               </IconButton>
             </Modal.Trigger>
             <Modal.Content position="right">
-              <div class="mb-2 pb-4 pt-2">
-                <DocsNavigation class="bg-background max-w-80 overflow-auto" />
+              <div class="mb-2 pt-2 pb-4">
+                <DocsNavigation class="max-w-80 overflow-auto bg-background" />
               </div>
               <Modal.Close
                 autoFocus
                 onClick$={() => (isSidebarOpenedSig.value = false)}
-                class="absolute right-6 top-6"
+                class="absolute top-6 right-6"
               >
                 <Lucide.X />
               </Modal.Close>
