@@ -1,4 +1,4 @@
-import { $, PropsOf, component$, useSignal } from "@qwik.dev/core";
+import { $, PropsOf, component$, useSignal, useOnWindow } from "@qwik.dev/core";
 
 import { Lucide } from "@qds.dev/ui";
 import { IconButton, Modal } from "~/components/ui";
@@ -16,9 +16,37 @@ export interface HeaderProps {
 
 export default component$(() => {
   const isSidebarOpenedSig = useSignal(false);
+  const isHeaderHiddenSig = useSignal(false);
+  const lastScrollYSig = useSignal(0);
+
+  useOnWindow(
+    "scroll",
+    $(() => {
+      const currentY =
+        window.scrollY || document.documentElement.scrollTop || 0;
+      const delta = currentY - (lastScrollYSig.value || 0);
+
+      if (currentY <= 8) {
+        isHeaderHiddenSig.value = false;
+      } else if (delta > 0) {
+        isHeaderHiddenSig.value = true;
+      } else if (delta < 0) {
+        isHeaderHiddenSig.value = false;
+      }
+
+      lastScrollYSig.value = currentY;
+    }),
+  );
 
   return (
-    <header class="z-10 mt-4 flex h-14 w-full items-center justify-between border bg-background shadow-xs">
+    <header
+      class={[
+        "mt-4 flex h-14 w-full items-center justify-between rounded-xl border bg-background shadow-xs transition-all duration-300 will-change-scroll",
+        isHeaderHiddenSig.value
+          ? "pointer-events-none -translate-y-full opacity-0"
+          : "translate-y-0 opacity-100",
+      ]}
+    >
       <section class="flex items-center justify-start">
         <a href="/" aria-label="Qwik UI Logo" class="ml-4">
           <LogoIcon class="block h-8 w-8 hover:drop-shadow-xs hover:drop-shadow-white" />

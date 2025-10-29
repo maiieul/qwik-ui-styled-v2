@@ -14,22 +14,21 @@ export default component$(() => {
   const documentHead = useDocumentHead();
 
   const horizontalLayout =
-    "grid h-12 w-full grid-cols-[minmax(0,1fr)] lg:grid-cols-[288px_minmax(0,1fr)] xl:grid-cols-[288px_minmax(0,968px)_240px] 2xl:gap-16";
+    "grid w-full grid-cols-[minmax(0,1fr)] lg:grid-cols-[288px_minmax(0,1fr)] xl:grid-cols-[288px_minmax(0,968px)_240px] 2xl:gap-16";
 
   return (
     <>
-      <div>
-        <div class={[horizontalLayout, "fixed"]}>
-          <div />
-          <div class="flex w-full items-center justify-center px-12 lg:px-16">
-            <Header />
-          </div>
-          <div />
+      <div class={[horizontalLayout, "fixed z-10"]}>
+        <div />
+        <div class="flex w-full items-center justify-center px-12 lg:px-16">
+          <Header />
         </div>
-
-        <div class={[horizontalLayout, "grid"]}>
+        <div />
+      </div>
+      <div class="grid justify-center">
+        <div class={horizontalLayout}>
           <DocsNavigation
-            class="mr-4 hidden overflow-auto border-r shadow-sm lg:block 2xl:ml-0"
+            class="sticky top-0 mr-4 hidden h-[100vh] overflow-auto border-r shadow-[8px_2px] shadow-shadow lg:flex"
             linksGroups={menuItemsGroups}
           />
           <main class="px-6 py-8 pt-24 lg:px-12">
