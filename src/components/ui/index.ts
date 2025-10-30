@@ -7,4 +7,3 @@ export * from "./button/button";
 export * from "./button/icon-button";
 export * from "./card";
 export * from "./separator/separator";
-export * from "./select/select";

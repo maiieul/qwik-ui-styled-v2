@@ -11,6 +11,7 @@
     /* general surfaces and colors */
     --background: white;
     --foreground: var(--color-gray-950);
+
     /* cards and popovers might be a bit more vivid than the general background color */
     --card: var(--background);
     --card-foreground: var(--color-gray-950);
@@ -18,8 +19,8 @@
     --popover-foreground: var(--color-gray-950);
 
     /* background/foreground pair for outline buttons, inputs, etc. */
-    --empty: var(--background);
-    --empty-foreground: var(--color-gray-950);
+    --outline: var(--background);
+    --outline-foreground: var(--color-gray-950);
 
     /* for hover/active/pressed states etc. */
     --accent: var(--color-sky-100);
@@ -34,11 +35,11 @@
     --ring: var(--color-sky-600);
 
     --alt-card: var(--background);
-    --alt-card-foreground: var(--foreground);
+    --alt-card-foreground: var(--color-gray-950);
     --alt-popover: var(--background);
-    --alt-popover-foreground: var(--foreground);
-    --alt-empty: var(--background);
-    --alt-empty-foreground: var(--color-gray-950);
+    --alt-popover-foreground: var(--color-gray-950);
+    --alt-outline: var(--background);
+    --alt-outline-foreground: var(--color-gray-950);
     --alt-accent: var(--color-purple-400);
     --alt-accent-foreground: var(--color-gray-950);
     --alt-muted: var(--color-purple-200);
@@ -90,18 +91,17 @@
     --alt-secondary-ring: var(--color-purple-700);
 
     /* for form error messages etc. */
-    --foreground-danger: var(--color-rose-600);
 
     /* for emphasizing errors or dangerous actions */
-    --danger: var(--color-red-600);
-    --danger-foreground: white;
-    --danger-accent: var(--color-red-700);
-    --danger-accent-foreground: white;
-    --danger-muted: var(--color-red-600);
-    --danger-muted-foreground: var(--color-red-300);
-    --danger-border: var(--color-red-600);
-    --danger-shadow: var(--color-red-200);
-    --danger-ring: var(--color-red-800);
+    --danger: var(--background);
+    --danger-foreground: var(--color-rose-500);
+    --danger-accent: var(--color-rose-50);
+    --danger-accent-foreground: var(--color-rose-500);
+    --danger-muted: var(--color-rose-50);
+    --danger-muted-foreground: var(--color-rose-400);
+    --danger-border: var(--color-rose-600);
+    --danger-shadow: var(--color-rose-500);
+    --danger-ring: var(--color-rose-800);
 
     /* Those tokens could be not insufficient. An alternative approach could be to set the sidebar colors through theming, with a .sidebar-light and .sidebar-dark class. This would allow to keep using the base tokens on sidebars too. */
     --sidebar: var(--color-gray-700);
@@ -124,9 +124,9 @@
     --card-foreground: var(--color-gray-50);
     --popover: var(--color-gray-900);
     --popover-foreground: var(--color-gray-50);
-    /* background/foreground pair for empty buttons, inputs, etc. */
-    --empty: var(--color-gray-950);
-    --empty-foreground: var(--color-gray-50);
+    /* background/foreground pair for outline buttons, inputs, etc. */
+    --outline: var(--color-gray-950);
+    --outline-foreground: var(--color-gray-50);
 
     /* for hover/active/pressed states etc. */
     --accent: var(--color-purple-800);
@@ -145,8 +145,8 @@
     --alt-card-foreground: var(--color-gray-50);
     --alt-popover: var(--color-gray-900);
     --alt-popover-foreground: var(--color-gray-50);
-    --alt-empty: var(--color-gray-950);
-    --alt-empty-foreground: var(--color-gray-50);
+    --alt-outline: var(--color-gray-950);
+    --alt-outline-foreground: var(--color-gray-50);
     --alt-accent: var(--color-sky-800);
     --alt-accent-foreground: var(--color-sky-50);
     --alt-muted: var(--color-sky-800);
@@ -197,18 +197,16 @@
     --alt-secondary-shadow: var(--color-sky-900);
     --alt-secondary-ring: var(--color-sky-700);
 
-    --foreground-danger: var(--color-rose-700);
-
     /* for emphasizing errors or dangerous actions */
-    --danger: var(--color-rose-700);
-    --danger-foreground: var(--color-rose-50);
-    --danger-accent: var(--color-rose-700);
-    --danger-accent-foreground: var(--color-rose-50);
-    --danger-muted: var(--color-rose-100);
-    --danger-muted-foreground: var(--color-rose-700);
-    --danger-border: var(--color-rose-800);
-    --danger-shadow: var(--color-rose-950);
-    --danger-ring: var(--color-rose-700);
+    --danger: var(--background);
+    --danger-foreground: var(--color-rose-400);
+    --danger-accent: var(--color-rose-950);
+    --danger-accent-foreground: var(--color-rose-400);
+    --danger-muted: var(--color-rose-950);
+    --danger-muted-foreground: var(--color-rose-500);
+    --danger-border: var(--color-rose-500);
+    --danger-shadow: var(--color-rose-900);
+    --danger-ring: var(--color-rose-800);
 
     /* those tokens could be insufficient. An alternative approach could be to set the sidebar colors through theming, with a .sidebar-light and .sidebar-dark class. This would allow to keep using the base tokens on sidebars too. */
     --sidebar: var(--color-gray-700);
@@ -255,8 +253,8 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
 
-  --color-empty: var(--empty);
-  --color-empty-foreground: var(--empty-foreground);
+  --color-outline: var(--outline);
+  --color-outline-foreground: var(--outline-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
@@ -269,8 +267,8 @@
   --color-alt-card-foreground: var(--alt-card-foreground);
   --color-alt-popover: var(--alt-popover);
   --color-alt-popover-foreground: var(--alt-popover-foreground);
-  --color-alt-empty: var(--alt-empty);
-  --color-alt-empty-foreground: var(--alt-empty-foreground);
+  --color-alt-outline: var(--alt-outline);
+  --color-alt-outline-foreground: var(--alt-outline-foreground);
   --color-alt-accent: var(--alt-accent);
   --color-alt-accent-foreground: var(--alt-accent-foreground);
   --color-alt-muted: var(--alt-muted);
@@ -320,8 +318,6 @@
   --color-alt-secondary-border: var(--alt-secondary-border);
   --color-alt-secondary-shadow: var(--alt-secondary-shadow);
   --color-alt-secondary-ring: var(--alt-secondary-ring);
-
-  --color-foreground-danger: var(--foreground-danger);
 
   --color-danger: var(--danger);
   --color-danger-foreground: var(--danger-foreground);

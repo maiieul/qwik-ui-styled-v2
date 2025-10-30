@@ -3,7 +3,7 @@
 /* TODO: fix ui-closed animations */
 @layer components {
   .modal-content {
-    @apply bg-background text-foreground transition-discrete backdrop:backdrop-blur-xs fixed p-6 shadow-md transition-all backdrop:brightness-100;
+    @apply fixed bg-background p-6 text-foreground shadow-md transition-all transition-discrete backdrop:brightness-100 backdrop:backdrop-blur-xs;
     @apply ui-open:animate-in ui-open:backdrop:animate-in ui-open:backdrop:fade-in not-ui-open:animate-out not-ui-open:backdrop:animate-out not-ui-open:backdrop:fade-out;
   }
 
@@ -51,6 +51,6 @@
   }
 
   .modal-content.outline {
-    @apply bg-empty text-empty-foreground shadow-shadow;
+    @apply bg-outline text-outline-foreground shadow-shadow;
   }
 }

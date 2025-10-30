@@ -40,20 +40,19 @@ export default component$<PropsOf<typeof Button>>(() => {
   });
   return (
     <Modal.Root>
-      <Modal.Trigger class="flex sm:mr-2 sm:h-10" asChild>
-        <Button variant="ghost">
-          <Lucide.SlidersHorizontal class={cn("h-4 w-4 sm:mr-2")} />
-          <span class={cn("hidden", "sm:block")}>Make it yours</span>
-        </Button>
+      <Modal.Trigger asChild>
+        <IconButton variant="ghost">
+          <Lucide.WandSparkles class="size-5" />
+        </IconButton>
       </Modal.Trigger>
       <Modal.Content position="right">
         <header class="flex w-full">
           <h2 class="justify-self-start text-lg font-bold">Edit Profile</h2>
         </header>
-        <div class="mb-2 mt-8 py-4">
+        <div class="mt-8 mb-2 py-4">
           <label class="mb-1 block font-medium">Preset</label>
           <select
-            class="rounded-base bg-background h-12 w-full border p-2"
+            class="rounded-base h-12 w-full border bg-background p-2"
             value={themeObjectComputed.value.style}
             onChange$={async (e, el) => {
               themeObjectComputed.value.style = el.value;
@@ -78,7 +77,7 @@ export default component$<PropsOf<typeof Button>>(() => {
           </Button>
           <CopyCssConfig />
         </footer>
-        <Modal.Close class="fixed right-4 top-5" asChild>
+        <Modal.Close class="fixed top-5 right-4" asChild>
           <IconButton>
             <Lucide.X />
           </IconButton>

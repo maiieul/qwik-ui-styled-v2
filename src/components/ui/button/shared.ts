@@ -1,10 +1,10 @@
 export type SharedButtonVariants =
   | "primary"
   | "secondary"
-  | "altPrimary"
-  | "altSecondary"
   | "outline"
-  | "altOutline"
   | "ghost"
-  | "altGhost";
+  | "alt-primary"
+  | "alt-secondary"
+  | "alt-outline"
+  | "alt-ghost";
 export type SharedButtonSizes = "sm" | "md" | "lg";

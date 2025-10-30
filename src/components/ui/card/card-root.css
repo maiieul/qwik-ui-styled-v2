@@ -2,7 +2,7 @@
 
 @layer components {
   .card {
-    @apply rounded-xs bg-card text-card-foreground border shadow-md;
+    @apply rounded-xs border bg-card text-card-foreground shadow-md;
   }
 
   /* variants */
@@ -23,7 +23,7 @@
   }
 
   .card.card-outline {
-    @apply bg-empty text-foreground shadow-shadow;
+    @apply bg-outline text-foreground shadow-shadow;
   }
 
   .card.card-altOutline {

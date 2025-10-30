@@ -8,10 +8,9 @@ import { SharedButtonSizes, SharedButtonVariants } from "./shared";
 export type ButtonVariant =
   | SharedButtonVariants
   | "link"
-  | "altLink"
-  | "dangerPrimary"
-  | "dangerOutline"
-  | "dangerGhost";
+  | "alt-link"
+  | "danger-outline"
+  | "danger-ghost";
 
 export type ButtonProps = PropsOf<"button"> & {
   variant?: ButtonVariant;

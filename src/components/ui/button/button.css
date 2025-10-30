@@ -4,23 +4,19 @@
 @layer components {
   /* variants */
   .btn.btn-link {
-    @apply text-sky-500 underline decoration-sky-500 decoration-2 underline-offset-4 hover:text-sky-700 hover:decoration-sky-700 dark:hover:text-sky-400 dark:hover:decoration-sky-400;
+    @apply decoration-2 underline-offset-4 transition-all will-change-transform hover:text-sky-500 hover:decoration-sky-500;
   }
 
-  .btn.btn-altLink {
-    @apply text-purple-500 underline decoration-purple-500 decoration-2 underline-offset-4 hover:text-purple-700 hover:decoration-purple-700 dark:hover:text-purple-400 dark:hover:decoration-purple-400;
+  .btn.btn-alt-link {
+    @apply decoration-2 underline-offset-4 transition-all will-change-transform hover:text-purple-500 hover:decoration-purple-500;
   }
 
-  .btn.btn-dangerPrimary {
-    @apply border-danger-border bg-danger text-danger-foreground shadow-danger-shadow border shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  .btn.btn-danger-outline {
+    @apply border border-danger-border text-sm text-danger-foreground shadow-sm shadow-danger-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
   }
 
-  .btn.btn-dangerOutline {
-    @apply border-danger-border text-foreground-danger shadow-danger-shadow border shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
-  }
-
-  .btn.btn-dangerGhost {
-    @apply text-foreground-danger shadow-danger-shadow hover:border-danger-border border border-transparent hover:border hover:shadow-sm;
+  .btn.btn-danger-ghost {
+    @apply border border-transparent text-danger-foreground shadow-danger-shadow hover:border hover:border-danger-border hover:shadow-sm;
   }
 
   /* sizes */

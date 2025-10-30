@@ -18,7 +18,7 @@ function getIconByStatus(status?: NoteStatus) {
     case NoteStatus.Warning:
       return <WarningIcon class="text-yellow-400" />;
     case NoteStatus.Danger:
-      return <AlertIcon class="text-danger" />;
+      return <AlertIcon class="text-danger-foreground" />;
 
     default:
       return <InfoIcon class="text-primary" />;
@@ -28,13 +28,13 @@ function getIconByStatus(status?: NoteStatus) {
 function getBackgroundByStatus(status?: NoteStatus) {
   switch (status) {
     case NoteStatus.Info:
-      return "bg-primary/30 border-primary border-l-2 mb-4 block";
+      return "bg-primary/30 border-primary-border border-l-2 mb-4 block";
     case NoteStatus.Warning:
       return "bg-yellow-400/30 border-yellow-400 border-l-2 mb-4 block";
     case NoteStatus.Danger:
-      return "bg-danger/30 border-danger border-l-2 mb-4 block";
+      return "bg-danger/30 border-danger-border border-l-2 mb-4 block";
     default:
-      return "bg-primary/30 border-primary border-l-2 mb-4 block";
+      return "bg-primary/30 border-primary-border border-l-2 mb-4 block";
   }
 }
 
