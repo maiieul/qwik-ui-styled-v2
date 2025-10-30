@@ -8,21 +8,21 @@ export default component$(() => {
 
       <div class="m-10 grid grid-cols-6 justify-center gap-6">
         <Button variant="link">home</Button>
-        <Button variant="ghost">Cancel</Button>
+        <Button variant="ghost">Discard</Button>
         <Button variant="outline">Turn off</Button>
         <Button variant="secondary">Learn more</Button>
         <Button variant="primary">Confirm</Button>
       </div>
       <div class="m-10 grid grid-cols-6 justify-center gap-6">
         <Button variant="alt-link">home</Button>
-        <Button variant="alt-ghost">Cancel</Button>
+        <Button variant="alt-ghost">Discard</Button>
         <Button variant="alt-outline">Turn off</Button>
         <Button variant="alt-secondary">Learn more</Button>
         <Button variant="alt-primary">Confirm</Button>
       </div>
       <div class="m-10 grid grid-cols-6 justify-center gap-6"></div>
       <div class="m-10 grid grid-cols-6 justify-center gap-6">
-        <Button variant="danger-ghost">Cancel Appointment</Button>
+        <Button variant="danger-ghost">Cancel</Button>
         <Button variant="danger-outline">Delete</Button>
       </div>
       <h2 class="text-2xl font-bold">Cards</h2>

@@ -12,11 +12,11 @@
   }
 
   .btn.btn-danger-outline {
-    @apply border border-danger-border text-sm text-danger-foreground shadow-sm shadow-danger-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+    @apply border border-danger-border text-sm text-danger-foreground shadow-sm shadow-danger-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-danger-ring;
   }
 
   .btn.btn-danger-ghost {
-    @apply border border-transparent text-danger-foreground shadow-danger-shadow hover:border hover:border-danger-border hover:shadow-sm;
+    @apply border border-transparent text-danger-foreground shadow-danger-shadow hover:border hover:border-danger-border hover:shadow-sm focus-visible:ring-danger-ring;
   }
 
   /* sizes */
