@@ -1,4 +1,4 @@
-import { Slot, component$, useStyles$ } from "@qwik.dev/core";
+import { Slot, component$ } from "@qwik.dev/core";
 import { useContent, useDocumentHead } from "@qwik.dev/router";
 import { DocsNavigation } from "~/components/navigation-docs/navigation-docs";
 import { MDXProvider } from "~/components/mdx/provider";

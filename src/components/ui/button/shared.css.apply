@@ -1,0 +1,36 @@
+@reference "../../../global.css";
+
+@layer components {
+  .btn {
+    @apply inline-flex shrink-0 items-center justify-center gap-2 rounded-xs text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger-border aria-invalid:ring-danger-ring [&_svg]:pointer-events-none [&_svg]:shrink-0;
+  }
+
+  /* shared variants */
+  .btn[variant="primary"] {
+    @apply border border-primary-border bg-primary text-primary-foreground shadow-sm shadow-primary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+  .btn[variant="alt-primary"] {
+    @apply border border-alt-primary-border bg-alt-primary text-alt-primary-foreground shadow-sm shadow-alt-primary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn[variant="secondary"] {
+    @apply border border-secondary-border bg-secondary text-secondary-foreground shadow-sm shadow-secondary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+  .btn[variant="alt-secondary"] {
+    @apply border border-alt-secondary-border bg-alt-secondary text-alt-secondary-foreground shadow-sm shadow-alt-secondary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn[variant="outline"] {
+    @apply border bg-outline text-outline-foreground shadow-sm hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+  .btn[variant="alt-outline"] {
+    @apply border border-alt-border bg-alt-outline text-alt-outline-foreground shadow-sm shadow-alt-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn[variant="ghost"] {
+    @apply border border-transparent text-foreground hover:border hover:border-border hover:bg-outline hover:shadow-sm;
+  }
+  .btn[variant="alt-ghost"] {
+    @apply border border-transparent text-foreground shadow-alt-shadow hover:border hover:border-alt-border hover:bg-alt-outline hover:shadow-sm;
+  }
+}

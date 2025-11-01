@@ -4,7 +4,7 @@
  */
 
 const config = {
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: ["prettier-plugin-tailwindcss", "prettier-plugin-css-order"],
   tailwindStylesheet: "./src/global.css",
 };
 

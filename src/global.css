@@ -32,7 +32,7 @@
     /* general border, shadow and ring colors */
     --border: var(--color-sky-400);
     --shadow: var(--color-sky-200);
-    --ring: var(--color-sky-600);
+    --ring: var(--color-sky-500);
 
     --alt-card: var(--background);
     --alt-card-foreground: var(--color-gray-950);
@@ -46,7 +46,7 @@
     --alt-muted-foreground: var(--color-gray-700);
     --alt-border: var(--color-purple-400);
     --alt-shadow: var(--color-purple-200);
-    --alt-ring: var(--color-purple-600);
+    --alt-ring: var(--color-purple-500);
 
     /* for highlighting main actions */
     --primary: var(--color-sky-500);
@@ -55,20 +55,9 @@
     --primary-accent-foreground: var(--color-sky-50);
     --primary-muted: var(--color-sky-500);
     --primary-muted-foreground: var(--color-sky-200);
-    --primary-border: var(--color-sky-600);
-    --primary-shadow: var(--color-sky-500);
-    --primary-ring: var(--color-sky-700);
-
-    /* often in a lighter shade of primary colors, for valid but less important actions */
-    --secondary: var(--color-sky-200);
-    --secondary-foreground: var(--color-sky-700);
-    --secondary-accent: var(--color-sky-300);
-    --secondary-accent-foreground: var(--color-sky-800);
-    --secondary-muted: var(--color-sky-200);
-    --secondary-muted-foreground: var(--color-sky-600);
-    --secondary-border: var(--color-sky-400);
-    --secondary-shadow: var(--color-sky-300);
-    --secondary-ring: var(--color-sky-700);
+    --primary-border: var(--color-sky-700);
+    --primary-shadow: var(--color-sky-600);
+    --primary-ring: var(--color-sky-500);
 
     --alt-primary: var(--color-purple-400);
     --alt-primary-foreground: white;
@@ -79,6 +68,17 @@
     --alt-primary-border: var(--color-purple-600);
     --alt-primary-shadow: var(--color-purple-500);
     --alt-primary-ring: var(--color-purple-700);
+
+    /* often in a lighter shade of primary colors, for valid but less important actions */
+    --secondary: var(--color-sky-200);
+    --secondary-foreground: var(--color-sky-700);
+    --secondary-accent: var(--color-sky-300);
+    --secondary-accent-foreground: var(--color-sky-800);
+    --secondary-muted: var(--color-sky-200);
+    --secondary-muted-foreground: var(--color-sky-600);
+    --secondary-border: var(--color-sky-400);
+    --secondary-shadow: var(--color-sky-300);
+    --secondary-ring: var(--color-sky-500);
 
     --alt-secondary: var(--color-purple-200);
     --alt-secondary-foreground: var(--color-purple-700);
@@ -101,7 +101,7 @@
     --danger-muted-foreground: var(--color-rose-400);
     --danger-border: var(--color-rose-600);
     --danger-shadow: var(--color-rose-500);
-    --danger-ring: var(--color-rose-800);
+    --danger-ring: var(--color-rose-500);
 
     /* Those tokens could be not insufficient. An alternative approach could be to set the sidebar colors through theming, with a .sidebar-light and .sidebar-dark class. This would allow to keep using the base tokens on sidebars too. */
     --sidebar: var(--color-gray-700);
@@ -349,13 +349,13 @@
   --radius-xl: calc(var(--default-border-radius) + 0.75rem);
   --radius-2xl: calc(var(--default-border-radius) + 1rem);
   --radius-3xl: calc(var(--default-border-radius) + 1.5rem);
-  --shadow-2xs: 1px 2px var(--shadow);
-  --shadow-xs: 3px 4px var(--shadow);
-  --shadow-sm: 5px 6px var(--shadow);
-  --shadow-md: 7px 8px var(--shadow);
-  --shadow-lg: 9px 10px var(--shadow);
-  --shadow-xl: 11px 12px var(--shadow);
-  --shadow-2xl: 13px 14px var(--shadow);
+  --shadow-2xs: 1px 2px;
+  --shadow-xs: 3px 4px;
+  --shadow-sm: 5px 6px;
+  --shadow-md: 7px 8px;
+  --shadow-lg: 9px 10px;
+  --shadow-xl: 11px 12px;
+  --shadow-2xl: 13px 14px;
   --animate-accordion-down: collapsible-down 0.2s ease-out forwards;
   --animate-accordion-up: collapsible-up 0.2s ease-out forwards;
 
@@ -385,13 +385,13 @@
 @utility stroke-width-* {
   stroke: --value(--stroke-width-*);
 }
-@utility button-hocus {
-  transform: var(--button-hocus);
-}
 
 @layer base {
   * {
-    @apply border-border outline-ring;
+    @apply border-border shadow-shadow outline-ring;
+  }
+  html {
+    font-size: 16px;
   }
   body {
     @apply bg-background text-foreground;

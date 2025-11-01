@@ -2,33 +2,74 @@
 @import "./shared.css";
 
 @layer components {
-  /* variants */
-  .btn.btn-link {
-    @apply decoration-2 underline-offset-4 transition-all will-change-transform hover:text-sky-500 hover:decoration-sky-500;
+  .btn[variant="link"] {
+    &:hover {
+      color: var(--color-sky-500);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--color-sky-500);
+    }
   }
 
-  .btn.btn-alt-link {
-    @apply decoration-2 underline-offset-4 transition-all will-change-transform hover:text-purple-500 hover:decoration-purple-500;
+  .btn[variant="alt-link"] {
+    &:hover {
+      color: var(--color-purple-500);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--color-purple-500);
+    }
   }
 
-  .btn.btn-danger-outline {
-    @apply border border-danger-border text-sm text-danger-foreground shadow-sm shadow-danger-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-danger-ring;
+  .btn[variant="danger-outline"] {
+    border: var(--default-border-width) solid var(--danger-border);
+    background-color: var(--danger);
+    color: var(--danger-foreground);
+    box-shadow: var(--shadow-sm) var(--danger-shadow);
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-md) var(--danger-shadow);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--danger-ring);
+    }
   }
 
-  .btn.btn-danger-ghost {
-    @apply border border-transparent text-danger-foreground shadow-danger-shadow hover:border hover:border-danger-border hover:shadow-sm focus-visible:ring-danger-ring;
+  .btn[variant="danger-ghost"] {
+    border: var(--default-border-width) solid transparent;
+    background-color: var(--danger);
+    color: var(--danger-foreground);
+    &:hover {
+      border: var(--default-border-width) solid var(--danger-border);
+      box-shadow: var(--shadow-sm) var(--danger-shadow);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--danger-ring);
+    }
   }
 
   /* sizes */
-  .btn.btn-sm {
-    @apply h-8 gap-1.5 px-3 has-[>svg]:px-2.5;
+  .btn[size="sm"] {
+    height: 2rem;
+    gap: 0.375rem;
+    padding: 0 0.75rem;
+    &:has(> svg) {
+      padding: 0 0.625rem;
+    }
   }
 
-  .btn.btn-md {
-    @apply h-9 px-4 py-2 has-[>svg]:px-3;
+  .btn[size="md"] {
+    height: 2.25rem;
+    padding: 0.5rem 1rem;
+    &:has(> svg) {
+      padding: 0.5rem 0.75rem;
+    }
   }
 
-  .btn.btn-lg {
-    @apply h-10 px-6 has-[>svg]:px-4;
+  .btn[size="lg"] {
+    height: 2.5rem;
+    padding: 0 1.5rem;
+    &:has(> svg) {
+      padding: 0 1rem;
+    }
   }
 }

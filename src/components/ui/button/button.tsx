@@ -35,7 +35,9 @@ export const Button = component$(
       <Render
         {...props}
         fallback="button"
-        class={["btn", `btn-${variant}`, `btn-${size}`, props.class]}
+        class={["btn", props.class]}
+        variant={variant}
+        size={size}
       >
         <Slot />
       </Render>

@@ -2,14 +2,22 @@
 
 @layer components {
   .callout-description {
-    @apply col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed;
+    display: grid;
+    grid-column-start: 2;
+    justify-items: start;
+    gap: 0.25rem;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    & p {
+      line-height: var(--leading-relaxed);
+    }
   }
 
   /* variants */
   .callout-description.variant-outline {
-    @apply text-foreground/80;
+    color: var(--foreground-muted);
   }
   .callout-description.variant-danger {
-    @apply text-danger-foreground/90;
+    color: var(--danger-foreground-muted);
   }
 }

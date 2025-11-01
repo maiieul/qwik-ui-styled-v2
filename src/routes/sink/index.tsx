@@ -6,24 +6,41 @@ export default component$(() => {
     <>
       <h2 class="text-2xl font-bold">Buttons</h2>
 
-      <div class="m-10 grid grid-cols-6 justify-center gap-6">
+      <div class="m-10 flex justify-start gap-6">
         <Button variant="link">home</Button>
         <Button variant="ghost">Discard</Button>
         <Button variant="outline">Turn off</Button>
         <Button variant="secondary">Learn more</Button>
         <Button variant="primary">Confirm</Button>
       </div>
-      <div class="m-10 grid grid-cols-6 justify-center gap-6">
+      <div class="m-10 flex justify-start gap-6">
         <Button variant="alt-link">home</Button>
         <Button variant="alt-ghost">Discard</Button>
         <Button variant="alt-outline">Turn off</Button>
         <Button variant="alt-secondary">Learn more</Button>
         <Button variant="alt-primary">Confirm</Button>
       </div>
-      <div class="m-10 grid grid-cols-6 justify-center gap-6"></div>
-      <div class="m-10 grid grid-cols-6 justify-center gap-6">
+      <div class="m-10 flex justify-start gap-6">
         <Button variant="danger-ghost">Cancel</Button>
         <Button variant="danger-outline">Delete</Button>
+      </div>
+      <div class="m-10 flex justify-start gap-6">
+        <Button variant="outline" size="sm">
+          Confirm
+          <Lucide.Check name="icon" />
+        </Button>
+      </div>
+      <div class="m-10 flex justify-start gap-6">
+        <Button variant="outline" size="md">
+          Confirm
+          <Lucide.Check name="icon" />
+        </Button>
+      </div>
+      <div class="m-10 flex justify-start gap-6">
+        <Button variant="outline" size="lg">
+          Confirm
+          <Lucide.Check name="icon" />
+        </Button>
       </div>
       <h2 class="text-2xl font-bold">Cards</h2>
       <div class="m-10 grid grid-cols-3 justify-center gap-6">
