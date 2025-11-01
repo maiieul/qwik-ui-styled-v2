@@ -39,7 +39,7 @@ export default component$(() => {
           </Button>
         </footer>
         <Modal.Close asChild>
-          <IconButton class="absolute right-3 top-2">
+          <IconButton class="absolute top-2 right-3">
             <Lucide.X class="h-5 w-5" />
           </IconButton>
         </Modal.Close>

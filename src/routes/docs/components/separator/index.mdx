@@ -3,7 +3,7 @@ title: Separator
 description: Visually or semantically separates content.
 ---
 
-import { ShowcaseHero } from './showcase-components';
+import { ShowcaseHero } from "./showcase-components";
 
 <ShowcaseHero />
 
@@ -16,12 +16,12 @@ qwik-ui add separator
 ```
 
 ```tsx
-import { type PropsOf, component$ } from '@builder.io/qwik';
-import { Separator as HeadlessSeparator } from '@qwik-ui/headless';
-import { cn } from '@qwik-ui/utils';
+import { type PropsOf, component$ } from "@builder.io/qwik";
+import { Separator as HeadlessSeparator } from "@qwik-ui/headless";
+import { cn } from "@qwik-ui/utils";
 
 export const Separator = component$<PropsOf<typeof HeadlessSeparator>>(
-  ({ orientation = 'horizontal', decorative = true, ...props }) => {
+  ({ orientation = "horizontal", decorative = true, ...props }) => {
     return (
       <>
         <HeadlessSeparator
@@ -29,8 +29,8 @@ export const Separator = component$<PropsOf<typeof HeadlessSeparator>>(
           decorative={decorative}
           orientation={orientation}
           class={cn(
-            'shrink-0 bg-border',
-            orientation === 'horizontal' ? 'h-px w-full' : 'h-full w-px',
+            "shrink-0 bg-border",
+            orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
             props.class,
           )}
         />
@@ -43,7 +43,7 @@ export const Separator = component$<PropsOf<typeof HeadlessSeparator>>(
 ## Usage
 
 ```tsx
-import { Separator } from '~/components/ui';
+import { Separator } from "~/components/ui";
 ```
 
 ```tsx

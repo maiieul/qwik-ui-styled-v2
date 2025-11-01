@@ -46,7 +46,7 @@ export const Sheet = component$<PropsOf<typeof Modal.Content>>(
             <Button onClick$={() => (show.value = false)}>Save</Button>
           </footer>
           <Modal.Close asChild type="submit">
-            <IconButton class="absolute right-3 top-2">
+            <IconButton class="absolute top-2 right-3">
               <Lucide.X />
             </IconButton>
           </Modal.Close>

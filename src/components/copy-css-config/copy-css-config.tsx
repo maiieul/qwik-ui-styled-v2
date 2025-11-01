@@ -44,7 +44,7 @@ export default component$(() => {
           />
         </div>
       </Modal.Content>
-      <Modal.Close class="absolute right-6 top-7" asChild>
+      <Modal.Close class="absolute top-7 right-6" asChild>
         <IconButton>
           <Lucide.X />
         </IconButton>

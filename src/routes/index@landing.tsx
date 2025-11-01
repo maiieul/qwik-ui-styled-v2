@@ -39,13 +39,13 @@ export default component$(() => {
   return (
     <div class="flex flex-col items-center gap-8 py-24">
       <h1 class="text-center text-4xl leading-normal lg:text-5xl">
-        <span class="text-primary font-extrabold tracking-wide">Qwik</span>{" "}
-        <span class="text-secondary font-extrabold tracking-wide">UI</span>
+        <span class="font-extrabold tracking-wide text-primary">Qwik</span>{" "}
+        <span class="font-extrabold tracking-wide text-secondary">UI</span>
       </h1>
-      <h2 class="text-center text-xl font-bold leading-normal lg:text-3xl">
+      <h2 class="text-center text-xl leading-normal font-bold lg:text-3xl">
         Headless & styled copy-paste components
         <br />
-        <span class="text-primary leading-normal">
+        <span class="leading-normal text-primary">
           automatically optimized for you
         </span>
       </h2>

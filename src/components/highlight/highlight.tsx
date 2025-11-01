@@ -23,7 +23,7 @@ export const Highlight = component$(
     return (
       <div class="relative">
         <CodeCopy
-          class={["absolute right-3 top-3", copyCodeClass]}
+          class={["absolute top-3 right-3", copyCodeClass]}
           code={code}
         />
         <div
@@ -34,7 +34,7 @@ export const Highlight = component$(
           )}
         >
           <div
-            class="[&>pre]:py-4 [&>pre]:pl-4 [&>pre]:pr-12"
+            class="[&>pre]:py-4 [&>pre]:pr-12 [&>pre]:pl-4"
             dangerouslySetInnerHTML={shiki.codeToHtml(code, {
               lang: language,
               theme: "poimandres",
