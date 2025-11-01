@@ -3,7 +3,7 @@ import { $, PropsOf, component$, useSignal, useOnWindow } from "@qwik.dev/core";
 import { Lucide } from "@qds.dev/ui";
 import { IconButton, Modal } from "~/components/ui";
 
-import { DocsNavigation } from "../navigation-docs/navigation-docs";
+import { DocsNavigation } from "../sidebar/sidebar";
 import { DiscordIcon } from "../icons/discord";
 import { LogoIcon } from "../icons/logo";
 import { useTheme } from "~/hooks/use-theme/provider";

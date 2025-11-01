@@ -25,9 +25,10 @@
   "devDependencies": {
     "@eslint/js": "latest",
     "@floating-ui/dom": "^1.7.4",
+    "@iconify/utils": "^3.0.2",
     "@oddbird/popover-polyfill": "^0.6.1",
-    "@qds.dev/tools": "0.4.3",
-    "@qds.dev/ui": "0.4.3",
+    "@qds.dev/tools": "0.5.1",
+    "@qds.dev/ui": "0.5.1",
     "@qwik-ui/styled": "^0.4.1",
     "@qwik-ui/utils": "^0.3.3",
     "@qwik.dev/core": "link:../qwik-v2/packages/qwik",

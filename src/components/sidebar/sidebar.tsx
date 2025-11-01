@@ -1,6 +1,6 @@
 import { PropsOf, component$ } from "@qwik.dev/core";
 import { Link, useLocation } from "@qwik.dev/router";
-import { Badge } from "../ui";
+import { Badge, Button } from "../ui";
 
 export interface LinkGroup {
   name: string;
@@ -47,10 +47,12 @@ export const DocsNavigation = component$(
                   const isLinkActive = location.url.pathname === link.href;
                   return (
                     <li key={link.name + link.href}>
-                      <Link
-                        href={link.href}
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        asChild
                         class={[
-                          "btn btn-sm rounded-lg hover:bg-accent",
+                          "rounded-lg hover:bg-accent",
                           isLinkActive ||
                           (location.url.pathname?.startsWith(
                             "/docs/components/",
@@ -60,15 +62,17 @@ export const DocsNavigation = component$(
                             : "font-normal",
                         ]}
                       >
-                        <div class="flex w-full items-center justify-between">
-                          <span>{link.name}</span>
-                          {link.new && (
-                            <Badge variant="primary" class="ml-2">
-                              New
-                            </Badge>
-                          )}
-                        </div>
-                      </Link>
+                        <Link href={link.href}>
+                          <div class="flex w-full items-center justify-between">
+                            <span>{link.name}</span>
+                            {link.new && (
+                              <Badge variant="primary" class="ml-2">
+                                New
+                              </Badge>
+                            )}
+                          </div>
+                        </Link>
+                      </Button>
                     </li>
                   );
                 })}

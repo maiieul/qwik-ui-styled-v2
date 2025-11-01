@@ -1,20 +1,18 @@
 import { Slot, component$ } from "@qwik.dev/core";
 import { useContent, useDocumentHead } from "@qwik.dev/router";
-import { DocsNavigation } from "~/components/navigation-docs/navigation-docs";
+import { DocsNavigation } from "~/components/sidebar/sidebar";
 import { MDXProvider } from "~/components/mdx/provider";
 import { components } from "~/components/mdx/components";
 import { DashboardTableOfContents } from "~/components/toc/toc";
 import Header from "~/components/header/header";
 import { useMenuItems } from "~/hooks/use-menu-items";
+import { horizontalLayout } from "./horizontal-layout.constant";
 
 export default component$(() => {
   const { headings } = useContent();
   const { menuItemsGroups } = useMenuItems();
 
   const documentHead = useDocumentHead();
-
-  const horizontalLayout =
-    "grid w-full grid-cols-[minmax(0,1fr)] lg:grid-cols-[288px_minmax(0,1fr)] xl:grid-cols-[288px_minmax(0,968px)_240px] 2xl:gap-16";
 
   return (
     <>

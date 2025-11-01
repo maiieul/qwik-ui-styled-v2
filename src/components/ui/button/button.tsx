@@ -17,19 +17,8 @@ export type ButtonProps = PropsOf<"button"> & {
   size?: SharedButtonSizes;
 } & AsChildTypes;
 
-export const defaultProps: Record<"button", ButtonProps> = {
-  button: {
-    variant: "primary",
-    size: "md",
-  },
-};
-
-export const Button = component$(
-  ({
-    variant = defaultProps.button.variant,
-    size = defaultProps.button.size,
-    ...props
-  }: ButtonProps) => {
+export const Button = component$<ButtonProps>(
+  ({ variant = "primary", size = "md", ...props }) => {
     useStyles$(buttonStyles);
     return (
       <Render
