@@ -12,19 +12,22 @@ export type ButtonVariant =
   | "danger-outline"
   | "danger-ghost";
 
-export type ButtonProps = PropsOf<"button"> & {
-  variant?: ButtonVariant;
-  size?: SharedButtonSizes;
-} & AsChildTypes;
+export type ButtonProps = PropsOf<"button"> &
+  AsChildTypes & {
+    variant?: ButtonVariant;
+    size?: SharedButtonSizes;
+    unstyled?: boolean;
+  };
 
 export const Button = component$<ButtonProps>(
-  ({ variant = "primary", size = "md", ...props }) => {
+  ({ variant = "primary", size = "md", unstyled = false, ...props }) => {
     useStyles$(buttonStyles);
     return (
       <Render
         {...props}
         fallback="button"
-        class={["btn", props.class]}
+        class={[!unstyled && "btn", props.class]}
+        unstyled={unstyled}
         variant={variant}
         size={size}
       >

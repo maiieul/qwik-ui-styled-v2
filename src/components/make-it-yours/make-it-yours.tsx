@@ -1,10 +1,4 @@
-import {
-  $,
-  PropsOf,
-  component$,
-  useComputed$,
-  useVisibleTask$,
-} from "@qwik.dev/core";
+import { $, PropsOf, component$, useComputed$ } from "@qwik.dev/core";
 import { Lucide } from "@qds.dev/ui";
 
 import { Button, IconButton, Modal } from "~/components/ui";
@@ -12,7 +6,6 @@ import CopyCssConfig from "~/components/copy-css-config/copy-css-config";
 
 import { useTheme } from "~/hooks/use-theme/provider";
 import { ThemeConfig } from "~/utils/theme/types";
-import { cn } from "@qwik-ui/utils";
 
 export default component$<PropsOf<typeof Button>>(() => {
   const { themeSig } = useTheme();
