@@ -2,16 +2,18 @@
 @import "./shared.css";
 
 @layer components {
-  /* sizes */
-  .btn.icon-btn-sm {
-    @apply size-8;
+  .icon-btn[size="sm"] {
+    width: 2rem;
+    height: 2rem;
   }
 
-  .btn.icon-btn-md {
-    @apply size-9;
+  .icon-btn[size="md"] {
+    width: 2.25rem;
+    height: 2.25rem;
   }
 
-  .btn.icon-btn-lg {
-    @apply size-10;
+  .icon-btn[size="lg"] {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }

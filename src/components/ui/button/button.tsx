@@ -1,9 +1,8 @@
 import { component$, PropsOf, Slot, useStyles$ } from "@qwik.dev/core";
-import { AsChildTypes } from "@qds.dev/tools/vite";
-import { Render } from "@qds.dev/ui";
 
 import buttonStyles from "./button.css?inline";
 import { SharedButtonSizes, SharedButtonVariants } from "./shared";
+import { Render } from "../render";
 
 export type ButtonVariant =
   | SharedButtonVariants
@@ -12,27 +11,24 @@ export type ButtonVariant =
   | "danger-outline"
   | "danger-ghost";
 
-export type ButtonProps = PropsOf<"button"> &
-  AsChildTypes & {
-    variant?: ButtonVariant;
-    size?: SharedButtonSizes;
-    unstyled?: boolean;
-  };
+export type ButtonProps = {
+  variant?: ButtonVariant;
+  size?: SharedButtonSizes;
+};
 
-export const Button = component$<ButtonProps>(
-  ({ variant = "primary", size = "md", unstyled = false, ...props }) => {
-    useStyles$(buttonStyles);
-    return (
-      <Render
-        {...props}
-        fallback="button"
-        class={[!unstyled && "btn", props.class]}
-        unstyled={unstyled}
-        variant={variant}
-        size={size}
-      >
-        <Slot />
-      </Render>
-    );
-  },
-);
+export const Button = component$<
+  PropsOf<"button"> & ButtonProps & { asChild?: true }
+>(({ variant = "primary", size = "md", ...props }) => {
+  useStyles$(buttonStyles);
+  return (
+    <Render
+      {...props}
+      fallback="button"
+      class={["btn", props.class]}
+      variant={variant}
+      size={size}
+    >
+      <Slot />
+    </Render>
+  );
+});

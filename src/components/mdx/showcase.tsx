@@ -26,7 +26,7 @@ export const Showcase = component$<ShowcaseProps>(({ rawCode, ...props }) => {
         </section>
       </Tabs.Content>
       <Tabs.Content
-        class="relative mb-16 h-120 rounded-sm border p-2 shadow-lg"
+        class="relative mb-16 h-120 rounded-xl border p-2 shadow-lg"
         style={{
           backgroundColor: "#1b1e28",
           color: "#a6accd",

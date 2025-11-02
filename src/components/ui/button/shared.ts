@@ -8,3 +8,10 @@ export type SharedButtonVariants =
   | "alt-outline"
   | "alt-ghost";
 export type SharedButtonSizes = "sm" | "md" | "lg";
+
+export type ButtonVariant =
+  | SharedButtonVariants
+  | "link"
+  | "alt-link"
+  | "danger-outline"
+  | "danger-ghost";

@@ -40,7 +40,7 @@
     --alt-popover-foreground: var(--color-gray-950);
     --alt-outline: var(--background);
     --alt-outline-foreground: var(--color-gray-950);
-    --alt-accent: var(--color-purple-400);
+    --alt-accent: var(--color-purple-100);
     --alt-accent-foreground: var(--color-gray-950);
     --alt-muted: var(--color-purple-200);
     --alt-muted-foreground: var(--color-gray-700);
@@ -129,11 +129,11 @@
     --outline-foreground: var(--color-gray-50);
 
     /* for hover/active/pressed states etc. */
-    --accent: var(--color-purple-800);
+    --accent: var(--color-purple-900);
     --accent-foreground: var(--color-gray-50);
 
     /* for disabled/inactive states etc. */
-    --muted: var(--color-purple-800);
+    --muted: var(--color-purple-900);
     --muted-foreground: var(--color-gray-300);
 
     /* general border, shadow and ring colors */
