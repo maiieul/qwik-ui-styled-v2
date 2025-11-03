@@ -4,7 +4,7 @@ import { AsChildTypes } from "@qds.dev/tools/vite";
 import iconButtonStyles from "./icon-button.css?inline";
 
 import { SharedButtonSizes, SharedButtonVariants } from "./shared";
-import { Render } from "../render";
+import { Render } from "@qds.dev/ui";
 
 type IconButtonProps = {
   variant?: SharedButtonVariants;
@@ -19,9 +19,12 @@ export const IconButton = component$<
     <Render
       {...props}
       fallback="button"
-      class={["btn icon-btn", props.class]}
-      variant={variant}
-      size={size}
+      class={[
+        "btn icon-btn",
+        `variant-${variant}`,
+        `size-${size}`,
+        props.class,
+      ]}
     >
       <Slot />
     </Render>

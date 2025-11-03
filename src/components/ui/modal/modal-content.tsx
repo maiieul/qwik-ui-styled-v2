@@ -8,12 +8,17 @@ type ContentProps = PropsOf<typeof HeadlessModal.Content> & {
 };
 
 export const Content = component$<ContentProps>(
-  ({ position = "center", variant = "secondary", ...props }) => {
+  ({ position = "center", variant = "outline", ...props }) => {
     useStyles$(contentStyles);
     return (
       <HeadlessModal.Content
         {...props}
-        class={["modal-content", position, variant, props.class]}
+        class={[
+          "modal-content",
+          `position-${position}`,
+          `variant-${variant}`,
+          props.class,
+        ]}
       >
         <Slot />
       </HeadlessModal.Content>

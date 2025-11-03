@@ -2,7 +2,7 @@
 @import "./shared.css";
 
 @layer components {
-  .btn[variant="link"] {
+  .btn.variant-link {
     &:hover {
       color: var(--color-sky-500);
     }
@@ -11,7 +11,7 @@
     }
   }
 
-  .btn[variant="alt-link"] {
+  .btn.variant-alt-link {
     &:hover {
       color: var(--color-purple-500);
     }
@@ -20,7 +20,7 @@
     }
   }
 
-  .btn[variant="danger-outline"] {
+  .btn.variant-danger-outline {
     box-shadow: var(--shadow-sm) var(--danger-shadow);
     border: var(--default-border-width) solid var(--danger-border);
     background-color: var(--danger);
@@ -34,7 +34,7 @@
     }
   }
 
-  .btn[variant="danger-ghost"] {
+  .btn.variant-danger-ghost {
     border: var(--default-border-width) solid transparent;
     background-color: var(--danger);
     color: var(--danger-foreground);
@@ -48,7 +48,7 @@
   }
 
   /* sizes */
-  .btn[size="sm"] {
+  .btn.size-sm {
     gap: 0.375rem;
     padding: 0 0.75rem;
     height: 2rem;
@@ -57,7 +57,7 @@
     }
   }
 
-  .btn[size="md"] {
+  .btn.size-md {
     padding: 0.5rem 1rem;
     height: 2.25rem;
     &:has(> svg) {
@@ -65,7 +65,7 @@
     }
   }
 
-  .btn[size="lg"] {
+  .btn.size-lg {
     padding: 0 1.5rem;
     height: 2.5rem;
     &:has(> svg) {

@@ -8,49 +8,49 @@
   }
 
   /* positions */
-  .modal-content.center {
+  .modal-content.position-center {
     @apply m-auto max-w-lg rounded-2xl border-2;
     @apply ui-open:zoom-in-95 ui-open:fade-in ui-open:slide-in-from-bottom-2 ui-open:backdrop:fade-in not-ui-open:zoom-out-95 not-ui-open:fade-out not-ui-open:backdrop:fade-out;
   }
 
-  .modal-content.top {
-    @apply inset-x-0 top-0 mb-auto w-full rounded-b-sm border-b-2 shadow-[1px_8px];
+  .modal-content.position-top {
+    @apply inset-x-0 top-0 mb-auto w-full rounded-b-sm border-b-2 shadow-[2px_8px];
     @apply ui-open:slide-in-from-top not-ui-open:slide-out-to-top;
   }
 
-  .modal-content.bottom {
-    @apply inset-x-0 bottom-0 mt-auto w-full rounded-t-sm border-t-2 shadow-[1px_-8px];
+  .modal-content.position-bottom {
+    @apply inset-x-0 bottom-0 mt-auto w-full rounded-t-sm border-t-2 shadow-[2px_-8px];
     @apply ui-open:slide-in-from-bottom not-ui-open:slide-out-to-bottom;
   }
 
-  .modal-content.left {
-    @apply inset-y-0 left-0 mr-auto h-full max-w-sm rounded-r-sm border-r-2 shadow-[8px_1px];
+  .modal-content.position-left {
+    @apply inset-y-0 left-0 mr-auto h-full max-w-sm rounded-r-sm border-r-2 shadow-[2px_8px];
     @apply ui-open:slide-in-from-left not-ui-open:slide-out-to-left;
   }
 
-  .modal-content.right {
-    @apply inset-y-0 right-0 ml-auto h-full max-w-sm rounded-l-sm border-l-2 shadow-[-8px_1px];
+  .modal-content.position-right {
+    @apply inset-y-0 right-0 ml-auto h-full max-w-sm rounded-l-sm border-l-2 shadow-[-8px_2px];
     @apply ui-open:slide-in-from-right not-ui-open:slide-out-to-right;
   }
 
   /* variants */
-  .modal-content.primary {
+  .modal-content.variant-primary {
     @apply border-primary-border shadow-primary-shadow;
   }
 
-  .modal-content.secondary {
+  .modal-content.variant-secondary {
     @apply border-secondary-border shadow-secondary-shadow;
   }
 
-  .modal-content.altPrimary {
+  .modal-content.variant-altPrimary {
     @apply border-alt-primary-border shadow-alt-primary-shadow;
   }
 
-  .modal-content.altSecondary {
+  .modal-content.variant-altSecondary {
     @apply border-alt-secondary-border shadow-alt-secondary-shadow;
   }
 
-  .modal-content.outline {
-    @apply bg-outline text-outline-foreground shadow-shadow;
+  .modal-content.variant-outline {
+    @apply bg-background text-outline-foreground;
   }
 }

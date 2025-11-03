@@ -24,9 +24,7 @@ export const Button = component$<
     <Render
       {...props}
       fallback="button"
-      class={["btn", props.class]}
-      variant={variant}
-      size={size}
+      class={["btn", `variant-${variant}`, `size-${size}`, props.class]}
     >
       <Slot />
     </Render>
