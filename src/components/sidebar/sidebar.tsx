@@ -49,11 +49,8 @@ export const DocsNavigation = component$(
                     <li key={link.name + link.href}>
                       <Link
                         href={link.href}
-                        // TODO: use the future sidebar component's button
-                        // @ts-expect-error - size is not a valid prop for Link but it styles the button look
-                        size="md"
                         class={[
-                          "btn rounded-lg hover:bg-accent",
+                          "btn size-md rounded-lg hover:bg-accent",
                           isLinkActive ||
                           (location.url.pathname?.startsWith(
                             "/docs/components/",

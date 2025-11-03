@@ -1,5 +1,5 @@
 import { component$, PropsOf, Slot } from "@qwik.dev/core";
-import { Button, Callout, Card, Separator } from "~/components/ui";
+import { Button, Callout, Card, Modal, Separator } from "~/components/ui";
 import { Lucide } from "@qds.dev/ui";
 export default component$(() => {
   return (
@@ -25,6 +25,16 @@ export default component$(() => {
         <Button variant="danger-outline">Delete</Button>
       </div>
       <div class="m-10 flex justify-start gap-6">
+        <Button variant="primary" disabled>
+          <Lucide.Loader class="size-5 animate-spin" />
+          Confirm
+        </Button>
+        <Button variant="secondary" disabled>
+          <Lucide.Loader class="size-5 animate-spin" />
+          Add to cart
+        </Button>
+      </div>
+      <div class="m-10 flex justify-start gap-6">
         <Button variant="outline" size="sm">
           Confirm
           <Lucide.Check name="icon" />
@@ -43,13 +53,13 @@ export default component$(() => {
         </Button>
       </div>
       <h2 class="text-2xl font-bold">Cards</h2>
-      <div class="m-10 grid grid-cols-3 justify-center gap-6">
-        <SimpleCard variant="altOutline"></SimpleCard>
-        <SimpleCard variant="altSecondary"></SimpleCard>
-        <SimpleCard variant="altPrimary"></SimpleCard>
-        <SimpleCard variant="outline"></SimpleCard>
-        <SimpleCard variant="secondary"></SimpleCard>
-        <SimpleCard variant="primary"></SimpleCard>
+      <div class="m-10 grid grid-cols-2 justify-center gap-6">
+        <CardExample variant="outline"></CardExample>
+        <CardExample variant="altOutline"></CardExample>
+        <CardExample variant="secondary"></CardExample>
+        <CardExample variant="altSecondary"></CardExample>
+        <CardExample variant="primary"></CardExample>
+        <CardExample variant="altPrimary"></CardExample>
       </div>
       <h2 class="text-2xl font-bold">Separator</h2>
       <div class="m-10 grid grid-cols-2 justify-center gap-6">
@@ -87,14 +97,46 @@ export default component$(() => {
           </Callout.Description>
         </Callout.Root>
       </div>
+      <h2 class="text-2xl font-bold">Modals</h2>
+      <div class="m-10 grid grid-cols-2 justify-center gap-6">
+        <ModalExample></ModalExample>
+      </div>
     </>
   );
 });
 
-const SimpleCard = component$<PropsOf<typeof Card.Root>>(({ ...props }) => {
+const CardExample = component$<PropsOf<typeof Card.Root>>(({ ...props }) => {
   return (
-    <Card.Root {...props} class="flex items-center justify-center gap-2 p-8">
+    <Card.Root {...props} class="flex items-center justify-center gap-2 py-32">
       <Slot />
     </Card.Root>
+  );
+});
+
+const ModalExample = component$<PropsOf<typeof Modal.Root>>(({ ...props }) => {
+  return (
+    <Modal.Root>
+      <Modal.Trigger asChild>
+        <Button>Open modal</Button>
+      </Modal.Trigger>
+      <Modal.Content variant="primary">
+        <Modal.Title>Qwik UI</Modal.Title>
+        <Modal.Description>
+          An open-source UI component library.
+        </Modal.Description>
+        <p class="mt-6">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          quos.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          quos.
+        </p>
+        <footer class="mt-6 flex justify-end gap-4">
+          <Button variant="outline">Cancel</Button>
+          <Button variant="primary">Confirm</Button>
+        </footer>
+      </Modal.Content>
+    </Modal.Root>
   );
 });
