@@ -2,7 +2,7 @@ export * from "./modal";
 export * from "./callout";
 export * from "./avatar/avatar";
 export * from "./chip/chip";
-export * from "./breadcrumb/breadcrumb";
+export * from "./breadcrumb";
 export * from "./button/button";
 export * from "./button/icon-button";
 export * from "./card";
