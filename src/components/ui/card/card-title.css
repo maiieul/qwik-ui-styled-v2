@@ -1,7 +1,17 @@
 @reference "../../../global.css";
 
 @layer components {
-  .card-title {
+  /* .card-title {
     @apply col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight;
+  } */
+
+  .card-title {
+    grid-column-start: 2;
+    min-height: 1rem;
+    overflow: hidden;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-tight);
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

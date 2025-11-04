@@ -1,7 +1,14 @@
 @reference "../../../global.css";
 
 @layer components {
-  .card-header {
+  /* .card-header {
     @apply flex flex-col space-y-1.5 p-6;
+  } */
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding: 1.5rem;
   }
 }

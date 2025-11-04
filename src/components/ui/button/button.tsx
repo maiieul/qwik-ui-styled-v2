@@ -4,7 +4,7 @@ import buttonStyles from "./button.css?inline";
 import { SharedButtonSizes, SharedButtonVariants } from "./shared";
 import { Render } from "../render";
 
-export type ButtonVariant =
+export type ButtonVariants =
   | SharedButtonVariants
   | "link"
   | "alt-link"
@@ -12,7 +12,7 @@ export type ButtonVariant =
   | "danger-ghost";
 
 export type ButtonProps = {
-  variant?: ButtonVariant;
+  variant?: ButtonVariants;
   size?: SharedButtonSizes;
 };
 

@@ -1,7 +1,13 @@
 @reference "../../../global.css";
 
 @layer components {
-  .card-footer {
+  /* .card-footer {
     @apply flex items-center p-6 pt-0;
+  } */
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem 1.5rem;
   }
 }

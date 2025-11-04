@@ -30,4 +30,8 @@
   .callout-description.variant-danger {
     color: var(--danger-foreground-muted);
   }
+
+  .callout-description.variant-alt-outline {
+    color: var(--foreground-muted);
+  }
 }

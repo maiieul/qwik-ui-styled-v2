@@ -6,14 +6,14 @@ export default component$(() => {
     <>
       <h2 class="text-2xl font-bold">Chips</h2>
       <div class="m-10 flex justify-start gap-6">
-        <Chip variant="primary">Primary</Chip>
-        <Chip variant="secondary">Secondary</Chip>
         <Chip variant="outline">Outline</Chip>
+        <Chip variant="secondary">Secondary</Chip>
+        <Chip variant="primary">Primary</Chip>
       </div>
       <div class="m-10 flex justify-start gap-6">
-        <Chip variant="alt-primary">Primary</Chip>
-        <Chip variant="alt-secondary">Secondary</Chip>
         <Chip variant="alt-outline">Outline</Chip>
+        <Chip variant="alt-secondary">Secondary</Chip>
+        <Chip variant="alt-primary">Primary</Chip>
       </div>
       <div class="m-10 flex justify-start gap-6">
         <Chip variant="danger">Danger</Chip>
@@ -96,20 +96,9 @@ export default component$(() => {
       </div>
       <h2 class="text-2xl font-bold">Callout</h2>
       <div class="m-10 grid grid-cols-2 justify-center gap-6">
-        <Callout.Root variant="outline">
-          <Lucide.Info name="icon" class="h-5 w-5" />
-          <Callout.Title>Qwik UI</Callout.Title>
-          <Callout.Description>
-            An open-source UI component library.
-          </Callout.Description>
-        </Callout.Root>
-        <Callout.Root variant="danger">
-          <Lucide.OctagonAlert name="icon" class="h-5 w-5" />
-          <Callout.Title>Qwik UI</Callout.Title>
-          <Callout.Description>
-            An open-source UI component library.
-          </Callout.Description>
-        </Callout.Root>
+        <CalloutExample variant="outline"></CalloutExample>
+        <CalloutExample variant="alt-outline"></CalloutExample>
+        <CalloutExample variant="danger"></CalloutExample>
       </div>
       <h2 class="text-2xl font-bold">Modals</h2>
       <div class="m-10 grid grid-cols-2 justify-center gap-6">
@@ -119,6 +108,22 @@ export default component$(() => {
   );
 });
 
+const CalloutExample = component$<PropsOf<typeof Callout.Root>>(
+  ({ variant, ...props }) => {
+    return (
+      <>
+        <Callout.Root variant={variant} {...props}>
+          <Lucide.Info name="icon" class="h-5 w-5" />
+          <Callout.Title>Qwik UI</Callout.Title>
+          <Callout.Description>
+            An open-source UI component library.
+          </Callout.Description>
+        </Callout.Root>
+      </>
+    );
+  },
+);
+
 const CardExample = component$<PropsOf<typeof Card.Root>>(({ ...props }) => {
   return (
     <Card.Root {...props} class="flex items-center justify-center gap-2 py-32">
@@ -127,13 +132,13 @@ const CardExample = component$<PropsOf<typeof Card.Root>>(({ ...props }) => {
   );
 });
 
-const ModalExample = component$<PropsOf<typeof Modal.Root>>(({ ...props }) => {
+const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
   return (
     <Modal.Root>
       <Modal.Trigger asChild>
         <Button>Open modal</Button>
       </Modal.Trigger>
-      <Modal.Content variant="primary">
+      <Modal.Content variant="outline">
         <Modal.Title>Qwik UI</Modal.Title>
         <Modal.Description>
           An open-source UI component library.

@@ -63,7 +63,7 @@ export const DocsNavigation = component$(
                         <div class="flex w-full items-center justify-between">
                           <span>{link.name}</span>
                           {link.new && (
-                            <Chip variant="primary" class="ml-2">
+                            <Chip variant="outline" class="ml-2">
                               New
                             </Chip>
                           )}

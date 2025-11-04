@@ -10,12 +10,12 @@ import {
 import rootStyles from "./callout-root.css?inline";
 
 type RootProps = PropsOf<"div"> & {
-  variant?: "outline" | "danger";
+  variant?: "outline" | "alt-outline" | "danger";
 };
 
-export const CalloutContextId = createContextId<"outline" | "danger">(
-  "callout",
-);
+export const CalloutContextId = createContextId<
+  "outline" | "alt-outline" | "danger"
+>("callout");
 
 export const Root = component$<RootProps>(
   ({ variant = "outline", ...props }) => {

@@ -43,6 +43,13 @@
     color: var(--foreground);
   }
 
+  .callout-root.variant-alt-outline {
+    background-color: var(--alt-outline);
+    color: var(--alt-outline-foreground);
+    --shadow: var(--alt-shadow);
+    --border: var(--alt-border);
+  }
+
   .callout-root.variant-danger {
     box-shadow: var(--shadow-sm) var(--danger-shadow);
     border-color: var(--danger-border);

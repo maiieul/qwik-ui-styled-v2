@@ -37,49 +37,49 @@
   }
 
   .chip-primary {
-    --shadow: var(--primary-shadow);
+    box-shadow: var(--shadow-xs) var(--primary-shadow);
     border: var(--default-border-width) solid var(--primary-border);
     background-color: var(--primary);
     color: var(--primary-foreground);
   }
 
   .chip-secondary {
-    --shadow: var(--secondary-shadow);
+    box-shadow: var(--shadow-xs) var(--secondary-shadow);
     border: var(--default-border-width) solid var(--secondary-border);
     background-color: var(--secondary);
     color: var(--secondary-foreground);
   }
 
   .chip-outline {
-    --shadow: var(--color-shadow);
+    box-shadow: var(--shadow-xs) var(--shadow);
     border: var(--default-border-width) solid var(--border);
     background-color: var(--outline);
     color: var(--outline-foreground);
   }
 
   .chip-alt-primary {
-    --shadow: var(--alt-primary-shadow);
+    box-shadow: var(--shadow-xs) var(--alt-primary-shadow);
     border: var(--default-border-width) solid var(--alt-primary-border);
     background-color: var(--alt-primary);
     color: var(--alt-primary-foreground);
   }
 
   .chip-alt-secondary {
-    --shadow: var(--alt-secondary-shadow);
+    box-shadow: var(--shadow-xs) var(--alt-secondary-shadow);
     border: var(--default-border-width) solid var(--alt-secondary-border);
     background-color: var(--alt-secondary);
     color: var(--alt-secondary-foreground);
   }
 
   .chip-alt-outline {
-    --shadow: var(--alt-shadow);
+    box-shadow: var(--shadow-xs) var(--alt-shadow);
     border: var(--default-border-width) solid var(--alt-border);
     background-color: var(--alt-outline);
     color: var(--alt-outline-foreground);
   }
 
   .chip-danger {
-    --shadow: var(--danger-shadow);
+    box-shadow: var(--shadow-xs) var(--danger-shadow);
     border: var(--default-border-width) solid var(--danger-border);
     background-color: var(--danger);
     color: var(--danger-foreground);

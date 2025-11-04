@@ -1,11 +1,10 @@
 @reference "../../../global.css";
 
 @layer components {
-  .card {
+  /* .card {
     @apply rounded-xs border bg-card text-card-foreground shadow-md;
   }
 
-  /* variants */
   .card.card-primary {
     @apply border-primary-border shadow-primary-shadow;
   }
@@ -28,5 +27,43 @@
 
   .card.card-altOutline {
     @apply border-alt-border shadow-alt-shadow;
+  }
+  */
+  .card {
+    box-shadow: var(--shadow-md) var(--shadow);
+    border: var(--default-border-width) solid var(--border);
+    border-radius: var(--radius-xs);
+    background-color: var(--card);
+    color: var(--card-foreground);
+  }
+
+  .card.card-primary {
+    box-shadow: var(--shadow-md) var(--primary-shadow);
+    border: var(--default-border-width) solid var(--primary-border);
+  }
+
+  .card.card-secondary {
+    box-shadow: var(--shadow-md) var(--secondary-shadow);
+    border: var(--default-border-width) solid var(--secondary-border);
+  }
+
+  .card.card-altPrimary {
+    box-shadow: var(--shadow-md) var(--alt-primary-shadow);
+    border: var(--default-border-width) solid var(--alt-primary-border);
+  }
+
+  .card.card-altSecondary {
+    box-shadow: var(--shadow-md) var(--alt-secondary-shadow);
+    border: var(--default-border-width) solid var(--alt-secondary-border);
+  }
+
+  .card.card-outline {
+    box-shadow: var(--shadow-md) var(--shadow);
+    border: var(--default-border-width) solid var(--border);
+  }
+
+  .card.card-altOutline {
+    box-shadow: var(--shadow-md) var(--alt-shadow);
+    border: var(--default-border-width) solid var(--alt-border);
   }
 }

@@ -34,6 +34,28 @@
     --shadow: var(--color-sky-200);
     --ring: var(--color-sky-500);
 
+    /* for highlighting main actions */
+    --primary: var(--color-sky-500);
+    --primary-foreground: white;
+    --primary-accent: var(--color-sky-600);
+    --primary-accent-foreground: var(--color-sky-50);
+    --primary-muted: var(--color-sky-500);
+    --primary-muted-foreground: var(--color-sky-200);
+    --primary-border: var(--color-sky-700);
+    --primary-shadow: var(--color-sky-600);
+    --primary-ring: var(--color-sky-500);
+
+    /* often in a lighter shade of primary colors, for valid but less important actions */
+    --secondary: var(--color-sky-200);
+    --secondary-foreground: var(--color-sky-700);
+    --secondary-accent: var(--color-sky-300);
+    --secondary-accent-foreground: var(--color-sky-800);
+    --secondary-muted: var(--color-sky-200);
+    --secondary-muted-foreground: var(--color-sky-600);
+    --secondary-border: var(--color-sky-400);
+    --secondary-shadow: var(--color-sky-300);
+    --secondary-ring: var(--color-sky-500);
+
     --alt-card: var(--background);
     --alt-card-foreground: var(--color-gray-950);
     --alt-popover: var(--background);
@@ -48,17 +70,6 @@
     --alt-shadow: var(--color-purple-200);
     --alt-ring: var(--color-purple-500);
 
-    /* for highlighting main actions */
-    --primary: var(--color-sky-500);
-    --primary-foreground: white;
-    --primary-accent: var(--color-sky-600);
-    --primary-accent-foreground: var(--color-sky-50);
-    --primary-muted: var(--color-sky-500);
-    --primary-muted-foreground: var(--color-sky-200);
-    --primary-border: var(--color-sky-700);
-    --primary-shadow: var(--color-sky-600);
-    --primary-ring: var(--color-sky-500);
-
     --alt-primary: var(--color-purple-400);
     --alt-primary-foreground: white;
     --alt-primary-accent: var(--color-purple-600);
@@ -69,17 +80,6 @@
     --alt-primary-shadow: var(--color-purple-500);
     --alt-primary-ring: var(--color-purple-700);
 
-    /* often in a lighter shade of primary colors, for valid but less important actions */
-    --secondary: var(--color-sky-200);
-    --secondary-foreground: var(--color-sky-700);
-    --secondary-accent: var(--color-sky-300);
-    --secondary-accent-foreground: var(--color-sky-800);
-    --secondary-muted: var(--color-sky-200);
-    --secondary-muted-foreground: var(--color-sky-600);
-    --secondary-border: var(--color-sky-400);
-    --secondary-shadow: var(--color-sky-300);
-    --secondary-ring: var(--color-sky-500);
-
     --alt-secondary: var(--color-purple-200);
     --alt-secondary-foreground: var(--color-purple-700);
     --alt-secondary-accent: var(--color-purple-300);
@@ -89,8 +89,6 @@
     --alt-secondary-border: var(--color-purple-400);
     --alt-secondary-shadow: var(--color-purple-300);
     --alt-secondary-ring: var(--color-purple-700);
-
-    /* for form error messages etc. */
 
     /* for emphasizing errors or dangerous actions */
     --danger: var(--background);
@@ -141,6 +139,28 @@
     --shadow: var(--color-purple-950);
     --ring: var(--color-purple-600);
 
+    /* for highlighting main actions */
+    --primary: var(--color-purple-500);
+    --primary-foreground: var(--color-purple-50);
+    --primary-accent: var(--color-purple-500);
+    --primary-accent-foreground: var(--color-purple-50);
+    --primary-muted: var(--color-purple-700);
+    --primary-muted-foreground: var(--color-purple-200);
+    --primary-border: var(--color-purple-600);
+    --primary-shadow: var(--color-purple-700);
+    --primary-ring: var(--color-purple-800);
+
+    /* often in a lighter shade of primary colors, for highlighting secondary actions */
+    --secondary: var(--color-purple-800);
+    --secondary-foreground: var(--color-purple-100);
+    --secondary-accent: var(--color-purple-700);
+    --secondary-accent-foreground: var(--color-purple-300);
+    --secondary-muted: var(--color-purple-800);
+    --secondary-muted-foreground: var(--color-purple-400);
+    --secondary-border: var(--color-purple-700);
+    --secondary-shadow: var(--color-purple-900);
+    --secondary-ring: var(--color-purple-800);
+
     --alt-card: var(--color-gray-950);
     --alt-card-foreground: var(--color-gray-50);
     --alt-popover: var(--color-gray-900);
@@ -155,17 +175,6 @@
     --alt-shadow: var(--color-sky-950);
     --alt-ring: var(--color-sky-600);
 
-    /* for highlighting main actions */
-    --primary: var(--color-purple-500);
-    --primary-foreground: var(--color-purple-50);
-    --primary-accent: var(--color-purple-500);
-    --primary-accent-foreground: var(--color-purple-50);
-    --primary-muted: var(--color-purple-700);
-    --primary-muted-foreground: var(--color-purple-200);
-    --primary-border: var(--color-purple-600);
-    --primary-shadow: var(--color-purple-700);
-    --primary-ring: var(--color-purple-800);
-
     --alt-primary: var(--color-sky-600);
     --alt-primary-foreground: var(--color-sky-50);
     --alt-primary-accent: var(--color-sky-500);
@@ -175,17 +184,6 @@
     --alt-primary-border: var(--color-sky-700);
     --alt-primary-shadow: var(--color-sky-800);
     --alt-primary-ring: var(--color-sky-700);
-
-    /* often in a lighter shade of primary colors, for highlighting secondary actions */
-    --secondary: var(--color-purple-800);
-    --secondary-foreground: var(--color-purple-100);
-    --secondary-accent: var(--color-purple-700);
-    --secondary-accent-foreground: var(--color-purple-300);
-    --secondary-muted: var(--color-purple-800);
-    --secondary-muted-foreground: var(--color-purple-400);
-    --secondary-border: var(--color-purple-700);
-    --secondary-shadow: var(--color-purple-900);
-    --secondary-ring: var(--color-purple-800);
 
     --alt-secondary: var(--color-sky-800);
     --alt-secondary-foreground: var(--color-sky-100);
