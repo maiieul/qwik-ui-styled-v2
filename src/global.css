@@ -6,7 +6,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@layer base {
+@layer theme {
   :root {
     /* general surfaces and colors */
     --background: white;
@@ -395,5 +395,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer qwik {
+  dialog {
+    max-width: unset;
+    max-height: unset;
   }
 }

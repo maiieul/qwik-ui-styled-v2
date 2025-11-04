@@ -4,7 +4,12 @@ import contentStyles from "./modal-content.css?inline";
 
 type ContentProps = PropsOf<typeof HeadlessModal.Content> & {
   position?: "center" | "top" | "bottom" | "left" | "right";
-  variant?: "primary" | "secondary" | "altPrimary" | "altSecondary" | "outline";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "alt-primary"
+    | "alt-secondary"
+    | "outline";
 };
 
 export const Content = component$<ContentProps>(

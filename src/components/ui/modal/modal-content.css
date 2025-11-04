@@ -2,12 +2,11 @@
 
 /* TODO: fix ui-closed animations */
 @layer components {
-  .modal-content {
+  /* .modal-content {
     @apply fixed bg-background p-6 text-foreground shadow-md transition-all transition-discrete backdrop:brightness-100 backdrop:backdrop-blur-xs;
     @apply ui-open:animate-in ui-open:backdrop:animate-in ui-open:backdrop:fade-in not-ui-open:animate-out not-ui-open:backdrop:animate-out not-ui-open:backdrop:fade-out;
   }
 
-  /* positions */
   .modal-content.position-center {
     @apply m-auto max-w-lg rounded-2xl border-2;
     @apply ui-open:zoom-in-95 ui-open:fade-in ui-open:slide-in-from-bottom-2 ui-open:backdrop:fade-in not-ui-open:zoom-out-95 not-ui-open:fade-out not-ui-open:backdrop:fade-out;
@@ -31,9 +30,8 @@
   .modal-content.position-right {
     @apply inset-y-0 right-0 ml-auto h-full max-w-sm rounded-l-sm border-l-2 shadow-[-8px_2px];
     @apply ui-open:slide-in-from-right not-ui-open:slide-out-to-right;
-  }
-
-  /* variants */
+  } */
+  /* 
   .modal-content.variant-primary {
     @apply border-primary-border shadow-primary-shadow;
   }
@@ -52,5 +50,262 @@
 
   .modal-content.variant-outline {
     @apply bg-background text-outline-foreground;
+  } */
+
+  .modal-content {
+    position: fixed;
+    transition: all 150ms var(--default-transition-timing-function)
+      allow-discrete;
+    box-shadow: var(--shadow-md) var(--shadow);
+    background-color: var(--background);
+
+    padding: 1.5rem;
+    color: var(--foreground);
+    [data-open] > & {
+      &::backdrop {
+        animation: backdrop-in 150ms var(--default-transition-timing-function)
+          forwards;
+      }
+    }
+    [data-closed] > & {
+      &::backdrop {
+        animation: backdrop-out 150ms var(--default-transition-timing-function)
+          forwards;
+      }
+    }
+    &::backdrop {
+      backdrop-filter: blur(0.25rem);
+    }
+  }
+
+  .modal-content.position-center {
+    margin: auto;
+    border-width: calc(var(--default-border-width) + 1px);
+    border-radius: var(--radius-2xl);
+    max-width: var(--container-lg);
+    [data-open] > & {
+      animation: zoom-and-fade-in 150ms
+        var(--default-transition-timing-function) forwards;
+    }
+    [data-closed] > & {
+      animation: zoom-and-fade-out 150ms
+        var(--default-transition-timing-function) forwards;
+    }
+  }
+
+  .modal-content.position-top {
+    inset-inline: 0;
+    top: 0;
+    margin-bottom: auto;
+    box-shadow: 5px 8px var(--shadow);
+    border-bottom: var(--default-border-width) solid var(--border);
+    width: 100%;
+    [data-open] > & {
+      animation: 150ms var(--default-transition-timing-function) both
+        slide-in-from-top;
+    }
+    [data-closed] > & {
+      animation: 150ms var(--default-transition-timing-function) both
+        slide-out-to-top;
+    }
+  }
+
+  .modal-content.position-bottom {
+    inset-inline: 0;
+    bottom: 0;
+    margin-top: auto;
+    box-shadow: -5px -8px var(--shadow);
+    border-top: var(--default-border-width) solid var(--border);
+    border-radius: var(--radius-sm);
+    width: 100%;
+    [data-open] > & {
+      animation: 150ms var(--default-transition-timing-function) both
+        slide-in-from-bottom;
+    }
+    [data-closed] > & {
+      animation: 150ms var(--default-transition-timing-function) both
+        slide-out-to-bottom;
+    }
+  }
+
+  .modal-content.position-left {
+    inset-inline: 0;
+    left: 0;
+    margin-right: auto;
+    box-shadow: 8px 5px var(--shadow);
+    border-right: var(--default-border-width) solid var(--border);
+    border-radius: var(--radius-sm);
+    max-width: var(--container-xs);
+    height: 100%;
+    [data-open] > & {
+      animation: 150ms var(--default-transition-timing-function) both
+        slide-in-from-left;
+    }
+    [data-closed] > & {
+      animation: 150ms var(--default-transition-timing-function) both
+        slide-out-to-left;
+    }
+  }
+
+  .modal-content.position-right {
+    inset-inline: 0;
+    right: 0;
+    margin-left: auto;
+    box-shadow: -8px -5px var(--shadow);
+    border-left: var(--default-border-width) solid var(--border);
+    border-radius: var(--radius-sm);
+    max-width: var(--container-xs);
+    height: 100%;
+    [data-open] > & {
+      animation: 150ms var(--default-transition-timing-function) both
+        slide-in-from-right;
+    }
+    [data-closed] > & {
+      animation: 150ms var(--default-transition-timing-function) both
+        slide-out-to-right;
+    }
+  }
+
+  .modal-content.variant-primary {
+    --shadow: var(--color-primary-shadow);
+    --border: var(--color-primary-border);
+  }
+
+  .modal-content.variant-alt-primary {
+    --shadow: var(--color-alt-primary-shadow);
+    --border: var(--color-alt-primary-border);
+  }
+
+  .modal-content.variant-secondary {
+    --shadow: var(--color-secondary-shadow);
+    --border: var(--color-secondary-border);
+  }
+
+  .modal-content.variant-alt-secondary {
+    --shadow: var(--color-alt-secondary-shadow);
+    --border: var(--color-alt-secondary-border);
+  }
+
+  .modal-content.variant-outline {
+    --shadow: var(--color-shadow);
+    --border: var(--color-border);
+    background-color: var(--background);
+    color: var(--outline-foreground);
+  }
+
+  .modal-content.variant-alt-outline {
+    --shadow: var(--color-alt-shadow);
+    --border: var(--color-alt-border);
+    background-color: var(--background);
+    color: var(--alt-outline-foreground);
+  }
+
+  @keyframes backdrop-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes backdrop-out {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes zoom-and-fade-in {
+    from {
+      transform: translateY(0.5rem) scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoom-and-fade-out {
+    from {
+      transform: scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-in-from-top {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-out-to-top {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-out-to-bottom {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes slide-in-from-left {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes slide-out-to-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slide-in-from-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes slide-out-to-right {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
   }
 }
