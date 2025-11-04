@@ -1,11 +1,25 @@
 import { component$, PropsOf, Slot } from "@qwik.dev/core";
-import { Button, Callout, Card, Modal, Separator } from "~/components/ui";
+import { Chip, Button, Callout, Card, Modal, Separator } from "~/components/ui";
 import { Lucide } from "@qds.dev/ui";
 export default component$(() => {
   return (
     <>
-      <h2 class="text-2xl font-bold">Buttons</h2>
+      <h2 class="text-2xl font-bold">Chips</h2>
+      <div class="m-10 flex justify-start gap-6">
+        <Chip variant="primary">Primary</Chip>
+        <Chip variant="secondary">Secondary</Chip>
+        <Chip variant="outline">Outline</Chip>
+      </div>
+      <div class="m-10 flex justify-start gap-6">
+        <Chip variant="alt-primary">Primary</Chip>
+        <Chip variant="alt-secondary">Secondary</Chip>
+        <Chip variant="alt-outline">Outline</Chip>
+      </div>
+      <div class="m-10 flex justify-start gap-6">
+        <Chip variant="danger">Danger</Chip>
+      </div>
 
+      <h2 class="text-2xl font-bold">Buttons</h2>
       <div class="m-10 flex justify-start gap-6">
         <Button variant="link">home</Button>
         <Button variant="ghost">Discard</Button>

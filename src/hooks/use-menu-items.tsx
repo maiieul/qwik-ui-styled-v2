@@ -15,12 +15,12 @@ export function useMenuItems() {
   const { menu } = useContent();
   let menuItemsGroups: LinkGroup[] | undefined = [];
 
-  menuItemsGroups = decorateMenuItemsWithBadges(menu?.items, ["Button"]);
+  menuItemsGroups = decorateMenuItemsWithChips(menu?.items, ["Button"]);
 
   return { menuItemsGroups };
 }
 
-function decorateMenuItemsWithBadges(
+function decorateMenuItemsWithChips(
   menuItems: ContentMenu[] | undefined,
   newComponents: string[],
 ): LinkGroup[] | undefined {

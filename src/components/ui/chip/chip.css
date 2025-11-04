@@ -1,0 +1,87 @@
+@reference "../../../global.css";
+
+@layer components {
+  /* .chip {
+    @apply inline-flex items-center rounded-sm px-2.5 py-0.5 text-xs font-semibold shadow-xs transition-colors focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden;
+  }
+
+  .chip-primary {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .chip-secondary {
+    @apply bg-secondary text-secondary-foreground;
+  }
+
+  .chip-danger {
+    @apply bg-danger text-danger-foreground;
+  }
+
+  .chip-outline {
+    @apply border bg-outline text-outline-foreground;
+  } */
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    transition: all 150ms var(--default-transition-timing-function);
+    box-shadow: var(--shadow-xs) var(--shadow);
+    border-radius: var(--radius-sm);
+    padding: 0.125rem 0.625rem;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--text-xs);
+    &:focus-visible {
+      outline: 2px none var(--ring);
+      outline-offset: 2px;
+    }
+  }
+
+  .chip-primary {
+    --shadow: var(--primary-shadow);
+    border: var(--default-border-width) solid var(--primary-border);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .chip-secondary {
+    --shadow: var(--secondary-shadow);
+    border: var(--default-border-width) solid var(--secondary-border);
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+  }
+
+  .chip-outline {
+    --shadow: var(--color-shadow);
+    border: var(--default-border-width) solid var(--border);
+    background-color: var(--outline);
+    color: var(--outline-foreground);
+  }
+
+  .chip-alt-primary {
+    --shadow: var(--alt-primary-shadow);
+    border: var(--default-border-width) solid var(--alt-primary-border);
+    background-color: var(--alt-primary);
+    color: var(--alt-primary-foreground);
+  }
+
+  .chip-alt-secondary {
+    --shadow: var(--alt-secondary-shadow);
+    border: var(--default-border-width) solid var(--alt-secondary-border);
+    background-color: var(--alt-secondary);
+    color: var(--alt-secondary-foreground);
+  }
+
+  .chip-alt-outline {
+    --shadow: var(--alt-shadow);
+    border: var(--default-border-width) solid var(--alt-border);
+    background-color: var(--alt-outline);
+    color: var(--alt-outline-foreground);
+  }
+
+  .chip-danger {
+    --shadow: var(--danger-shadow);
+    border: var(--default-border-width) solid var(--danger-border);
+    background-color: var(--danger);
+    color: var(--danger-foreground);
+  }
+}

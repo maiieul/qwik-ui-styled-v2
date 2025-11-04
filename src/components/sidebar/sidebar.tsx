@@ -1,6 +1,6 @@
 import { PropsOf, component$ } from "@qwik.dev/core";
 import { Link, useLocation } from "@qwik.dev/router";
-import { Badge } from "../ui";
+import { Chip } from "../ui";
 
 export interface LinkGroup {
   name: string;
@@ -63,9 +63,9 @@ export const DocsNavigation = component$(
                         <div class="flex w-full items-center justify-between">
                           <span>{link.name}</span>
                           {link.new && (
-                            <Badge variant="primary" class="ml-2">
+                            <Chip variant="primary" class="ml-2">
                               New
-                            </Badge>
+                            </Chip>
                           )}
                         </div>
                       </Link>
