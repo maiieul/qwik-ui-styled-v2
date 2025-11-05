@@ -1,0 +1,9 @@
+@reference "../../../global.css";
+
+@layer components {
+  .field-group {
+    @apply @container/field-group flex w-full flex-col gap-7;
+  }
+}
+
+

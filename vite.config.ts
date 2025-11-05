@@ -22,7 +22,7 @@ const {
 };
 errorOnDuplicatesPkgDeps(devDependencies, dependencies);
 
-const qwikLibs = ["maiieul-qwik-v2-lib", "@qds.dev/ui", "@qds.dev/tools"]
+const qwikLibs = ["maiieul-qwik-v2-lib", "@qds.dev/ui"]
 
 // @ts-ignore
 export default defineConfig(async (command: any, mode: any): Promise<UserConfig> => {

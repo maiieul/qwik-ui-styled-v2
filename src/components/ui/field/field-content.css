@@ -1,0 +1,7 @@
+@reference "../../../global.css";
+
+@layer components {
+  .field-content {
+    @apply flex flex-1 flex-col gap-1.5 leading-snug;
+  }
+}

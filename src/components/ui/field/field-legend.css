@@ -1,0 +1,17 @@
+@reference "../../../global.css";
+
+@layer components {
+  .field-legend {
+    @apply mb-3 font-medium;
+  }
+
+  .field-legend[data-variant="legend"] {
+    @apply text-base;
+  }
+
+  .field-legend[data-variant="label"] {
+    @apply text-sm;
+  }
+}
+
+

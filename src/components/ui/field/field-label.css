@@ -1,0 +1,9 @@
+@reference "../../../global.css";
+
+@layer components {
+  .field-label {
+    @apply flex w-fit gap-2 leading-snug;
+  }
+}
+
+

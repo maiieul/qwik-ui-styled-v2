@@ -1,0 +1,7 @@
+@reference "../../../global.css";
+
+@layer components {
+  .field-error {
+    @apply text-danger-foreground text-sm font-normal;
+  }
+}

@@ -1,6 +1,7 @@
 import { component$, PropsOf, Slot } from "@qwik.dev/core";
 import { Chip, Button, Callout, Card, Modal, Separator } from "~/components/ui";
 import { Lucide } from "@qds.dev/ui";
+import { Field } from "~/components/ui/field";
 export default component$(() => {
   return (
     <>
@@ -74,6 +75,10 @@ export default component$(() => {
         <CardExample variant="altSecondary"></CardExample>
         <CardExample variant="primary"></CardExample>
         <CardExample variant="altPrimary"></CardExample>
+      </div>
+      <h2 class="text-2xl font-bold">Fields</h2>
+      <div class="m-10 grid grid-cols-2 justify-center gap-6">
+        <FieldExample />
       </div>
       <h2 class="text-2xl font-bold">Separator</h2>
       <div class="m-10 grid grid-cols-2 justify-center gap-6">
@@ -159,3 +164,92 @@ const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
     </Modal.Root>
   );
 });
+
+export function FieldExample() {
+  return (
+    <div class="w-full max-w-md border p-4">
+      <form>
+        <Field.Root>
+          <Field.FieldSet>
+            <Field.Legend>Payment Method</Field.Legend>
+            <Field.Description>
+              All transactions are secure and encrypted
+            </Field.Description>
+            <Field.Group>
+              <Field.Root>
+                <Field.Label html-for="checkout-7j9-card-name-43j">
+                  Name on Card
+                </Field.Label>
+                {/* <Input
+                  id="checkout-7j9-card-name-43j"
+                  placeholder="Evil Rabbit"
+                  required
+                /> */}
+              </Field.Root>
+              <Field.Root>
+                <Field.Label html-for="checkout-7j9-card-number-uw1">
+                  Card Number
+                </Field.Label>
+                {/* <Input
+                  id="checkout-7j9-card-number-uw1"
+                  placeholder="1234 5678 9012 3456"
+                  required
+                /> */}
+                <Field.Description>
+                  Enter your 16-digit card number
+                </Field.Description>
+              </Field.Root>
+              <div class="grid grid-cols-1 gap-4">
+                <Field.Root>
+                  <Field.Label html-for="checkout-7j9-cvv">CVV</Field.Label>
+                  {/* <Input id="checkout-7j9-cvv" placeholder="123" required /> */}
+                </Field.Root>
+              </div>
+            </Field.Group>
+          </Field.FieldSet>
+          <Field.Separator />
+          <Field.FieldSet>
+            <Field.Legend>Billing Address</Field.Legend>
+            <Field.Description>
+              The billing address associated with your payment method
+            </Field.Description>
+            <Field.Group>
+              <Field.Root orientation="horizontal">
+                {/* <Checkbox
+                  id="checkout-7j9-same-as-shipping-wgm"
+                  defaultChecked
+                /> */}
+                <Field.Label
+                  html-for="checkout-7j9-same-as-shipping-wgm"
+                  class="font-normal"
+                >
+                  Same as shipping address
+                </Field.Label>
+              </Field.Root>
+            </Field.Group>
+          </Field.FieldSet>
+          <Field.FieldSet>
+            <Field.Group>
+              <Field.Root>
+                <Field.Label html-for="checkout-7j9-optional-comments">
+                  Comments
+                </Field.Label>
+                {/* <Textarea
+                  id="checkout-7j9-optional-comments"
+                  placeholder="Add any additional comments"
+                  class="resize-none"
+                /> */}
+              </Field.Root>
+            </Field.Group>
+          </Field.FieldSet>
+          <Field.Root orientation="horizontal">
+            <Button type="submit">Submit</Button>
+            <Button variant="outline" type="button">
+              Cancel
+            </Button>
+          </Field.Root>
+        </Field.Root>
+      </form>
+    </div>
+  );
+}

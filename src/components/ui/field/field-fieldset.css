@@ -1,0 +1,9 @@
+@reference "../../../global.css";
+
+@layer components {
+  .field-fieldset {
+    @apply flex flex-col gap-6;
+  }
+}
+
+

@@ -1,0 +1,13 @@
+@reference "../../../global.css";
+
+@layer components {
+  .field-separator {
+    @apply relative -my-2 h-5 text-sm;
+  }
+
+  .field-separator-content {
+    @apply relative mx-auto block w-fit bg-background px-2 text-muted-foreground;
+  }
+}
+
+
