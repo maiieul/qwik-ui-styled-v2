@@ -3,11 +3,11 @@ import { AsChildTypes } from "@qds.dev/tools/vite";
 
 import iconButtonStyles from "./icon-button.css?inline";
 
-import { SharedButtonSizes, SharedButtonVariants } from "./shared";
+import { SharedButtonSizes } from "./shared";
 import { Render } from "@qds.dev/ui";
 
 type IconButtonProps = {
-  variant?: SharedButtonVariants;
+  variant?: "outline" | "ghost";
   size?: SharedButtonSizes;
 };
 

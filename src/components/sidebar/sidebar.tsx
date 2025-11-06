@@ -1,6 +1,7 @@
-import { PropsOf, component$ } from "@qwik.dev/core";
+import { PropsOf, component$, useStyles$ } from "@qwik.dev/core";
 import { Link, useLocation } from "@qwik.dev/router";
 import { Chip } from "../ui";
+import sidebarStyles from "./sidebar.css?inline";
 
 export interface LinkGroup {
   name: string;
@@ -33,7 +34,7 @@ const defaultLinksGroups: LinkGroup[] = [
 export const DocsNavigation = component$(
   ({ linksGroups = defaultLinksGroups, ...props }: DocsNavigationProps) => {
     const location = useLocation();
-
+    useStyles$(sidebarStyles);
     return (
       <nav {...props} class={["flex-col gap-4 pb-6", props.class]}>
         {linksGroups?.map((group) => {
@@ -45,18 +46,19 @@ export const DocsNavigation = component$(
               <ul class="flex flex-col gap-2">
                 {group.children?.map((link) => {
                   const isLinkActive = location.url.pathname === link.href;
+
                   return (
                     <li key={link.name + link.href}>
                       <Link
                         href={link.href}
                         class={[
-                          "btn size-md rounded-lg hover:bg-accent",
+                          "btn size-md sidebar-link-hover rounded-lg",
                           isLinkActive ||
                           (location.url.pathname?.startsWith(
                             "/docs/components/",
                           ) &&
                             link.name === "Components")
-                            ? "bg-accent font-medium"
+                            ? "bg-secondary font-medium text-secondary-foreground"
                             : "font-normal",
                         ]}
                       >

@@ -11,7 +11,7 @@ import styles from "./input.css?inline";
 
 type InputProps = PropsOf<"input"> & {
   error?: string;
-  onInput$: QRL<QRLEventHandlerMulti<InputEvent, HTMLInputElement>>;
+  onInput$?: QRL<QRLEventHandlerMulti<InputEvent, HTMLInputElement>>;
 };
 
 export const Input = component$<InputProps>(

@@ -1,0 +1,7 @@
+@reference "../../global.css";
+
+@layer components {
+  .sidebar-link-hover {
+    @apply hover:bg-muted hover:text-muted-foreground;
+  }
+}

@@ -1,15 +1,19 @@
 import { component$, PropsOf, Slot, useStyles$ } from "@qwik.dev/core";
 
 import buttonStyles from "./button.css?inline";
-import { SharedButtonSizes, SharedButtonVariants } from "./shared";
+import { SharedButtonSizes } from "./shared";
 import { Render } from "../render";
 
 export type ButtonVariants =
-  | SharedButtonVariants
-  | "link"
   | "alt-link"
+  | "alt-ghost"
+  | "alt-outline"
+  | "alt-secondary"
+  | "alt-primary"
+  | "danger-ghost"
   | "danger-outline"
-  | "danger-ghost";
+  | "danger-secondary"
+  | "danger-primary";
 
 export type ButtonProps = {
   variant?: ButtonVariants;
@@ -18,7 +22,7 @@ export type ButtonProps = {
 
 export const Button = component$<
   PropsOf<"button"> & ButtonProps & { asChild?: true }
->(({ variant = "primary", size = "md", ...props }) => {
+>(({ variant = "alt-primary", size = "md", ...props }) => {
   useStyles$(buttonStyles);
   return (
     <Render

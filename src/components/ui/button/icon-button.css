@@ -2,6 +2,33 @@
 @import "./shared.css";
 
 @layer components {
+  .btn.variant-outline {
+    box-shadow: var(--shadow-sm) var(--shadow);
+    border: var(--default-border-width) solid var(--border);
+    background-color: var(--outline);
+    color: var(--outline-foreground);
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-md) var(--shadow);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+    }
+  }
+
+  .btn.variant-ghost {
+    border: var(--default-border-width) solid transparent;
+    background-color: var(--outline);
+    color: var(--outline-foreground);
+    &:hover {
+      box-shadow: var(--shadow-sm) var(--shadow);
+      border: var(--default-border-width) solid var(--border);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+    }
+  }
+
   .icon-btn.size-sm {
     width: 2rem;
     height: 2rem;

@@ -23,11 +23,11 @@
     --outline-foreground: var(--color-gray-950);
 
     /* for hover/active/pressed states etc. */
-    --accent: var(--color-sky-100);
+    --accent: var(--color-sky-200);
     --accent-foreground: var(--color-gray-950);
 
     /* for disabled/inactive states etc. */
-    --muted: var(--color-sky-100);
+    --muted: var(--color-gray-100);
     --muted-foreground: var(--color-gray-700);
     /* general border, shadow and ring colors */
     --border: var(--color-sky-400);

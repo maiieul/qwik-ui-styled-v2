@@ -23,9 +23,9 @@ export default component$(() => {
         <Chip variant="primary">Primary</Chip>
       </div>
       <div class="m-10 flex justify-start gap-6">
-        <Chip variant="alt-outline">Outline</Chip>
-        <Chip variant="alt-secondary">Secondary</Chip>
-        <Chip variant="alt-primary">Primary</Chip>
+        <Chip variant="alt-outline">Alt Outline</Chip>
+        <Chip variant="alt-secondary">Alt Secondary</Chip>
+        <Chip variant="alt-primary">Alt Primary</Chip>
       </div>
       <div class="m-10 flex justify-start gap-6">
         <Chip variant="danger">Danger</Chip>
@@ -56,13 +56,6 @@ export default component$(() => {
 
       <h2 class="text-2xl font-bold">Buttons</h2>
       <div class="m-10 flex justify-start gap-6">
-        <Button variant="link">home</Button>
-        <Button variant="ghost">Discard</Button>
-        <Button variant="outline">Turn off</Button>
-        <Button variant="secondary">Learn more</Button>
-        <Button variant="primary">Confirm</Button>
-      </div>
-      <div class="m-10 flex justify-start gap-6">
         <Button variant="alt-link">home</Button>
         <Button variant="alt-ghost">Discard</Button>
         <Button variant="alt-outline">Turn off</Button>
@@ -74,29 +67,29 @@ export default component$(() => {
         <Button variant="danger-outline">Delete</Button>
       </div>
       <div class="m-10 flex justify-start gap-6">
-        <Button variant="primary" disabled>
+        <Button variant="alt-primary" disabled>
           <Lucide.Loader class="size-5 animate-spin" />
           Confirm
         </Button>
-        <Button variant="secondary" disabled>
+        <Button variant="alt-secondary" disabled>
           <Lucide.Loader class="size-5 animate-spin" />
           Add to cart
         </Button>
       </div>
       <div class="m-10 flex justify-start gap-6">
-        <Button variant="outline" size="sm">
+        <Button variant="alt-outline" size="sm">
           Confirm
           <Lucide.Check name="icon" />
         </Button>
       </div>
       <div class="m-10 flex justify-start gap-6">
-        <Button variant="outline" size="md">
+        <Button variant="alt-outline" size="md">
           Confirm
           <Lucide.Check name="icon" />
         </Button>
       </div>
       <div class="m-10 flex justify-start gap-6">
-        <Button variant="outline" size="lg">
+        <Button variant="alt-outline" size="lg">
           Confirm
           <Lucide.Check name="icon" />
         </Button>
@@ -109,7 +102,7 @@ export default component$(() => {
         <CalloutExample
           variant="danger"
           title="Attention!"
-          description='Using this variant will automatically apply `role="alert"` to the component. This will interrupt the screen readeruser flow when introduced to the DOM and should therefore be used with caution.'
+          description='Using this variant will automatically apply `role="alert"` to the component. This will interrupt the screen reader user flow when introduced to the DOM and should therefore be used with caution.'
         ></CalloutExample>
       </div>
 
@@ -203,8 +196,8 @@ const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
           quos.
         </p>
         <footer class="mt-6 flex justify-end gap-4">
-          <Button variant="outline">Cancel</Button>
-          <Button variant="primary">Confirm</Button>
+          <Button variant="alt-outline">Cancel</Button>
+          <Button variant="alt-primary">Confirm</Button>
         </footer>
       </Modal.Content>
     </Modal.Root>
@@ -290,7 +283,7 @@ export function FieldExample() {
           </Field.FieldSet>
           <Field.Root orientation="horizontal">
             <Button type="submit">Submit</Button>
-            <Button variant="outline" type="button">
+            <Button variant="alt-outline" type="button">
               Cancel
             </Button>
           </Field.Root>
