@@ -1,8 +1,19 @@
-import { component$, PropsOf, Slot } from "@qwik.dev/core";
-import { Chip, Button, Callout, Card, Modal, Separator } from "~/components/ui";
+import { $, component$, PropsOf, Slot, useSignal } from "@qwik.dev/core";
+import {
+  Chip,
+  Button,
+  Callout,
+  Card,
+  Modal,
+  Separator,
+  Input,
+  Field,
+} from "~/components/ui";
 import { Lucide } from "@qds.dev/ui";
-import { Field } from "~/components/ui/field";
+
 export default component$(() => {
+  const twoWayDataBindingSignal = useSignal("");
+  const oneWayDataBindingSignal = useSignal("");
   return (
     <>
       <h2 class="text-2xl font-bold">Chips</h2>
@@ -18,6 +29,29 @@ export default component$(() => {
       </div>
       <div class="m-10 flex justify-start gap-6">
         <Chip variant="danger">Danger</Chip>
+      </div>
+
+      <h2 class="text-2xl font-bold">Inputs</h2>
+      <div class="m-10 flex justify-start gap-6">
+        <Input placeholder="Enter your name" />
+      </div>
+      <div class="m-10 flex flex-col justify-start gap-6">
+        <Input
+          placeholder="I'm a two-way bound input"
+          bind:value={twoWayDataBindingSignal}
+        />
+        <p>Two-way bound value: {twoWayDataBindingSignal.value}</p>
+      </div>
+      <div class="m-10 flex flex-col justify-start gap-6">
+        <Input
+          placeholder="I'm a one-way bound input"
+          value={oneWayDataBindingSignal.value}
+          onInput$={$((_, element) => {
+            console.log("onInput$", element.value);
+            oneWayDataBindingSignal.value = element.value;
+          })}
+        />
+        <p>One-way bound value: {oneWayDataBindingSignal.value}</p>
       </div>
 
       <h2 class="text-2xl font-bold">Buttons</h2>
@@ -67,6 +101,18 @@ export default component$(() => {
           <Lucide.Check name="icon" />
         </Button>
       </div>
+
+      <h2 class="text-2xl font-bold">Callout</h2>
+      <div class="m-10 grid grid-cols-2 justify-center gap-6">
+        <CalloutExample variant="outline"></CalloutExample>
+        <CalloutExample variant="alt-outline"></CalloutExample>
+        <CalloutExample
+          variant="danger"
+          title="Attention!"
+          description='Using this variant will automatically apply `role="alert"` to the component. This will interrupt the screen readeruser flow when introduced to the DOM and should therefore be used with caution.'
+        ></CalloutExample>
+      </div>
+
       <h2 class="text-2xl font-bold">Cards</h2>
       <div class="m-10 grid grid-cols-2 justify-center gap-6">
         <CardExample variant="outline"></CardExample>
@@ -99,12 +145,7 @@ export default component$(() => {
           </div>
         </div>
       </div>
-      <h2 class="text-2xl font-bold">Callout</h2>
-      <div class="m-10 grid grid-cols-2 justify-center gap-6">
-        <CalloutExample variant="outline"></CalloutExample>
-        <CalloutExample variant="alt-outline"></CalloutExample>
-        <CalloutExample variant="danger"></CalloutExample>
-      </div>
+
       <h2 class="text-2xl font-bold">Modals</h2>
       <div class="m-10 grid grid-cols-2 justify-center gap-6">
         <ModalExample></ModalExample>
@@ -113,16 +154,21 @@ export default component$(() => {
   );
 });
 
-const CalloutExample = component$<PropsOf<typeof Callout.Root>>(
-  ({ variant, ...props }) => {
+const CalloutExample = component$<
+  PropsOf<typeof Callout.Root> & { title?: string; description?: string }
+>(
+  ({
+    variant,
+    title = "Did you know?",
+    description = "You can completely change the style of your components using our theme builder.",
+    ...props
+  }) => {
     return (
       <>
         <Callout.Root variant={variant} {...props}>
           <Lucide.Info name="icon" class="h-5 w-5" />
-          <Callout.Title>Qwik UI</Callout.Title>
-          <Callout.Description>
-            An open-source UI component library.
-          </Callout.Description>
+          <Callout.Title>{title}</Callout.Title>
+          <Callout.Description>{description}</Callout.Description>
         </Callout.Root>
       </>
     );
@@ -167,7 +213,7 @@ const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
 
 export function FieldExample() {
   return (
-    <div class="w-full max-w-md border p-4">
+    <div class="w-full max-w-md border p-4 shadow-sm">
       <form>
         <Field.Root>
           <Field.FieldSet>
@@ -180,21 +226,21 @@ export function FieldExample() {
                 <Field.Label html-for="checkout-7j9-card-name-43j">
                   Name on Card
                 </Field.Label>
-                {/* <Input
+                <Input
                   id="checkout-7j9-card-name-43j"
                   placeholder="Evil Rabbit"
                   required
-                /> */}
+                />
               </Field.Root>
               <Field.Root>
                 <Field.Label html-for="checkout-7j9-card-number-uw1">
                   Card Number
                 </Field.Label>
-                {/* <Input
+                <Input
                   id="checkout-7j9-card-number-uw1"
                   placeholder="1234 5678 9012 3456"
                   required
-                /> */}
+                />
                 <Field.Description>
                   Enter your 16-digit card number
                 </Field.Description>

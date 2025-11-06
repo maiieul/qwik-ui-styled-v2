@@ -18,11 +18,15 @@ export const CalloutContextId = createContextId<
 >("callout");
 
 export const Root = component$<RootProps>(
-  ({ variant = "outline", ...props }) => {
+  ({ variant = "outline", role, ...props }) => {
     useStyles$(rootStyles);
     useContextProvider(CalloutContextId, variant);
     return (
-      <div {...props} class={[`callout-root variant-${variant}`, props.class]}>
+      <div
+        {...props}
+        class={[`callout-root variant-${variant}`, props.class]}
+        role={variant === "danger" ? "alert" : role}
+      >
         <Slot />
       </div>
     );
