@@ -7,7 +7,7 @@ type CodeSnippetProps = PropsOf<"div"> & {
 
 export const CodeSnippet = component$<CodeSnippetProps>(({ code }) => {
   return (
-    <div class="shadow-3xl mb-6 rounded-md border shadow-lg">
+    <div class="mb-6 rounded-md border shadow-lg">
       <Highlight code={code} />
     </div>
   );

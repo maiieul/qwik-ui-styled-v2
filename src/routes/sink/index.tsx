@@ -19,17 +19,18 @@ export default component$(() => {
       <h2 class="text-2xl font-bold">Chips</h2>
       <div class="m-10 flex justify-start gap-6">
         <Chip variant="outline">Outline</Chip>
-        <Chip variant="secondary">Secondary</Chip>
-        <Chip variant="primary">Primary</Chip>
-      </div>
-      <div class="m-10 flex justify-start gap-6">
         <Chip variant="alt-outline">Alt Outline</Chip>
-        <Chip variant="alt-secondary">Alt Secondary</Chip>
-        <Chip variant="alt-primary">Alt Primary</Chip>
-      </div>
-      <div class="m-10 flex justify-start gap-6">
         <Chip variant="danger">Danger</Chip>
       </div>
+      <div class="m-10 flex justify-start gap-6">
+        <Chip variant="secondary">Secondary</Chip>
+        <Chip variant="alt-secondary">Alt Secondary</Chip>
+      </div>
+      <div class="m-10 flex justify-start gap-6">
+        <Chip variant="primary">Primary</Chip>
+        <Chip variant="alt-primary">Alt Primary</Chip>
+      </div>
+      <div class="m-10 flex justify-start gap-6"></div>
 
       <h2 class="text-2xl font-bold">Inputs</h2>
       <div class="m-10 flex justify-start gap-6">
@@ -58,13 +59,14 @@ export default component$(() => {
       <div class="m-10 flex justify-start gap-6">
         <Button variant="alt-link">home</Button>
         <Button variant="alt-ghost">Discard</Button>
-        <Button variant="alt-outline">Turn off</Button>
+        <Button variant="alt-outline">Cancel</Button>
         <Button variant="alt-secondary">Learn more</Button>
         <Button variant="alt-primary">Confirm</Button>
       </div>
       <div class="m-10 flex justify-start gap-6">
-        <Button variant="danger-ghost">Cancel</Button>
+        <Button variant="danger-ghost">Disable</Button>
         <Button variant="danger-outline">Delete</Button>
+        <Button variant="danger">Delete</Button>
       </div>
       <div class="m-10 flex justify-start gap-6">
         <Button variant="alt-primary" disabled>
@@ -159,7 +161,11 @@ const CalloutExample = component$<
     return (
       <>
         <Callout.Root variant={variant} {...props}>
-          <Lucide.Info name="icon" class="h-5 w-5" />
+          {variant === "danger" ? (
+            <Lucide.TriangleAlert name="icon" class="h-5 w-5" />
+          ) : (
+            <Lucide.Info name="icon" class="h-5 w-5" />
+          )}
           <Callout.Title>{title}</Callout.Title>
           <Callout.Description>{description}</Callout.Description>
         </Callout.Root>
@@ -195,9 +201,14 @@ const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
           quos.
         </p>
-        <footer class="mt-6 flex justify-end gap-4">
-          <Button variant="alt-outline">Cancel</Button>
-          <Button variant="alt-primary">Confirm</Button>
+        <footer class="mt-9 flex justify-between gap-4">
+          <div>
+            <Button variant="alt-ghost">Discard</Button>
+          </div>
+          <div class="flex gap-4">
+            <Button variant="alt-secondary">Edit</Button>
+            <Button variant="alt-primary">Publish</Button>
+          </div>
         </footer>
       </Modal.Content>
     </Modal.Root>

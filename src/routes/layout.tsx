@@ -23,17 +23,17 @@ export default component$(() => {
         </div>
         <div />
       </div>
-      <div class="grid justify-center">
+      <div class="grid">
         <div class={horizontalLayout}>
           <DocsNavigation
-            class="sticky top-0 mr-4 hidden h-[100vh] overflow-auto border-r shadow-[8px_2px] shadow-shadow lg:flex"
+            class="sticky top-0 mr-4 hidden h-[100vh] overflow-auto border-r shadow-[3px_1px] shadow-shadow lg:flex"
             linksGroups={menuItemsGroups}
           />
           <main class="px-6 py-8 pt-24 lg:px-12">
             <h1 class="mb-6 scroll-mt-24 pt-6 text-3xl font-extrabold md:text-5xl">
               {documentHead.title}
             </h1>
-            <p class="mb-6 text-muted-foreground last:mb-0">
+            <p class="mb-6 last:mb-0">
               {documentHead.meta.find((m) => m.name === "description")?.content}
             </p>
             <MDXProvider components={components}>

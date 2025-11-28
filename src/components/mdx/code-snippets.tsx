@@ -15,16 +15,13 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
   ({ rawSnippetTabs, ...props }) => {
     return (
       <div class="mb-12 rounded-xl">
-        <Tabs.Root
-          {...props}
-          selectedClassName="bg-primary hover:bg-primary text-primary-foreground hover:text-primary-foreground font-medium"
-        >
+        <Tabs.Root {...props}>
           <Tabs.List class="flex">
             {rawSnippetTabs.map((rawSnippetTab: rawSnippetTab) => {
               return (
                 <Tabs.Trigger
                   key={rawSnippetTab.title}
-                  class="h-[44px] px-3 py-2 text-muted-foreground data-selected:text-foreground"
+                  class="h-[44px] px-3 py-2 font-medium text-muted-foreground hover:text-accent-foreground data-selected:text-accent-foreground"
                 >
                   {rawSnippetTab.title}
                 </Tabs.Trigger>
@@ -35,7 +32,7 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
             return (
               <Tabs.Content
                 key={rawSnippetTab.title}
-                class="relative h-120 rounded-lg border"
+                class="relative h-120 rounded-lg border shadow-lg"
                 style={{ backgroundColor: "#1b1e28", color: "#a6accd" }}
               >
                 <Highlight

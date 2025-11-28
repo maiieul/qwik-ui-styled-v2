@@ -1,7 +1,13 @@
 @reference "../../global.css";
 
 @layer components {
-  .sidebar-link-hover {
-    @apply hover:bg-muted hover:text-muted-foreground;
+  .sidebar-link {
+    border-radius: var(--radius-md);
+    color: var(--foreground);
+    font-weight: 500;
+    &:hover {
+      background-color: var(--muted);
+      color: var(--foreground-soft);
+    }
   }
 }

@@ -9,7 +9,8 @@
     grid-column-start: 2;
     min-height: 1rem;
     overflow: hidden;
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-lg);
     letter-spacing: var(--tracking-tight);
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -20,7 +20,7 @@ export const components: Record<string, Component> = {
         {...props}
         class={[
           cn(
-            "mb-6 scroll-mt-24 pt-6 text-3xl font-extrabold md:text-5xl",
+            "mb-6 scroll-mt-24 pt-6 text-3xl font-bold text-foreground md:text-5xl",
             props.class,
           ),
         ]}
@@ -34,7 +34,10 @@ export const components: Record<string, Component> = {
       <h2
         {...props}
         class={[
-          cn("mt-12 mb-4 scroll-mt-24 text-3xl font-extrabold", props.class),
+          cn(
+            "mt-12 mb-4 scroll-mt-24 text-3xl font-bold text-foreground",
+            props.class,
+          ),
         ]}
       >
         <Slot />
@@ -46,7 +49,10 @@ export const components: Record<string, Component> = {
       <h3
         {...props}
         class={[
-          cn("mt-8 mb-2 scroll-mt-20 text-xl font-semibold", props.class),
+          cn(
+            "mt-8 mb-2 scroll-mt-20 text-xl font-semibold text-foreground",
+            props.class,
+          ),
         ]}
       >
         <Slot />
@@ -55,14 +61,22 @@ export const components: Record<string, Component> = {
   }),
   h4: component$<PropsOf<"h4">>(({ ...props }) => {
     return (
-      <h4 {...props} class={[cn("mt-6 mb-4 text-lg font-medium", props.class)]}>
+      <h4
+        {...props}
+        class={[
+          cn("mt-6 mb-4 text-lg font-medium text-foreground", props.class),
+        ]}
+      >
         <Slot />
       </h4>
     );
   }),
   h5: component$<PropsOf<"h5">>(({ ...props }) => {
     return (
-      <h5 {...props} class={[cn("text-base font-normal", props.class)]}>
+      <h5
+        {...props}
+        class={[cn("text-base font-medium text-foreground", props.class)]}
+      >
         <Slot />
       </h5>
     );

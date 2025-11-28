@@ -16,7 +16,7 @@ type ChipProps = PropsOf<"div"> & {
 } & AsChildTypes;
 
 export const Chip = component$<ChipProps>(
-  ({ variant = "primary", ...props }) => {
+  ({ variant = "alt-primary", ...props }) => {
     useStyles$(chipStyles);
     return (
       <div {...props} class={[`chip chip-${variant}`, props.class]}>

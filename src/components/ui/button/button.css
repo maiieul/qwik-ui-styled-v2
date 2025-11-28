@@ -53,13 +53,23 @@
     }
   }
 
+  .dark .btn.variant-alt-link {
+    &:hover {
+      color: var(--color-sky-500);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--color-sky-500);
+    }
+  }
+
   .btn.variant-alt-ghost {
     border: var(--default-border-width) solid transparent;
-    background-color: var(--alt-outline);
+    background-color: var(--alt-background);
     color: var(--alt-outline-foreground);
     &:hover {
       box-shadow: var(--shadow-sm) var(--alt-shadow);
       border: var(--default-border-width) solid var(--alt-border);
+      background-color: var(--alt-outline);
     }
     &:focus-visible {
       outline: 2px solid var(--alt-ring);
@@ -108,7 +118,7 @@
     }
   }
 
-  .btn.variant-danger-outline {
+  .btn.variant-danger {
     box-shadow: var(--shadow-sm) var(--danger-shadow);
     border: var(--default-border-width) solid var(--danger-border);
     background-color: var(--danger);
@@ -122,10 +132,24 @@
     }
   }
 
+  .btn.variant-danger-outline {
+    box-shadow: var(--shadow-sm) var(--danger-shadow);
+    border: var(--default-border-width) solid var(--danger-border);
+    color: oklch(0.672 0.26 17.433);
+    font-weight: var(--font-weight-bold);
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-md) var(--danger-shadow);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--danger-ring);
+    }
+  }
+
   .btn.variant-danger-ghost {
     border: var(--default-border-width) solid transparent;
-    background-color: var(--danger);
-    color: var(--danger-foreground);
+    color: oklch(0.672 0.26 17.433);
+    font-weight: var(--font-weight-bold);
     &:hover {
       box-shadow: var(--shadow-sm) var(--danger-shadow);
       border: var(--default-border-width) solid var(--danger-border);

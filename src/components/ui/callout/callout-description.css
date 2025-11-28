@@ -16,22 +16,5 @@
     grid-column-start: 2;
     justify-items: start;
     gap: 0.25rem;
-    font-size: var(--text-sm);
-    line-height: var(--text-sm--line-height);
-    & p {
-      line-height: var(--leading-relaxed);
-    }
-  }
-
-  /* variants */
-  .callout-description.variant-outline {
-    color: var(--foreground-muted);
-  }
-  .callout-description.variant-danger {
-    color: var(--danger-foreground-muted);
-  }
-
-  .callout-description.variant-alt-outline {
-    color: var(--foreground-muted);
   }
 }

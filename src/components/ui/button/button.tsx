@@ -10,6 +10,7 @@ export type ButtonVariants =
   | "alt-outline"
   | "alt-secondary"
   | "alt-primary"
+  | "danger"
   | "danger-ghost"
   | "danger-outline"
   | "danger-secondary"

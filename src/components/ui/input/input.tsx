@@ -1,5 +1,4 @@
 import {
-  $,
   component$,
   type PropsOf,
   QRL,

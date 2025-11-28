@@ -36,11 +36,14 @@ export const DocsNavigation = component$(
     const location = useLocation();
     useStyles$(sidebarStyles);
     return (
-      <nav {...props} class={["flex-col gap-4 pb-6", props.class]}>
+      <nav
+        {...props}
+        class={["flex-col gap-4 bg-white pb-6 dark:bg-black", props.class]}
+      >
         {linksGroups?.map((group) => {
           return (
             <div class="px-6 pt-8" key={group.name}>
-              <h2 class="mb-2 border-b-2 p-2 text-lg font-bold">
+              <h2 class="mb-2 border-b-2 p-2 text-lg font-medium">
                 {group.name}
               </h2>
               <ul class="flex flex-col gap-2">
@@ -52,20 +55,16 @@ export const DocsNavigation = component$(
                       <Link
                         href={link.href}
                         class={[
-                          "btn size-md sidebar-link-hover rounded-lg",
-                          isLinkActive ||
-                          (location.url.pathname?.startsWith(
-                            "/docs/components/",
-                          ) &&
-                            link.name === "Components")
-                            ? "bg-secondary font-medium text-secondary-foreground"
-                            : "font-normal",
+                          "btn size-md sidebar-link",
+                          isLinkActive
+                            ? "text bg-accent text-accent-foreground"
+                            : "",
                         ]}
                       >
                         <div class="flex w-full items-center justify-between">
                           <span>{link.name}</span>
                           {link.new && (
-                            <Chip variant="outline" class="ml-2">
+                            <Chip variant="alt-primary" class="ml-2">
                               New
                             </Chip>
                           )}

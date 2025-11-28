@@ -26,7 +26,7 @@
     align-items: center;
     transition: all 150ms var(--default-transition-timing-function);
     box-shadow: var(--shadow-xs) var(--shadow);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-lg);
     padding: 0.125rem 0.625rem;
     font-weight: var(--font-weight-medium);
     font-size: var(--text-xs);

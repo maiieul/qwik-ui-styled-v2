@@ -22,14 +22,12 @@
     border-radius: var(--radius-lg);
     padding: 0.75rem 1rem;
     width: 100%;
-    font-size: var(--text-sm);
-    line-height: var(--text-sm--line-height);
     &:has(> svg) {
       grid-template-columns: 1rem 1fr;
       column-gap: 0.75rem;
     }
     & > svg {
-      transform: translateY(0.125rem);
+      transform: translateY(0.2rem);
       width: 1rem;
       height: 1rem;
       color: currentColor;
@@ -39,13 +37,13 @@
   /* variants */
 
   .callout-root.variant-outline {
-    background-color: var(--background);
+    background-color: var(--outline);
     color: var(--foreground);
   }
 
   .callout-root.variant-alt-outline {
     background-color: var(--alt-outline);
-    color: var(--alt-outline-foreground);
+    color: var(--foreground);
     --shadow: var(--alt-shadow);
     --border: var(--alt-border);
   }
@@ -53,8 +51,11 @@
   .callout-root.variant-danger {
     box-shadow: var(--shadow-sm) var(--danger-shadow);
     border-color: var(--danger-border);
-    background-color: var(--danger);
-    color: var(--danger-foreground);
+    background-color: oklch(0.165 0.074 17.696);
+    color: var(--foreground);
+    &:hover {
+      background-color: oklch(0.178 0.045 17.136);
+    }
     & > svg {
       color: currentColor;
     }
