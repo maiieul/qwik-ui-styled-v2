@@ -93,11 +93,14 @@
     --alt-standalone-accent: var(--color-violet-85);
     --alt-standalone-emphasis: var(--color-violet-90);
 
-    /* alert colors */
+    /* Alert colors */
     /* 
       Alert colors are usually red and therefore tricky because red is inherently a dark color that looks good in the right conditions but is hard to read in dark mode with a low brightness.
-      Use standalone only for global form errors with a font size no less than 16px. 
-      Otherwise use a two step confirmation to drag the user attention **only after they went through the first step** and explain the consequences of the action.
+      This is why there are less tokens for those.
+      Always convey important information that requires the user's attention with other cues than color alone. 
+      If you can, use alert standalone colors only for global form errors with a font size no less than 16px. 
+      For destructive actions, prefer the use of a two step confirmation modal or screen to drag the user attention only after they went through the first step and explain the consequences of the action. 
+      Depending on the destructiveness of the action, you might want to consider implementing a confirmation input field.
     */
     --alert-background: var(--color-rose-60);
     --alert-foreground: var(--color-rose-0);
@@ -194,11 +197,14 @@
     --alt-standalone-accent: var(--color-sky-30);
     --alt-standalone-emphasis: var(--color-sky-25);
 
-    /* alert colors */
+    /* Alert colors */
     /* 
-      Alert colors are usually red and therefore tricky because red is inherently a dark color.
-      Use standalone only for links and input error text. 
-      Otherwise use a two step confirmation to drag the user attention only after they went through the first step and explain the consequences of the action.
+      Alert colors are usually red and therefore tricky because red is inherently a dark color that looks good in the right conditions but is hard to read in dark mode with a low brightness.
+      This is why there are less tokens for those.
+      Always convey important information that requires the user's attention with other cues than color alone. 
+      If you can, use alert standalone colors only for global form errors with a font size no less than 16px. 
+      For destructive actions, prefer the use of a two step confirmation modal or screen to drag the user attention only after they went through the first step and explain the consequences of the action. 
+      Depending on the destructiveness of the action, you might want to consider implementing a confirmation input field.
     */
     --alert-background: var(--color-rose-60);
     --alert-foreground: var(--color-rose-shallow);
