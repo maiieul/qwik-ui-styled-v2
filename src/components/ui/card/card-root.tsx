@@ -5,14 +5,14 @@ export type CardVariant = PropsOf<"div"> & {
   variant?:
     | "primary"
     | "secondary"
-    | "altPrimary"
-    | "altSecondary"
-    | "outline"
-    | "altOutline";
+    | "tertiary"
+    | "alt-primary"
+    | "alt-secondary"
+    | "alt-tertiary";
 };
 
 export const Root = component$<CardVariant>(
-  ({ variant = "outline", ...props }) => {
+  ({ variant = "tertiary", ...props }) => {
     useStyles$(cardStyles);
     return (
       <div {...props} class={[`card card-${variant}`, props.class]}>

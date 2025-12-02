@@ -2,6 +2,6 @@
 
 @layer components {
   .breadcrumb-separator {
-    @apply size-3.5 stroke-muted-foreground stroke-2;
+    @apply size-3.5 stroke-foreground-muted stroke-2;
   }
 }

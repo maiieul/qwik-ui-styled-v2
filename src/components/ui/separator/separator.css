@@ -3,11 +3,11 @@
 @layer components {
   /* Separator horizontal */
   .separator-horizontal {
-    @apply bg-border shadow-alt-border h-0.5 w-full shrink-0 shadow-[3px_3px_1px];
+    @apply bg-secondary-border shadow-alt-secondary-border h-0.5 w-full shrink-0 shadow-[3px_3px_1px];
   }
 
   /* Separator vertical */
   .separator-vertical {
-    @apply bg-border shadow-alt-border h-full w-0.5 shrink-0 shadow-[3px_3px_1px];
+    @apply bg-secondary-border shadow-alt-secondary-border h-full w-0.5 shrink-0 shadow-[3px_3px_1px];
   }
 }

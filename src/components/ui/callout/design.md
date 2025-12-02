@@ -12,7 +12,7 @@ Notes can come in very different forms, such as in the form of a tooltip, or a f
 
 Notice makes it sound like a user notice for a washing machine.
 
-Callout implies that we want to get the user attention. It could be a callout to alert the user of something that requires their immediate attention, in which case attaching the `role="alert"` would be the correct accessibility behavior. But it could also be used to drag the user attention, as an info note, a success message, or a simple non-danger warning.
+Callout implies that we want to get the user attention. It could be a callout to alert the user of something that requires their immediate attention, in which case attaching the `role="alert"` would be the correct accessibility behavior. But it could also be used to drag the user attention, as an info note, a success message, or a simple non-alert warning.
 
 ## Composition
 

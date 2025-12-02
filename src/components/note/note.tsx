@@ -4,7 +4,7 @@ import { cn } from "@qwik-ui/utils";
 export enum NoteStatus {
   Info = "info",
   Warning = "warning",
-  Danger = "danger",
+  Alert = "alert",
 }
 
 export type NoteProps = {
@@ -14,27 +14,27 @@ export type NoteProps = {
 function getIconByStatus(status?: NoteStatus) {
   switch (status) {
     case NoteStatus.Info:
-      return <InfoIcon class="text-primary" />;
+      return <InfoIcon class="text-primary-background-standalone" />;
     case NoteStatus.Warning:
       return <WarningIcon class="text-yellow-400" />;
-    case NoteStatus.Danger:
-      return <AlertIcon class="text-danger-foreground" />;
+    case NoteStatus.Alert:
+      return <AlertIcon class="text-alert-foreground" />;
 
     default:
-      return <InfoIcon class="text-primary" />;
+      return <InfoIcon class="text-primary-background-standalone" />;
   }
 }
 
 function getBackgroundByStatus(status?: NoteStatus) {
   switch (status) {
     case NoteStatus.Info:
-      return "bg-primary/30 border-primary-border border-l-2 mb-4 block";
+      return "bg-primary-background/30 border-primary-border border-l-2 mb-4 block";
     case NoteStatus.Warning:
       return "bg-yellow-400/30 border-yellow-400 border-l-2 mb-4 block";
-    case NoteStatus.Danger:
-      return "bg-danger/30 border-danger-border border-l-2 mb-4 block";
+    case NoteStatus.Alert:
+      return "bg-alert/30 border-alert-border border-l-2 mb-4 block";
     default:
-      return "bg-primary/30 border-primary-border border-l-2 mb-4 block";
+      return "bg-primary-background/30 border-primary-border border-l-2 mb-4 block";
   }
 }
 

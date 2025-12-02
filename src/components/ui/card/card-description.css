@@ -2,7 +2,7 @@
 
 @layer components {
   /* .card-description {
-    @apply text-sm text-muted-foreground;
+    @apply text-sm text-foreground-muted;
   } */
 
   .card-description {

@@ -14,9 +14,15 @@ export const CodeCopy = component$<CodeCopyProps>(({ code = "", ...props }) => {
   return (
     <IconButton
       {...props}
-      variant="ghost"
+      variant="vanilla"
       title={copied.value ? "Copied to Clipboard" : "Copy to Clipboard"}
-      class={cn("bg-transparent hover:bg-gray-800", props.class)}
+      class={cn(
+        "bg-transparent",
+        copied.value
+          ? "text-white hover:text-white"
+          : "text-slate-10 hover:text-white",
+        props.class,
+      )}
       onClick$={async () => {
         await copy(code);
         copied.value = true;
@@ -27,9 +33,9 @@ export const CodeCopy = component$<CodeCopyProps>(({ code = "", ...props }) => {
       }}
     >
       {copied.value ? (
-        <Lucide.Check class="size-4 fill-black text-white" />
+        <Lucide.Check class="size-4 fill-black" />
       ) : (
-        <Lucide.Copy class="size-4 fill-black text-white" />
+        <Lucide.Copy class="size-4 fill-black" />
       )}
     </IconButton>
   );

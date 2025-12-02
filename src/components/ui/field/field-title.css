@@ -2,8 +2,6 @@
 
 @layer components {
   .field-title {
-    @apply flex w-fit items-center gap-2 text-sm leading-snug font-medium;
+    @apply flex w-fit items-center gap-2 text-sm leading-snug font-medium text-foreground-emphasis;
   }
 }
-
-

@@ -1,1 +1,1 @@
-export type SharedButtonSizes = "sm" | "md" | "lg";
+export type ButtonSizes = "sm" | "md" | "lg";

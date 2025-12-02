@@ -41,7 +41,7 @@ export default component$(() => {
   return (
     <header
       class={[
-        "mt-4 flex h-14 w-full items-center justify-between rounded-xl border bg-background shadow-xs transition-all duration-300 will-change-scroll",
+        "mt-4 flex h-14 w-full items-center justify-between rounded-xl border border-tertiary-border bg-background shadow-xs shadow-tertiary-shadow transition-all duration-300 will-change-scroll",
         isHeaderHiddenSig.value
           ? "pointer-events-none -translate-y-full opacity-0"
           : "translate-y-0 opacity-100",
@@ -57,7 +57,7 @@ export default component$(() => {
       </section>
 
       <div class="mr-4 flex items-center">
-        <div class="xs:space-x-4 flex items-center space-x-1">
+        <div class="flex items-center space-x-2">
           <MakeItYours />
           <IconButton asChild>
             <a href="https://discord.gg/PVWUUejrez" target="_blank">

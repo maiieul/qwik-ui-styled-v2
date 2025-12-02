@@ -8,7 +8,7 @@ export const Title = component$(({ ...props }: PropsOf<"div">) => {
       data-slot="field-label"
       class={[
         "field-title",
-        "flex w-fit items-center gap-2 text-sm leading-snug font-medium text-accent-foreground group-data-[disabled=true]/field:opacity-50",
+        "flex w-fit items-center gap-2 text-sm leading-snug font-medium text-foreground-accent group-data-[disabled=true]/field:opacity-50",
         props.class,
       ]}
       {...props}

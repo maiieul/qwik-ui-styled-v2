@@ -8,6 +8,7 @@ import {
   Separator,
   Input,
   Field,
+  IconButton,
 } from "~/components/ui";
 import { Lucide } from "@qds.dev/ui";
 
@@ -17,33 +18,39 @@ export default component$(() => {
   return (
     <>
       <h2 class="text-2xl font-bold">Chips</h2>
-      <div class="m-10 flex justify-start gap-6">
-        <Chip variant="outline">Outline</Chip>
-        <Chip variant="alt-outline">Alt Outline</Chip>
-        <Chip variant="danger">Danger</Chip>
+      <div class="my-10 flex justify-start gap-6">
+        <Chip variant="tertiary">Tertiary</Chip>
+        <Chip variant="alt-tertiary">Alt Tertiary</Chip>
       </div>
-      <div class="m-10 flex justify-start gap-6">
+      <div class="my-10 flex justify-start gap-6">
         <Chip variant="secondary">Secondary</Chip>
         <Chip variant="alt-secondary">Alt Secondary</Chip>
       </div>
-      <div class="m-10 flex justify-start gap-6">
+      <div class="my-10 flex justify-start gap-6">
         <Chip variant="primary">Primary</Chip>
         <Chip variant="alt-primary">Alt Primary</Chip>
       </div>
-      <div class="m-10 flex justify-start gap-6"></div>
+      <div class="my-10 flex justify-start gap-6">
+        <Chip variant="alert">
+          {" "}
+          <Lucide.TriangleAlert name="icon" class="mr-1 size-4" /> Expired
+        </Chip>
+      </div>
+      <div class="my-10 flex justify-start gap-6"></div>
 
       <h2 class="text-2xl font-bold">Inputs</h2>
-      <div class="m-10 flex justify-start gap-6">
+      <div class="my-10 flex justify-start gap-6">
         <Input placeholder="Enter your name" />
       </div>
-      <div class="m-10 flex flex-col justify-start gap-6">
+      <div class="my-10 flex flex-col justify-start">
+        <p>Two-way bound value: {twoWayDataBindingSignal.value}</p>
         <Input
           placeholder="I'm a two-way bound input"
           bind:value={twoWayDataBindingSignal}
         />
-        <p>Two-way bound value: {twoWayDataBindingSignal.value}</p>
       </div>
-      <div class="m-10 flex flex-col justify-start gap-6">
+      <div class="my-10 flex flex-col justify-start">
+        <p>One-way bound value: {oneWayDataBindingSignal.value}</p>
         <Input
           placeholder="I'm a one-way bound input"
           value={oneWayDataBindingSignal.value}
@@ -52,83 +59,154 @@ export default component$(() => {
             oneWayDataBindingSignal.value = element.value;
           })}
         />
-        <p>One-way bound value: {oneWayDataBindingSignal.value}</p>
       </div>
 
       <h2 class="text-2xl font-bold">Buttons</h2>
-      <div class="m-10 flex justify-start gap-6">
-        <Button variant="alt-link">home</Button>
-        <Button variant="alt-ghost">Discard</Button>
-        <Button variant="alt-outline">Cancel</Button>
-        <Button variant="alt-secondary">Learn more</Button>
-        <Button variant="alt-primary">Confirm</Button>
+      <h3>3 options (ghost-link + auxiliary + main)</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="ghost-link">Delete listing</Button>
+        <Button variant="auxiliary">Edit</Button>
+        <Button variant="main">Publish</Button>
       </div>
-      <div class="m-10 flex justify-start gap-6">
-        <Button variant="danger-ghost">Disable</Button>
-        <Button variant="danger-outline">Delete</Button>
-        <Button variant="danger">Delete</Button>
+      <h3>2 options (auxiliary + main | outline + main)</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="auxiliary">Edit</Button>
+        <Button variant="main">Confirm</Button>
       </div>
-      <div class="m-10 flex justify-start gap-6">
-        <Button variant="alt-primary" disabled>
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="outline">Discard</Button>
+        <Button variant="main">Confirm</Button>
+      </div>
+      <h3>links (link | ghost | ghost-outline)</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="link">home</Button>
+      </div>
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="ghost-outline">Learn more</Button>
+      </div>
+      <h3>disabled</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="main" disabled>
           <Lucide.Loader class="size-5 animate-spin" />
           Confirm
         </Button>
-        <Button variant="alt-secondary" disabled>
+        <Button variant="auxiliary" disabled>
           <Lucide.Loader class="size-5 animate-spin" />
           Add to cart
         </Button>
       </div>
-      <div class="m-10 flex justify-start gap-6">
-        <Button variant="alt-outline" size="sm">
+      <h3>sizes</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="outline" size="sm">
           Confirm
           <Lucide.Check name="icon" />
         </Button>
       </div>
-      <div class="m-10 flex justify-start gap-6">
-        <Button variant="alt-outline" size="md">
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="outline" size="md">
           Confirm
           <Lucide.Check name="icon" />
         </Button>
       </div>
-      <div class="m-10 flex justify-start gap-6">
-        <Button variant="alt-outline" size="lg">
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="outline" size="lg">
           Confirm
           <Lucide.Check name="icon" />
         </Button>
+      </div>
+      <h3>alert (always as a secondary confirmation step)</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <Button variant="alert">Delete</Button>
       </div>
 
+      <h2 class="text-2xl font-bold">Icon Buttons</h2>
+      <h3>vanilla</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <IconButton variant="vanilla">
+          <Lucide.WandSparkles name="icon" />
+        </IconButton>
+        <IconButton variant="vanilla">
+          <Lucide.Rocket name="icon" />
+        </IconButton>
+      </div>
+      <h3>ghost</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <IconButton variant="ghost">
+          <Lucide.WandSparkles name="icon" />
+        </IconButton>
+        <IconButton variant="ghost">
+          <Lucide.Rocket name="icon" />
+        </IconButton>
+        <IconButton variant="ghost">
+          <Lucide.Sun name="icon" />
+        </IconButton>
+      </div>
+      <h3>ghost-outline</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <IconButton variant="ghost-outline">
+          <Lucide.WandSparkles name="icon" />
+        </IconButton>
+        <IconButton variant="ghost-outline">
+          <Lucide.Rocket name="icon" />
+        </IconButton>
+        <IconButton variant="ghost-outline">
+          <Lucide.Sun name="icon" />
+        </IconButton>
+      </div>
+      <h3>outline</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <IconButton variant="outline">
+          <Lucide.WandSparkles name="icon" />
+        </IconButton>
+        <IconButton variant="outline">
+          <Lucide.Rocket name="icon" />
+        </IconButton>
+        <IconButton variant="outline">
+          <Lucide.Sun name="icon" />
+        </IconButton>
+      </div>
+      <h3>sizes</h3>
+      <div class="my-10 flex justify-start gap-6">
+        <IconButton variant="outline" size="sm">
+          <Lucide.Rocket name="icon" />
+        </IconButton>
+        <IconButton variant="outline" size="md">
+          <Lucide.Rocket name="icon" />
+        </IconButton>
+        <IconButton variant="outline" size="lg">
+          <Lucide.Rocket name="icon" />
+        </IconButton>
+      </div>
       <h2 class="text-2xl font-bold">Callout</h2>
-      <div class="m-10 grid grid-cols-2 justify-center gap-6">
-        <CalloutExample variant="outline"></CalloutExample>
-        <CalloutExample variant="alt-outline"></CalloutExample>
+      <div class="my-10 grid grid-cols-2 justify-center gap-6">
+        <CalloutExample variant="outline" />
+        <CalloutExample variant="alt-outline" />
         <CalloutExample
-          variant="danger"
+          variant="alert"
           title="Attention!"
           description='Using this variant will automatically apply `role="alert"` to the component. This will interrupt the screen reader user flow when introduced to the DOM and should therefore be used with caution.'
-        ></CalloutExample>
+        />
       </div>
 
       <h2 class="text-2xl font-bold">Cards</h2>
-      <div class="m-10 grid grid-cols-2 justify-center gap-6">
-        <CardExample variant="outline"></CardExample>
-        <CardExample variant="altOutline"></CardExample>
-        <CardExample variant="secondary"></CardExample>
-        <CardExample variant="altSecondary"></CardExample>
-        <CardExample variant="primary"></CardExample>
-        <CardExample variant="altPrimary"></CardExample>
+      <div class="my-10 grid grid-cols-2 justify-center gap-6">
+        <CardExample variant="tertiary" />
+        <CardExample variant="alt-tertiary" />
+        <CardExample variant="secondary" />
+        <CardExample variant="alt-secondary" />
+        <CardExample variant="primary" />
+        <CardExample variant="alt-primary" />
       </div>
       <h2 class="text-2xl font-bold">Fields</h2>
-      <div class="m-10 grid grid-cols-2 justify-center gap-6">
+      <div class="my-10 grid grid-cols-2 justify-center gap-6">
         <FieldExample />
       </div>
       <h2 class="text-2xl font-bold">Separator</h2>
-      <div class="m-10 grid grid-cols-2 justify-center gap-6">
+      <div class="my-10 grid grid-cols-2 justify-center gap-6">
         <div>
           <div class="space-y-1">
             <h4 class="text-sm leading-none font-medium">Qwik UI</h4>
-            <p class="text-sm text-muted-foreground">
-              An open-source UI component library.
-            </p>
+            <p class="text-sm">An open-source UI component library.</p>
           </div>
           <Separator class="my-4" />
           <div class="flex h-5 items-center space-x-4 text-sm">
@@ -142,8 +220,8 @@ export default component$(() => {
       </div>
 
       <h2 class="text-2xl font-bold">Modals</h2>
-      <div class="m-10 grid grid-cols-2 justify-center gap-6">
-        <ModalExample></ModalExample>
+      <div class="my-10 grid grid-cols-2 justify-center gap-6">
+        <ModalExample />
       </div>
     </>
   );
@@ -161,10 +239,10 @@ const CalloutExample = component$<
     return (
       <>
         <Callout.Root variant={variant} {...props}>
-          {variant === "danger" ? (
-            <Lucide.TriangleAlert name="icon" class="h-5 w-5" />
+          {variant === "alert" ? (
+            <Lucide.TriangleAlert name="icon" class="size-5" />
           ) : (
-            <Lucide.Info name="icon" class="h-5 w-5" />
+            <Lucide.Info name="icon" class="size-5" />
           )}
           <Callout.Title>{title}</Callout.Title>
           <Callout.Description>{description}</Callout.Description>
@@ -189,27 +267,28 @@ const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
         <Button>Open modal</Button>
       </Modal.Trigger>
       <Modal.Content variant="outline">
-        <Modal.Title>Qwik UI</Modal.Title>
+        <Modal.Title>The Qwik UI Modal</Modal.Title>
         <Modal.Description>
-          An open-source UI component library.
+          Based on the QDS headless modal component.
         </Modal.Description>
         <p class="mt-6">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
+          It is a great way to display important information to the user while
+          keeping the current context available to see.
         </p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
+          Use cases vary. For example it can be used to display a confirmation
+          step, a login form, or a side menu for navigation.
         </p>
-        <footer class="mt-9 flex justify-between gap-4">
-          <div>
-            <Button variant="alt-ghost">Discard</Button>
-          </div>
+        <footer class="mt-9 flex justify-end gap-4">
           <div class="flex gap-4">
-            <Button variant="alt-secondary">Edit</Button>
-            <Button variant="alt-primary">Publish</Button>
+            <Button variant="main">Continue</Button>
           </div>
         </footer>
+        <Modal.Close class="absolute top-4 right-6" asChild>
+          <IconButton variant="outline">
+            <Lucide.X name="icon" />
+          </IconButton>
+        </Modal.Close>
       </Modal.Content>
     </Modal.Root>
   );
@@ -294,7 +373,7 @@ export function FieldExample() {
           </Field.FieldSet>
           <Field.Root orientation="horizontal">
             <Button type="submit">Submit</Button>
-            <Button variant="alt-outline" type="button">
+            <Button variant="outline" type="button">
               Cancel
             </Button>
           </Field.Root>

@@ -5,21 +5,26 @@ import { AsChildTypes } from "@qds.dev/tools/vite";
 export type Variant =
   | "primary"
   | "secondary"
-  | "outline"
+  | "tertiary"
   | "alt-primary"
   | "alt-secondary"
-  | "alt-outline"
-  | "danger";
+  | "alt-tertiary"
+  | "outline"
+  | "alert";
 
 type ChipProps = PropsOf<"div"> & {
   variant?: Variant;
+  filled?: boolean;
 } & AsChildTypes;
 
 export const Chip = component$<ChipProps>(
-  ({ variant = "alt-primary", ...props }) => {
+  ({ variant = "outline", filled = false, ...props }) => {
     useStyles$(chipStyles);
     return (
-      <div {...props} class={[`chip chip-${variant}`, props.class]}>
+      <div
+        {...props}
+        class={[`chip variant-${variant}`, filled && "filled", props.class]}
+      >
         <Slot />
       </div>
     );

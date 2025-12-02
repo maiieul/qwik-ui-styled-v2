@@ -2,45 +2,81 @@
 @import "./shared.css";
 
 @layer components {
-  .btn.variant-outline {
-    box-shadow: var(--shadow-sm) var(--shadow);
-    border: var(--default-border-width) solid var(--border);
-    background-color: var(--outline);
-    color: var(--outline-foreground);
+  .icon-btn.variant-outline {
+    box-shadow: var(--shadow-sm) var(--tertiary-shadow);
+    border: var(--default-border-width) solid var(--tertiary-border);
+    background-color: var(--background);
+    color: var(--foreground);
     &:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: var(--shadow-md) var(--shadow);
+      transform: scale(1.01);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--tertiary-ring);
+    }
+  }
+
+  .icon-btn.variant-ghost-outline {
+    border: var(--default-border-width) solid transparent;
+    color: var(--foreground);
+    &:hover {
+      box-shadow: var(--shadow-sm) var(--tertiary-shadow);
+      border: var(--default-border-width) solid var(--tertiary-border);
     }
     &:focus-visible {
       outline: 2px solid var(--ring);
     }
   }
 
-  .btn.variant-ghost {
+  .icon-btn.variant-ghost {
     border: var(--default-border-width) solid transparent;
-    background-color: var(--outline);
-    color: var(--outline-foreground);
+    background-color: var(--background);
+    color: var(--foreground);
     &:hover {
-      box-shadow: var(--shadow-sm) var(--shadow);
-      border: var(--default-border-width) solid var(--border);
+      background-color: var(--tertiary-background);
+      color: var(--foreground-emphasis);
     }
     &:focus-visible {
-      outline: 2px solid var(--ring);
+      outline: 2px solid var(--tertiary-ring);
+    }
+  }
+
+  .icon-btn.variant-vanilla {
+    border: none;
+    background-color: transparent;
+    color: var(--foreground);
+    &:hover {
+      transform: scale(1.025);
+      color: var(--foreground-emphasis);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--tertiary-ring);
     }
   }
 
   .icon-btn.size-sm {
     width: 2rem;
     height: 2rem;
+    & > svg {
+      width: 1rem;
+      height: 1rem;
+    }
   }
 
   .icon-btn.size-md {
     width: 2.25rem;
     height: 2.25rem;
+    & > svg {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
   }
 
   .icon-btn.size-lg {
     width: 2.5rem;
     height: 2.5rem;
+    & > svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 }

@@ -194,7 +194,7 @@ const Anchor = component$<AnchorProps>(({ node, activeItem }) => {
       class={cn(
         node.level > 2 && "ml-2",
         "inline-block no-underline transition-colors hover:text-foreground",
-        isActive ? "font-medium text-foreground" : "text-muted-foreground",
+        isActive ? "font-medium text-foreground" : "text-foreground-muted",
       )}
     >
       {node.text}

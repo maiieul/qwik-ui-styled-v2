@@ -34,7 +34,7 @@ export default component$<PropsOf<typeof Button>>(() => {
   return (
     <Modal.Root>
       <Modal.Trigger asChild>
-        <IconButton variant="ghost">
+        <IconButton>
           <Lucide.WandSparkles class="size-5" />
         </IconButton>
       </Modal.Trigger>
@@ -59,7 +59,7 @@ export default component$<PropsOf<typeof Button>>(() => {
 
         <footer class="flex w-full justify-between gap-4">
           <Button
-            variant="alt-ghost"
+            variant="ghost-link"
             onClick$={() => {
               themeSig.value = themeSig.value?.includes("dark")
                 ? "dark"

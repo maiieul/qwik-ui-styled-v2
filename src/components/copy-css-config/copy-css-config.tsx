@@ -26,7 +26,7 @@ export default component$(() => {
           );
         })}
       >
-        <Button variant="alt-primary">Get config</Button>
+        <Button variant="main">Get config</Button>
       </Modal.Trigger>
       <Modal.Content>
         <header>

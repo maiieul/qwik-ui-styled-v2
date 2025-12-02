@@ -132,7 +132,7 @@ export const components: Record<string, Component> = {
       >
         <CodeCopy class="absolute top-3 right-3" code={rawCodeString} />
         <div
-          class="max-h-125 max-w-full overflow-y-auto rounded-md border p-6 text-sm shadow-lg"
+          class="max-h-125 max-w-full overflow-y-auto rounded-md border p-6 text-sm shadow-md"
           style={{ backgroundColor: "#1b1e28", color: "#a6accd" }}
         >
           <pre>

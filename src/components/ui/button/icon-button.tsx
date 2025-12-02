@@ -3,24 +3,24 @@ import { AsChildTypes } from "@qds.dev/tools/vite";
 
 import iconButtonStyles from "./icon-button.css?inline";
 
-import { SharedButtonSizes } from "./shared";
+import { ButtonSizes } from "./shared";
 import { Render } from "@qds.dev/ui";
 
 type IconButtonProps = {
-  variant?: "outline" | "ghost";
-  size?: SharedButtonSizes;
+  variant?: "outline" | "ghost-outline" | "ghost" | "vanilla";
+  size?: ButtonSizes;
 };
 
 export const IconButton = component$<
   AsChildTypes & PropsOf<"button"> & IconButtonProps
->(({ variant = "ghost", size = "md", ...props }) => {
+>(({ variant = "vanilla", size = "md", ...props }) => {
   useStyles$(iconButtonStyles);
   return (
     <Render
       {...props}
       fallback="button"
       class={[
-        "btn icon-btn",
+        "btn-base icon-btn",
         `variant-${variant}`,
         `size-${size}`,
         props.class,

@@ -2,6 +2,6 @@
 
 @layer components {
   .modal-description {
-    @apply text-sm text-muted-foreground;
+    @apply text-sm text-foreground-soft;
   }
 }

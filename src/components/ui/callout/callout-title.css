@@ -9,7 +9,7 @@
     grid-column-start: 2;
     min-height: 1rem;
     overflow: hidden;
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-medium);
     font-size: var(--text-lg);
     letter-spacing: var(--tracking-tight);
     text-overflow: ellipsis;

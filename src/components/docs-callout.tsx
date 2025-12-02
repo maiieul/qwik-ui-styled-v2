@@ -7,9 +7,9 @@ import { Callout } from "~/components/ui";
 export const DocsCallout = component$<
   PropsOf<typeof Callout.Root> & {
     title?: string;
-    icon?: "info" | "danger" | JSXOutput;
+    icon?: "info" | "alert" | JSXOutput;
   }
->(({ title, variant = "danger", icon, ...props }) => {
+>(({ title, variant = "alert", icon, ...props }) => {
   const renderIcon = $(() => {
     if (!icon) return null;
 
@@ -18,7 +18,7 @@ export const DocsCallout = component$<
         return <Lucide.Info name="icon" class="h-5 w-5" />;
       case "warning":
         return <Lucide.TriangleAlert name="icon" class="h-5 w-5" />;
-      case "danger":
+      case "alert":
         return <Lucide.OctagonAlert name="icon" class="h-5 w-5" />;
       default:
         return icon;

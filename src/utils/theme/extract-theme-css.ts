@@ -224,7 +224,7 @@ function reorderThemeObject(themeObject: ThemeMap) {
     "--secondary",
     "--secondary-foreground",
     "--accent",
-    "--accent-foreground",
+    "--foreground-accent",
     "--alert",
     "--alert-foreground",
     "--ring",

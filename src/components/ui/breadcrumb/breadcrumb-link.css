@@ -2,6 +2,6 @@
 
 @layer components {
   .breadcrumb-link {
-    @apply text-muted-foreground transition-colors hover:text-foreground;
+    @apply text-foreground-muted transition-colors hover:text-foreground;
   }
 }

@@ -6,8 +6,8 @@
     color: var(--foreground);
     font-weight: 500;
     &:hover {
-      background-color: var(--muted);
-      color: var(--foreground-soft);
+      background-color: var(--tertiary-background);
+      color: var(--foreground-accent);
     }
   }
 }

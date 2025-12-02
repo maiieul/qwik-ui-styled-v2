@@ -7,8 +7,8 @@
   .callout-description.variant-outline {
     @apply text-foreground/80;
   }
-  .callout-description.variant-danger {
-    @apply text-danger-foreground/90;
+  .callout-description.variant-alert {
+    @apply text-alert-foreground/90;
   } */
 
   .callout-description {

@@ -6,108 +6,39 @@
     @apply decoration-2 underline-offset-4 transition-all will-change-transform hover:text-sky-500 hover:decoration-sky-500;
   }
 
-  .btn[variant="alt-link"] {
+  .btn[variant="link"] {
     @apply decoration-2 underline-offset-4 transition-all will-change-transform hover:text-purple-500 hover:decoration-purple-500;
   }
 
-  .btn[variant="alt-primary"] {
-    @apply border border-alt-primary-border bg-alt-primary text-alt-primary-foreground shadow-sm shadow-alt-primary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  .btn[variant="primary"] {
+    @apply border border-primary-border bg-primary-background text-primary-foreground shadow-sm shadow-primary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
   }
 
-  .btn[variant="alt-secondary"] {
-    @apply border border-alt-secondary-border bg-alt-secondary text-alt-secondary-foreground shadow-sm shadow-alt-secondary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  .btn[variant="secondary"] {
+    @apply border border-secondary-border bg-secondary text-secondary-foreground shadow-sm shadow-secondary-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
   }
 
-  .btn[variant="alt-outline"] {
-    @apply border border-alt-border bg-alt-outline text-alt-outline-foreground shadow-sm shadow-alt-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
+  .btn[variant="outline"] {
+    @apply border border-border bg-outline text-outline-foreground shadow-sm shadow-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md;
   }
 
-  .btn[variant="alt-ghost"] {
-    @apply border border-transparent text-foreground shadow-alt-shadow hover:border hover:border-alt-border hover:bg-alt-outline hover:shadow-sm;
+  .btn[variant="ghost"] {
+    @apply border border-transparent text-foreground shadow-shadow hover:border hover:border-border hover:bg-outline hover:shadow-sm;
   }
 
-  .btn[variant="danger-outline"] {
-    @apply border border-danger-border text-sm text-danger-foreground shadow-sm shadow-danger-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-danger-ring;
+  .btn[variant="alert-outline"] {
+    @apply border border-alert-border text-sm text-alert-foreground shadow-sm shadow-alert-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-alert-ring;
   }
 
-  .btn[variant="danger-ghost"] {
-    @apply border border-transparent text-danger-foreground shadow-danger-shadow hover:border hover:border-danger-border hover:shadow-sm focus-visible:ring-danger-ring;
+  .btn[variant="alert-ghost"] {
+    @apply border border-transparent text-alert-foreground shadow-alert-shadow hover:border hover:border-alert-border hover:shadow-sm focus-visible:ring-alert-ring;
   }
  */
 
-  .btn.variant-link {
-    &:hover {
-      color: var(--color-sky-500);
-    }
-    &:focus-visible {
-      outline: 2px solid var(--color-sky-500);
-    }
-  }
-
-  .btn.variant-alt-link {
-    &:hover {
-      color: var(--color-purple-500);
-    }
-    &:focus-visible {
-      outline: 2px solid var(--color-purple-500);
-    }
-  }
-
-  .dark .btn.variant-alt-link {
-    &:hover {
-      color: var(--color-sky-500);
-    }
-    &:focus-visible {
-      outline: 2px solid var(--color-sky-500);
-    }
-  }
-
-  .btn.variant-alt-ghost {
-    border: var(--default-border-width) solid transparent;
-    background-color: var(--alt-background);
-    color: var(--alt-outline-foreground);
-    &:hover {
-      box-shadow: var(--shadow-sm) var(--alt-shadow);
-      border: var(--default-border-width) solid var(--alt-border);
-      background-color: var(--alt-outline);
-    }
-    &:focus-visible {
-      outline: 2px solid var(--alt-ring);
-    }
-  }
-
-  .btn.variant-alt-outline {
-    box-shadow: var(--shadow-sm) var(--alt-shadow);
-    border: var(--default-border-width) solid var(--alt-border);
-    background-color: var(--alt-outline);
-    color: var(--alt-outline-foreground);
-    &:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: var(--shadow-md) var(--alt-shadow);
-    }
-    &:focus-visible {
-      outline: 2px solid var(--alt-ring);
-    }
-  }
-
-  .btn.variant-alt-secondary {
-    box-shadow: var(--shadow-sm) var(--alt-secondary-shadow);
-    border: var(--default-border-width) solid var(--alt-secondary-border);
-    background-color: var(--alt-secondary);
-    color: var(--alt-secondary-foreground);
-    &:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: var(--shadow-md) var(--alt-secondary-shadow);
-    }
-    &:focus-visible {
-      outline: 2px solid var(--alt-secondary-ring);
-    }
-  }
-
-  .btn.variant-alt-primary {
+  .btn.variant-main {
     box-shadow: var(--shadow-sm) var(--alt-primary-shadow);
     border: var(--default-border-width) solid var(--alt-primary-border);
-    background-color: var(--alt-primary);
+    background-color: var(--alt-primary-background);
     color: var(--alt-primary-foreground);
     &:hover {
       transform: translate(-2px, -2px);
@@ -118,44 +49,74 @@
     }
   }
 
-  .btn.variant-danger {
-    box-shadow: var(--shadow-sm) var(--danger-shadow);
-    border: var(--default-border-width) solid var(--danger-border);
-    background-color: var(--danger);
-    color: var(--danger-foreground);
+  .btn.variant-auxiliary {
+    box-shadow: var(--shadow-sm) var(--alt-secondary-shadow);
+    border: var(--default-border-width) solid var(--alt-secondary-border);
+    background-color: var(--alt-secondary-background);
+    color: var(--alt-secondary-foreground);
     &:hover {
       transform: translate(-2px, -2px);
-      box-shadow: var(--shadow-md) var(--danger-shadow);
+      box-shadow: var(--shadow-md) var(--alt-secondary-shadow);
     }
     &:focus-visible {
-      outline: 2px solid var(--danger-ring);
+      outline: 2px solid var(--alt-secondary-ring);
     }
   }
 
-  .btn.variant-danger-outline {
-    box-shadow: var(--shadow-sm) var(--danger-shadow);
-    border: var(--default-border-width) solid var(--danger-border);
-    color: oklch(0.672 0.26 17.433);
-    font-weight: var(--font-weight-bold);
+  .btn.variant-outline {
+    box-shadow: var(--shadow-sm) var(--alt-tertiary-shadow);
+    border: var(--default-border-width) solid var(--alt-tertiary-border);
+    background-color: var(--outline);
+    color: var(--foreground);
     &:hover {
       transform: translate(-2px, -2px);
-      box-shadow: var(--shadow-md) var(--danger-shadow);
+      box-shadow: var(--shadow-md) var(--alt-tertiary-shadow);
     }
     &:focus-visible {
-      outline: 2px solid var(--danger-ring);
+      outline: 2px solid var(--alt-tertiary-ring);
     }
   }
 
-  .btn.variant-danger-ghost {
+  .btn.variant-link {
+    color: var(--alt-standalone);
+    &:hover {
+      text-decoration: underline;
+    }
+    &:focus-visible {
+      outline: 2px solid var(--alt-tertiary-ring);
+    }
+  }
+
+  .btn.variant-ghost-link {
+    color: var(--foreground);
+    &:focus-visible {
+      outline: 2px solid var(--alt-tertiary-ring);
+    }
+  }
+
+  .btn.variant-ghost-outline {
     border: var(--default-border-width) solid transparent;
-    color: oklch(0.672 0.26 17.433);
-    font-weight: var(--font-weight-bold);
+    background-color: var(--background);
+    color: var(--foreground);
     &:hover {
-      box-shadow: var(--shadow-sm) var(--danger-shadow);
-      border: var(--default-border-width) solid var(--danger-border);
+      box-shadow: var(--shadow-sm) var(--alt-tertiary-shadow);
+      border: var(--default-border-width) solid var(--alt-tertiary-border);
     }
     &:focus-visible {
-      outline: 2px solid var(--danger-ring);
+      outline: 2px solid var(--alt-tertiary-ring);
+    }
+  }
+
+  .btn.variant-alert {
+    box-shadow: var(--shadow-sm) var(--alert-shadow);
+    border: var(--default-border-width) solid var(--alert-border);
+    background-color: var(--alert-background);
+    color: var(--alert-foreground);
+    &:hover {
+      transform: translate(1px, 1px);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--alert-ring);
     }
   }
 

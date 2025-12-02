@@ -11,11 +11,11 @@ export const ShowcaseHero = component$(() => {
   );
 });
 
-import Alert from "./examples/danger";
-import DangerRawCode from "./examples/danger.tsx?raw";
-export const ShowcaseDanger = component$(() => {
+import Alert from "./examples/alert";
+import AlertRawCode from "./examples/alert.tsx?raw";
+export const ShowcaseAlert = component$(() => {
   return (
-    <Showcase rawCode={DangerRawCode}>
+    <Showcase rawCode={AlertRawCode}>
       <Alert />
     </Showcase>
   );

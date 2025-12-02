@@ -21,12 +21,12 @@ export const ShowcaseSecondary = component$(() => {
   );
 });
 
-import Danger from "./examples/danger";
-import AlertRawCode from "./examples/danger.tsx?raw";
+import Alert from "./examples/alert";
+import AlertRawCode from "./examples/alert.tsx?raw";
 export const ShowcaseAlert = component$(() => {
   return (
     <Showcase rawCode={AlertRawCode}>
-      <Danger />
+      <Alert />
     </Showcase>
   );
 });

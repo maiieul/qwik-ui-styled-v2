@@ -2,8 +2,6 @@
 
 @layer components {
   .field-label {
-    @apply flex w-fit gap-2 leading-snug;
+    @apply flex w-fit gap-2 leading-snug text-foreground-accent;
   }
 }
-
-

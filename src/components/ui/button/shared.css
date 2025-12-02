@@ -3,17 +3,18 @@
 @layer components {
   /* 
   .btn {
-    @apply inline-flex shrink-0 items-center justify-center gap-2 rounded-xs text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger-border aria-invalid:ring-danger-ring [&_svg]:pointer-events-none [&_svg]:shrink-0;
+    @apply inline-flex shrink-0 items-center justify-center gap-2 rounded-xs text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-alert-border aria-invalid:ring-alert-ring [&_svg]:pointer-events-none [&_svg]:shrink-0;
   }
 */
 
-  .btn {
+  .btn-base {
     display: inline-flex;
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
     transition: all 150ms var(--default-transition-timing-function);
+    cursor: pointer;
     outline: none;
     border-radius: var(--radius-xs);
     font-weight: var(--font-weight-medium);
