@@ -42,7 +42,7 @@ export default component$(() => {
           </main>
           <div class="mx-6 hidden text-sm xl:block">
             <div class="fixed translate-y-[-20px] py-12">
-              <div class="toc-scrollbar h-[calc(100vh-64px)] overflow-auto pr-6 pb-4 pb-16">
+              <div class="toc-scrollbar h-[calc(100vh-64px)] overflow-auto pr-6 pb-4">
                 <DashboardTableOfContents headings={headings ? headings : []} />
               </div>
             </div>

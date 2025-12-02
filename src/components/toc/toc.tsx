@@ -20,9 +20,7 @@ type TableOfContentsProps = { headings: ContentHeading[] };
 
 interface Node extends ContentHeading {
   children: Node[];
-  activeItem: string;
 }
-type Tree = Array<Node>;
 
 const TableOfContents = component$<TableOfContentsProps>(({ headings }) => {
   const sanitizedHeadings = headings.map(({ text, id, level }) => ({
@@ -33,13 +31,8 @@ const TableOfContents = component$<TableOfContentsProps>(({ headings }) => {
   const itemIds = headings.map(({ id }) => id);
   const activeHeading = useActiveItem(itemIds);
   const tree = buildTree(sanitizedHeadings);
-  const fixStartingBug: Node = { ...tree, children: [tree] };
-  return (
-    <RecursiveList
-      tree={fixStartingBug}
-      activeItem={activeHeading.value ?? ""}
-    />
-  );
+
+  return <RecursiveList tree={tree} activeItem={activeHeading.value ?? ""} />;
 });
 
 function deltaToStrg(
@@ -66,45 +59,38 @@ function deltaToStrg(
 }
 
 function buildTree(nodes: ContentHeading[]) {
-  let currNode = nodes[0] as Node;
-  currNode.children = [];
-  const tree = [currNode];
-  const childrenMap = new Map<number, Tree>();
-  childrenMap.set(currNode.level, currNode.children);
-  for (let index = 1; index < nodes.length; index++) {
-    const nextNode = nodes[index] as Node;
+  const minLevel = Math.min(...nodes.map((n) => n.level));
+  const root: Node = {
+    text: "",
+    id: "",
+    level: minLevel - 1,
+    children: [],
+  };
+
+  let currNode = root;
+  const childrenMap = new Map<number, Node[]>();
+  childrenMap.set(root.level, root.children);
+
+  for (const node of nodes) {
+    const nextNode = node as Node;
     nextNode.children = [];
     childrenMap.set(nextNode.level, nextNode.children);
+
     const deltaStrg = deltaToStrg(currNode, nextNode);
-    switch (deltaStrg) {
-      case "upwards discontinuous": {
-        const delta = currNode.level - nextNode.level;
-        if (childrenMap.has(delta - 1)) {
-          const nthParent = childrenMap.get(delta - 1);
-          nthParent?.push(nextNode);
-        }
-        break;
+
+    if (deltaStrg === "down one level") {
+      currNode.children.push(nextNode);
+    } else {
+      const parentChildren = childrenMap.get(nextNode.level - 1);
+      if (parentChildren) {
+        parentChildren.push(nextNode);
       }
-      case "up one level": {
-        const grandParent = childrenMap.get(currNode.level - 2);
-        grandParent?.push(nextNode);
-        break;
-      }
-      case "same level": {
-        const parent = childrenMap.get(currNode.level - 1);
-        parent?.push(nextNode);
-        break;
-      }
-      case "down one level": {
-        currNode.children.push(nextNode);
-        break;
-      }
-      default:
-        break;
     }
+
     currNode = nextNode;
   }
-  return tree[0];
+
+  return root;
 }
 
 type RecursiveListProps = {
