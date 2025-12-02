@@ -113,7 +113,7 @@
     background-color: var(--alert-background);
     color: var(--alert-foreground);
     &:hover {
-      transform: translate(1px, 1px);
+      transform: scale(0.99);
     }
     &:focus-visible {
       outline: 2px solid var(--alert-ring);

@@ -40,13 +40,14 @@ export default component$(() => {
 
       <h2 class="text-2xl font-bold">Inputs</h2>
       <div class="my-10 flex justify-start gap-6">
-        <Input placeholder="Enter your name" />
+        <Input placeholder="Enter your name" name="simple" />
       </div>
       <div class="my-10 flex flex-col justify-start">
         <p>Two-way bound value: {twoWayDataBindingSignal.value}</p>
         <Input
           placeholder="I'm a two-way bound input"
           bind:value={twoWayDataBindingSignal}
+          name="two-way"
         />
       </div>
       <div class="my-10 flex flex-col justify-start">
@@ -58,6 +59,7 @@ export default component$(() => {
             console.log("onInput$", element.value);
             oneWayDataBindingSignal.value = element.value;
           })}
+          name="one-way"
         />
       </div>
 

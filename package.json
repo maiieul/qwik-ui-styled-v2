@@ -20,7 +20,9 @@
     "lint": "eslint \"src/**/*.ts*\"",
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
-    "qwik": "qwik"
+    "qwik": "qwik",
+    "test": "vitest",
+    "test.ui": "vitest --ui"
   },
   "devDependencies": {
     "@eslint/js": "latest",
@@ -38,6 +40,8 @@
     "@tailwindcss/vite": "^4.1.14",
     "@types/node": "20.19.0",
     "@vitejs/plugin-basic-ssl": "^2.1.0",
+    "@vitest/browser-playwright": "^4.0.14",
+    "@vitest/ui": "^4.0.14",
     "class-variance-authority": "0.7.1",
     "clipboard-copy": "^4.0.1",
     "eslint": "9.32.0",
@@ -47,6 +51,7 @@
     "nx": "^21.6.5",
     "oxc-parser": "^0.94.0",
     "oxc-walker": "^0.5.2",
+    "playwright": "^1.57.0",
     "prettier": "3.6.2",
     "prettier-plugin-css-order": "^2.1.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
@@ -63,7 +68,9 @@
     "typescript-plugin-css-modules": "latest",
     "undici": "^7.16.0",
     "vite": "7.1.7",
-    "vite-tsconfig-paths": "^4.3.2"
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^4.0.14",
+    "vitest-browser-qwik": "^0.1.0"
   },
   "packageManager": "pnpm@10.19.0+sha512.c9fc7236e92adf5c8af42fd5bf1612df99c2ceb62f27047032f4720b33f8eacdde311865e91c411f2774f618d82f320808ecb51718bfa82c060c4ba7c76a32b8",
   "nx": {}
