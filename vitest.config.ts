@@ -7,7 +7,7 @@ import {
 } from "vitest/config";
 import tailwindcss from "@tailwindcss/vite";
 
-const coverage: CoverageOptions = {
+const coverageOptions: CoverageOptions = {
   provider: "istanbul",
   reporter: ["text", "json-summary", "lcov", "html"],
   reportsDirectory: "./coverage",
@@ -56,14 +56,8 @@ const domConfig: TestProjectConfiguration = {
 };
 
 export default defineConfig({
-  resolve: {
-    // alias: {
-    //   "@qds.dev/utils": resolve(__dirname, "libs/utils/src"),
-    //   "@qds.dev/ui": resolve(__dirname, "libs/components/src"),
-    // },
-  },
   test: {
-    coverage,
+    coverage: coverageOptions,
     projects: [unitConfig, domConfig],
   },
 });
