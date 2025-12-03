@@ -11,6 +11,7 @@ const coverage: CoverageOptions = {
   provider: "istanbul",
   reporter: ["text", "json-summary", "lcov", "html"],
   reportsDirectory: "./coverage",
+  reportOnFailure: true,
   include: ["src/**/*.{ts,tsx}"],
   exclude: [
     "src/entry.*",
@@ -30,7 +31,6 @@ const unitConfig: TestProjectConfiguration = {
     include: ["**/*.unit.ts"],
     name: "unit",
     environment: "node",
-    coverage,
   },
 };
 
@@ -52,7 +52,6 @@ const domConfig: TestProjectConfiguration = {
       enabled: true,
       instances: [{ browser: "chromium" }],
     },
-    coverage,
   },
 };
 
@@ -64,6 +63,7 @@ export default defineConfig({
     // },
   },
   test: {
+    coverage,
     projects: [unitConfig, domConfig],
   },
 });
