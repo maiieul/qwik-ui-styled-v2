@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import rootStyles from "./field-root.css?inline";
 
 const fieldVariants = cva(
-  "group/field flex w-full gap-3 data-[invalid=true]:text-danger-foreground",
+  "group/field flex w-full gap-3 data-[invalid=true]:text-alert-foreground",
   {
     variants: {
       orientation: {

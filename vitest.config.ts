@@ -1,13 +1,36 @@
 import { qwikVite } from "@qwik.dev/core/optimizer";
 import { playwright } from "@vitest/browser-playwright";
-import { defineConfig, type TestProjectConfiguration } from "vitest/config";
+import {
+  defineConfig,
+  type TestProjectConfiguration,
+  type CoverageOptions,
+} from "vitest/config";
 import tailwindcss from "@tailwindcss/vite";
+
+const coverage: CoverageOptions = {
+  provider: "istanbul",
+  reporter: ["text", "json-summary", "lcov", "html"],
+  reportsDirectory: "./coverage",
+  include: ["src/**/*.{ts,tsx}"],
+  exclude: [
+    "src/entry.*",
+    "src/root.tsx",
+    "src/routes/**",
+    "src/**/*.css",
+    "src/**/*.d.ts",
+    "src/test-setup.ts",
+    "dist/**",
+    "node_modules/**",
+    "**/*.config.*",
+  ],
+};
 
 const unitConfig: TestProjectConfiguration = {
   test: {
     include: ["**/*.unit.ts"],
     name: "unit",
     environment: "node",
+    coverage,
   },
 };
 
@@ -29,6 +52,7 @@ const domConfig: TestProjectConfiguration = {
       enabled: true,
       instances: [{ browser: "chromium" }],
     },
+    coverage,
   },
 };
 

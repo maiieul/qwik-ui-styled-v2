@@ -9,7 +9,7 @@ export const Error = component$(({ ...props }: PropsOf<"div">) => {
       data-slot="field-error"
       class={[
         "field-error",
-        "text-sm font-normal text-danger-foreground",
+        "text-sm font-normal text-alert-foreground",
         props.class,
       ]}
       {...props}

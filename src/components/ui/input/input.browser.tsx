@@ -64,21 +64,21 @@ describe("Input", () => {
       render(<WithPlaceholder />);
       await expect
         .element(inputEl("placeholder"))
-        .toHaveAttribute("placeholder", "test placeholder");
+        .toHaveAttribute("placeholder", "test stest");
     });
   });
 
   describe("with a default value", () => {
     it("should render with a default value", async () => {
       render(<WithDefaultValue />);
-      await expect.element(inputEl("value")).toHaveValue("test value");
+      await expect.element(inputEl("value")).toHaveValue("test test");
     });
   });
 
   describe("with a bind:value", () => {
     it("should render with a default value", async () => {
       render(<WithBindValue />);
-      await expect.element(inputEl("bind")).toHaveValue("test value");
+      await expect.element(inputEl("bind")).toHaveValue("test test");
     });
   });
 });
