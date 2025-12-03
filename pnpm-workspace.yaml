@@ -4,7 +4,3 @@ onlyBuiltDependencies:
   - esbuild
   - nx
   - sharp
-
-overrides:
-  "@qwik.dev/core": link:../qwik-v2/packages/qwik
-  "@qwik.dev/router": link:../qwik-v2/packages/qwik-router
