@@ -10,10 +10,19 @@ import styles from "./input.css?inline";
 type InputProps = PropsOf<"input"> & {
   onInput$?: QRL<QRLEventHandlerMulti<InputEvent, HTMLInputElement>>;
   "data-testid"?: string;
+  error?: string;
 };
 
 export const Input = component$<InputProps>(
-  ({ name, id, value, onInput$, "data-testid": dataTestId, ...props }) => {
+  ({
+    name,
+    id,
+    value,
+    onInput$,
+    "data-testid": dataTestId,
+    error,
+    ...props
+  }) => {
     useStyles$(styles);
     const inputId = id || name;
 
@@ -31,7 +40,7 @@ export const Input = component$<InputProps>(
           name={name}
           data-testid={dataTestId && `input_${dataTestId}`}
         />
-        {/* {error && <div>{error}</div>} */}
+        {error && <div>{error}</div>}
       </>
     );
   },
