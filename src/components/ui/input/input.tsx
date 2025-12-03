@@ -18,18 +18,21 @@ export const Input = component$<InputProps>(
     const inputId = id || name;
 
     return (
-      <input
-        {...props}
-        // must be declared for two-way binding to work
-        bind:value={props["bind:value"]}
-        // must be declared for one-way binding to work
-        value={value}
-        onInput$={onInput$}
-        class={["input", props.class]}
-        id={inputId}
-        name={name}
-        data-testid={dataTestId && `input_${dataTestId}`}
-      />
+      <>
+        <input
+          {...props}
+          // must be declared for two-way binding to work
+          bind:value={props["bind:value"]}
+          // must be declared for one-way binding to work
+          value={value}
+          onInput$={onInput$}
+          class={["input", props.class]}
+          id={inputId}
+          name={name}
+          data-testid={dataTestId && `input_${dataTestId}`}
+        />
+        {/* {error && <div>{error}</div>} */}
+      </>
     );
   },
 );
