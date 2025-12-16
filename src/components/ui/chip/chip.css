@@ -37,34 +37,25 @@
     }
   }
 
-  .chip.variant-primary {
-    box-shadow: var(--shadow-xs) var(--primary-shadow);
-    border: var(--default-border-width) solid var(--primary-border);
+  .chip.variant-outline {
+    box-shadow: var(--shadow-xs) var(--secondary-shadow);
+    border: var(--default-border-width) solid var(--secondary-border);
+    background-color: var(--background);
+    color: var(--foreground);
   }
 
   .chip.variant-secondary {
     box-shadow: var(--shadow-xs) var(--secondary-shadow);
     border: var(--default-border-width) solid var(--secondary-border);
+    background-color: var(--secondary-background);
+    color: var(--secondary-foreground);
   }
 
-  .chip.variant-tertiary {
-    box-shadow: var(--shadow-xs) var(--tertiary-shadow);
-    border: var(--default-border-width) solid var(--tertiary-border);
-  }
-
-  .chip.variant-alt-primary {
-    box-shadow: var(--shadow-xs) var(--alt-primary-shadow);
-    border: var(--default-border-width) solid var(--alt-primary-border);
-  }
-
-  .chip.variant-alt-secondary {
-    box-shadow: var(--shadow-xs) var(--alt-secondary-shadow);
-    border: var(--default-border-width) solid var(--alt-secondary-border);
-  }
-
-  .chip.variant-alt-tertiary {
-    box-shadow: var(--shadow-xs) var(--alt-tertiary-shadow);
-    border: var(--default-border-width) solid var(--alt-tertiary-border);
+  .chip.variant-primary {
+    box-shadow: var(--shadow-xs) var(--primary-shadow);
+    border: var(--default-border-width) solid var(--primary-border);
+    background-color: var(--primary-background);
+    color: var(--primary-foreground);
   }
 
   .chip.variant-alert {

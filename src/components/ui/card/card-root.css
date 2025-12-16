@@ -37,33 +37,19 @@
     color: var(--card-foreground);
   }
 
-  .card.card-primary {
-    box-shadow: var(--shadow-sm) var(--primary-shadow);
-    border: var(--default-border-width) solid var(--primary-border);
+  .card.card-default {
+    box-shadow: var(--shadow-sm) var(--shadow);
+    border: var(--default-border-width) solid var(--border);
+    background-color: var(--background);
   }
 
-  .card.card-secondary {
-    box-shadow: var(--shadow-sm) var(--secondary-shadow);
-    border: var(--default-border-width) solid var(--secondary-border);
+  .card.card-accent {
+    box-shadow: var(--shadow-sm) var(--shadow-accent);
+    border: var(--default-border-width) solid var(--border-accent);
   }
 
-  .card.card-tertiary {
-    box-shadow: var(--shadow-sm) var(--tertiary-shadow);
-    border: var(--default-border-width) solid var(--tertiary-border);
-  }
-
-  .card.card-alt-primary {
-    box-shadow: var(--shadow-sm) var(--alt-primary-shadow);
-    border: var(--default-border-width) solid var(--alt-primary-border);
-  }
-
-  .card.card-alt-secondary {
-    box-shadow: var(--shadow-sm) var(--alt-secondary-shadow);
-    border: var(--default-border-width) solid var(--alt-secondary-border);
-  }
-
-  .card.card-alt-tertiary {
-    box-shadow: var(--shadow-sm) var(--alt-tertiary-shadow);
-    border: var(--default-border-width) solid var(--alt-tertiary-border);
+  .card.card-emphasis {
+    box-shadow: var(--shadow-sm) var(--shadow-emphasis);
+    border: var(--default-border-width) solid var(--border-emphasis);
   }
 }

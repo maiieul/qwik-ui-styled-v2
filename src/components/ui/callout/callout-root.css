@@ -35,27 +35,37 @@
 
   /* variants */
 
-  .callout-root.variant-outline {
-    box-shadow: var(--shadow-sm) var(--tertiary-shadow);
+  .callout-root.variant-default {
+    box-shadow: var(--shadow-sm) var(--shadow);
 
-    border: var(--default-border-width) solid var(--tertiary-border);
+    border: var(--default-border-width) solid var(--border);
     background-color: color-mix(
       in oklch,
-      var(--tertiary-background) 15%,
+      var(--background-emphasis) 20%,
       transparent
     );
     color: var(--foreground);
   }
 
-  .callout-root.variant-alt-outline {
-    box-shadow: var(--shadow-sm) var(--alt-tertiary-shadow);
-    border: var(--default-border-width) solid var(--alt-tertiary-border);
+  .callout-root.variant-secondary {
+    box-shadow: var(--shadow-sm) var(--secondary-shadow);
+    border: var(--default-border-width) solid var(--secondary-border);
     background-color: color-mix(
       in oklch,
-      var(--alt-tertiary-background) 15%,
+      var(--secondary-background) 15%,
       transparent
     );
-    color: var(--alt-tertiary-foreground);
+    color: var(--foreground);
+  }
+
+  .callout-root.variant-primary {
+    box-shadow: var(--shadow-sm) var(--primary-shadow);
+    border: var(--default-border-width) solid var(--primary-border);
+    background-color: color-mix(
+      in oklch,
+      var(--primary-background) 10%,
+      transparent
+    );
   }
 
   .callout-root.variant-alert {
@@ -63,11 +73,19 @@
     border: var(--default-border-width) solid var(--alert-border);
     background-color: color-mix(
       in oklch,
-      var(--alert-background) 7%,
+      var(--alert-background) 5%,
       transparent
     );
     & > svg {
       color: currentColor;
     }
+  }
+
+  .dark .callout-root.variant-alert {
+    background-color: color-mix(
+      in oklch,
+      var(--alert-background) 10%,
+      transparent
+    );
   }
 }

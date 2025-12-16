@@ -1,11 +1,8 @@
 import { qwikVite } from "@qwik.dev/core/optimizer";
 import { playwright } from "@vitest/browser-playwright";
-import {
-  defineConfig,
-  type TestProjectConfiguration,
-  type CoverageOptions,
-} from "vitest/config";
+import { defineConfig, type TestProjectConfiguration } from "vitest/config";
 import tailwindcss from "@tailwindcss/vite";
+import { CoverageOptions } from "vitest/node";
 
 const coverageOptions: CoverageOptions = {
   provider: "istanbul",

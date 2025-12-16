@@ -3,11 +3,11 @@ import { component$, Slot, useStyles$, type PropsOf } from "@qwik.dev/core";
 import rootStyles from "./callout-root.css?inline";
 
 type RootProps = PropsOf<"div"> & {
-  variant?: "outline" | "alt-outline" | "alert";
+  variant?: "default" | "secondary" | "primary" | "alert";
 };
 
 export const Root = component$<RootProps>(
-  ({ variant = "outline", role, ...props }) => {
+  ({ variant = "default", role, ...props }) => {
     useStyles$(rootStyles);
     return (
       <div

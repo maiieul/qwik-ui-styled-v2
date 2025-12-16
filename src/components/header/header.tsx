@@ -41,7 +41,7 @@ export default component$(() => {
   return (
     <header
       class={[
-        "mt-4 flex h-14 w-full items-center justify-between rounded-xl border border-tertiary-border bg-background shadow-xs shadow-tertiary-shadow transition-all duration-300 will-change-scroll",
+        "mt-4 flex h-14 w-full items-center justify-between rounded-xl border bg-background shadow-xs transition-all duration-300 will-change-scroll",
         isHeaderHiddenSig.value
           ? "pointer-events-none -translate-y-full opacity-0"
           : "translate-y-0 opacity-100",
