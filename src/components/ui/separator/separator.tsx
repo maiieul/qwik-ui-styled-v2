@@ -11,6 +11,7 @@ export const Separator = component$<PropsOf<typeof HeadlessSeparator>>(
           decorative={decorative}
           orientation={orientation}
           class={[
+            "separator",
             orientation === "horizontal"
               ? "separator-horizontal"
               : "separator-vertical",

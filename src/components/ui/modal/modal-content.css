@@ -2,56 +2,6 @@
 
 /* TODO: fix ui-closed animations */
 @layer components {
-  /* .modal-content {
-    @apply fixed bg-background p-6 text-foreground shadow-md transition-all transition-discrete backdrop:brightness-100 backdrop:backdrop-blur-xs;
-    @apply ui-open:animate-in ui-open:backdrop:animate-in ui-open:backdrop:fade-in not-ui-open:animate-out not-ui-open:backdrop:animate-out not-ui-open:backdrop:fade-out;
-  }
-
-  .modal-content.position-center {
-    @apply m-auto max-w-lg rounded-2xl border-2;
-    @apply ui-open:zoom-in-95 ui-open:fade-in ui-open:slide-in-from-bottom-2 ui-open:backdrop:fade-in not-ui-open:zoom-out-95 not-ui-open:fade-out not-ui-open:backdrop:fade-out;
-  }
-
-  .modal-content.position-top {
-    @apply inset-x-0 top-0 mb-auto w-full rounded-b-sm border-b-2 shadow-[2px_8px];
-    @apply ui-open:slide-in-from-top not-ui-open:slide-out-to-top;
-  }
-
-  .modal-content.position-bottom {
-    @apply inset-x-0 bottom-0 mt-auto w-full rounded-t-sm border-t-2 shadow-[2px_-8px];
-    @apply ui-open:slide-in-from-bottom not-ui-open:slide-out-to-bottom;
-  }
-
-  .modal-content.position-left {
-    @apply inset-y-0 left-0 mr-auto h-full max-w-sm rounded-r-sm border-r-2 shadow-[2px_8px];
-    @apply ui-open:slide-in-from-left not-ui-open:slide-out-to-left;
-  }
-
-  .modal-content.position-right {
-    @apply inset-y-0 right-0 ml-auto h-full max-w-sm rounded-l-sm border-l-2 shadow-[-8px_2px];
-    @apply ui-open:slide-in-from-right not-ui-open:slide-out-to-right;
-  } */
-  /* 
-  .modal-content.variant-primary {
-    @apply border-primary-border shadow-primary-shadow;
-  }
-
-  .modal-content.variant-secondary {
-    @apply border-secondary-border shadow-secondary-shadow;
-  }
-
-  .modal-content.variant-altPrimary {
-    @apply border-primary-border shadow-primary-shadow;
-  }
-
-  .modal-content.variant-altSecondary {
-    @apply border-secondary-border shadow-secondary-shadow;
-  }
-
-  .modal-content.variant-outline {
-    @apply bg-background text-outline-foreground;
-  } */
-
   .modal-content {
     position: fixed;
     transition: all 150ms var(--default-transition-timing-function)
@@ -59,13 +9,13 @@
     background-color: var(--background);
     padding: 1.5rem;
     color: var(--foreground);
-    [data-open] > & {
+    [ui-open] > & {
       &::backdrop {
         animation: backdrop-in 150ms var(--default-transition-timing-function)
           forwards;
       }
     }
-    [data-closed] > & {
+    [ui-closed] > & {
       &::backdrop {
         animation: backdrop-out 150ms var(--default-transition-timing-function)
           forwards;
@@ -82,11 +32,11 @@
     border: var(--default-border-width) solid var(--border);
     border-radius: var(--radius-2xl);
     max-width: var(--container-lg);
-    [data-open] > & {
+    [ui-open] > & {
       animation: zoom-and-fade-in 150ms
         var(--default-transition-timing-function) forwards;
     }
-    [data-closed] > & {
+    [ui-closed] > & {
       animation: zoom-and-fade-out 150ms
         var(--default-transition-timing-function) forwards;
     }
@@ -99,11 +49,11 @@
     box-shadow: 2px 3px var(--shadow);
     border-bottom: var(--default-border-width) solid var(--border);
     width: 100%;
-    [data-open] > & {
+    [ui-open] > & {
       animation: 150ms var(--default-transition-timing-function) both
         slide-in-from-top;
     }
-    [data-closed] > & {
+    [ui-closed] > & {
       animation: 150ms var(--default-transition-timing-function) both
         slide-out-to-top;
     }
@@ -118,11 +68,11 @@
     border-radius: var(--radius-sm);
     max-width: var(--container-xs);
     height: 100%;
-    [data-open] > & {
+    [ui-open] > & {
       animation: 150ms var(--default-transition-timing-function) both
         slide-in-from-right;
     }
-    [data-closed] > & {
+    [ui-closed] > & {
       animation: 150ms var(--default-transition-timing-function) both
         slide-out-to-right;
     }
@@ -136,11 +86,11 @@
     border-top: var(--default-border-width) solid var(--border);
     border-radius: var(--radius-sm);
     width: 100%;
-    [data-open] > & {
+    [ui-open] > & {
       animation: 150ms var(--default-transition-timing-function) both
         slide-in-from-bottom;
     }
-    [data-closed] > & {
+    [ui-closed] > & {
       animation: 150ms var(--default-transition-timing-function) both
         slide-out-to-bottom;
     }
@@ -155,11 +105,11 @@
     border-radius: var(--radius-sm);
     max-width: var(--container-xs);
     height: 100%;
-    [data-open] > & {
+    [ui-open] > & {
       animation: 150ms var(--default-transition-timing-function) both
         slide-in-from-left;
     }
-    [data-closed] > & {
+    [ui-closed] > & {
       animation: 150ms var(--default-transition-timing-function) both
         slide-out-to-left;
     }

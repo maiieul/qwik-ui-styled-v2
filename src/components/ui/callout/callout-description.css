@@ -1,16 +1,6 @@
 @reference "../../../global.css";
 
 @layer components {
-  /* .callout-description {
-    @apply col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed;
-  }
-  .callout-description.variant-outline {
-    @apply text-foreground/80;
-  }
-  .callout-description.variant-alert {
-    @apply text-alert-foreground/90;
-  } */
-
   .callout-description {
     display: grid;
     grid-column-start: 2;

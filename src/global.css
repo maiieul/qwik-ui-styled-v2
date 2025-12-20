@@ -7,7 +7,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @layer theme {
-  :root {
+  .light {
     /* base */
     --background: white;
     --background-accent: var(--color-sky-10);
@@ -101,8 +101,8 @@
     --secondary-background-accent: var(--color-sky-70);
     --secondary-foreground: var(--color-foreground);
     --secondary-foreground-accent: var(--color-foreground-accent);
-    --secondary-border: var(--color-sky-70);
-    --secondary-border-accent: var(--color-sky-65);
+    --secondary-border: var(--color-sky-80);
+    --secondary-border-accent: var(--color-sky-75);
     --secondary-shadow: var(--color-sky-85);
     --secondary-shadow-accent: var(--color-sky-80);
     --secondary-ring: var(--color-sky-70);
@@ -145,7 +145,61 @@
   .dark .sidebar {
   }
 
+  .qwik {
+    --default-border-width: 1.75px;
+    --default-border-radius: 0rem;
+
+    --shadow-2xs: 1px 2px;
+    --shadow-xs: 3px 4px;
+    --shadow-sm: 5px 6px;
+    --shadow-md: 7px 8px;
+    --shadow-lg: 9px 10px;
+    --shadow-xl: 11px 12px;
+    --shadow-2xl: 13px 14px;
+  }
+
+  .modern {
+    --default-border-width: 1px;
+    --default-border-radius: 0.5rem;
+
+    --shadow-2xs: 0 1px 2px 0 rgba(0, 0, 0, 0.01);
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.01);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 1);
+  }
   /* we can add even more themes (e.g. `.reverse .light`, `.halloween .light`, `.christmas .light`, `.chinese-new-year .light`, etc.) */
+  .modern.light {
+    /* base */
+    --background-accent: var(--color-slate-5);
+    --background-emphasis: var(--color-slate-10);
+    --border: var(--color-slate-10);
+    --border-accent: var(--color-slate-20);
+    --border-emphasis: var(--color-slate-30);
+    --shadow: var(--color-slate-100);
+    --shadow-accent: var(--color-slate-5);
+    --shadow-emphasis: var(--color-slate-10);
+    --ring: var(--color-slate-30);
+    --standalone: var(--color-slate-70);
+    --standalone-accent: var(--color-slate-75);
+    --standalone-emphasis: var(--color-slate-80);
+  }
+  .modern.dark {
+    --background-accent: var(--color-slate-95);
+    --background-emphasis: var(--color-slate-90);
+    --border: var(--color-slate-95);
+    --border-accent: var(--color-slate-85);
+    --border-emphasis: var(--color-slate-75);
+    --shadow: var(--color-slate-90);
+    --shadow-accent: var(--color-slate-85);
+    --shadow-emphasis: var(--color-slate-80);
+    --ring: var(--color-slate-80);
+  }
 }
 
 @theme {
@@ -348,8 +402,8 @@
   --color-alert-standalone-accent: var(--alert-standalone-accent);
   --color-alert-standalone-emphasis: var(--alert-standalone-emphasis);
 
-  --default-border-width: calc(0.75px + 1px);
-  --default-border-radius: 0rem;
+  --default-border-width: var(--default-border-width);
+  --default-border-radius: var(--default-border-radius);
 
   --radius-xs: var(--default-border-radius);
   --radius-sm: calc(var(--default-border-radius) + 0.125rem);
@@ -358,13 +412,15 @@
   --radius-xl: calc(var(--default-border-radius) + 0.75rem);
   --radius-2xl: calc(var(--default-border-radius) + 1rem);
   --radius-3xl: calc(var(--default-border-radius) + 1.5rem);
-  --shadow-2xs: 1px 2px;
-  --shadow-xs: 3px 4px;
-  --shadow-sm: 5px 6px;
-  --shadow-md: 7px 8px;
-  --shadow-lg: 9px 10px;
-  --shadow-xl: 11px 12px;
-  --shadow-2xl: 13px 14px;
+
+  --shadow-2xs: var(--shadow-2xs) var(--tw-shadow-color, currentcolor);
+  --shadow-xs: var(--shadow-xs) var(--tw-shadow-color, currentcolor);
+  --shadow-sm: var(--shadow-sm) var(--tw-shadow-color, currentcolor);
+  --shadow-md: var(--shadow-md) var(--tw-shadow-color, currentcolor);
+  --shadow-lg: var(--shadow-lg) var(--tw-shadow-color, currentcolor);
+  --shadow-xl: var(--shadow-xl) var(--tw-shadow-color, currentcolor);
+  --shadow-2xl: var(--shadow-2xl) var(--tw-shadow-color, currentcolor);
+
   --animate-accordion-down: collapsible-down 0.2s ease-out forwards;
   --animate-accordion-up: collapsible-up 0.2s ease-out forwards;
 
