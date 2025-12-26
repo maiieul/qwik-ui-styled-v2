@@ -2,13 +2,13 @@
 @import "./shared.css";
 
 @layer components {
-  .btn.variant-main {
+  .btn.variant-primary {
     color: var(--primary-foreground);
     &:focus-visible {
       outline: 2px solid var(--primary-ring);
     }
   }
-  .qwik .btn.variant-main {
+  .qwik .btn.variant-primary {
     box-shadow: var(--shadow-sm) var(--primary-shadow);
     border: var(--default-border-width) solid var(--primary-border);
     background-color: var(--primary-background);
@@ -17,7 +17,7 @@
       box-shadow: var(--shadow-md) var(--primary-shadow);
     }
   }
-  .modern .btn.variant-main {
+  .modern .btn.variant-primary {
     box-shadow: var(--shadow-sm);
     background-color: var(--primary-background);
     &:hover {
@@ -25,14 +25,14 @@
     }
   }
 
-  .btn.variant-auxiliary {
+  .btn.variant-secondary {
     background-color: var(--secondary-background);
     color: var(--secondary-foreground);
     &:focus-visible {
       outline: 2px solid var(--secondary-ring);
     }
   }
-  .qwik .btn.variant-auxiliary {
+  .qwik .btn.variant-secondary {
     box-shadow: var(--shadow-sm) var(--secondary-shadow);
     border: var(--default-border-width) solid var(--secondary-border);
     &:hover {
@@ -40,7 +40,7 @@
       box-shadow: var(--shadow-md) var(--secondary-shadow);
     }
   }
-  .modern .btn.variant-auxiliary {
+  .modern .btn.variant-secondary {
     box-shadow: var(--shadow-sm);
     &:hover {
       transform: scale(0.99);
