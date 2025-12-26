@@ -10,8 +10,7 @@ export type ButtonVariants =
   | "outline"
   | "link"
   | "ghost"
-  | "ghost-link"
-  | "ghost-outline"
+  | "vanilla"
   | "alert";
 
 export type ButtonProps = {

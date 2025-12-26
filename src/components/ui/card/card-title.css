@@ -1,10 +1,6 @@
 @reference "../../../global.css";
 
 @layer components {
-  /* .card-title {
-    @apply col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight;
-  } */
-
   .card-title {
     grid-column-start: 2;
     min-height: 1rem;

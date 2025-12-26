@@ -1,10 +1,6 @@
 @reference "../../../global.css";
 
 @layer components {
-  /* .card-description {
-    @apply text-sm text-foreground-muted;
-  } */
-
   .card-description {
     color: var(--foreground-muted);
     font-size: var(--text-sm);

@@ -52,7 +52,7 @@ export const DocsNavigation = component$(
                         class={[
                           "btn-base btn size-md sidebar-link",
                           isLinkActive
-                            ? "bg-tertiary-background-accent text-tertiary-foreground-accent"
+                            ? "bg-background-emphasis text-foreground-emphasis"
                             : "",
                         ]}
                       >
@@ -60,7 +60,7 @@ export const DocsNavigation = component$(
                           <span>{link.name}</span>
                           {link.new && (
                             <Chip
-                              variant="primary"
+                              variant="secondary"
                               class="ml-2 text-foreground-emphasis"
                             >
                               New

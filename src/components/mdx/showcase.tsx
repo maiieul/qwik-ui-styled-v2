@@ -10,10 +10,10 @@ export const Showcase = component$<ShowcaseProps>(({ rawCode, ...props }) => {
   return (
     <Tabs.Root {...props}>
       <Tabs.List class="flex">
-        <Tabs.Trigger class="h-10 px-3 py-2 font-medium text-foreground-muted hover:text-foreground-accent data-selected:text-foreground-accent">
+        <Tabs.Trigger class="h-10 px-3 py-2 font-medium text-foreground-muted hover:text-foreground-accent ui-selected:text-foreground-emphasis">
           Preview
         </Tabs.Trigger>
-        <Tabs.Trigger class="h-10 px-3 py-2 font-medium text-foreground-muted hover:text-foreground-accent data-selected:text-foreground-accent">
+        <Tabs.Trigger class="h-10 px-3 py-2 font-medium text-foreground-muted hover:text-foreground-accent ui-selected:text-foreground-emphasis">
           Code
         </Tabs.Trigger>
       </Tabs.List>

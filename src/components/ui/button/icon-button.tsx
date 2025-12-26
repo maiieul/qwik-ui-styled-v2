@@ -7,7 +7,7 @@ import { ButtonSizes } from "./shared";
 import { Render } from "@qds.dev/ui";
 
 type IconButtonProps = {
-  variant?: "outline" | "ghost-outline" | "ghost" | "vanilla";
+  variant?: "outline" | "ghost" | "vanilla";
   size?: ButtonSizes;
 };
 
