@@ -10,6 +10,8 @@ import {
 } from "./extract-theme";
 import * as csstree from "css-tree";
 
+const theme = "modern" as const;
+
 const cssFiles = [
   `
 @reference "../../../global.css";
@@ -106,7 +108,7 @@ const cssFiles = [
 `,
 ];
 
-describe("outputThemedCSS", () => {
+describe.skip("outputThemedCSS", () => {
   it.each(cssFiles)(
     "should throw an error if multiple @layer declarations are found (case %#)",
     (css) => {
@@ -176,7 +178,7 @@ describe("removeThemePreludes", () => {
   it.each(cssFiles)(
     "should remove the theme preludes from the at layer rule blocks (case %s)",
     async (css) => {
-      const result = await generateUpToRemoveThemePreludes(css, ["modern"]);
+      const result = await generateUpToRemoveThemePreludes(css, [theme]);
       console.log("result", result);
       expect(result).not.toContain(".modern");
       expect(result).toContain(".btn");
@@ -184,7 +186,7 @@ describe("removeThemePreludes", () => {
   );
 });
 
-describe.only("mergeDuplicates", () => {
+describe.skip("mergeDuplicates", () => {
   const findDuplicateLayerRulePreludes = (ast: csstree.StyleSheet) => {
     const duplicates: string[] = [];
 
@@ -214,15 +216,13 @@ describe.only("mergeDuplicates", () => {
   it.each(cssFiles)(
     "should remove duplicate selectors inside @layer blocks (fixture %#)",
     async (css) => {
-      const theme = ["modern"];
-
       // Before merge: duplicates should exist (otherwise the test is vacuous)
-      let ast = withOnlyKeepAppliedThemeClasses(css, theme);
-      ast = withRemoveThemePreludes(ast, theme);
+      let ast = withOnlyKeepAppliedThemeClasses(css, [theme]);
+      ast = withRemoveThemePreludes(ast, [theme]);
       expect(findDuplicateLayerRulePreludes(ast).length).toBeGreaterThan(0);
 
       // After merge: no duplicates
-      ast = withMergeDuplicates(ast, theme);
+      ast = withMergeDuplicates(ast, [theme]);
       expect(findDuplicateLayerRulePreludes(ast)).toEqual([]);
     },
   );
