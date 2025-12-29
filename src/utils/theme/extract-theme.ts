@@ -76,6 +76,74 @@ export function onlyKeepAppliedThemeClasses(
   return filtered;
 }
 
+export function removeThemePreludes(
+  atRuleBlockChildren: csstree.List<csstree.CssNode>,
+  themeProperties: string[],
+): csstree.List<csstree.CssNode> {
+  const result: csstree.List<csstree.CssNode> = new csstree.List();
+
+  if (!atRuleBlockChildren) return result;
+
+  for (const rule of atRuleBlockChildren) {
+    if (rule.type !== "Rule" || rule.prelude.type !== "SelectorList") {
+      continue;
+    }
+
+    const newSelectors: csstree.List<csstree.CssNode> = new csstree.List();
+
+    for (const selectorNode of rule.prelude.children) {
+      if (selectorNode.type !== "Selector") {
+        continue;
+      }
+
+      const children = selectorNode.children.toArray();
+      const first = children[0];
+      const second = children[1];
+
+      const startsWithThemePrelude =
+        first?.type === "ClassSelector" &&
+        themeProperties.some((p) => p === first.name) &&
+        second?.type === "Combinator";
+
+      if (!startsWithThemePrelude) {
+        newSelectors.push(selectorNode);
+        continue;
+      }
+
+      // Strip: [ClassSelector(".modern"), Combinator(" "), ...rest] => [...rest]
+      if (children.length <= 2) {
+        // Would become an empty selector; drop it entirely.
+        continue;
+      }
+
+      selectorNode.children = new csstree.List();
+      for (let i = 2; i < children.length; i++) {
+        selectorNode.children.push(children[i]);
+      }
+
+      newSelectors.push(selectorNode);
+    }
+
+    // If all selectors were removed, drop the entire rule
+    if (newSelectors.isEmpty) {
+      continue;
+    }
+
+    rule.prelude.children = newSelectors;
+    result.push(rule);
+  }
+
+  return result;
+}
+
+export function mergeAtRuleAppliedThemeClassesIntoGenericClasses(
+  atRuleBlockChildren: csstree.List<csstree.CssNode>,
+  themeProperties: string[],
+): csstree.List<csstree.CssNode> {
+  void themeProperties;
+  return atRuleBlockChildren;
+}
+
 export async function generatePrettifiedCSS(
   ast: csstree.StyleSheet,
 ): Promise<string> {

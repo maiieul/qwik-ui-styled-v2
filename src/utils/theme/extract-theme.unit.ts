@@ -1,8 +1,10 @@
 import { describe, it, expect } from "vitest";
 import {
   generatePrettifiedCSS,
+  mergeAtRuleAppliedThemeClassesIntoGenericClasses,
   onlyKeepAppliedThemeClasses,
   outputThemedCSS,
+  removeThemePreludes,
 } from "./extract-theme";
 import * as csstree from "css-tree";
 
@@ -72,7 +74,9 @@ describe("outputThemedCSS", () => {
 
 describe("onlyKeepAppliedThemeClasses", () => {
   it("should keep all generic rules that do not have a theme specific class name in the prelude (e.g. .btn { ... })", async () => {
-    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, "modern");
+    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
+      "modern",
+    ]);
 
     console.log("result", result);
     const buttonRule = `
@@ -93,7 +97,9 @@ describe("onlyKeepAppliedThemeClasses", () => {
     expect(result).toContain(testRuleInAtLayerRule);
   });
   it("should keep all rules that match the applied theme (e.g. .modern .btn { ... })", async () => {
-    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, "modern");
+    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
+      "modern",
+    ]);
 
     const modernThemeButtonRule = `
   .modern .btn {
@@ -106,7 +112,9 @@ describe("onlyKeepAppliedThemeClasses", () => {
     expect(result).toContain(modernThemeCalloutRule);
   });
   it("should not keep any rules containing a theme class that isn't applied (e.g. .qwik .btn { ... })", async () => {
-    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, "modern");
+    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
+      "modern",
+    ]);
 
     const qwikThemeButtonRule = `
   .qwik .btn {
@@ -125,20 +133,76 @@ describe("onlyKeepAppliedThemeClasses", () => {
   });
 });
 
+describe.only("removeThemePreludes", () => {
+  it("should remove the theme preludes from the at layer rule blocks", async () => {
+    const result = await generateUpToRemoveThemePreludes(css, ["modern"]);
+    console.log("result", result);
+    expect(result).not.toContain(".modern");
+  });
+});
+
+describe("mergeAtRuleAppliedThemeClassesIntoGenericClasses", () => {
+  it("should merge the applied theme classes into the generic classes", async () => {
+    const result =
+      await generateUpToMergeAtRuleAppliedThemeClassesIntoGenericClasses(css, [
+        "modern",
+      ]);
+
+    console.log("result", result);
+    expect(result).not.toContain(".modern");
+
+    const btnClassOutput = `
+  .btn {
+    color: green;
+    background-color: blue;
+    border: 1px solid red;
+  }
+`;
+    expect(result).toContain(btnClassOutput);
+
+    const calloutRootClassOutput = `
+  .callout-root {
+    background-color: blue;
+  }
+`;
+    expect(result).toContain(calloutRootClassOutput);
+  });
+});
+
 const generateUpToOnlyKeepAppliedThemeClasses = async (
   cssString: string,
-  theme: string,
+  themeProperties: string[],
 ): Promise<string> => {
-  const ast = withOnlyKeepAppliedThemeClasses(cssString, theme);
+  const ast = withOnlyKeepAppliedThemeClasses(cssString, themeProperties);
+  return await generatePrettifiedCSS(ast);
+};
+
+const generateUpToRemoveThemePreludes = async (
+  cssString: string,
+  themeProperties: string[],
+): Promise<string> => {
+  let ast = withOnlyKeepAppliedThemeClasses(cssString, themeProperties);
+  ast = withRemoveThemePreludes(ast, themeProperties);
+  return await generatePrettifiedCSS(ast);
+};
+
+const generateUpToMergeAtRuleAppliedThemeClassesIntoGenericClasses = async (
+  cssString: string,
+  themeProperties: string[],
+): Promise<string> => {
+  let ast = withOnlyKeepAppliedThemeClasses(cssString, themeProperties);
+  ast = withRemoveThemePreludes(ast, themeProperties);
+  ast = withMergeAtRuleAppliedThemeClassesIntoGenericClasses(
+    ast,
+    themeProperties,
+  );
   return await generatePrettifiedCSS(ast);
 };
 
 const withOnlyKeepAppliedThemeClasses = (
   cssString: string,
-  theme: string,
+  themeProperties: string[],
 ): csstree.StyleSheet => {
-  const themeProperties = theme.split(" ").map((property) => property.trim());
-
   const ast = csstree.parse(cssString) as csstree.StyleSheet;
 
   // Find all @layer rule blocks
@@ -147,6 +211,42 @@ const withOnlyKeepAppliedThemeClasses = (
     enter(atRule) {
       if (atRule.name !== "layer" || !atRule.block) return;
       atRule.block.children = onlyKeepAppliedThemeClasses(
+        atRule.block.children,
+        themeProperties,
+      );
+    },
+  });
+
+  return ast;
+};
+
+const withRemoveThemePreludes = (
+  ast: csstree.StyleSheet,
+  themeProperties: string[],
+): csstree.StyleSheet => {
+  csstree.walk(ast, {
+    visit: "Atrule",
+    enter(atRule) {
+      if (atRule.name !== "layer" || !atRule.block) return;
+      atRule.block.children = removeThemePreludes(
+        atRule.block.children,
+        themeProperties,
+      );
+    },
+  });
+  return ast;
+};
+
+const withMergeAtRuleAppliedThemeClassesIntoGenericClasses = (
+  ast: csstree.StyleSheet,
+  themeProperties: string[],
+): csstree.StyleSheet => {
+  // Find all @layer rule blocks
+  csstree.walk(ast, {
+    visit: "Atrule",
+    enter(atRule) {
+      if (atRule.name !== "layer" || !atRule.block) return;
+      atRule.block.children = mergeAtRuleAppliedThemeClassesIntoGenericClasses(
         atRule.block.children,
         themeProperties,
       );
