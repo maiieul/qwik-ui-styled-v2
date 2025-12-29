@@ -107,9 +107,9 @@ const cssFiles = [
 ];
 
 describe("outputThemedCSS", () => {
-  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
-    "should throw an error if multiple @layer declarations are found (case %s)",
-    (_caseIdx, css) => {
+  it.each(cssFiles)(
+    "should throw an error if multiple @layer declarations are found (case %#)",
+    (css) => {
       expect(() => outputThemedCSS("modern", css)).toThrow(
         "Multiple @layer declarations found",
       );
@@ -118,9 +118,9 @@ describe("outputThemedCSS", () => {
 });
 
 describe.only("onlyKeepAppliedThemeClasses", () => {
-  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+  it.each(cssFiles)(
     "should keep all generic rules that do not have a theme specific class name in the prelude (e.g. .btn { ... }) (case %s)",
-    async (_caseIdx, css) => {
+    async (css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
@@ -133,9 +133,9 @@ describe.only("onlyKeepAppliedThemeClasses", () => {
     },
   );
 
-  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+  it.each(cssFiles)(
     "should keep all rules that match the applied theme (e.g. .modern .btn { ... }) (case %s)",
-    async (_caseIdx, css) => {
+    async (css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
@@ -147,9 +147,9 @@ describe.only("onlyKeepAppliedThemeClasses", () => {
     },
   );
 
-  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+  it.each(cssFiles)(
     "should not keep any rules containing a theme class that isn't applied (e.g. .qwik .btn { ... }) (case %s)",
-    async (_caseIdx, css) => {
+    async (css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
@@ -173,9 +173,9 @@ describe.only("onlyKeepAppliedThemeClasses", () => {
 });
 
 describe("removeThemePreludes", () => {
-  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+  it.each(cssFiles)(
     "should remove the theme preludes from the at layer rule blocks (case %s)",
-    async (_caseIdx, css) => {
+    async (css) => {
       const result = await generateUpToRemoveThemePreludes(css, ["modern"]);
       console.log("result", result);
       expect(result).not.toContain(".modern");
@@ -185,9 +185,9 @@ describe("removeThemePreludes", () => {
 });
 
 describe("mergeDuplicates", () => {
-  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+  it.each(cssFiles)(
     "should not contain any duplicate selectors (case %s)",
-    async (_caseIdx, css) => {
+    async (css) => {
       const result = await generateUpToMergeDuplicates(css, ["modern"]);
 
       console.log("result", result);
