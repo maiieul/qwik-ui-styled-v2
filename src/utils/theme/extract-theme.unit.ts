@@ -53,6 +53,9 @@ const cssFiles = {
     &:focus-visible {
       outline: 2px solid red;
     }
+    &:active {
+      transform: translate(2px, 2px);
+    }
   }
   .qwik .btn {
     color: blue;
@@ -65,6 +68,9 @@ const cssFiles = {
     border: 1px solid red;
     &:hover {
       transform: scale(0.99);
+    }
+    &:active {
+      transform: translate(-2px, -2px);
     }
   }
 }
@@ -221,7 +227,6 @@ describe("mergeDuplicates", () => {
     const cssOutput0 = await generateUpToMergeDuplicates(cssFiles["basic"], [
       theme,
     ]);
-    console.log("cssOutput0", cssOutput0);
     expect(cssOutput0).toContain(`
   .btn {
     color: green;
@@ -231,6 +236,7 @@ describe("mergeDuplicates", () => {
       cssFiles["nested-selectors"],
       [theme],
     );
+    console.log("cssOutput1", cssOutput1);
     expect(cssOutput1).toContain(`
   .btn {
     color: green;
@@ -238,6 +244,9 @@ describe("mergeDuplicates", () => {
     border: 1px solid red;
     &:focus-visible {
       outline: 2px solid red;
+    }
+    &:active {
+      transform: translate(-2px, -2px);
     }
     &:hover {
       transform: scale(0.99);

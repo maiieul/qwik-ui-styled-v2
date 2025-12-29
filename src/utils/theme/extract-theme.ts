@@ -1,7 +1,8 @@
 import * as csstree from "css-tree";
 import * as prettier from "prettier";
 
-export async function outputThemedCSS(
+// Outputs the applied themed CSS so that it contains only the generic + themed rules, but no others.
+export async function outputAppliedThemedCSS(
   cssInput: string,
   theme: string,
 ): Promise<string> {
@@ -130,15 +131,83 @@ export function mergeDuplicates(
 ): csstree.List<csstree.CssNode> {
   void themeProperties;
 
-  type MergeState = {
+  type RuleMergeState = {
     rule: csstree.Rule;
     declarationOrder: string[];
     lastDeclarationByProperty: Map<string, csstree.Declaration>;
+    nestedRuleOrder: string[];
+    nestedRuleByPrelude: Map<string, RuleMergeState>;
     otherChildren: csstree.CssNode[];
   };
 
+  const createRuleState = (rule: csstree.Rule): RuleMergeState => ({
+    rule,
+    declarationOrder: [],
+    lastDeclarationByProperty: new Map(),
+    nestedRuleOrder: [],
+    nestedRuleByPrelude: new Map(),
+    otherChildren: [],
+  });
+
+  const mergeRuleChildrenIntoState = (
+    state: RuleMergeState,
+    sourceRule: csstree.Rule,
+  ) => {
+    sourceRule.block.children?.forEach((n) => {
+      if (n.type === "Declaration") {
+        const property = n.property;
+        if (!state.lastDeclarationByProperty.has(property)) {
+          state.declarationOrder.push(property);
+        }
+        state.lastDeclarationByProperty.set(property, n);
+        return;
+      }
+
+      // Nested rules like "&:hover { ... }"
+      if (n.type === "Rule" && n.prelude.type === "SelectorList") {
+        const nestedPrelude = csstree.generate(n.prelude).trim();
+        let nestedState = state.nestedRuleByPrelude.get(nestedPrelude);
+        if (!nestedState) {
+          nestedState = createRuleState(n);
+          state.nestedRuleByPrelude.set(nestedPrelude, nestedState);
+          state.nestedRuleOrder.push(nestedPrelude);
+        }
+
+        mergeRuleChildrenIntoState(nestedState, n);
+        return;
+      }
+
+      state.otherChildren.push(n);
+    });
+  };
+
+  const finalizeRuleState = (state: RuleMergeState) => {
+    const newChildren = new csstree.List<csstree.CssNode>();
+
+    // Declarations first (deduped by property, last one wins)
+    for (const property of state.declarationOrder) {
+      const decl = state.lastDeclarationByProperty.get(property);
+      if (decl) newChildren.push(decl);
+    }
+
+    // Then nested rules (deduped by selector prelude, recursively finalized)
+    for (const nestedPrelude of state.nestedRuleOrder) {
+      const nestedState = state.nestedRuleByPrelude.get(nestedPrelude);
+      if (!nestedState) continue;
+      finalizeRuleState(nestedState);
+      newChildren.push(nestedState.rule);
+    }
+
+    // Then any other children
+    for (const other of state.otherChildren) {
+      newChildren.push(other);
+    }
+
+    state.rule.block.children = newChildren;
+  };
+
   const merged: csstree.List<csstree.CssNode> = new csstree.List();
-  const stateByPrelude = new Map<string, MergeState>();
+  const stateByPrelude = new Map<string, RuleMergeState>();
 
   if (!atRuleBlockChildren) return merged;
 
@@ -151,44 +220,15 @@ export function mergeDuplicates(
     let state = stateByPrelude.get(prelude);
 
     if (!state) {
-      state = {
-        rule: child,
-        declarationOrder: [],
-        lastDeclarationByProperty: new Map(),
-        otherChildren: [],
-      };
+      state = createRuleState(child);
       stateByPrelude.set(prelude, state);
       merged.push(child);
     }
 
-    child.block.children?.forEach((n) => {
-      if (n.type === "Declaration") {
-        const property = n.property;
-        if (!state.lastDeclarationByProperty.has(property)) {
-          state.declarationOrder.push(property);
-        }
-        state.lastDeclarationByProperty.set(property, n);
-        return;
-      }
-
-      state.otherChildren.push(n);
-    });
+    mergeRuleChildrenIntoState(state, child);
   }
 
-  for (const state of stateByPrelude.values()) {
-    const newChildren = new csstree.List<csstree.CssNode>();
-
-    for (const property of state.declarationOrder) {
-      const decl = state.lastDeclarationByProperty.get(property);
-      if (decl) newChildren.push(decl);
-    }
-
-    for (const other of state.otherChildren) {
-      newChildren.push(other);
-    }
-
-    state.rule.block.children = newChildren;
-  }
+  for (const state of stateByPrelude.values()) finalizeRuleState(state);
 
   return merged;
 }
