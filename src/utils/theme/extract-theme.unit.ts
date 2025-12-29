@@ -42,6 +42,22 @@ const cssFiles = {
   }
 }
 `,
+  "comma-separated": `
+@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn,
+  .icon-btn {
+    color: red;
+    padding: 8px;
+  }
+  .modern .btn,
+  .modern .icon-btn {
+    color: green;
+  }
+}
+`,
   "nested-selectors": `
 @reference "../../../global.css";
 @import "./shared.css";
@@ -123,12 +139,25 @@ describe("onlyKeepAppliedThemeClasses", () => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
+      // Handles both single selectors (".btn") and selector lists (".btn, .icon-btn").
+      const ast = csstree.parse(result) as csstree.StyleSheet;
+      const preludes: string[] = [];
 
-      const testRuleInAtLayerRule = `
-@layer components {
-  .btn {
-`;
-      expect(result).toContain(testRuleInAtLayerRule);
+      csstree.walk(ast, {
+        visit: "Atrule",
+        enter(atRule) {
+          if (atRule.name !== "layer" || !atRule.block) return;
+          atRule.block.children?.forEach((child) => {
+            if (child.type !== "Rule" || child.prelude.type !== "SelectorList")
+              return;
+            preludes.push(csstree.generate(child.prelude).trim());
+          });
+        },
+      });
+
+      expect(
+        preludes.some((p) => p.includes(".btn") && !p.includes(".modern")),
+      ).toBe(true);
     },
   );
 
@@ -138,11 +167,22 @@ describe("onlyKeepAppliedThemeClasses", () => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
+      const ast = csstree.parse(result) as csstree.StyleSheet;
+      const preludes: string[] = [];
 
-      const modernThemeButtonRule = `
-  .modern .btn {
-`;
-      expect(result).toContain(modernThemeButtonRule);
+      csstree.walk(ast, {
+        visit: "Atrule",
+        enter(atRule) {
+          if (atRule.name !== "layer" || !atRule.block) return;
+          atRule.block.children?.forEach((child) => {
+            if (child.type !== "Rule" || child.prelude.type !== "SelectorList")
+              return;
+            preludes.push(csstree.generate(child.prelude).trim());
+          });
+        },
+      });
+
+      expect(preludes.some((p) => p.includes(".modern"))).toBe(true);
     },
   );
 
@@ -263,6 +303,18 @@ describe("mergeDuplicates", () => {
   }
   .dark .btn {
     color: purple;
+  }
+`);
+
+    const cssOutput3 = await generateUpToMergeDuplicates(
+      cssFiles["comma-separated"],
+      [theme],
+    );
+    expect(cssOutput3).toContain(`
+  .btn,
+  .icon-btn {
+    color: green;
+    padding: 8px;
   }
 `);
   });

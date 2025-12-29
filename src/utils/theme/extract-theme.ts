@@ -112,7 +112,21 @@ export function removeThemePreludes(
           }
           selectorsWithoutThemeClasses.push(child);
         });
-        selectorNode.children = selectorsWithoutThemeClasses;
+        // If we removed the leading theme class from a selector like ".modern .btn",
+        // the selector can end up starting with a combinator (space). Strip it so
+        // we don't produce invalid selectors like " .btn".
+        const normalizedSelectorChildren = new csstree.List<csstree.CssNode>();
+        let droppedLeadingCombinator = false;
+        selectorsWithoutThemeClasses.forEach((child) => {
+          if (!droppedLeadingCombinator && child.type === "Combinator") {
+            droppedLeadingCombinator = true;
+            return;
+          }
+          droppedLeadingCombinator = true;
+          normalizedSelectorChildren.push(child);
+        });
+
+        selectorNode.children = normalizedSelectorChildren;
       }
 
       newSelectors.push(selectorNode);
