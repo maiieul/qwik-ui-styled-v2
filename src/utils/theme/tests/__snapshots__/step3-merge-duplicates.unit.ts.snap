@@ -1,14 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`onlyKeepAppliedThemeClasses (snapshots) > case basic > basic 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case basic > basic 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {
   .btn {
-    color: red;
-  }
-  .modern .btn {
     color: green;
   }
 }
@@ -24,66 +21,50 @@ exports[`onlyKeepAppliedThemeClasses (snapshots) > case basic > basic 1`] = `
 }"
 `;
 
-exports[`onlyKeepAppliedThemeClasses (snapshots) > case comma-separated > comma-separated 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case comma-separated > comma-separated 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {
   .btn,
   .icon-btn {
-    color: red;
-    padding: 8px;
-  }
-  .modern .btn,
-  .modern .icon-btn {
     color: green;
+    padding: 8px;
   }
 }"
 `;
 
-exports[`onlyKeepAppliedThemeClasses (snapshots) > case dark-variants > dark-variants 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case dark-variants > dark-variants 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {
   .btn {
-    color: red;
-  }
-  .modern .btn {
     color: yellow;
   }
-  .modern.dark .btn {
-    color: pink;
-  }
-  .dark.modern .btn {
+  .dark .btn {
     color: purple;
   }
 }"
 `;
 
-exports[`onlyKeepAppliedThemeClasses (snapshots) > case nested-selectors > nested-selectors 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {
   .btn {
-    color: red;
+    color: green;
     background-color: blue;
+    border: 1px solid red;
     &:focus-visible {
       outline: 2px solid red;
     }
     &:active {
-      transform: translate(2px, 2px);
+      transform: translate(-2px, -2px);
     }
-  }
-  .modern .btn {
-    color: green;
-    border: 1px solid red;
     &:hover {
       transform: scale(0.99);
-    }
-    &:active {
-      transform: translate(-2px, -2px);
     }
   }
 }"

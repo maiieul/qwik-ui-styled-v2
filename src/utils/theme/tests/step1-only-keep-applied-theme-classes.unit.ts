@@ -2,11 +2,11 @@
 
 import { describe, it, expect } from "vitest";
 import { cssFiles, theme } from "./constants";
-import { generateUpToMergeDuplicates, normalize } from "./helpers";
+import { generateUpToOnlyKeepAppliedThemeClasses, normalize } from "./helpers";
 
-describe("mergeDuplicates (snapshots)", () => {
+describe("step1 - onlyKeepAppliedThemeClasses (snapshots)", () => {
   it.each(Object.entries(cssFiles))("case %s", async (name, css) => {
-    const result = await generateUpToMergeDuplicates(css, [theme]);
+    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [theme]);
     expect(normalize(result)).toMatchSnapshot(name);
   });
 });

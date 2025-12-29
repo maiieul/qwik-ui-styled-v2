@@ -2,11 +2,11 @@
 
 import { describe, it, expect } from "vitest";
 import { cssFiles, theme } from "./constants";
-import { generateUpToOnlyKeepAppliedThemeClasses, normalize } from "./helpers";
+import { generateUpToRemoveThemePreludes, normalize } from "./helpers";
 
-describe("onlyKeepAppliedThemeClasses (snapshots)", () => {
+describe("step2 - removeThemePreludes (snapshots)", () => {
   it.each(Object.entries(cssFiles))("case %s", async (name, css) => {
-    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [theme]);
+    const result = await generateUpToRemoveThemePreludes(css, [theme]);
     expect(normalize(result)).toMatchSnapshot(name);
   });
 });

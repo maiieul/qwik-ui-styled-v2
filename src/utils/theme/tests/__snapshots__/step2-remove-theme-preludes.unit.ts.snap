@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`removeThemePreludes (snapshots) > case basic > basic 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case basic > basic 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 
@@ -24,7 +24,7 @@ exports[`removeThemePreludes (snapshots) > case basic > basic 1`] = `
 }"
 `;
 
-exports[`removeThemePreludes (snapshots) > case comma-separated > comma-separated 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case comma-separated > comma-separated 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 
@@ -41,7 +41,7 @@ exports[`removeThemePreludes (snapshots) > case comma-separated > comma-separate
 }"
 `;
 
-exports[`removeThemePreludes (snapshots) > case dark-variants > dark-variants 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case dark-variants > dark-variants 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 
@@ -61,7 +61,7 @@ exports[`removeThemePreludes (snapshots) > case dark-variants > dark-variants 1`
 }"
 `;
 
-exports[`removeThemePreludes (snapshots) > case nested-selectors > nested-selectors 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 

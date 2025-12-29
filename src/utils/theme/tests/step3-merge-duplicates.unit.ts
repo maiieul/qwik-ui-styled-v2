@@ -2,11 +2,11 @@
 
 import { describe, it, expect } from "vitest";
 import { cssFiles, theme } from "./constants";
-import { generateUpToRemoveThemePreludes, normalize } from "./helpers";
+import { generateUpToMergeDuplicates, normalize } from "./helpers";
 
-describe("removeThemePreludes (snapshots)", () => {
+describe("step3 - mergeDuplicates (snapshots)", () => {
   it.each(Object.entries(cssFiles))("case %s", async (name, css) => {
-    const result = await generateUpToRemoveThemePreludes(css, [theme]);
+    const result = await generateUpToMergeDuplicates(css, [theme]);
     expect(normalize(result)).toMatchSnapshot(name);
   });
 });
