@@ -2,7 +2,7 @@ import * as csstree from "css-tree";
 import * as prettier from "prettier";
 
 // Outputs the applied themed CSS so that it contains only the generic + themed rules, but no others.
-export async function outputAppliedThemedCSS(
+export async function outputAppliedThemeCSS(
   cssInput: string,
   theme: string,
 ): Promise<string> {
@@ -12,6 +12,18 @@ export async function outputAppliedThemedCSS(
     .filter(Boolean);
 
   const ast = csstree.parse(cssInput) as csstree.StyleSheet;
+
+  // We don't support !important anywhere in the input: it makes merging and
+  // deterministic theming output ambiguous and is banned by convention.
+  csstree.walk(ast, {
+    visit: "Declaration",
+    enter(decl) {
+      if (decl.type !== "Declaration") return;
+      if (decl.important) {
+        throw new Error("!important is not allowed in base components");
+      }
+    },
+  });
 
   csstree.walk(ast, {
     visit: "Atrule",

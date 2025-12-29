@@ -1,7 +1,7 @@
 import { $, component$, useSignal } from "@qwik.dev/core";
 import { IconButton, Modal } from "~/components/ui";
 import { Button } from "~/components/ui";
-import { outputAppliedThemedCSS } from "~/utils/theme/extract-theme";
+import { outputAppliedThemeCSS } from "~/utils/theme/extract-theme";
 import { Lucide } from "@qds.dev/ui";
 import { useTheme } from "~/hooks/use-theme/provider";
 import globalCSS from "~/global.css?raw";
@@ -18,7 +18,7 @@ export default component$(() => {
         asChild
         onClick$={$(async () => {
           themeSig.value = localStorage.getItem(storageKey) ?? defaultTheme;
-          cssThemeOutput.value = await outputAppliedThemedCSS(
+          cssThemeOutput.value = await outputAppliedThemeCSS(
             themeSig.value === "dark" || themeSig.value === "light"
               ? "border-radius-0 simple primary-cyan-600 light base-slate"
               : themeSig.value,
