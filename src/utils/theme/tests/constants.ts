@@ -30,11 +30,24 @@ export const cssFiles = {
   }
 }
 `,
+  "class-selectors": `
+@layer components {
+  .btn {
+    color: red;
+    background-color: blue;
+    padding: 8px;
+  }
+  .qwik .btn {
+    color: blue;
+  }
+  .modern .btn {
+    color: green;
+    border: 1px solid red;
+  }
+}
+`,
 
   "nested-selectors": `
-@reference "../../../global.css";
-@import "./shared.css";
-
 @layer components {
   .btn {
     color: red;
@@ -65,9 +78,6 @@ export const cssFiles = {
 }
 `,
   "dark-variants": `
-@reference "../../../global.css";
-@import "./shared.css";
-
 @layer components {
   .btn {
     color: red;
@@ -93,14 +103,10 @@ export const cssFiles = {
 }
 `,
   "comma-separated": `
-@reference "../../../global.css";
-@import "./shared.css";
-
 @layer components {
   .btn,
   .icon-btn {
     color: red;
-    padding: 8px;
   }
   .modern .btn,
   .modern .icon-btn {

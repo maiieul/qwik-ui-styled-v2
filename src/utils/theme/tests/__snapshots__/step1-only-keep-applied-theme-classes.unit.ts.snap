@@ -24,15 +24,25 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case basic > basic 1`
 }"
 `;
 
-exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case comma-separated > comma-separated 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case class-selectors > class-selectors 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+    background-color: blue;
+    padding: 8px;
+  }
+  .modern .btn {
+    color: green;
+    border: 1px solid red;
+  }
+}"
+`;
 
-@layer components {
+exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case comma-separated > comma-separated 1`] = `
+"@layer components {
   .btn,
   .icon-btn {
     color: red;
-    padding: 8px;
   }
   .modern .btn,
   .modern .icon-btn {
@@ -42,10 +52,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case comma-separated 
 `;
 
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case dark-variants > dark-variants 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
-
-@layer components {
+"@layer components {
   .btn {
     color: red;
   }
@@ -62,10 +69,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case dark-variants > 
 `;
 
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case nested-selectors > nested-selectors 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
-
-@layer components {
+"@layer components {
   .btn {
     color: red;
     background-color: blue;

@@ -21,24 +21,28 @@ exports[`step3 - mergeDuplicates (snapshots) > case basic > basic 1`] = `
 }"
 `;
 
-exports[`step3 - mergeDuplicates (snapshots) > case comma-separated > comma-separated 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+exports[`step3 - mergeDuplicates (snapshots) > case class-selectors > class-selectors 1`] = `
+"@layer components {
+  .btn {
+    color: green;
+    background-color: blue;
+    padding: 8px;
+    border: 1px solid red;
+  }
+}"
+`;
 
-@layer components {
+exports[`step3 - mergeDuplicates (snapshots) > case comma-separated > comma-separated 1`] = `
+"@layer components {
   .btn,
   .icon-btn {
     color: green;
-    padding: 8px;
   }
 }"
 `;
 
 exports[`step3 - mergeDuplicates (snapshots) > case dark-variants > dark-variants 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
-
-@layer components {
+"@layer components {
   .btn {
     color: yellow;
   }
@@ -49,10 +53,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case dark-variants > dark-variant
 `;
 
 exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-selectors 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
-
-@layer components {
+"@layer components {
   .btn {
     color: green;
     background-color: blue;
