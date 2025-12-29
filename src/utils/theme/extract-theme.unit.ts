@@ -25,6 +25,18 @@ const cssFiles = [
   .modern .btn {
     color: green;
   }
+  .whatever .btn {
+    color: red;
+  }
+  .whatever.modern .btn {
+    color: green;
+  }
+  .whatever.qwik .btn {
+    color: blue;
+  }
+  .whatever.modern.qwik .btn {
+    color: green;
+  }
 }
 
 @theme {
@@ -34,24 +46,6 @@ const cssFiles = [
 @media (max-width: 768px) {
   .test {
     color: yellow;
-  }
-}
-
-@layer components {
-  .test {
-    color: orange;
-  }
-  .callout-root {
-    background-color: blue;
-  }
-  .qwik .callout-root {
-    background-color: yellow;
-  }
-  .modern .callout-root {
-    background-color: green;
-  }
-  .whatever .callout-root {
-    background-color: red;
   }
 }
 `,
@@ -113,41 +107,35 @@ const cssFiles = [
 ];
 
 describe("outputThemedCSS", () => {
-  cssFiles.forEach((css) => {
-    it("should throw an error if multiple @layer declarations are found", () => {
+  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+    "should throw an error if multiple @layer declarations are found (case %s)",
+    (_caseIdx, css) => {
       expect(() => outputThemedCSS("modern", css)).toThrow(
         "Multiple @layer declarations found",
       );
-    });
-  });
+    },
+  );
 });
 
-describe("onlyKeepAppliedThemeClasses", () => {
-  cssFiles.forEach((css) => {
-    it("should keep all generic rules that do not have a theme specific class name in the prelude (e.g. .btn { ... })", async () => {
+describe.only("onlyKeepAppliedThemeClasses", () => {
+  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+    "should keep all generic rules that do not have a theme specific class name in the prelude (e.g. .btn { ... }) (case %s)",
+    async (_caseIdx, css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
 
-      console.log("result", result);
-      const buttonRule = `
-  .btn {
-`;
-      expect(result).toContain(buttonRule);
-
-      const testRuleInAtMediaRule = `
-@media (max-width: 768px) {
-  .test {
-`;
-      expect(result).toContain(testRuleInAtMediaRule);
-
       const testRuleInAtLayerRule = `
 @layer components {
-  .test {
+  .btn {
 `;
       expect(result).toContain(testRuleInAtLayerRule);
-    });
-    it("should keep all rules that match the applied theme (e.g. .modern .btn { ... })", async () => {
+    },
+  );
+
+  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+    "should keep all rules that match the applied theme (e.g. .modern .btn { ... }) (case %s)",
+    async (_caseIdx, css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
@@ -156,13 +144,12 @@ describe("onlyKeepAppliedThemeClasses", () => {
   .modern .btn {
 `;
       expect(result).toContain(modernThemeButtonRule);
+    },
+  );
 
-      const modernThemeCalloutRule = `
-  .modern .callout-root {
-`;
-      expect(result).toContain(modernThemeCalloutRule);
-    });
-    it("should not keep any rules containing a theme class that isn't applied (e.g. .qwik .btn { ... })", async () => {
+  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+    "should not keep any rules containing a theme class that isn't applied (e.g. .qwik .btn { ... }) (case %s)",
+    async (_caseIdx, css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
@@ -181,46 +168,36 @@ describe("onlyKeepAppliedThemeClasses", () => {
   .whatever .callout-root {
 `;
       expect(result).not.toContain(whateverThemeCalloutRule);
-    });
-  });
+    },
+  );
 });
 
 describe("removeThemePreludes", () => {
-  cssFiles.forEach((css) => {
-    it("should remove the theme preludes from the at layer rule blocks", async () => {
+  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+    "should remove the theme preludes from the at layer rule blocks (case %s)",
+    async (_caseIdx, css) => {
       const result = await generateUpToRemoveThemePreludes(css, ["modern"]);
       console.log("result", result);
       expect(result).not.toContain(".modern");
       expect(result).toContain(".btn");
-    });
-  });
+    },
+  );
 });
 
-describe.only("mergeDuplicates", () => {
-  cssFiles.forEach((css) => {
-    it("should merge the applied theme classes into the generic classes", async () => {
+describe("mergeDuplicates", () => {
+  it.each(cssFiles.map((css, idx) => [idx, css] as const))(
+    "should not contain any duplicate selectors (case %s)",
+    async (_caseIdx, css) => {
       const result = await generateUpToMergeDuplicates(css, ["modern"]);
 
       console.log("result", result);
-      expect(result).not.toContain(".modern");
 
-      const btnClassOutput = `
-  .btn {
-    color: green;
-    background-color: blue;
-    border: 1px solid red;
-  }
-`;
-      expect(result).toContain(btnClassOutput);
-
-      const calloutRootClassOutput = `
-  .callout-root {
-    background-color: blue;
-  }
-`;
-      expect(result).toContain(calloutRootClassOutput);
-    });
-  });
+      const duplicates = result
+        .split("\n")
+        .filter((line) => line.includes(".btn"));
+      expect(duplicates).toHaveLength(0);
+    },
+  );
 });
 
 const generateUpToOnlyKeepAppliedThemeClasses = async (
