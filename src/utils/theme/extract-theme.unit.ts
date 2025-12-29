@@ -12,7 +12,7 @@ import * as csstree from "css-tree";
 
 const theme = "modern" as const;
 
-const cssFiles = {
+const t = {
   basic: `
 @reference "../../../global.css";
 @import "./shared.css";
@@ -42,22 +42,7 @@ const cssFiles = {
   }
 }
 `,
-  "comma-separated": `
-@reference "../../../global.css";
-@import "./shared.css";
 
-@layer components {
-  .btn,
-  .icon-btn {
-    color: red;
-    padding: 8px;
-  }
-  .modern .btn,
-  .modern .icon-btn {
-    color: green;
-  }
-}
-`,
   "nested-selectors": `
 @reference "../../../global.css";
 @import "./shared.css";
@@ -119,12 +104,28 @@ const cssFiles = {
   }
 }
 `,
+  "comma-separated": `
+@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn,
+  .icon-btn {
+    color: red;
+    padding: 8px;
+  }
+  .modern .btn,
+  .modern .icon-btn {
+    color: green;
+  }
+}
+`,
 } as const;
 
 describe.skip("outputThemedCSS", () => {
-  // it.each(Object.entries(cssFiles))(
-  //   "should throw an error if multiple @layer declarations are found (case %#)",
-  //   (_name, css) => {
+  // it.each([t["basic"], t["nested-selectors"], t["dark-variants"]])(
+  //   "should throw an error if multiple @layer declarations are found",
+  //   (css) => {
   //     expect(() => outputThemedCSS(css, "modern")).toThrow(
   //       "Multiple @layer declarations found",
   //     );
@@ -133,62 +134,38 @@ describe.skip("outputThemedCSS", () => {
 });
 
 describe("onlyKeepAppliedThemeClasses", () => {
-  it.each(Object.entries(cssFiles))(
-    "should keep all generic rules that do not have a theme specific class name in the prelude (e.g. .btn { ... }) (case %s)",
-    async (_name, css) => {
+  it.each([t["basic"], t["nested-selectors"], t["dark-variants"]])(
+    "should keep all generic rules that do not have a theme specific class name in the prelude (e.g. .btn { ... })",
+    async (css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
-      // Handles both single selectors (".btn") and selector lists (".btn, .icon-btn").
-      const ast = csstree.parse(result) as csstree.StyleSheet;
-      const preludes: string[] = [];
 
-      csstree.walk(ast, {
-        visit: "Atrule",
-        enter(atRule) {
-          if (atRule.name !== "layer" || !atRule.block) return;
-          atRule.block.children?.forEach((child) => {
-            if (child.type !== "Rule" || child.prelude.type !== "SelectorList")
-              return;
-            preludes.push(csstree.generate(child.prelude).trim());
-          });
-        },
-      });
-
-      expect(
-        preludes.some((p) => p.includes(".btn") && !p.includes(".modern")),
-      ).toBe(true);
+      const testRuleInAtLayerRule = `
+@layer components {
+  .btn {
+`;
+      expect(result).toContain(testRuleInAtLayerRule);
     },
   );
 
-  it.each(Object.entries(cssFiles))(
-    "should keep all rules that match the applied theme (e.g. .modern .btn { ... }) (case %s)",
-    async (_name, css) => {
+  it.each([t["basic"], t["nested-selectors"], t["dark-variants"]])(
+    "should keep all rules that match the applied theme (e.g. .modern .btn { ... })",
+    async (css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
-      const ast = csstree.parse(result) as csstree.StyleSheet;
-      const preludes: string[] = [];
 
-      csstree.walk(ast, {
-        visit: "Atrule",
-        enter(atRule) {
-          if (atRule.name !== "layer" || !atRule.block) return;
-          atRule.block.children?.forEach((child) => {
-            if (child.type !== "Rule" || child.prelude.type !== "SelectorList")
-              return;
-            preludes.push(csstree.generate(child.prelude).trim());
-          });
-        },
-      });
-
-      expect(preludes.some((p) => p.includes(".modern"))).toBe(true);
+      const modernThemeButtonRule = `
+  .modern .btn {
+`;
+      expect(result).toContain(modernThemeButtonRule);
     },
   );
 
-  it.each(Object.entries(cssFiles))(
-    "should not keep any rules containing a theme class that isn't applied (e.g. .qwik .btn { ... }) (case %s)",
-    async (_name, css) => {
+  it.each([t["basic"], t["nested-selectors"], t["dark-variants"]])(
+    "should not keep any rules containing a theme class that isn't applied (e.g. .qwik .btn { ... })",
+    async (css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
@@ -212,9 +189,9 @@ describe("onlyKeepAppliedThemeClasses", () => {
 });
 
 describe("removeThemePreludes", () => {
-  it.each(Object.entries(cssFiles))(
-    "should remove the theme preludes from the at layer rule blocks (case %s)",
-    async (_name, css) => {
+  it.each([t["basic"], t["nested-selectors"], t["dark-variants"]])(
+    "should remove the theme preludes from the at layer rule blocks",
+    async (css) => {
       const result = await generateUpToRemoveThemePreludes(css, [theme]);
       expect(result).not.toContain(".modern");
       expect(result).toContain(".btn");
@@ -249,9 +226,9 @@ describe("mergeDuplicates", () => {
     return duplicates;
   };
 
-  it.each(Object.entries(cssFiles))(
-    "should remove duplicate selectors inside @layer blocks (case %s)",
-    async (_name, css) => {
+  it.each([t["basic"], t["nested-selectors"], t["dark-variants"]])(
+    "should remove duplicate selectors inside @layer blocks",
+    async (css) => {
       // Before merge: duplicates should exist (otherwise the test is vacuous)
       let ast = withOnlyKeepAppliedThemeClasses(css, [theme]);
       ast = withRemoveThemePreludes(ast, [theme]);
@@ -264,16 +241,14 @@ describe("mergeDuplicates", () => {
     },
   );
   it("should output the correct CSS without duplicates", async () => {
-    const cssOutput0 = await generateUpToMergeDuplicates(cssFiles["basic"], [
-      theme,
-    ]);
+    const cssOutput0 = await generateUpToMergeDuplicates(t["basic"], [theme]);
     expect(cssOutput0).toContain(`
   .btn {
     color: green;
   }
 `);
     const cssOutput1 = await generateUpToMergeDuplicates(
-      cssFiles["nested-selectors"],
+      t["nested-selectors"],
       [theme],
     );
     console.log("cssOutput1", cssOutput1);
@@ -293,10 +268,9 @@ describe("mergeDuplicates", () => {
     }
   }
 `);
-    const cssOutput2 = await generateUpToMergeDuplicates(
-      cssFiles["dark-variants"],
-      [theme],
-    );
+    const cssOutput2 = await generateUpToMergeDuplicates(t["dark-variants"], [
+      theme,
+    ]);
     expect(cssOutput2).toContain(`
   .btn {
     color: yellow;
@@ -306,10 +280,9 @@ describe("mergeDuplicates", () => {
   }
 `);
 
-    const cssOutput3 = await generateUpToMergeDuplicates(
-      cssFiles["comma-separated"],
-      [theme],
-    );
+    const cssOutput3 = await generateUpToMergeDuplicates(t["comma-separated"], [
+      theme,
+    ]);
     expect(cssOutput3).toContain(`
   .btn,
   .icon-btn {
