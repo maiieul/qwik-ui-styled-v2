@@ -80,63 +80,53 @@ export function removeThemePreludes(
   atRuleBlockChildren: csstree.List<csstree.CssNode>,
   themeProperties: string[],
 ): csstree.List<csstree.CssNode> {
-  const result: csstree.List<csstree.CssNode> = new csstree.List();
+  const nonThemedRules: csstree.List<csstree.CssNode> = new csstree.List();
 
-  if (!atRuleBlockChildren) return result;
+  if (!atRuleBlockChildren) return nonThemedRules;
 
   for (const rule of atRuleBlockChildren) {
     if (rule.type !== "Rule" || rule.prelude.type !== "SelectorList") {
+      // Extremely defensive; @layer blocks should only contain rules in our pipeline.
+      nonThemedRules.push(rule);
       continue;
     }
 
     const newSelectors: csstree.List<csstree.CssNode> = new csstree.List();
 
     for (const selectorNode of rule.prelude.children) {
-      if (selectorNode.type !== "Selector") {
-        continue;
-      }
+      if (selectorNode.type !== "Selector") continue;
 
-      const children = selectorNode.children.toArray();
-      const first = children[0];
-      const second = children[1];
+      const containsThemeClass = selectorNode.children.some(
+        (n) => n.type === "ClassSelector" && themeProperties.includes(n.name),
+      );
 
-      const startsWithThemePrelude =
-        first?.type === "ClassSelector" &&
-        themeProperties.some((p) => p === first.name) &&
-        second?.type === "Combinator";
-
-      if (!startsWithThemePrelude) {
-        newSelectors.push(selectorNode);
-        continue;
-      }
-
-      // Strip: [ClassSelector(".modern"), Combinator(" "), ...rest] => [...rest]
-      if (children.length <= 2) {
-        // Would become an empty selector; drop it entirely.
-        continue;
-      }
-
-      selectorNode.children = new csstree.List();
-      for (let i = 2; i < children.length; i++) {
-        selectorNode.children.push(children[i]);
+      if (containsThemeClass) {
+        // Remove matching theme class selectors from the leading compound in-place.
+        const selectorsWithoutThemeClasses =
+          new csstree.List<csstree.CssNode>();
+        selectorNode.children.forEach((child) => {
+          if (
+            child.type === "ClassSelector" &&
+            themeProperties.includes(child.name)
+          ) {
+            return;
+          }
+          selectorsWithoutThemeClasses.push(child);
+        });
+        selectorNode.children = selectorsWithoutThemeClasses;
       }
 
       newSelectors.push(selectorNode);
     }
 
-    // If all selectors were removed, drop the entire rule
-    if (newSelectors.isEmpty) {
-      continue;
-    }
-
     rule.prelude.children = newSelectors;
-    result.push(rule);
+    nonThemedRules.push(rule);
   }
 
-  return result;
+  return nonThemedRules;
 }
 
-export function mergeAtRuleAppliedThemeClassesIntoGenericClasses(
+export function mergeDuplicates(
   atRuleBlockChildren: csstree.List<csstree.CssNode>,
   themeProperties: string[],
 ): csstree.List<csstree.CssNode> {

@@ -1,37 +1,29 @@
+// To understand the AST, use https://astexplorer.net/
+
 import { describe, it, expect } from "vitest";
 import {
   generatePrettifiedCSS,
-  mergeAtRuleAppliedThemeClassesIntoGenericClasses,
+  mergeDuplicates,
   onlyKeepAppliedThemeClasses,
   outputThemedCSS,
   removeThemePreludes,
 } from "./extract-theme";
 import * as csstree from "css-tree";
 
-const css = `
+const cssFiles = [
+  `
 @reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {
   .btn {
     color: red;
-    background-color: blue;
-    &:focus-visible {
-      outline: 2px solid red;
-    }
   }
   .qwik .btn {
     color: blue;
-    &:hover {
-      transform: translate(-2px, -2px);
-    }
   }
   .modern .btn {
     color: green;
-    border: 1px solid red;
-    &:hover {
-      transform: scale(0.99);
-    }
   }
 }
 
@@ -62,110 +54,172 @@ const css = `
     background-color: red;
   }
 }
-`;
+`,
+  `
+@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn {
+    color: red;
+    background-color: blue;
+    &:focus-visible {
+      outline: 2px solid red;
+    }
+  }
+  .qwik .btn {
+    color: blue;
+    &:hover {
+      transform: translate(-2px, -2px);
+    }
+  }
+  .modern .btn {
+    color: green;
+    border: 1px solid red;
+    &:hover {
+      transform: scale(0.99);
+    }
+  }
+}
+`,
+  `
+@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn {
+    color: red;
+  }
+  .qwik .btn {
+    color: blue;
+  }
+  .dark.qwik .btn {
+    color: green;
+  }
+  .qwik.dark .btn {
+    color: blue;
+  }
+  .modern .btn {
+    color: green;
+  }
+  .modern.dark .btn {
+    color: green;
+  }
+  .dark.modern .btn {
+    color: red;
+  }
+}
+`,
+];
 
 describe("outputThemedCSS", () => {
-  it.skip("should extract all @layer declarations", () => {
-    expect(() => outputThemedCSS("modern", css)).toThrow(
-      "Multiple @layer declarations found",
-    );
+  cssFiles.forEach((css) => {
+    it("should throw an error if multiple @layer declarations are found", () => {
+      expect(() => outputThemedCSS("modern", css)).toThrow(
+        "Multiple @layer declarations found",
+      );
+    });
   });
 });
 
 describe("onlyKeepAppliedThemeClasses", () => {
-  it("should keep all generic rules that do not have a theme specific class name in the prelude (e.g. .btn { ... })", async () => {
-    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
-      "modern",
-    ]);
-
-    console.log("result", result);
-    const buttonRule = `
-  .btn {
-`;
-    expect(result).toContain(buttonRule);
-
-    const testRuleInAtMediaRule = `
-@media (max-width: 768px) {
-  .test {
-`;
-    expect(result).toContain(testRuleInAtMediaRule);
-
-    const testRuleInAtLayerRule = `
-@layer components {
-  .test {
-`;
-    expect(result).toContain(testRuleInAtLayerRule);
-  });
-  it("should keep all rules that match the applied theme (e.g. .modern .btn { ... })", async () => {
-    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
-      "modern",
-    ]);
-
-    const modernThemeButtonRule = `
-  .modern .btn {
-`;
-    expect(result).toContain(modernThemeButtonRule);
-
-    const modernThemeCalloutRule = `
-  .modern .callout-root {
-`;
-    expect(result).toContain(modernThemeCalloutRule);
-  });
-  it("should not keep any rules containing a theme class that isn't applied (e.g. .qwik .btn { ... })", async () => {
-    const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
-      "modern",
-    ]);
-
-    const qwikThemeButtonRule = `
-  .qwik .btn {
-`;
-    expect(result).not.toContain(qwikThemeButtonRule);
-
-    const qwikThemeCalloutRule = `
-  .qwik .callout-root {
-`;
-    expect(result).not.toContain(qwikThemeCalloutRule);
-
-    const whateverThemeCalloutRule = `
-  .whatever .callout-root {
-`;
-    expect(result).not.toContain(whateverThemeCalloutRule);
-  });
-});
-
-describe.only("removeThemePreludes", () => {
-  it("should remove the theme preludes from the at layer rule blocks", async () => {
-    const result = await generateUpToRemoveThemePreludes(css, ["modern"]);
-    console.log("result", result);
-    expect(result).not.toContain(".modern");
-  });
-});
-
-describe("mergeAtRuleAppliedThemeClassesIntoGenericClasses", () => {
-  it("should merge the applied theme classes into the generic classes", async () => {
-    const result =
-      await generateUpToMergeAtRuleAppliedThemeClassesIntoGenericClasses(css, [
+  cssFiles.forEach((css) => {
+    it("should keep all generic rules that do not have a theme specific class name in the prelude (e.g. .btn { ... })", async () => {
+      const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
         "modern",
       ]);
 
-    console.log("result", result);
-    expect(result).not.toContain(".modern");
+      console.log("result", result);
+      const buttonRule = `
+  .btn {
+`;
+      expect(result).toContain(buttonRule);
 
-    const btnClassOutput = `
+      const testRuleInAtMediaRule = `
+@media (max-width: 768px) {
+  .test {
+`;
+      expect(result).toContain(testRuleInAtMediaRule);
+
+      const testRuleInAtLayerRule = `
+@layer components {
+  .test {
+`;
+      expect(result).toContain(testRuleInAtLayerRule);
+    });
+    it("should keep all rules that match the applied theme (e.g. .modern .btn { ... })", async () => {
+      const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
+        "modern",
+      ]);
+
+      const modernThemeButtonRule = `
+  .modern .btn {
+`;
+      expect(result).toContain(modernThemeButtonRule);
+
+      const modernThemeCalloutRule = `
+  .modern .callout-root {
+`;
+      expect(result).toContain(modernThemeCalloutRule);
+    });
+    it("should not keep any rules containing a theme class that isn't applied (e.g. .qwik .btn { ... })", async () => {
+      const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
+        "modern",
+      ]);
+
+      const qwikThemeButtonRule = `
+  .qwik .btn {
+`;
+      expect(result).not.toContain(qwikThemeButtonRule);
+
+      const qwikThemeCalloutRule = `
+  .qwik .callout-root {
+`;
+      expect(result).not.toContain(qwikThemeCalloutRule);
+
+      const whateverThemeCalloutRule = `
+  .whatever .callout-root {
+`;
+      expect(result).not.toContain(whateverThemeCalloutRule);
+    });
+  });
+});
+
+describe("removeThemePreludes", () => {
+  cssFiles.forEach((css) => {
+    it("should remove the theme preludes from the at layer rule blocks", async () => {
+      const result = await generateUpToRemoveThemePreludes(css, ["modern"]);
+      console.log("result", result);
+      expect(result).not.toContain(".modern");
+      expect(result).toContain(".btn");
+    });
+  });
+});
+
+describe.only("mergeDuplicates", () => {
+  cssFiles.forEach((css) => {
+    it("should merge the applied theme classes into the generic classes", async () => {
+      const result = await generateUpToMergeDuplicates(css, ["modern"]);
+
+      console.log("result", result);
+      expect(result).not.toContain(".modern");
+
+      const btnClassOutput = `
   .btn {
     color: green;
     background-color: blue;
     border: 1px solid red;
   }
 `;
-    expect(result).toContain(btnClassOutput);
+      expect(result).toContain(btnClassOutput);
 
-    const calloutRootClassOutput = `
+      const calloutRootClassOutput = `
   .callout-root {
     background-color: blue;
   }
 `;
-    expect(result).toContain(calloutRootClassOutput);
+      expect(result).toContain(calloutRootClassOutput);
+    });
   });
 });
 
@@ -186,16 +240,13 @@ const generateUpToRemoveThemePreludes = async (
   return await generatePrettifiedCSS(ast);
 };
 
-const generateUpToMergeAtRuleAppliedThemeClassesIntoGenericClasses = async (
+const generateUpToMergeDuplicates = async (
   cssString: string,
   themeProperties: string[],
 ): Promise<string> => {
   let ast = withOnlyKeepAppliedThemeClasses(cssString, themeProperties);
   ast = withRemoveThemePreludes(ast, themeProperties);
-  ast = withMergeAtRuleAppliedThemeClassesIntoGenericClasses(
-    ast,
-    themeProperties,
-  );
+  ast = withMergeDuplicates(ast, themeProperties);
   return await generatePrettifiedCSS(ast);
 };
 
@@ -237,7 +288,7 @@ const withRemoveThemePreludes = (
   return ast;
 };
 
-const withMergeAtRuleAppliedThemeClassesIntoGenericClasses = (
+const withMergeDuplicates = (
   ast: csstree.StyleSheet,
   themeProperties: string[],
 ): csstree.StyleSheet => {
@@ -246,7 +297,7 @@ const withMergeAtRuleAppliedThemeClassesIntoGenericClasses = (
     visit: "Atrule",
     enter(atRule) {
       if (atRule.name !== "layer" || !atRule.block) return;
-      atRule.block.children = mergeAtRuleAppliedThemeClassesIntoGenericClasses(
+      atRule.block.children = mergeDuplicates(
         atRule.block.children,
         themeProperties,
       );
