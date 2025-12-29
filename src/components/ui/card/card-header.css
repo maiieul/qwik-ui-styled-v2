@@ -1,10 +1,6 @@
 @reference "../../../global.css";
 
 @layer components {
-  /* .card-header {
-    @apply flex flex-col space-y-1.5 p-6;
-  } */
-
   .card-header {
     display: flex;
     flex-direction: column;

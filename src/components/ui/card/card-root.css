@@ -1,69 +1,50 @@
 @reference "../../../global.css";
 
 @layer components {
-  /* .card {
-    @apply rounded-xs border bg-card text-card-foreground shadow-md;
-  }
-
-  .card.card-primary {
-    @apply border-primary-border shadow-primary-shadow;
-  }
-
-  .card.card-secondary {
-    @apply border-secondary-border shadow-secondary-shadow;
-  }
-
-  .card.card-altPrimary {
-    @apply border-primary-border shadow-primary-shadow;
-  }
-
-  .card.card-altSecondary {
-    @apply border-secondary-border shadow-secondary-shadow;
-  }
-
-  .card.card-outline {
-    @apply bg-outline text-foreground shadow-shadow;
-  }
-
-  .card.card-altOutline {
-    @apply border-border shadow-shadow;
-  }
-  */
   .card {
-    box-shadow: var(--shadow-sm) var(--shadow);
-    border: var(--default-border-width) solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-2xl);
     background-color: var(--card);
     color: var(--card-foreground);
   }
-
-  .card.card-primary {
-    box-shadow: var(--shadow-sm) var(--primary-shadow);
-    border: var(--default-border-width) solid var(--primary-border);
+  .qwik .card {
+  }
+  .modern .card {
+    border: var(--default-border-width) solid var(--border);
   }
 
-  .card.card-secondary {
-    box-shadow: var(--shadow-sm) var(--secondary-shadow);
-    border: var(--default-border-width) solid var(--secondary-border);
+  .card.card-default {
+  }
+  .qwik .card.card-default {
+    box-shadow: var(--shadow-sm) var(--shadow);
+    border: var(--default-border-width) solid var(--border);
+  }
+  .modern .card.card-default {
+    box-shadow: var(--shadow-sm);
   }
 
-  .card.card-tertiary {
-    box-shadow: var(--shadow-sm) var(--tertiary-shadow);
-    border: var(--default-border-width) solid var(--tertiary-border);
+  .card.card-accent {
+  }
+  .qwik .card.card-accent {
+    box-shadow: var(--shadow-sm) var(--shadow-accent);
+    border: var(--default-border-width) solid var(--border-accent);
+  }
+  .modern .card.card-accent {
+    box-shadow: var(--shadow-md);
+  }
+  .modern.dark .card.card-accent {
+    border: var(--default-border-width) solid var(--border-accent);
   }
 
-  .card.card-alt-primary {
-    box-shadow: var(--shadow-sm) var(--alt-primary-shadow);
-    border: var(--default-border-width) solid var(--alt-primary-border);
+  .card.card-emphasis {
   }
-
-  .card.card-alt-secondary {
-    box-shadow: var(--shadow-sm) var(--alt-secondary-shadow);
-    border: var(--default-border-width) solid var(--alt-secondary-border);
+  .qwik .card.card-emphasis {
+    box-shadow: var(--shadow-sm) var(--shadow-emphasis);
+    border: var(--default-border-width) solid var(--border-emphasis);
   }
-
-  .card.card-alt-tertiary {
-    box-shadow: var(--shadow-sm) var(--alt-tertiary-shadow);
-    border: var(--default-border-width) solid var(--alt-tertiary-border);
+  .modern .card.card-emphasis {
+    box-shadow: var(--shadow-lg);
+  }
+  .modern.dark .card.card-emphasis {
+    border: var(--default-border-width) solid var(--border-emphasis);
   }
 }

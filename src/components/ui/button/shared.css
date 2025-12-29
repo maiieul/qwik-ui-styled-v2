@@ -1,12 +1,6 @@
 @reference "../../../global.css";
 
 @layer components {
-  /* 
-  .btn {
-    @apply inline-flex shrink-0 items-center justify-center gap-2 rounded-xs text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-alert-border aria-invalid:ring-alert-ring [&_svg]:pointer-events-none [&_svg]:shrink-0;
-  }
-*/
-
   .btn-base {
     display: inline-flex;
     flex-shrink: 0;

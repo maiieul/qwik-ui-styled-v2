@@ -59,7 +59,7 @@ export default component$<PropsOf<typeof Button>>(() => {
 
         <footer class="flex w-full justify-between gap-4">
           <Button
-            variant="ghost-link"
+            variant="vanilla"
             onClick$={() => {
               themeSig.value = themeSig.value?.includes("dark")
                 ? "dark"

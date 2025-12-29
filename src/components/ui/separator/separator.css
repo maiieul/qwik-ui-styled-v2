@@ -1,13 +1,33 @@
 @reference "../../../global.css";
 
 @layer components {
-  /* Separator horizontal */
-  .separator-horizontal {
-    @apply bg-secondary-border shadow-alt-secondary-border h-0.5 w-full shrink-0 shadow-[3px_3px_1px];
+  .separator {
+    flex-shrink: 0;
+  }
+  .qwik .separator {
+    background-color: var(--secondary-border);
+  }
+  .modern .separator {
+    background-color: var(--border);
   }
 
-  /* Separator vertical */
-  .separator-vertical {
-    @apply bg-secondary-border shadow-alt-secondary-border h-full w-0.5 shrink-0 shadow-[3px_3px_1px];
+  .qwik .separator-horizontal {
+    box-shadow: 3px 3px var(--border);
+    width: 100%;
+    height: 2px;
+  }
+  .modern .separator-horizontal {
+    width: 100%;
+    height: 1px;
+  }
+
+  .qwik .separator-vertical {
+    box-shadow: 3px 3px var(--border);
+    width: 2px;
+    height: 100%;
+  }
+  .modern .separator-vertical {
+    width: 1px;
+    height: 100%;
   }
 }

@@ -1,26 +1,6 @@
 @reference "../../../global.css";
 
 @layer components {
-  /* .chip {
-    @apply inline-flex items-center rounded-sm px-2.5 py-0.5 text-xs font-semibold shadow-xs transition-colors focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden;
-  }
-
-  .chip-primary {
-    @apply bg-primary-background text-primary-foreground;
-  }
-
-  .chip-secondary {
-    @apply bg-secondary text-secondary-foreground;
-  }
-
-  .chip-alert {
-    @apply bg-alert text-alert-foreground;
-  }
-
-  .chip-outline {
-    @apply border bg-outline text-outline-foreground;
-  } */
-
   .chip {
     display: inline-flex;
     align-items: center;
@@ -36,41 +16,52 @@
       outline-offset: 2px;
     }
   }
-
-  .chip.variant-primary {
-    box-shadow: var(--shadow-xs) var(--primary-shadow);
-    border: var(--default-border-width) solid var(--primary-border);
+  .qwik .chip {
+  }
+  .modern .chip {
+    padding: 0.275rem 0.5rem;
   }
 
-  .chip.variant-secondary {
+  .chip.variant-outline {
+  }
+  .qwik .chip.variant-outline {
     box-shadow: var(--shadow-xs) var(--secondary-shadow);
     border: var(--default-border-width) solid var(--secondary-border);
   }
-
-  .chip.variant-tertiary {
-    box-shadow: var(--shadow-xs) var(--tertiary-shadow);
-    border: var(--default-border-width) solid var(--tertiary-border);
+  .modern .chip.variant-outline {
+    border: var(--default-border-width) solid var(--border);
   }
 
-  .chip.variant-alt-primary {
-    box-shadow: var(--shadow-xs) var(--alt-primary-shadow);
-    border: var(--default-border-width) solid var(--alt-primary-border);
+  .chip.variant-secondary {
+    background-color: var(--secondary-background);
+    color: var(--secondary-foreground);
+  }
+  .qwik .chip.variant-secondary {
+    box-shadow: var(--shadow-xs) var(--secondary-shadow);
+    border: var(--default-border-width) solid var(--secondary-border);
+  }
+  .modern .chip.variant-secondary {
   }
 
-  .chip.variant-alt-secondary {
-    box-shadow: var(--shadow-xs) var(--alt-secondary-shadow);
-    border: var(--default-border-width) solid var(--alt-secondary-border);
+  .chip.variant-primary {
+    background-color: var(--primary-background);
+    color: var(--primary-foreground);
   }
-
-  .chip.variant-alt-tertiary {
-    box-shadow: var(--shadow-xs) var(--alt-tertiary-shadow);
-    border: var(--default-border-width) solid var(--alt-tertiary-border);
+  .qwik .chip.variant-primary {
+    box-shadow: var(--shadow-xs) var(--primary-shadow);
+    border: var(--default-border-width) solid var(--primary-border);
+  }
+  .modern .chip.variant-primary {
   }
 
   .chip.variant-alert {
-    box-shadow: var(--shadow-xs) var(--alert-shadow);
-    border: var(--default-border-width) solid var(--alert-border);
     background-color: var(--alert-background);
     color: var(--alert-foreground);
+  }
+  .qwik .chip.variant-alert {
+    box-shadow: var(--shadow-xs) var(--alert-shadow);
+    border: var(--default-border-width) solid var(--alert-border);
+  }
+  .modern .chip.variant-alert {
   }
 }

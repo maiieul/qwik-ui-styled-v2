@@ -1,4 +1,11 @@
-import { $, component$, PropsOf, Slot, useSignal } from "@qwik.dev/core";
+import {
+  $,
+  component$,
+  PropsOf,
+  Slot,
+  useStyles$,
+  useSignal,
+} from "@qwik.dev/core";
 import {
   Chip,
   Button,
@@ -18,26 +25,16 @@ export default component$(() => {
   return (
     <>
       <h2 class="text-2xl font-bold">Chips</h2>
-      <div class="my-10 flex justify-start gap-6">
-        <Chip variant="tertiary">Tertiary</Chip>
-        <Chip variant="alt-tertiary">Alt Tertiary</Chip>
-      </div>
-      <div class="my-10 flex justify-start gap-6">
+      <div class="my-10 flex flex-col items-start justify-start gap-6">
+        <Chip variant="outline">Outline</Chip>
         <Chip variant="secondary">Secondary</Chip>
-        <Chip variant="alt-secondary">Alt Secondary</Chip>
-      </div>
-      <div class="my-10 flex justify-start gap-6">
         <Chip variant="primary">Primary</Chip>
-        <Chip variant="alt-primary">Alt Primary</Chip>
       </div>
       <div class="my-10 flex justify-start gap-6">
         <Chip variant="alert">
-          {" "}
           <Lucide.TriangleAlert name="icon" class="mr-1 size-4" /> Expired
         </Chip>
       </div>
-      <div class="my-10 flex justify-start gap-6"></div>
-
       <h2 class="text-2xl font-bold">Inputs</h2>
       <div class="my-10 flex justify-start gap-6">
         <Input placeholder="Enter your name" name="simple" />
@@ -64,13 +61,13 @@ export default component$(() => {
       </div>
 
       <h2 class="text-2xl font-bold">Buttons</h2>
-      <h3>3 options (ghost-link + auxiliary + main)</h3>
+      <h3>3 options CTA (ghost-link + auxiliary + main)</h3>
       <div class="my-10 flex justify-start gap-6">
-        <Button variant="ghost-link">Delete listing</Button>
+        <Button variant="vanilla">Delete listing</Button>
         <Button variant="auxiliary">Edit</Button>
         <Button variant="main">Publish</Button>
       </div>
-      <h3>2 options (auxiliary + main | outline + main)</h3>
+      <h3>2 options CTA (auxiliary + main | outline + main)</h3>
       <div class="my-10 flex justify-start gap-6">
         <Button variant="auxiliary">Edit</Button>
         <Button variant="main">Confirm</Button>
@@ -79,12 +76,12 @@ export default component$(() => {
         <Button variant="outline">Discard</Button>
         <Button variant="main">Confirm</Button>
       </div>
-      <h3>links (link | ghost | ghost-outline)</h3>
+      <h3>nav (link | ghost)</h3>
       <div class="my-10 flex justify-start gap-6">
         <Button variant="link">home</Button>
       </div>
       <div class="my-10 flex justify-start gap-6">
-        <Button variant="ghost-outline">Learn more</Button>
+        <Button variant="ghost">Learn more</Button>
       </div>
       <h3>disabled</h3>
       <div class="my-10 flex justify-start gap-6">
@@ -122,52 +119,19 @@ export default component$(() => {
       </div>
 
       <h2 class="text-2xl font-bold">Icon Buttons</h2>
-      <h3>vanilla</h3>
-      <div class="my-10 flex justify-start gap-6">
-        <IconButton variant="vanilla">
-          <Lucide.WandSparkles name="icon" />
-        </IconButton>
+      <h3>variants (vanilla, ghost, outline)</h3>
+      <div class="my-10 flex flex-col justify-start gap-6">
         <IconButton variant="vanilla">
           <Lucide.Rocket name="icon" />
         </IconButton>
-      </div>
-      <h3>ghost</h3>
-      <div class="my-10 flex justify-start gap-6">
-        <IconButton variant="ghost">
-          <Lucide.WandSparkles name="icon" />
-        </IconButton>
         <IconButton variant="ghost">
           <Lucide.Rocket name="icon" />
-        </IconButton>
-        <IconButton variant="ghost">
-          <Lucide.Sun name="icon" />
-        </IconButton>
-      </div>
-      <h3>ghost-outline</h3>
-      <div class="my-10 flex justify-start gap-6">
-        <IconButton variant="ghost-outline">
-          <Lucide.WandSparkles name="icon" />
-        </IconButton>
-        <IconButton variant="ghost-outline">
-          <Lucide.Rocket name="icon" />
-        </IconButton>
-        <IconButton variant="ghost-outline">
-          <Lucide.Sun name="icon" />
-        </IconButton>
-      </div>
-      <h3>outline</h3>
-      <div class="my-10 flex justify-start gap-6">
-        <IconButton variant="outline">
-          <Lucide.WandSparkles name="icon" />
         </IconButton>
         <IconButton variant="outline">
           <Lucide.Rocket name="icon" />
         </IconButton>
-        <IconButton variant="outline">
-          <Lucide.Sun name="icon" />
-        </IconButton>
       </div>
-      <h3>sizes</h3>
+      <h3>sizes (sm + md + lg)</h3>
       <div class="my-10 flex justify-start gap-6">
         <IconButton variant="outline" size="sm">
           <Lucide.Rocket name="icon" />
@@ -179,10 +143,12 @@ export default component$(() => {
           <Lucide.Rocket name="icon" />
         </IconButton>
       </div>
-      <h2 class="text-2xl font-bold">Callout</h2>
-      <div class="my-10 grid grid-cols-2 justify-center gap-6">
-        <CalloutExample variant="outline" />
-        <CalloutExample variant="alt-outline" />
+      <h2 class="text-2xl font-bold">Callouts</h2>
+      <h3>variants (default, secondary, primary, alert)</h3>
+      <div class="my-10 grid grid-cols-1 justify-center gap-6">
+        <CalloutExample variant="default" />
+        <CalloutExample variant="secondary" />
+        <CalloutExample variant="primary" />
         <CalloutExample
           variant="alert"
           title="Attention!"
@@ -191,14 +157,21 @@ export default component$(() => {
       </div>
 
       <h2 class="text-2xl font-bold">Cards</h2>
-      <div class="my-10 grid grid-cols-2 justify-center gap-6">
-        <CardExample variant="tertiary" />
-        <CardExample variant="alt-tertiary" />
-        <CardExample variant="secondary" />
-        <CardExample variant="alt-secondary" />
-        <CardExample variant="primary" />
-        <CardExample variant="alt-primary" />
+      <h3>variants (default, accent, emphasis)</h3>
+      <div class="my-10 grid grid-cols-1 justify-center gap-6">
+        <CardExample variant="default" />
+        <CardExample variant="accent" />
+        <CardExample variant="emphasis" />
       </div>
+      <h3>Stacked cards</h3>
+      <CardExample
+        variant="default"
+        class="flex items-center justify-center gap-6"
+      >
+        <CardExample variant="default" class="h-40 w-40" />
+        <CardExample variant="accent" class="h-40 w-40" />
+        <CardExample variant="emphasis" class="h-40 w-40" />
+      </CardExample>
       <h2 class="text-2xl font-bold">Fields</h2>
       <div class="my-10 grid grid-cols-2 justify-center gap-6">
         <FieldExample />
@@ -255,8 +228,17 @@ const CalloutExample = component$<
 );
 
 const CardExample = component$<PropsOf<typeof Card.Root>>(({ ...props }) => {
+  useStyles$(`
+    @layer components {
+      .card-example {
+        height: 20rem;
+        width: 100%;
+      }
+    }
+  `);
+
   return (
-    <Card.Root {...props} class="flex items-center justify-center gap-2 py-32">
+    <Card.Root {...props} class={["card-example", props.class]}>
       <Slot />
     </Card.Root>
   );
@@ -287,7 +269,7 @@ const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
           </div>
         </footer>
         <Modal.Close class="absolute top-4 right-6" asChild>
-          <IconButton variant="outline">
+          <IconButton variant="vanilla">
             <Lucide.X name="icon" />
           </IconButton>
         </Modal.Close>
