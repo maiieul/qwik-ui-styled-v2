@@ -129,7 +129,68 @@ export function mergeDuplicates(
   themeProperties: string[],
 ): csstree.List<csstree.CssNode> {
   void themeProperties;
-  return atRuleBlockChildren;
+
+  type MergeState = {
+    rule: csstree.Rule;
+    declarationOrder: string[];
+    lastDeclarationByProperty: Map<string, csstree.Declaration>;
+    otherChildren: csstree.CssNode[];
+  };
+
+  const merged: csstree.List<csstree.CssNode> = new csstree.List();
+  const stateByPrelude = new Map<string, MergeState>();
+
+  if (!atRuleBlockChildren) return merged;
+
+  for (const child of atRuleBlockChildren) {
+    if (child.type !== "Rule" || child.prelude.type !== "SelectorList") {
+      continue;
+    }
+
+    const prelude = csstree.generate(child.prelude).trim();
+    let state = stateByPrelude.get(prelude);
+
+    if (!state) {
+      state = {
+        rule: child,
+        declarationOrder: [],
+        lastDeclarationByProperty: new Map(),
+        otherChildren: [],
+      };
+      stateByPrelude.set(prelude, state);
+      merged.push(child);
+    }
+
+    child.block.children?.forEach((n) => {
+      if (n.type === "Declaration") {
+        const property = n.property;
+        if (!state.lastDeclarationByProperty.has(property)) {
+          state.declarationOrder.push(property);
+        }
+        state.lastDeclarationByProperty.set(property, n);
+        return;
+      }
+
+      state.otherChildren.push(n);
+    });
+  }
+
+  for (const state of stateByPrelude.values()) {
+    const newChildren = new csstree.List<csstree.CssNode>();
+
+    for (const property of state.declarationOrder) {
+      const decl = state.lastDeclarationByProperty.get(property);
+      if (decl) newChildren.push(decl);
+    }
+
+    for (const other of state.otherChildren) {
+      newChildren.push(other);
+    }
+
+    state.rule.block.children = newChildren;
+  }
+
+  return merged;
 }
 
 export async function generatePrettifiedCSS(
