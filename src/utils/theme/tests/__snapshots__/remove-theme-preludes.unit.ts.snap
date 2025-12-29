@@ -1,0 +1,90 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`removeThemePreludes (snapshots) > case basic > basic 1`] = `
+"@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn {
+    color: red;
+  }
+  .btn {
+    color: green;
+  }
+}
+
+@theme {
+  --theme-var: var(--color-red);
+}
+
+@media (max-width: 768px) {
+  .test {
+    color: yellow;
+  }
+}"
+`;
+
+exports[`removeThemePreludes (snapshots) > case comma-separated > comma-separated 1`] = `
+"@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn,
+  .icon-btn {
+    color: red;
+    padding: 8px;
+  }
+  .btn,
+  .icon-btn {
+    color: green;
+  }
+}"
+`;
+
+exports[`removeThemePreludes (snapshots) > case dark-variants > dark-variants 1`] = `
+"@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn {
+    color: red;
+  }
+  .btn {
+    color: yellow;
+  }
+  .dark .btn {
+    color: pink;
+  }
+  .dark .btn {
+    color: purple;
+  }
+}"
+`;
+
+exports[`removeThemePreludes (snapshots) > case nested-selectors > nested-selectors 1`] = `
+"@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn {
+    color: red;
+    background-color: blue;
+    &:focus-visible {
+      outline: 2px solid red;
+    }
+    &:active {
+      transform: translate(2px, 2px);
+    }
+  }
+  .btn {
+    color: green;
+    border: 1px solid red;
+    &:hover {
+      transform: scale(0.99);
+    }
+    &:active {
+      transform: translate(-2px, -2px);
+    }
+  }
+}"
+`;
