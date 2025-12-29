@@ -7,7 +7,7 @@ import {
   onlyKeepAppliedThemeClasses,
   // outputThemedCSS,
   removeThemePreludes,
-} from "./extract-theme";
+} from "../extract-theme";
 import * as csstree from "css-tree";
 
 const theme = "modern" as const;
