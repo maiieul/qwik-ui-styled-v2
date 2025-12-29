@@ -86,8 +86,6 @@ export function removeThemePreludes(
 
   for (const rule of atRuleBlockChildren) {
     if (rule.type !== "Rule" || rule.prelude.type !== "SelectorList") {
-      // Extremely defensive; @layer blocks should only contain rules in our pipeline.
-      nonThemedRules.push(rule);
       continue;
     }
 
