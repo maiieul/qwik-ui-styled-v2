@@ -5,8 +5,8 @@ import { ButtonSizes } from "./shared";
 import { Render } from "../render";
 
 export type ButtonVariants =
-  | "main"
-  | "auxiliary"
+  | "primary"
+  | "secondary"
   | "outline"
   | "link"
   | "ghost"

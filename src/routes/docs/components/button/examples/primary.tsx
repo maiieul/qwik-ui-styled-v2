@@ -2,5 +2,5 @@ import { component$ } from "@qwik.dev/core";
 import { Button } from "~/components/ui";
 
 export default component$(() => {
-  return <Button variant="main">Primary</Button>;
+  return <Button variant="primary">Primary</Button>;
 });

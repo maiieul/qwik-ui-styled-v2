@@ -34,7 +34,7 @@ export default component$(() => {
           </div>
         </div>
         <footer>
-          <Button variant="main" onClick$={() => (show.value = false)}>
+          <Button variant="primary" onClick$={() => (show.value = false)}>
             Save
           </Button>
         </footer>

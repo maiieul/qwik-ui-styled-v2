@@ -61,20 +61,20 @@ export default component$(() => {
       </div>
 
       <h2 class="text-2xl font-bold">Buttons</h2>
-      <h3>3 options CTA (ghost-link + auxiliary + main)</h3>
+      <h3>3 options CTA (ghost-link + secondary + primary)</h3>
       <div class="my-10 flex justify-start gap-6">
         <Button variant="vanilla">Delete listing</Button>
-        <Button variant="auxiliary">Edit</Button>
-        <Button variant="main">Publish</Button>
+        <Button variant="secondary">Edit</Button>
+        <Button variant="primary">Publish</Button>
       </div>
-      <h3>2 options CTA (auxiliary + main | outline + main)</h3>
+      <h3>2 options CTA (secondary + primary | outline + primary)</h3>
       <div class="my-10 flex justify-start gap-6">
-        <Button variant="auxiliary">Edit</Button>
-        <Button variant="main">Confirm</Button>
+        <Button variant="secondary">Edit</Button>
+        <Button variant="primary">Confirm</Button>
       </div>
       <div class="my-10 flex justify-start gap-6">
         <Button variant="outline">Discard</Button>
-        <Button variant="main">Confirm</Button>
+        <Button variant="primary">Confirm</Button>
       </div>
       <h3>nav (link | ghost)</h3>
       <div class="my-10 flex justify-start gap-6">
@@ -85,11 +85,11 @@ export default component$(() => {
       </div>
       <h3>disabled</h3>
       <div class="my-10 flex justify-start gap-6">
-        <Button variant="main" disabled>
+        <Button variant="primary" disabled>
           <Lucide.Loader class="size-5 animate-spin" />
           Confirm
         </Button>
-        <Button variant="auxiliary" disabled>
+        <Button variant="secondary" disabled>
           <Lucide.Loader class="size-5 animate-spin" />
           Add to cart
         </Button>
@@ -265,7 +265,7 @@ const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
         </p>
         <footer class="mt-9 flex justify-end gap-4">
           <div class="flex gap-4">
-            <Button variant="main">Continue</Button>
+            <Button variant="primary">Continue</Button>
           </div>
         </footer>
         <Modal.Close class="absolute top-4 right-6" asChild>
