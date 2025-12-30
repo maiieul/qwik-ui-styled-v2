@@ -78,3 +78,11 @@ exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-se
   }
 }"
 `;
+
+exports[`step3 - mergeDuplicates (snapshots) > case theme-class-not-leading > theme-class-not-leading 1`] = `
+"@layer components {
+  .container .btn {
+    color: green;
+  }
+}"
+`;

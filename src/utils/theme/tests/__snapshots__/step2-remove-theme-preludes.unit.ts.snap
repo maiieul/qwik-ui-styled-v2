@@ -100,3 +100,11 @@ exports[`step2 - removeThemePreludes (snapshots) > case nested-selectors > neste
   }
 }"
 `;
+
+exports[`step2 - removeThemePreludes (snapshots) > case theme-class-not-leading > theme-class-not-leading 1`] = `
+"@layer components {
+  .container .btn {
+    color: green;
+  }
+}"
+`;

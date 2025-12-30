@@ -122,4 +122,17 @@ export const cssFiles = {
   }
 }
 `,
+  "theme-class-not-leading": `
+@layer components {
+  .container .btn {
+    color: red;
+  }
+  .container .modern .btn {
+    color: green;
+  }
+  .container .qwik .btn {
+    color: blue;
+  }
+}
+`,
 } as const;

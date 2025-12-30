@@ -100,3 +100,11 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case nested-selectors
   }
 }"
 `;
+
+exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case theme-class-not-leading > theme-class-not-leading 1`] = `
+"@layer components {
+  .container .modern .btn {
+    color: green;
+  }
+}"
+`;
