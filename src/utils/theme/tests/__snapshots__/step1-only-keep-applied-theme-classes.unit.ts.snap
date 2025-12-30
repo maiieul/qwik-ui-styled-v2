@@ -81,7 +81,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case multiple-theme-c
   .btn {
     color: red;
   }
-  .modern.qwik .btn {
+  .modern .btn {
     color: green;
   }
   .modern .btn {
@@ -117,7 +117,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case nested-selectors
 
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case theme-class-not-leading > theme-class-not-leading 1`] = `
 "@layer components {
-  .container .modern .btn {
+  .modern .btn {
     color: green;
   }
 }"
