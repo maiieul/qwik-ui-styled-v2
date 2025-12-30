@@ -2,21 +2,27 @@ import { describe, it, expect } from "vitest";
 import { outputAppliedThemeCSS } from "../extract-theme";
 
 describe("outputAppliedThemedCSS", () => {
-  it('should throw if theme includes "dark" or "light" tokens', async () => {
+  it('should ignore "dark"/"light" variants in theme and keep only real theme tokens', async () => {
     const css = `
 @layer components {
   .btn {
     color: red;
   }
+  .dark .btn {
+    color: gray;
+  }
+  .modern .btn {
+    color: green;
+  }
 }
 `;
 
-    await expect(outputAppliedThemeCSS(css, "dark modern")).rejects.toThrow(
-      'Theme properties cannot include "dark" or "light"',
-    );
-    await expect(outputAppliedThemeCSS(css, "light modern")).rejects.toThrow(
-      'Theme properties cannot include "dark" or "light"',
-    );
+    const out = await outputAppliedThemeCSS(css, "dark modern");
+    expect(out).toContain(".btn");
+    expect(out).toContain(".dark .btn");
+
+    expect(out).not.toContain(".modern");
+    expect(out).not.toContain(".qwik");
   });
 
   it("should throw if any declaration uses !important", async () => {

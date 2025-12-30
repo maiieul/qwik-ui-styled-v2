@@ -2,7 +2,7 @@ import {
   assertAtRuleLayerBlockOnlyContainsRules,
   assertNoDuplicateDeclarationsInTheSameRule,
   generatePrettifiedCSS,
-  assertNoVariantTokensInThemeProperties,
+  getPureThemeProperties,
   assertNoImportantDeclarations,
   assertNoMultipleThemePropertiesInOneSelector,
   mergeDuplicates,
@@ -24,11 +24,12 @@ export const validateCssForThemeSnapshots = (
   cssString: string,
   themeProperties: string[],
 ): csstree.StyleSheet => {
-  assertNoVariantTokensInThemeProperties(themeProperties);
+  // Allow passing variants in snapshot tests (e.g. ["dark", "modern"]) by stripping them.
+  const pureThemeProperties = getPureThemeProperties(themeProperties.join(" "));
   const ast = csstree.parse(cssString) as csstree.StyleSheet;
 
   assertNoImportantDeclarations(ast);
-  assertNoMultipleThemePropertiesInOneSelector(ast, themeProperties);
+  assertNoMultipleThemePropertiesInOneSelector(ast, pureThemeProperties);
   assertNoDuplicateDeclarationsInTheSameRule(ast);
 
   // Mirror the exported pipeline’s @layer constraints: inside @layer, only selector rules.
@@ -74,7 +75,8 @@ export const withOnlyKeepAppliedThemeClasses = (
   cssString: string,
   themeProperties: string[],
 ): csstree.StyleSheet => {
-  const ast = validateCssForThemeSnapshots(cssString, themeProperties);
+  const pureThemeProperties = getPureThemeProperties(themeProperties.join(" "));
+  const ast = validateCssForThemeSnapshots(cssString, pureThemeProperties);
 
   // Find all @layer rule blocks
   csstree.walk(ast, {
@@ -83,7 +85,7 @@ export const withOnlyKeepAppliedThemeClasses = (
       if (atRule.name !== "layer" || !atRule.block) return;
       atRule.block.children = onlyKeepAppliedThemeClasses(
         atRule.block.children,
-        themeProperties,
+        pureThemeProperties,
       );
     },
   });

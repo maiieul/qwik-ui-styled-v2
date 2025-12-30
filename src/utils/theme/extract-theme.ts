@@ -3,12 +3,21 @@ import * as prettier from "prettier";
 
 const allowedVariantClasses = new Set(["dark", "light"]);
 
-export function assertNoVariantTokensInThemeProperties(
-  themeProperties: string[],
-): void {
-  if (themeProperties.includes("dark") || themeProperties.includes("light")) {
-    throw new Error('Theme properties cannot include "dark" or "light"');
+export function getPureThemeProperties(theme: string): string[] {
+  const tokens = theme
+    .split(/\s+/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  const pureThemeClasses = tokens.filter((t) => !allowedVariantClasses.has(t));
+
+  if (pureThemeClasses.length === 0) {
+    throw new Error(
+      "Theme must contain at least one theme class (e.g. 'modern')",
+    );
   }
+
+  return pureThemeClasses;
 }
 
 export function assertNoImportantDeclarations(ast: csstree.StyleSheet): void {
@@ -101,16 +110,7 @@ export async function outputAppliedThemeCSS(
   cssInput: string,
   theme: string,
 ): Promise<string> {
-  const themeProperties = theme
-    .split(/\s+/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-
-  if (themeProperties.length === 0) {
-    throw new Error('Theme cannot be empty (e.g. "modern")');
-  }
-
-  assertNoVariantTokensInThemeProperties(themeProperties);
+  const themeProperties = getPureThemeProperties(theme);
 
   const ast = csstree.parse(cssInput) as csstree.StyleSheet;
 
