@@ -130,28 +130,28 @@ export function removeThemePreludes(
         // Remove matching theme class selectors from the leading compound in-place.
         const selectorsWithoutThemeClasses =
           new csstree.List<csstree.CssNode>();
-        selectorNode.children.forEach((child) => {
+        for (const child of selectorNode.children) {
           if (
             child.type === "ClassSelector" &&
             themeProperties.includes(child.name)
           ) {
-            return;
+            continue;
           }
           selectorsWithoutThemeClasses.push(child);
-        });
+        }
         // If we removed the leading theme class from a selector like ".modern .btn",
         // the selector can end up starting with a combinator (space). Strip it so
         // we don't produce invalid selectors like " .btn".
         const normalizedSelectorChildren = new csstree.List<csstree.CssNode>();
         let droppedLeadingCombinator = false;
-        selectorsWithoutThemeClasses.forEach((child) => {
+        for (const child of selectorsWithoutThemeClasses) {
           if (!droppedLeadingCombinator && child.type === "Combinator") {
             droppedLeadingCombinator = true;
-            return;
+            continue;
           }
           droppedLeadingCombinator = true;
           normalizedSelectorChildren.push(child);
-        });
+        }
 
         selectorNode.children = normalizedSelectorChildren;
       }
@@ -194,14 +194,14 @@ export function mergeDuplicates(
     state: RuleMergeState,
     sourceRule: csstree.Rule,
   ) => {
-    sourceRule.block.children?.forEach((n) => {
+    for (const n of sourceRule.block.children) {
       if (n.type === "Declaration") {
         const property = n.property;
         if (!state.lastDeclarationByProperty.has(property)) {
           state.declarationOrder.push(property);
         }
         state.lastDeclarationByProperty.set(property, n);
-        return;
+        continue;
       }
 
       // Nested rules like "&:hover { ... }"
@@ -215,11 +215,11 @@ export function mergeDuplicates(
         }
 
         mergeRuleChildrenIntoState(nestedState, n);
-        return;
+        continue;
       }
 
       state.otherChildren.push(n);
-    });
+    }
   };
 
   const finalizeRuleState = (state: RuleMergeState) => {
