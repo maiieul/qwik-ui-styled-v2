@@ -1,5 +1,9 @@
 import {
+  assertAtRuleLayerBlockOnlyContainsRules,
+  assertNoDuplicateDeclarationsInTheSameRule,
   generatePrettifiedCSS,
+  assertNoImportantDeclarations,
+  assertNoMultipleThemePropertiesInOneSelector,
   mergeDuplicates,
   onlyKeepAppliedThemeClasses,
   // outputThemedCSS,
@@ -14,6 +18,28 @@ export const normalize = (s: string) =>
     .map((l) => l.trimEnd())
     .join("\n")
     .trim();
+
+export const validateCssForThemeSnapshots = (
+  cssString: string,
+  themeProperties: string[],
+): csstree.StyleSheet => {
+  const ast = csstree.parse(cssString) as csstree.StyleSheet;
+
+  assertNoImportantDeclarations(ast);
+  assertNoMultipleThemePropertiesInOneSelector(ast, themeProperties);
+  assertNoDuplicateDeclarationsInTheSameRule(ast);
+
+  // Mirror the exported pipeline’s @layer constraints: inside @layer, only selector rules.
+  csstree.walk(ast, {
+    visit: "Atrule",
+    enter(atRule) {
+      if (atRule.name !== "layer" || !atRule.block) return;
+      assertAtRuleLayerBlockOnlyContainsRules(atRule);
+    },
+  });
+
+  return ast;
+};
 
 export const generateUpToOnlyKeepAppliedThemeClasses = async (
   cssString: string,
@@ -46,7 +72,7 @@ export const withOnlyKeepAppliedThemeClasses = (
   cssString: string,
   themeProperties: string[],
 ): csstree.StyleSheet => {
-  const ast = csstree.parse(cssString) as csstree.StyleSheet;
+  const ast = validateCssForThemeSnapshots(cssString, themeProperties);
 
   // Find all @layer rule blocks
   csstree.walk(ast, {
