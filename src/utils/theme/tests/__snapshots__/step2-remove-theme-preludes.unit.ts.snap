@@ -76,6 +76,20 @@ exports[`step2 - removeThemePreludes (snapshots) > case mixed-selector-list > mi
 }"
 `;
 
+exports[`step2 - removeThemePreludes (snapshots) > case multiple-theme-classes > multiple-theme-classes 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+  .qwik .btn {
+    color: green;
+  }
+  .btn {
+    color: blue;
+  }
+}"
+`;
+
 exports[`step2 - removeThemePreludes (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@layer components {
   .btn {

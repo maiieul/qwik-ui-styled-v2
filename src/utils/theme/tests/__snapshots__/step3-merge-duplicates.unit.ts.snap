@@ -60,6 +60,17 @@ exports[`step3 - mergeDuplicates (snapshots) > case mixed-selector-list > mixed-
 }"
 `;
 
+exports[`step3 - mergeDuplicates (snapshots) > case multiple-theme-classes > multiple-theme-classes 1`] = `
+"@layer components {
+  .btn {
+    color: blue;
+  }
+  .qwik .btn {
+    color: green;
+  }
+}"
+`;
+
 exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@layer components {
   .btn {
