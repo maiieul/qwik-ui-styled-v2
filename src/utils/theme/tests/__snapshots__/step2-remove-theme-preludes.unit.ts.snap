@@ -234,6 +234,26 @@ exports[`step2 - removeThemePreludes (snapshots) > case mixed-selector-list > mi
 }"
 `;
 
+exports[`step2 - removeThemePreludes (snapshots) > case multiple-at-layer-rules > multiple-at-layer-rules 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+  .btn {
+    color: green;
+  }
+}
+
+@layer components {
+  .test {
+    color: pink;
+  }
+  .test {
+    color: purple;
+  }
+}"
+`;
+
 exports[`step2 - removeThemePreludes (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@layer components {
   .btn {

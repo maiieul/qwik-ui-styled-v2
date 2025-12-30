@@ -192,6 +192,20 @@ exports[`step3 - mergeDuplicates (snapshots) > case mixed-selector-list > mixed-
 }"
 `;
 
+exports[`step3 - mergeDuplicates (snapshots) > case multiple-at-layer-rules > multiple-at-layer-rules 1`] = `
+"@layer components {
+  .btn {
+    color: green;
+  }
+}
+
+@layer components {
+  .test {
+    color: purple;
+  }
+}"
+`;
+
 exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@layer components {
   .btn {

@@ -234,6 +234,26 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case mixed-selector-l
 }"
 `;
 
+exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case multiple-at-layer-rules > multiple-at-layer-rules 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+  .modern .btn {
+    color: green;
+  }
+}
+
+@layer components {
+  .test {
+    color: pink;
+  }
+  .modern .test {
+    color: purple;
+  }
+}"
+`;
+
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@layer components {
   .btn {

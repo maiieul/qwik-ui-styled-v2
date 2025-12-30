@@ -204,6 +204,25 @@ export const cssFiles = {
     }
 }
 `,
+  "multiple-at-layer-rules": `
+@layer components {
+    .btn {
+        color: red;
+    }
+    .modern .btn {
+        color: green;
+    }
+}
+
+@layer components {
+    .test {
+        color: pink;
+    }
+    .modern .test {
+        color: purple;
+    }
+}
+`,
   "a button": `
 @reference "../../../global.css";
 @import "./shared.css";
