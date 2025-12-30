@@ -72,13 +72,21 @@ export function onlyKeepAppliedThemeClasses(
         (n) => n.type === "Combinator",
       );
 
-      if (!hasCombinator) return true;
-
       const hasThemeClass = selector.children.some(
         (n) =>
           n.type === "ClassSelector" &&
           themeProperties.some((p) => p === n.name),
       );
+
+      // We only support theme selectors of the form ".theme .component".
+      // Theme class without a combinator (e.g. ".modern.btn") is ambiguous for
+      // our pipeline and is forbidden.
+      if (!hasCombinator) {
+        if (hasThemeClass) {
+          throw new Error("Theme class without combinator is not allowed");
+        }
+        return true;
+      }
 
       return hasThemeClass;
     });
