@@ -106,6 +106,10 @@ export async function outputAppliedThemeCSS(
     .map((p) => p.trim())
     .filter(Boolean);
 
+  if (themeProperties.length === 0) {
+    throw new Error('Theme cannot be empty (e.g. "modern")');
+  }
+
   assertNoVariantTokensInThemeProperties(themeProperties);
 
   const ast = csstree.parse(cssInput) as csstree.StyleSheet;
@@ -123,6 +127,16 @@ export async function outputAppliedThemeCSS(
       assertAtRuleLayerBlockOnlyContainsRules(atRule);
 
       atRule.block.children = onlyKeepAppliedThemeClasses(
+        atRule.block.children,
+        themeProperties,
+      );
+
+      atRule.block.children = removeThemePreludes(
+        atRule.block.children,
+        themeProperties,
+      );
+
+      atRule.block.children = mergeDuplicates(
         atRule.block.children,
         themeProperties,
       );
