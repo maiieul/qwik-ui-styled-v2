@@ -19,10 +19,10 @@ export default component$(() => {
         onClick$={$(async () => {
           themeSig.value = localStorage.getItem(storageKey) ?? defaultTheme;
           cssThemeOutput.value = await outputAppliedThemeCSS(
+            globalCSS,
             themeSig.value === "dark" || themeSig.value === "light"
               ? "border-radius-0 simple primary-cyan-600 light base-slate"
               : themeSig.value,
-            globalCSS,
           );
         })}
       >

@@ -1,5 +1,6 @@
 import * as csstree from "css-tree";
-import * as prettier from "prettier";
+import prettier from "prettier/standalone";
+import postcssPlugin from "prettier/plugins/postcss";
 
 const allowedVariantClasses = new Set(["dark", "light"]);
 
@@ -451,7 +452,10 @@ export async function generatePrettifiedCSS(
   ast: csstree.StyleSheet,
 ): Promise<string> {
   const cssOutput = csstree.generate(ast);
-  const formatted = await prettier.format(cssOutput, { parser: "css" });
+  const formatted = await prettier.format(cssOutput, {
+    parser: "css",
+    plugins: [postcssPlugin],
+  });
   return addBlankLinesBeforeAtRules(formatted);
 }
 
