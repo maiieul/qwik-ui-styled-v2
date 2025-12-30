@@ -3,6 +3,38 @@ import * as prettier from "prettier";
 
 const allowedVariantClasses = new Set(["dark", "light"]);
 
+export function assertNoImportantDeclarations(ast: csstree.StyleSheet): void {
+  // We don't support !important anywhere in the input: it makes merging and
+  // deterministic theming output ambiguous and is banned by convention.
+  csstree.walk(ast, {
+    visit: "Declaration",
+    enter(decl) {
+      if (decl.type !== "Declaration") return;
+      if (decl.important) {
+        throw new Error("!important is not allowed in base components");
+      }
+    },
+  });
+}
+
+export function assertAtRuleLayerBlockOnlyContainsRules(
+  atRule: csstree.Atrule,
+): asserts atRule is csstree.Atrule & { block: csstree.Block } {
+  if (atRule.name !== "layer" || !atRule.block) return;
+
+  if (!atRule.block.children) {
+    throw new Error("No children found in @layer block");
+  }
+
+  if (
+    !atRule.block.children.toArray().every((child) => child.type === "Rule")
+  ) {
+    throw new Error(
+      "Only selector rules (e.g. .btn { ... }) are allowed in @layer block",
+    );
+  }
+}
+
 export function assertNoMultipleThemePropertiesInOneSelector(
   ast: csstree.StyleSheet,
   themeProperties: string[],
@@ -42,17 +74,7 @@ export async function outputAppliedThemeCSS(
 
   const ast = csstree.parse(cssInput) as csstree.StyleSheet;
 
-  // We don't support !important anywhere in the input: it makes merging and
-  // deterministic theming output ambiguous and is banned by convention.
-  csstree.walk(ast, {
-    visit: "Declaration",
-    enter(decl) {
-      if (decl.type !== "Declaration") return;
-      if (decl.important) {
-        throw new Error("!important is not allowed in base components");
-      }
-    },
-  });
+  assertNoImportantDeclarations(ast);
 
   assertNoMultipleThemePropertiesInOneSelector(ast, themeProperties);
 
@@ -61,17 +83,7 @@ export async function outputAppliedThemeCSS(
     enter(atRule) {
       if (atRule.name !== "layer" || !atRule.block) return;
 
-      if (!atRule.block.children) {
-        throw new Error("No children found in @layer block");
-      }
-
-      if (
-        !atRule.block.children.toArray().every((child) => child.type === "Rule")
-      ) {
-        throw new Error(
-          "Only selector rules (e.g. .btn { ... }) are allowed in @layer block",
-        );
-      }
+      assertAtRuleLayerBlockOnlyContainsRules(atRule);
 
       atRule.block.children = onlyKeepAppliedThemeClasses(
         atRule.block.children,
@@ -324,9 +336,10 @@ function addBlankLinesBeforeAtRules(css: string): string {
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const trimmedLine = line.trim();
 
-    const isLayer = trimmedLine.startsWith("@layer");
+    // Only treat top-level at-rules (no indentation) as at-rules for spacing.
+    // Nested at-rules like "  @media { ... }" should not get extra blank lines.
+    const isLayer = line.startsWith("@layer");
     if (isLayer && !foundFirstLayer) {
       foundFirstLayer = true;
       if (i > 0 && lines[i - 1].trim() !== "") result.push("");
@@ -334,7 +347,7 @@ function addBlankLinesBeforeAtRules(css: string): string {
       continue;
     }
 
-    const isAtRule = trimmedLine.startsWith("@");
+    const isAtRule = line.startsWith("@");
     if (
       isAtRule &&
       i > 0 &&

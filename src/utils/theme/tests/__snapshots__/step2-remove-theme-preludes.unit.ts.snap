@@ -68,6 +68,20 @@ exports[`step2 - removeThemePreludes (snapshots) > case dark-variants > dark-var
 }"
 `;
 
+exports[`step2 - removeThemePreludes (snapshots) > case media-queries-in-selectors > media-queries-in-selectors 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+    @media (max-width: 768px) {
+      color: yellow;
+    }
+  }
+  .btn {
+    color: green;
+  }
+}"
+`;
+
 exports[`step2 - removeThemePreludes (snapshots) > case mixed-selector-list > mixed-selector-list 1`] = `
 "@layer components {
   .btn {

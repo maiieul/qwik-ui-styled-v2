@@ -52,6 +52,17 @@ exports[`step3 - mergeDuplicates (snapshots) > case dark-variants > dark-variant
 }"
 `;
 
+exports[`step3 - mergeDuplicates (snapshots) > case media-queries-in-selectors > media-queries-in-selectors 1`] = `
+"@layer components {
+  .btn {
+    color: green;
+    @media (max-width: 768px) {
+      color: yellow;
+    }
+  }
+}"
+`;
+
 exports[`step3 - mergeDuplicates (snapshots) > case mixed-selector-list > mixed-selector-list 1`] = `
 "@layer components {
   .btn {

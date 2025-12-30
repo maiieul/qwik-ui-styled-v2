@@ -133,6 +133,18 @@ export const cssFiles = {
     .container .qwik .btn {
         color: blue;
     }
+}`,
+  "media-queries-in-selectors": `
+@layer components {
+    .btn {
+        color: red;
+        @media (max-width: 768px) {
+            color: yellow;
+        }
+    }
+    .modern .btn {
+        color: green;
+    }
 }
 `,
 } as const;

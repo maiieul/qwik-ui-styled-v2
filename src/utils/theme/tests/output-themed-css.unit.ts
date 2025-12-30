@@ -43,4 +43,20 @@ describe("outputAppliedThemedCSS", () => {
       "Multiple theme classes in one selector is not allowed",
     );
   });
+
+  it("should throw if @layer contains non-selector rules (e.g. @media)", async () => {
+    const css = `
+@layer components {
+  @media (min-width: 1px) {
+    .btn {
+      color: red;
+    }
+  }
+}
+`;
+
+    await expect(outputAppliedThemeCSS(css, "modern")).rejects.toThrow(
+      "Only selector rules (e.g. .btn { ... }) are allowed in @layer block. If you need to use media queries, nest them in the selector rules instead.",
+    );
+  });
 });
