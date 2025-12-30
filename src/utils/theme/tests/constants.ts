@@ -51,28 +51,58 @@ export const cssFiles = {
 @layer components {
     .btn {
         color: red;
-        background-color: blue;
+            background-color: blue;
         &:focus-visible {
-        outline: 2px solid red;
+            outline: 2px solid red;
         }
         &:active {
-        transform: translate(2px, 2px);
+            transform: translate(2px, 2px);
         }
     }
     .qwik .btn {
         color: blue;
         &:hover {
-        transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
         }
     }
     .modern .btn {
         color: green;
         border: 1px solid red;
         &:hover {
-        transform: scale(0.99);
+            transform: scale(0.99);
         }
         &:active {
-        transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+        }
+    }
+}
+`,
+  "recursively-nested-selectors": `
+@layer components {
+    .btn {
+        color: red;
+            background-color: blue;
+        &:focus-visible {
+            outline: 2px solid red;
+            &:active {
+                transform: translate(2px, 2px);
+            }
+        }
+    }
+    .qwik .btn {
+        color: blue;
+        &:hover {
+            transform: translate(-2px, -2px);
+        }
+    }
+    .modern .btn {
+        color: green;
+        border: 1px solid red;
+        &:hover {
+            transform: scale(0.99);
+        }
+        &:active {
+            transform: translate(-2px, -2px);
         }
     }
 }

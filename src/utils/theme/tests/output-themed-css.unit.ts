@@ -74,7 +74,7 @@ describe("outputAppliedThemedCSS", () => {
 `;
 
     await expect(outputAppliedThemeCSS(css, "modern")).rejects.toThrow(
-      'Duplicate declaration for "color" is not allowed',
+      'Components cannot contain duplicate declarations for the same selector property: "color".',
     );
   });
 });
