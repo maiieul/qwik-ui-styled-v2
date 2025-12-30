@@ -172,6 +172,9 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case dark-variants > 
   .btn {
     color: red;
   }
+  .dark .btn {
+    color: gray;
+  }
   .modern .btn {
     color: yellow;
   }

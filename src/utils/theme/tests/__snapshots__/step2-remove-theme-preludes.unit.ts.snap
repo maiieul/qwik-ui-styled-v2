@@ -172,6 +172,9 @@ exports[`step2 - removeThemePreludes (snapshots) > case dark-variants > dark-var
   .btn {
     color: red;
   }
+  .dark .btn {
+    color: gray;
+  }
   .btn {
     color: yellow;
   }

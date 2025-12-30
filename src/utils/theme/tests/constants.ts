@@ -115,6 +115,9 @@ export const cssFiles = {
     .qwik .btn {
         color: green;
     }
+    .dark .btn {
+        color: gray;
+    }
     .dark.qwik .btn {
         color: blue;
     }

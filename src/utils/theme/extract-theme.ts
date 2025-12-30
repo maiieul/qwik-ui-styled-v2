@@ -173,8 +173,29 @@ export function onlyKeepAppliedThemeClasses(
         continue;
       }
 
-      // Themed selector: keep only if it matches the applied theme.
+      // Keep selectors that match the applied theme.
       if (hasThemeClass) {
+        newSelectors.push(selector);
+        continue;
+      }
+
+      // Keep selectors that are only variant-scoped (no theme classes) such as ".dark .btn".
+      // We detect this by checking that the leading compound (before the first combinator)
+      // contains only variant class selectors ("dark"/"light").
+      let variantOnlyLeadingCompound = false;
+      const leadingClassNames: string[] = [];
+      for (const n of selector.children) {
+        if (n.type === "Combinator") break;
+        if (n.type === "ClassSelector") leadingClassNames.push(n.name);
+      }
+
+      if (leadingClassNames.length === 1) {
+        variantOnlyLeadingCompound = allowedVariantClasses.has(
+          leadingClassNames[0],
+        );
+      }
+
+      if (variantOnlyLeadingCompound) {
         newSelectors.push(selector);
       }
     }
