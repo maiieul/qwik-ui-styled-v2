@@ -1,5 +1,107 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`step3 - mergeDuplicates (snapshots) > case a button > a button 1`] = `
+"@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn.variant-primary {
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-sm);
+    background-color: var(--primary-background);
+    &:focus-visible {
+      outline: 2px solid var(--primary-ring);
+    }
+    &:hover {
+      transform: scale(0.99);
+    }
+  }
+  .btn.variant-secondary {
+    background-color: var(--secondary-background);
+    color: var(--secondary-foreground);
+    box-shadow: var(--shadow-sm);
+    &:focus-visible {
+      outline: 2px solid var(--secondary-ring);
+    }
+    &:hover {
+      transform: scale(0.99);
+    }
+  }
+  .btn.variant-outline {
+    background-color: var(--background);
+    color: var(--foreground);
+    box-shadow: var(--shadow-sm);
+    border: var(--default-border-width) solid var(--border);
+    &:focus-visible {
+      outline: 2px solid var(--secondary-ring);
+    }
+    &:hover {
+      transform: scale(0.99);
+    }
+  }
+  .btn.variant-link {
+    color: var(--primary-standalone);
+    &:hover {
+      text-decoration: underline;
+    }
+    &:focus-visible {
+      outline: 2px solid var(--secondary-ring);
+    }
+  }
+  .btn.variant-ghost {
+    border-radius: var(--radius-xl);
+    color: var(--foreground);
+    &:hover {
+      background-color: var(--background-accent);
+      color: var(--foreground-accent);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+    }
+  }
+  .btn.variant-vanilla {
+    color: var(--foreground);
+    &:focus-visible {
+      outline: 2px solid var(--secondary-ring);
+    }
+  }
+  .btn.variant-alert {
+    box-shadow: var(--shadow-sm) var(--alert-shadow);
+    border: var(--default-border-width) solid var(--alert-border);
+    background-color: var(--alert-background);
+    color: var(--alert-foreground);
+    &:hover {
+      transform: scale(0.99);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--alert-ring);
+    }
+  }
+  .btn.size-sm {
+    gap: 0.375rem;
+    padding: 0 0.75rem;
+    height: 2rem;
+    &:has(> svg) {
+      padding: 0 0.625rem;
+    }
+  }
+  .btn.size-md {
+    padding: 0.5rem 1rem;
+    height: 2.25rem;
+    &:has(> svg) {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+  .btn.size-lg {
+    padding: 0 1.5rem;
+    height: 2.5rem;
+    &:has(> svg) {
+      padding: 0 1rem;
+    }
+  }
+}"
+`;
+
 exports[`step3 - mergeDuplicates (snapshots) > case basic > basic 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";

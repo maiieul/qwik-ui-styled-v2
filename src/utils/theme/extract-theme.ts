@@ -30,7 +30,7 @@ export function assertAtRuleLayerBlockOnlyContainsRules(
     !atRule.block.children.toArray().every((child) => child.type === "Rule")
   ) {
     throw new Error(
-      "Only selector rules (e.g. .btn { ... }) are allowed in @layer block",
+      "Only selector rules (e.g. .btn { ... }) are allowed in @layer block. If you need to use media queries, nest them in the selector rules instead.",
     );
   }
 }
@@ -62,6 +62,32 @@ export function assertNoMultipleThemePropertiesInOneSelector(
   });
 }
 
+export function assertNoDuplicateDeclarationsInTheSameRule(
+  ast: csstree.StyleSheet,
+): void {
+  csstree.walk(ast, {
+    visit: "Rule",
+    enter(rule) {
+      if (rule.type !== "Rule") return;
+      if (!rule.block?.children) return;
+
+      const seen = new Set<string>();
+
+      for (const child of rule.block.children) {
+        if (child.type !== "Declaration") continue;
+
+        const property = child.property;
+        if (seen.has(property)) {
+          throw new Error(
+            `Components cannot contain duplicate declarations for the same selector property: "${property}".`,
+          );
+        }
+        seen.add(property);
+      }
+    },
+  });
+}
+
 // Outputs the applied themed CSS so that it contains only the generic + themed rules, but no others.
 export async function outputAppliedThemeCSS(
   cssInput: string,
@@ -77,6 +103,7 @@ export async function outputAppliedThemeCSS(
   assertNoImportantDeclarations(ast);
 
   assertNoMultipleThemePropertiesInOneSelector(ast, themeProperties);
+  assertNoDuplicateDeclarationsInTheSameRule(ast);
 
   csstree.walk(ast, {
     visit: "Atrule",

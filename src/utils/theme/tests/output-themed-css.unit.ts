@@ -59,4 +59,22 @@ describe("outputAppliedThemedCSS", () => {
       "Only selector rules (e.g. .btn { ... }) are allowed in @layer block. If you need to use media queries, nest them in the selector rules instead.",
     );
   });
+
+  it("should throw if a rule contains duplicate declarations for the same property", async () => {
+    const css = `
+@layer components {
+  .btn {
+    color: red;
+    color: green;
+  }
+  .modern .btn {
+    color: blue;
+  }
+}
+`;
+
+    await expect(outputAppliedThemeCSS(css, "modern")).rejects.toThrow(
+      'Duplicate declaration for "color" is not allowed',
+    );
+  });
 });
