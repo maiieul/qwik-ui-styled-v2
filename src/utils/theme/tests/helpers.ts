@@ -2,6 +2,7 @@ import {
   assertAtRuleLayerBlockOnlyContainsRules,
   assertNoDuplicateDeclarationsInTheSameRule,
   generatePrettifiedCSS,
+  assertNoVariantTokensInThemeProperties,
   assertNoImportantDeclarations,
   assertNoMultipleThemePropertiesInOneSelector,
   mergeDuplicates,
@@ -23,6 +24,7 @@ export const validateCssForThemeSnapshots = (
   cssString: string,
   themeProperties: string[],
 ): csstree.StyleSheet => {
+  assertNoVariantTokensInThemeProperties(themeProperties);
   const ast = csstree.parse(cssString) as csstree.StyleSheet;
 
   assertNoImportantDeclarations(ast);

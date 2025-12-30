@@ -2,6 +2,23 @@ import { describe, it, expect } from "vitest";
 import { outputAppliedThemeCSS } from "../extract-theme";
 
 describe("outputAppliedThemedCSS", () => {
+  it('should throw if theme includes "dark" or "light" tokens', async () => {
+    const css = `
+@layer components {
+  .btn {
+    color: red;
+  }
+}
+`;
+
+    await expect(outputAppliedThemeCSS(css, "dark modern")).rejects.toThrow(
+      'Theme properties cannot include "dark" or "light"',
+    );
+    await expect(outputAppliedThemeCSS(css, "light modern")).rejects.toThrow(
+      'Theme properties cannot include "dark" or "light"',
+    );
+  });
+
   it("should throw if any declaration uses !important", async () => {
     const css = `
 @layer components {

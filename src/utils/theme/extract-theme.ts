@@ -3,6 +3,14 @@ import * as prettier from "prettier";
 
 const allowedVariantClasses = new Set(["dark", "light"]);
 
+export function assertNoVariantTokensInThemeProperties(
+  themeProperties: string[],
+): void {
+  if (themeProperties.includes("dark") || themeProperties.includes("light")) {
+    throw new Error('Theme properties cannot include "dark" or "light"');
+  }
+}
+
 export function assertNoImportantDeclarations(ast: csstree.StyleSheet): void {
   // We don't support !important anywhere in the input: it makes merging and
   // deterministic theming output ambiguous and is banned by convention.
@@ -97,6 +105,8 @@ export async function outputAppliedThemeCSS(
     .split(/\s+/)
     .map((p) => p.trim())
     .filter(Boolean);
+
+  assertNoVariantTokensInThemeProperties(themeProperties);
 
   const ast = csstree.parse(cssInput) as csstree.StyleSheet;
 
