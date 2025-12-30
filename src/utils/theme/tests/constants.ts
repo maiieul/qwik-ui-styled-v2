@@ -177,6 +177,33 @@ export const cssFiles = {
     }
 }
 `,
+  "duplicate-nested-media-overrides": `
+@layer components {
+    .btn {
+        color: red;
+        @media (max-width: 768px) {
+            color: yellow;
+            background-color: blue;
+            &:hover {
+                transform: scale(0.99);
+            }
+        }
+    }
+    .modern .btn {
+        color: green;
+        @media (max-width: 768px) {
+            color: orange;
+            border: 1px solid red;
+            &:hover {
+                transform: scale(0.98);
+            }
+            &:active {
+                transform: translate(-2px, -2px);
+            }
+        }
+    }
+}
+`,
   "a button": `
 @reference "../../../global.css";
 @import "./shared.css";

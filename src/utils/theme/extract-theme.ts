@@ -246,29 +246,56 @@ export function mergeDuplicates(
 ): csstree.List<csstree.CssNode> {
   void themeProperties;
 
-  type RuleMergeState = {
-    rule: csstree.Rule;
+  type BlockMergeState = {
     declarationOrder: string[];
     lastDeclarationByProperty: Map<string, csstree.Declaration>;
     nestedRuleOrder: string[];
     nestedRuleByPrelude: Map<string, RuleMergeState>;
+    nestedAtRuleOrder: string[];
+    nestedAtRuleByKey: Map<string, AtRuleMergeState>;
     otherChildren: csstree.CssNode[];
   };
 
-  const createRuleState = (rule: csstree.Rule): RuleMergeState => ({
-    rule,
+  type RuleMergeState = BlockMergeState & { rule: csstree.Rule };
+  type AtRuleMergeState = BlockMergeState & { atRule: csstree.Atrule };
+
+  const createBlockState = (): BlockMergeState => ({
     declarationOrder: [],
     lastDeclarationByProperty: new Map(),
     nestedRuleOrder: [],
     nestedRuleByPrelude: new Map(),
+    nestedAtRuleOrder: [],
+    nestedAtRuleByKey: new Map(),
     otherChildren: [],
   });
 
-  const mergeRuleChildrenIntoState = (
-    state: RuleMergeState,
-    sourceRule: csstree.Rule,
+  const createRuleState = (rule: csstree.Rule): RuleMergeState => ({
+    rule,
+    ...createBlockState(),
+  });
+
+  const createAtRuleState = (atRule: csstree.Atrule): AtRuleMergeState => ({
+    atRule,
+    ...createBlockState(),
+  });
+
+  const atRuleKey = (atRule: csstree.Atrule): string => {
+    const prelude =
+      atRule.prelude && atRule.prelude.type !== "Raw"
+        ? csstree.generate(atRule.prelude).trim()
+        : atRule.prelude
+          ? csstree.generate(atRule.prelude).trim()
+          : "";
+    return `${atRule.name} ${prelude}`.trim();
+  };
+
+  const mergeChildrenIntoState = (
+    state: BlockMergeState,
+    children?: csstree.List<csstree.CssNode>,
   ) => {
-    for (const n of sourceRule.block.children) {
+    if (!children) return;
+
+    for (const n of children) {
       if (n.type === "Declaration") {
         const property = n.property;
         if (!state.lastDeclarationByProperty.has(property)) {
@@ -288,7 +315,21 @@ export function mergeDuplicates(
           state.nestedRuleOrder.push(nestedPrelude);
         }
 
-        mergeRuleChildrenIntoState(nestedState, n);
+        mergeChildrenIntoState(nestedState, n.block.children);
+        continue;
+      }
+
+      // Nested at-rules like "@media (...) { ... }" inside a selector rule.
+      if (n.type === "Atrule" && n.block) {
+        const key = atRuleKey(n);
+        let nestedAtRuleState = state.nestedAtRuleByKey.get(key);
+        if (!nestedAtRuleState) {
+          nestedAtRuleState = createAtRuleState(n);
+          state.nestedAtRuleByKey.set(key, nestedAtRuleState);
+          state.nestedAtRuleOrder.push(key);
+        }
+
+        mergeChildrenIntoState(nestedAtRuleState, n.block.children);
         continue;
       }
 
@@ -296,7 +337,7 @@ export function mergeDuplicates(
     }
   };
 
-  const finalizeRuleState = (state: RuleMergeState) => {
+  const finalizeStateIntoChildren = (state: BlockMergeState) => {
     const newChildren = new csstree.List<csstree.CssNode>();
 
     // Declarations first (deduped by property, last one wins)
@@ -309,8 +350,19 @@ export function mergeDuplicates(
     for (const nestedPrelude of state.nestedRuleOrder) {
       const nestedState = state.nestedRuleByPrelude.get(nestedPrelude);
       if (!nestedState) continue;
-      finalizeRuleState(nestedState);
+      nestedState.rule.block.children = finalizeStateIntoChildren(nestedState);
       newChildren.push(nestedState.rule);
+    }
+
+    // Then nested at-rules (deduped by name+prelude, recursively finalized)
+    for (const key of state.nestedAtRuleOrder) {
+      const nestedAtRuleState = state.nestedAtRuleByKey.get(key);
+      if (!nestedAtRuleState) continue;
+      if (nestedAtRuleState.atRule.block) {
+        nestedAtRuleState.atRule.block.children =
+          finalizeStateIntoChildren(nestedAtRuleState);
+      }
+      newChildren.push(nestedAtRuleState.atRule);
     }
 
     // Then any other children
@@ -318,7 +370,7 @@ export function mergeDuplicates(
       newChildren.push(other);
     }
 
-    state.rule.block.children = newChildren;
+    return newChildren;
   };
 
   const merged: csstree.List<csstree.CssNode> = new csstree.List();
@@ -340,10 +392,12 @@ export function mergeDuplicates(
       merged.push(child);
     }
 
-    mergeRuleChildrenIntoState(state, child);
+    mergeChildrenIntoState(state, child.block.children);
   }
 
-  for (const state of stateByPrelude.values()) finalizeRuleState(state);
+  for (const state of stateByPrelude.values()) {
+    state.rule.block.children = finalizeStateIntoChildren(state);
+  }
 
   return merged;
 }
