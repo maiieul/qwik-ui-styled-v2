@@ -65,8 +65,10 @@ export function onlyKeepAppliedThemeClasses(
       continue;
     }
 
-    const shouldKeep = rule.prelude.children.some((selector) => {
-      if (selector.type !== "Selector") return false;
+    const newSelectors: csstree.List<csstree.CssNode> = new csstree.List();
+
+    for (const selector of rule.prelude.children) {
+      if (selector.type !== "Selector") continue;
 
       const hasCombinator = selector.children.some(
         (n) => n.type === "Combinator",
@@ -79,19 +81,24 @@ export function onlyKeepAppliedThemeClasses(
       );
 
       // We only support theme selectors of the form ".theme .component".
-      // Theme class without a combinator (e.g. ".modern.btn") is ambiguous for
-      // our pipeline and is forbidden.
+      // Theme class without a combinator (e.g. ".modern.btn") should not be used since the theme is set on the <html> element.
       if (!hasCombinator) {
         if (hasThemeClass) {
           throw new Error("Theme class without combinator is not allowed");
         }
-        return true;
+        // Generic selector: keep as-is.
+        newSelectors.push(selector);
+        continue;
       }
 
-      return hasThemeClass;
-    });
+      // Themed selector: keep only if it matches the applied theme.
+      if (hasThemeClass) newSelectors.push(selector);
+    }
 
-    if (shouldKeep) filtered.push(rule);
+    if (newSelectors.isEmpty) continue;
+
+    rule.prelude.children = newSelectors;
+    filtered.push(rule);
   }
 
   return filtered;

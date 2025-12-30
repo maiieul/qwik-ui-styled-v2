@@ -114,4 +114,12 @@ export const cssFiles = {
   }
 }
 `,
+  "mixed-selector-list": `
+@layer components {
+  .modern .btn,
+  .qwik .btn {
+    color: red;
+  }
+}
+`,
 } as const;

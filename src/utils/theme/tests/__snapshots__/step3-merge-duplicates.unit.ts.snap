@@ -52,6 +52,14 @@ exports[`step3 - mergeDuplicates (snapshots) > case dark-variants > dark-variant
 }"
 `;
 
+exports[`step3 - mergeDuplicates (snapshots) > case mixed-selector-list > mixed-selector-list 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+}"
+`;
+
 exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@layer components {
   .btn {

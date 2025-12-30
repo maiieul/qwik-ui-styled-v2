@@ -68,6 +68,14 @@ exports[`step2 - removeThemePreludes (snapshots) > case dark-variants > dark-var
 }"
 `;
 
+exports[`step2 - removeThemePreludes (snapshots) > case mixed-selector-list > mixed-selector-list 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+}"
+`;
+
 exports[`step2 - removeThemePreludes (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@layer components {
   .btn {

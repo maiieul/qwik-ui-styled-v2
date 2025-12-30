@@ -68,6 +68,14 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case dark-variants > 
 }"
 `;
 
+exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case mixed-selector-list > mixed-selector-list 1`] = `
+"@layer components {
+  .modern .btn {
+    color: red;
+  }
+}"
+`;
+
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@layer components {
   .btn {
