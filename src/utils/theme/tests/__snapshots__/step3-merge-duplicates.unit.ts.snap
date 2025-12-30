@@ -60,14 +60,6 @@ exports[`step3 - mergeDuplicates (snapshots) > case mixed-selector-list > mixed-
 }"
 `;
 
-exports[`step3 - mergeDuplicates (snapshots) > case multiple-theme-classes > multiple-theme-classes 1`] = `
-"@layer components {
-  .btn {
-    color: blue;
-  }
-}"
-`;
-
 exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-selectors 1`] = `
 "@layer components {
   .btn {
@@ -89,7 +81,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-se
 
 exports[`step3 - mergeDuplicates (snapshots) > case theme-class-not-leading > theme-class-not-leading 1`] = `
 "@layer components {
-  .btn {
+  .container .btn {
     color: green;
   }
 }"

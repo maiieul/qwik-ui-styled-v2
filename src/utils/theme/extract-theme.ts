@@ -3,6 +3,33 @@ import * as prettier from "prettier";
 
 const allowedVariantClasses = new Set(["dark", "light"]);
 
+export function assertNoMultipleThemePropertiesInOneSelector(
+  ast: csstree.StyleSheet,
+  themeProperties: string[],
+): void {
+  csstree.walk(ast, {
+    visit: "Selector",
+    enter(selector) {
+      if (selector.type !== "Selector") return;
+
+      let count = 0;
+      selector.children.forEach((n) => {
+        if (n.type !== "ClassSelector") return;
+        if (allowedVariantClasses.has(n.name)) return;
+        if (!themeProperties.includes(n.name)) return;
+
+        count++;
+      });
+
+      if (count > 1) {
+        throw new Error(
+          "Multiple theme classes in one selector is not allowed (e.g. instead of `.modern.qwik .btn`, use `.modern .btn, .qwik .btn)`",
+        );
+      }
+    },
+  });
+}
+
 // Outputs the applied themed CSS so that it contains only the generic + themed rules, but no others.
 export async function outputAppliedThemeCSS(
   cssInput: string,
@@ -26,6 +53,8 @@ export async function outputAppliedThemeCSS(
       }
     },
   });
+
+  assertNoMultipleThemePropertiesInOneSelector(ast, themeProperties);
 
   csstree.walk(ast, {
     visit: "Atrule",
@@ -86,7 +115,9 @@ export function onlyKeepAppliedThemeClasses(
       // Theme class without a combinator (e.g. ".modern.btn") should not be used since the theme is set on the <html> element.
       if (!hasCombinator) {
         if (hasThemeClass) {
-          throw new Error("Theme class without combinator is not allowed");
+          throw new Error(
+            "Theme class without combinator is not allowed (e.g. instead of `.modern.btn`, use `.modern .btn`)",
+          );
         }
         // Generic selector: keep as-is.
         newSelectors.push(selector);
@@ -95,8 +126,6 @@ export function onlyKeepAppliedThemeClasses(
 
       // Themed selector: keep only if it matches the applied theme.
       if (hasThemeClass) {
-        normalizeThemedSelectorLeadingCompound(selector);
-
         newSelectors.push(selector);
       }
     }
@@ -105,40 +134,6 @@ export function onlyKeepAppliedThemeClasses(
 
     rule.prelude.children = newSelectors;
     filtered.push(rule);
-  }
-
-  // Normalize selectors like ".modern.qwik .btn" to ".modern .btn" by
-  // stripping non-applied theme classes from the leading compound.
-  // We keep variant classes like "dark"/"light".
-  function normalizeThemedSelectorLeadingCompound(
-    selector: csstree.Selector,
-  ): void {
-    const firstCombinatorIndex = selector.children
-      .toArray()
-      .findIndex((n) => n.type === "Combinator");
-
-    if (firstCombinatorIndex <= 0) return;
-
-    const normalized = new csstree.List<csstree.CssNode>();
-    let i = 0;
-
-    for (const n of selector.children) {
-      if (i < firstCombinatorIndex && n.type === "ClassSelector") {
-        if (
-          themeProperties.includes(n.name) ||
-          allowedVariantClasses.has(n.name)
-        ) {
-          normalized.push(n);
-        }
-        i++;
-        continue;
-      }
-
-      normalized.push(n);
-      i++;
-    }
-
-    selector.children = normalized;
   }
 
   return filtered;

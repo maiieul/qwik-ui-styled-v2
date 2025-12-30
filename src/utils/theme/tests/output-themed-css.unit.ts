@@ -12,7 +12,7 @@ describe("outputAppliedThemedCSS", () => {
 `;
 
     await expect(outputAppliedThemeCSS(css, "modern")).rejects.toThrow(
-      "!important is not allowed",
+      "!important is not allowed in base components",
     );
   });
 
@@ -27,6 +27,20 @@ describe("outputAppliedThemedCSS", () => {
 
     await expect(outputAppliedThemeCSS(css, "modern")).rejects.toThrow(
       "Theme class without combinator is not allowed",
+    );
+  });
+
+  it("should throw if multiple theme classes are used in one selector (e.g. .modern.qwik .btn)", async () => {
+    const css = `
+@layer components {
+  .modern.qwik .btn {
+    color: red;
+  }
+}
+`;
+
+    await expect(outputAppliedThemeCSS(css, "modern qwik")).rejects.toThrow(
+      "Multiple theme classes in one selector is not allowed",
     );
   });
 });

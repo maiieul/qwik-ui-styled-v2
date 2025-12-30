@@ -135,17 +135,4 @@ export const cssFiles = {
     }
 }
 `,
-  "multiple-theme-classes": `
-@layer components {
-    .btn {
-        color: red;
-    }
-    .modern.qwik .btn {
-        color: green;
-    }
-    .modern .btn {
-        color: blue;
-    }
-}
-`,
 } as const;
