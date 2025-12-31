@@ -106,6 +106,116 @@ export function assertNoDuplicateDeclarationsInTheSameRule(
   });
 }
 
+export function getLayerName(atRule: csstree.Atrule): string | null {
+  if (atRule.name !== "layer" || !atRule.prelude) return null;
+  try {
+    return csstree.generate(atRule.prelude).trim();
+  } catch {
+    return null;
+  }
+}
+
+function convertSelectorToRoot(selector: csstree.Selector): void {
+  const rootSelectorAst = csstree.parse(":root", {
+    context: "selector",
+  }) as csstree.Selector;
+  selector.children = rootSelectorAst.children;
+}
+
+export function filterThemeLayerChildren(
+  children: csstree.List<csstree.CssNode>,
+  themeProperties: string[],
+): csstree.List<csstree.CssNode> {
+  const out = new csstree.List<csstree.CssNode>();
+
+  for (const child of children) {
+    if (child.type !== "Rule" || child.prelude.type !== "SelectorList") {
+      out.push(child);
+      continue;
+    }
+
+    const keepSelectors = new csstree.List<csstree.CssNode>();
+
+    for (const selector of child.prelude.children) {
+      if (selector.type !== "Selector") continue;
+
+      const hasCombinator = selector.children.some(
+        (n) => n.type === "Combinator",
+      );
+      if (hasCombinator) {
+        // In the theme layer, we only keep root/theme/variant selectors, not descendant selectors
+        // like ".light .surface".
+        continue;
+      }
+
+      const classNames: string[] = [];
+      for (const n of selector.children) {
+        if (n.type === "ClassSelector") classNames.push(n.name);
+      }
+
+      // Keep pure variants (.light / .dark)
+      if (classNames.length === 1 && allowedVariantClasses.has(classNames[0])) {
+        keepSelectors.push(selector);
+        continue;
+      }
+
+      // Keep selectors that contain the selected theme token (e.g. ".modern", ".modern.light", ".modern.dark")
+      const hasSelectedTheme = classNames.some((n) =>
+        themeProperties.includes(n),
+      );
+      if (hasSelectedTheme) {
+        keepSelectors.push(selector);
+      }
+    }
+
+    if (keepSelectors.isEmpty) continue;
+    child.prelude.children = keepSelectors;
+    out.push(child);
+  }
+
+  return out;
+}
+
+export function convertPureThemeRulesToRoot(
+  children: csstree.List<csstree.CssNode>,
+  themeProperties: string[],
+): csstree.List<csstree.CssNode> {
+  for (const child of children) {
+    if (child.type !== "Rule" || child.prelude.type !== "SelectorList")
+      continue;
+
+    for (const selector of child.prelude.children) {
+      if (selector.type !== "Selector") continue;
+
+      const hasCombinator = selector.children.some(
+        (n) => n.type === "Combinator",
+      );
+      if (hasCombinator) continue;
+
+      const classNames: string[] = [];
+      for (const n of selector.children) {
+        if (n.type === "ClassSelector") classNames.push(n.name);
+      }
+
+      if (classNames.length === 0) continue;
+
+      // Convert selectors composed solely of the selected theme classes (no variants)
+      // to :root, since we are outputting an already-applied theme.
+      const hasVariant = classNames.some((n) => allowedVariantClasses.has(n));
+      if (hasVariant) continue;
+
+      const allAreSelectedThemes = classNames.every((n) =>
+        themeProperties.includes(n),
+      );
+      if (!allAreSelectedThemes) continue;
+
+      convertSelectorToRoot(selector);
+    }
+  }
+
+  return children;
+}
+
 // Outputs the applied themed CSS so that it contains only the generic + themed rules, but no others.
 export async function outputAppliedThemeCSS(
   cssInput: string,
@@ -127,16 +237,38 @@ export async function outputAppliedThemeCSS(
 
       assertAtRuleLayerBlockOnlyContainsRules(atRule);
 
+      const layerName = getLayerName(atRule);
+      if (layerName === "theme") {
+        atRule.block.children = filterThemeLayerChildren(
+          atRule.block.children,
+          themeProperties,
+        );
+        atRule.block.children = convertPureThemeRulesToRoot(
+          atRule.block.children,
+          themeProperties,
+        );
+        atRule.block.children = removeThemePreludes(
+          atRule.block.children,
+          themeProperties,
+        );
+        atRule.block.children = mergeDuplicates(
+          atRule.block.children,
+          themeProperties,
+        );
+        return;
+      }
+
+      // Only apply component theming transforms to component layers.
+      if (!layerName || !layerName.startsWith("components")) return;
+
       atRule.block.children = onlyKeepAppliedThemeClasses(
         atRule.block.children,
         themeProperties,
       );
-
       atRule.block.children = removeThemePreludes(
         atRule.block.children,
         themeProperties,
       );
-
       atRule.block.children = mergeDuplicates(
         atRule.block.children,
         themeProperties,

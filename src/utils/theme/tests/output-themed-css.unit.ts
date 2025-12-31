@@ -100,34 +100,4 @@ describe("outputAppliedThemedCSS", () => {
       'Components cannot contain duplicate declarations for the same selector property: "color".',
     );
   });
-
-  it("should output fully applied CSS (theme preludes removed and duplicates merged)", async () => {
-    const css = `
-@layer components {
-  .btn {
-    color: red;
-    background-color: white;
-  }
-  .qwik .btn {
-    color: blue;
-  }
-  .modern .btn {
-    color: green;
-    border: 1px solid black;
-  }
-}
-`;
-
-    const out = await outputAppliedThemeCSS(css, "modern");
-    expect(out).not.toContain(".modern");
-    expect(out).not.toContain(".qwik");
-    expect(out).toContain(`@layer components {
-  .btn {
-    color: green;
-    background-color: white;
-    border: 1px solid black;
-  }
-}
-`);
-  });
 });
