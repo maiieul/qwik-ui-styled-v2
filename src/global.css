@@ -7,7 +7,35 @@
 @custom-variant dark (&:is(.dark *));
 
 @layer theme {
-  .light {
+  .qwik:root {
+    --default-border-width: 1.75px;
+    --default-border-radius: 0rem;
+
+    --shadow-2xs: 1px 2px;
+    --shadow-xs: 3px 4px;
+    --shadow-sm: 5px 6px;
+    --shadow-md: 7px 8px;
+    --shadow-lg: 9px 10px;
+    --shadow-xl: 11px 12px;
+    --shadow-2xl: 13px 14px;
+  }
+  .modern:root {
+    --default-border-width: 1px;
+    --default-border-radius: 0.5rem;
+
+    --shadow-2xs: 0 1px 2px 0 rgba(0, 0, 0, 0.01);
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.01);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 1);
+  }
+
+  :root {
     /* base */
     --background: white;
     --background-accent: var(--color-sky-10);
@@ -144,37 +172,8 @@
   }
   .dark .sidebar {
   }
-
-  .qwik {
-    --default-border-width: 1.75px;
-    --default-border-radius: 0rem;
-
-    --shadow-2xs: 1px 2px;
-    --shadow-xs: 3px 4px;
-    --shadow-sm: 5px 6px;
-    --shadow-md: 7px 8px;
-    --shadow-lg: 9px 10px;
-    --shadow-xl: 11px 12px;
-    --shadow-2xl: 13px 14px;
-  }
-
-  .modern {
-    --default-border-width: 1px;
-    --default-border-radius: 0.5rem;
-
-    --shadow-2xs: 0 1px 2px 0 rgba(0, 0, 0, 0.01);
-    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.01);
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md:
-      0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    --shadow-lg:
-      0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-    --shadow-xl:
-      0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 1);
-  }
   /* we can add even more themes (e.g. '.reverse .light', '.halloween .light', '.christmas .light', '.chinese-new-year .light', etc.) */
-  .modern.light {
+  .modern:root {
     /* base */
     --background-accent: var(--color-slate-5);
     --background-emphasis: var(--color-slate-10);

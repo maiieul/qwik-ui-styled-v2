@@ -2,7 +2,6 @@ import {
   assertAtRuleLayerBlockOnlyContainsRules,
   assertNoDuplicateDeclarationsInTheSameRule,
   convertPureThemeRulesToRoot,
-  filterThemeLayerChildren,
   generatePrettifiedCSS,
   getLayerName,
   getPureThemeProperties,
@@ -88,13 +87,6 @@ export const withOnlyKeepAppliedThemeClasses = (
       if (atRule.name !== "layer" || !atRule.block) return;
       const layerName = getLayerName(atRule);
       if (layerName === "theme") {
-        // For the theme layer, step1 is not "keep applied theme classes" (which would
-        // reject selectors like ".modern.light"), but rather "filter theme layer to only
-        // the relevant tokens + convert pure theme rules to :root".
-        atRule.block.children = filterThemeLayerChildren(
-          atRule.block.children,
-          pureThemeProperties,
-        );
         atRule.block.children = convertPureThemeRulesToRoot(
           atRule.block.children,
           pureThemeProperties,
