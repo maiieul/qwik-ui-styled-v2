@@ -307,14 +307,7 @@ export function onlyKeepAppliedThemeClasses(
           themeProperties.some((p) => p === n.name),
       );
 
-      // We only support theme selectors of the form ".theme .component".
-      // Theme class without a combinator (e.g. ".modern.btn") should not be used since the theme is set on the <html> element.
       if (!hasCombinator) {
-        if (hasThemeClass) {
-          throw new Error(
-            "Theme class without combinator is not allowed (e.g. instead of `.modern.btn`, use `.modern .btn`)",
-          );
-        }
         // Generic selector: keep as-is.
         newSelectors.push(selector);
         continue;

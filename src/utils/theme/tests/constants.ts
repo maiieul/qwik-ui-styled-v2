@@ -226,6 +226,22 @@ export const cssFiles = {
     }
 }
 `,
+  "no-combinator": `
+@layer components {
+    .light {
+        color: red;
+    }
+    .dark {
+        color: gray;
+    }
+    .modern.light {
+        color: green;
+    }
+    .modern.dark {
+        color: blue;
+    }
+}
+`,
   "a button": `
 @reference "../../../global.css";
 @import "./shared.css";

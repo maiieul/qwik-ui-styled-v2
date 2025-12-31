@@ -39,18 +39,20 @@ describe("outputAppliedThemedCSS", () => {
     );
   });
 
-  it("should throw if a theme class is used without a combinator (e.g. .modern.btn)", async () => {
+  it("should allow a theme class without a combinator (e.g. .modern.btn)", async () => {
     const css = `
 @layer components {
   .modern.btn {
     color: red;
   }
+  .modern .btn {
+    color: green;
+  }
 }
 `;
 
-    await expect(outputAppliedThemeCSS(css, "modern")).rejects.toThrow(
-      "Theme class without combinator is not allowed",
-    );
+    const out = await outputAppliedThemeCSS(css, "modern");
+    expect(out).toContain(".btn");
   });
 
   it("should throw if multiple theme classes are used in one selector (e.g. .modern.qwik .btn)", async () => {

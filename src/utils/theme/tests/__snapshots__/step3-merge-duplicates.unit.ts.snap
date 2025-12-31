@@ -624,6 +624,17 @@ exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-se
 }"
 `;
 
+exports[`step3 - mergeDuplicates (snapshots) > case no-combinator > no-combinator 1`] = `
+"@layer components {
+  .light {
+    color: green;
+  }
+  .dark {
+    color: blue;
+  }
+}"
+`;
+
 exports[`step3 - mergeDuplicates (snapshots) > case recursively-nested-selectors > recursively-nested-selectors 1`] = `
 "@layer components {
   .btn {

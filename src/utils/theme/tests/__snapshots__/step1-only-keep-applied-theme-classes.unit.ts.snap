@@ -706,6 +706,23 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case nested-selectors
 }"
 `;
 
+exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case no-combinator > no-combinator 1`] = `
+"@layer components {
+  .light {
+    color: red;
+  }
+  .dark {
+    color: gray;
+  }
+  .modern.light {
+    color: green;
+  }
+  .modern.dark {
+    color: blue;
+  }
+}"
+`;
+
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case recursively-nested-selectors > recursively-nested-selectors 1`] = `
 "@layer components {
   .btn {
