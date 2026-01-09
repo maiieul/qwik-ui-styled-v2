@@ -94,7 +94,6 @@ export const withOnlyKeepAppliedThemeClasses = (
         atRule.block.children = onlyKeepAppliedThemeClasses(
           atRule.block.children,
           pureThemeProperties,
-          true, // isThemeLayer
         );
         return;
       }

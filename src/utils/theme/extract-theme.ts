@@ -4,6 +4,10 @@ import postcssPlugin from "prettier/plugins/postcss";
 
 const allowedVariantClasses = new Set(["dark", "light"]);
 
+// Hardcoded list of all possible theme classes. This allows us to distinguish
+// theme classes from component classes when filtering no-combinator selectors.
+const potentialThemes = new Set(["qwik", "modern"]);
+
 export function getPureThemeProperties(theme: string): string[] {
   const tokens = theme
     .split(/\s+/)
@@ -193,7 +197,6 @@ export async function outputAppliedThemeCSS(
         atRule.block.children = onlyKeepAppliedThemeClasses(
           atRule.block.children,
           themeProperties,
-          true, // isThemeLayer
         );
 
         atRule.block.children = removeThemePreludes(
@@ -231,7 +234,6 @@ export async function outputAppliedThemeCSS(
 export function onlyKeepAppliedThemeClasses(
   atRuleLayerRules: csstree.List<csstree.CssNode>,
   themeProperties: string[],
-  isThemeLayer: boolean = false,
 ): csstree.List<csstree.CssNode> {
   const filtered: csstree.List<csstree.CssNode> = new csstree.List();
 
@@ -258,30 +260,29 @@ export function onlyKeepAppliedThemeClasses(
       );
 
       if (!hasCombinator) {
-        // For no-combinator selectors in the theme layer, filter out those that contain
-        // theme classes that are not in the applied theme.
-        // In component layers, we keep all no-combinator selectors as they're component classes.
-        if (isThemeLayer) {
-          const classNames: string[] = [];
-          for (const n of selector.children) {
-            if (n.type === "ClassSelector") classNames.push(n.name);
-          }
+        // For no-combinator selectors, filter out those that contain theme classes
+        // (identified by being in the potentialThemes list) that are not in the applied theme.
+        // Component classes (not in potentialThemes) are always kept.
+        const classNames: string[] = [];
+        for (const n of selector.children) {
+          if (n.type === "ClassSelector") classNames.push(n.name);
+        }
 
-          // Check if any class name is a theme class (not a variant) that's not applied
-          const hasNonAppliedThemeClass = classNames.some(
-            (className) =>
-              !allowedVariantClasses.has(className) &&
-              !themeProperties.includes(className),
-          );
+        // Check if any class name is a known theme class (not a variant) that's not applied
+        const hasNonAppliedThemeClass = classNames.some(
+          (className) =>
+            !allowedVariantClasses.has(className) &&
+            potentialThemes.has(className) &&
+            !themeProperties.includes(className),
+        );
 
-          if (hasNonAppliedThemeClass) {
-            // Filter out this selector as it contains a non-applied theme class
-            continue;
-          }
+        if (hasNonAppliedThemeClass) {
+          // Filter out this selector as it contains a non-applied theme class
+          continue;
         }
 
         // Keep: generic selectors (no classes), variant-only selectors, selectors with applied theme classes,
-        // or component selectors (in component layers)
+        // or component selectors (classes not in potentialThemes)
         newSelectors.push(selector);
         continue;
       }
