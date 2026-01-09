@@ -193,6 +193,7 @@ export async function outputAppliedThemeCSS(
         atRule.block.children = onlyKeepAppliedThemeClasses(
           atRule.block.children,
           themeProperties,
+          true, // isThemeLayer
         );
 
         atRule.block.children = removeThemePreludes(
@@ -230,6 +231,7 @@ export async function outputAppliedThemeCSS(
 export function onlyKeepAppliedThemeClasses(
   atRuleLayerRules: csstree.List<csstree.CssNode>,
   themeProperties: string[],
+  isThemeLayer: boolean = false,
 ): csstree.List<csstree.CssNode> {
   const filtered: csstree.List<csstree.CssNode> = new csstree.List();
 
@@ -256,7 +258,30 @@ export function onlyKeepAppliedThemeClasses(
       );
 
       if (!hasCombinator) {
-        // Generic selector: keep as-is.
+        // For no-combinator selectors in the theme layer, filter out those that contain
+        // theme classes that are not in the applied theme.
+        // In component layers, we keep all no-combinator selectors as they're component classes.
+        if (isThemeLayer) {
+          const classNames: string[] = [];
+          for (const n of selector.children) {
+            if (n.type === "ClassSelector") classNames.push(n.name);
+          }
+
+          // Check if any class name is a theme class (not a variant) that's not applied
+          const hasNonAppliedThemeClass = classNames.some(
+            (className) =>
+              !allowedVariantClasses.has(className) &&
+              !themeProperties.includes(className),
+          );
+
+          if (hasNonAppliedThemeClass) {
+            // Filter out this selector as it contains a non-applied theme class
+            continue;
+          }
+        }
+
+        // Keep: generic selectors (no classes), variant-only selectors, selectors with applied theme classes,
+        // or component selectors (in component layers)
         newSelectors.push(selector);
         continue;
       }
