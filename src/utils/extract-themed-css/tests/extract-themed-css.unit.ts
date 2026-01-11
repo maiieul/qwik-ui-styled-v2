@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { outputAppliedThemeCSS } from "../extract-theme";
+import { extractThemedCSS } from "../extract-themed-css";
 
 describe("outputAppliedThemedCSS", () => {
   it('should ignore "dark"/"light" variants in theme and keep only real theme tokens', async () => {
@@ -17,7 +17,7 @@ describe("outputAppliedThemedCSS", () => {
 }
 `;
 
-    const out = await outputAppliedThemeCSS(css, "dark modern");
+    const out = await extractThemedCSS(css, "dark modern");
     expect(out).toContain(".btn");
     expect(out).toContain(".dark .btn");
 
@@ -34,7 +34,7 @@ describe("outputAppliedThemedCSS", () => {
 }
 `;
 
-    await expect(outputAppliedThemeCSS(css, "modern")).rejects.toThrow(
+    await expect(extractThemedCSS(css, "modern")).rejects.toThrow(
       "!important is not allowed in base components",
     );
   });
@@ -51,7 +51,7 @@ describe("outputAppliedThemedCSS", () => {
 }
 `;
 
-    const out = await outputAppliedThemeCSS(css, "modern");
+    const out = await extractThemedCSS(css, "modern");
     expect(out).toContain(".btn");
   });
 
@@ -64,7 +64,7 @@ describe("outputAppliedThemedCSS", () => {
 }
 `;
 
-    await expect(outputAppliedThemeCSS(css, "modern qwik")).rejects.toThrow(
+    await expect(extractThemedCSS(css, "modern qwik")).rejects.toThrow(
       "Multiple theme classes in one selector is not allowed",
     );
   });
@@ -80,7 +80,7 @@ describe("outputAppliedThemedCSS", () => {
 }
 `;
 
-    await expect(outputAppliedThemeCSS(css, "modern")).rejects.toThrow(
+    await expect(extractThemedCSS(css, "modern")).rejects.toThrow(
       "Only selector rules (e.g. .btn { ... }) are allowed in @layer block. If you need to use media queries, nest them in the selector rules instead.",
     );
   });
@@ -98,7 +98,7 @@ describe("outputAppliedThemedCSS", () => {
 }
 `;
 
-    await expect(outputAppliedThemeCSS(css, "modern")).rejects.toThrow(
+    await expect(extractThemedCSS(css, "modern")).rejects.toThrow(
       'Components cannot contain duplicate declarations for the same selector property: "color".',
     );
   });

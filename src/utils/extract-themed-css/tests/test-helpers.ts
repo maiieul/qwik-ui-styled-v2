@@ -1,18 +1,17 @@
+import * as csstree from "css-tree";
 import {
   assertAtRuleLayerBlockOnlyContainsRules,
   assertNoDuplicateDeclarationsInTheSameRule,
+  assertNoImportantDeclarations,
+  assertNoMultipleThemePropertiesInOneSelector,
   convertPureThemeRulesToRoot,
   generatePrettifiedCSS,
   getLayerName,
   getPureThemeProperties,
-  assertNoImportantDeclarations,
-  assertNoMultipleThemePropertiesInOneSelector,
-  mergeDuplicates,
-  onlyKeepAppliedThemeClasses,
-  // outputThemedCSS,
-  removeThemePreludes,
-} from "../extract-theme";
-import * as csstree from "css-tree";
+} from "../extract-themed-css";
+import { onlyKeepAppliedThemeClasses } from "../step1-only-keep-applied-theme-classes";
+import { removeThemePreludes } from "../step2-remove-theme-preludes";
+import { mergeDuplicates } from "../step3-merge-duplicates";
 
 export const normalize = (s: string) =>
   s
