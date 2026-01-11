@@ -29,27 +29,15 @@ export async function extractThemedCSS(
       assertAtRuleLayerBlockOnlyContainsRules(atRule);
 
       const layerName = getLayerName(atRule);
-      if (layerName === "theme") {
-        atRule.block.children = convertPureThemeRulesToRoot(
-          atRule.block.children,
-          themeProperties,
-        );
+      const isThemeLayer = layerName === "theme";
+      const isComponentLayer = layerName?.startsWith("components");
 
-        atRule.block.children = onlyKeepAppliedThemeClasses(
-          atRule.block.children,
-          themeProperties,
-        );
+      if (!isThemeLayer && !isComponentLayer) return;
 
-        atRule.block.children = removeThemePreludes(
-          atRule.block.children,
-          themeProperties,
-        );
-        atRule.block.children = mergeDuplicates(atRule.block.children);
-        return;
-      }
-
-      // Only apply component theming transforms to component layers.
-      if (!layerName || !layerName.startsWith("components")) return;
+      atRule.block.children = convertPureThemeRulesToRoot(
+        atRule.block.children,
+        themeProperties,
+      );
 
       atRule.block.children = onlyKeepAppliedThemeClasses(
         atRule.block.children,
