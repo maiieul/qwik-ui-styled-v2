@@ -68,7 +68,7 @@ export const generateUpToMergeDuplicates = async (
 ): Promise<string> => {
   let ast = withOnlyKeepAppliedThemeClasses(cssString, themeProperties);
   ast = withRemoveThemePreludes(ast, themeProperties);
-  ast = withMergeDuplicates(ast, themeProperties);
+  ast = withMergeDuplicates(ast);
   return await generatePrettifiedCSS(ast);
 };
 
@@ -126,17 +126,13 @@ export const withRemoveThemePreludes = (
 
 export const withMergeDuplicates = (
   ast: csstree.StyleSheet,
-  themeProperties: string[],
 ): csstree.StyleSheet => {
   // Find all @layer rule blocks
   csstree.walk(ast, {
     visit: "Atrule",
     enter(atRule) {
       if (atRule.name !== "layer" || !atRule.block) return;
-      atRule.block.children = mergeDuplicates(
-        atRule.block.children,
-        themeProperties,
-      );
+      atRule.block.children = mergeDuplicates(atRule.block.children);
     },
   });
 
