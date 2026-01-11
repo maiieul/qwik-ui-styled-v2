@@ -2,12 +2,10 @@
 
 import { describe, it, expect } from "vitest";
 import { cssFiles, theme } from "./fixtures/simple-cases";
-import {
-  generateUpToOnlyKeepAppliedThemeClasses,
-  normalize,
-} from "./test-helpers";
+import { normalize, withOnlyKeepAppliedThemeClasses } from "./test-helpers";
 import { globalCSS } from "./fixtures/global.css";
 import { buttonCSS } from "./fixtures/button.css";
+import { generatePrettifiedCSS } from "../extract-themed-css";
 
 describe("step1 - onlyKeepAppliedThemeClasses (snapshots)", () => {
   it.each(Object.entries({ ...cssFiles, ...globalCSS, ...buttonCSS }))(
@@ -20,3 +18,11 @@ describe("step1 - onlyKeepAppliedThemeClasses (snapshots)", () => {
     },
   );
 });
+
+export const generateUpToOnlyKeepAppliedThemeClasses = async (
+  cssString: string,
+  themeProperties: string[],
+): Promise<string> => {
+  const ast = withOnlyKeepAppliedThemeClasses(cssString, themeProperties);
+  return await generatePrettifiedCSS(ast);
+};

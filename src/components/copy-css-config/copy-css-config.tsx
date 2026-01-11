@@ -1,7 +1,7 @@
 import { $, component$, useSignal } from "@qwik.dev/core";
 import { IconButton, Modal } from "~/components/ui";
 import { Button } from "~/components/ui";
-import { extractThemedCSS } from "~/utils/extract-theme/extract-themed-css";
+import { extractThemedCSS } from "~/utils/extract-themed-css/extract-themed-css";
 import { Lucide } from "@qds.dev/ui";
 import { useTheme } from "~/hooks/use-theme/provider";
 import globalCSS from "~/global.css?raw";

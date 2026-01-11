@@ -5,7 +5,6 @@ import {
   assertNoImportantDeclarations,
   assertNoMultipleThemePropertiesInOneSelector,
   convertPureThemeRulesToRoot,
-  generatePrettifiedCSS,
   getLayerName,
   getPureThemeProperties,
 } from "../extract-themed-css";
@@ -43,33 +42,6 @@ export const validateCssForThemeSnapshots = (
   });
 
   return ast;
-};
-
-export const generateUpToOnlyKeepAppliedThemeClasses = async (
-  cssString: string,
-  themeProperties: string[],
-): Promise<string> => {
-  const ast = withOnlyKeepAppliedThemeClasses(cssString, themeProperties);
-  return await generatePrettifiedCSS(ast);
-};
-
-export const generateUpToRemoveThemePreludes = async (
-  cssString: string,
-  themeProperties: string[],
-): Promise<string> => {
-  let ast = withOnlyKeepAppliedThemeClasses(cssString, themeProperties);
-  ast = withRemoveThemePreludes(ast, themeProperties);
-  return await generatePrettifiedCSS(ast);
-};
-
-export const generateUpToMergeDuplicates = async (
-  cssString: string,
-  themeProperties: string[],
-): Promise<string> => {
-  let ast = withOnlyKeepAppliedThemeClasses(cssString, themeProperties);
-  ast = withRemoveThemePreludes(ast, themeProperties);
-  ast = withMergeDuplicates(ast);
-  return await generatePrettifiedCSS(ast);
 };
 
 export const withOnlyKeepAppliedThemeClasses = (
