@@ -220,33 +220,52 @@ export async function generatePrettifiedCSS(
     parser: "css",
     plugins: [postcssPlugin],
   });
-  return addBlankLinesBeforeAtRules(formatted);
+  return addSpacingBetweenAtRuleGroups(formatted);
 }
 
-function addBlankLinesBeforeAtRules(css: string): string {
+function addSpacingBetweenAtRuleGroups(css: string): string {
   const lines = css.split("\n");
   const result: string[] = [];
-  let foundFirstLayer = false;
+
+  const getAtRuleType = (line: string): string | null => {
+    const trimmed = line.trim();
+    if (!trimmed.startsWith("@")) return null;
+    // Only treat top-level at-rules (no indentation) as at-rules for spacing.
+    // Nested at-rules like "  @media { ... }" should not get extra blank lines.
+    if (trimmed !== line) return null; // Has indentation, so it's nested
+
+    // Extract the at-rule type (e.g., "@layer", "@import", "@custom-variant")
+    const match = trimmed.match(/^@(\w+)/);
+    if (!match) return null;
+
+    const ruleName = match[1];
+
+    // Group @reference and @import together as "import-like" rules
+    if (ruleName === "reference" || ruleName === "import") {
+      return "import-like";
+    }
+
+    // Distinguish @layer declarations (with semicolon) from @layer blocks (with {)
+    if (ruleName === "layer") {
+      return trimmed.endsWith(";") ? "layer-decl" : "layer-block";
+    }
+
+    return ruleName;
+  };
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
+    const currentType = getAtRuleType(line);
+    const prevLine = i > 0 ? lines[i - 1] : "";
+    const prevType = getAtRuleType(prevLine);
 
-    // Only treat top-level at-rules (no indentation) as at-rules for spacing.
-    // Nested at-rules like "  @media { ... }" should not get extra blank lines.
-    const isLayer = line.startsWith("@layer");
-    if (isLayer && !foundFirstLayer) {
-      foundFirstLayer = true;
-      if (i > 0 && lines[i - 1].trim() !== "") result.push("");
-      result.push(line);
-      continue;
-    }
-
-    const isAtRule = line.startsWith("@");
+    // Add blank line before top-level at-rules if:
+    // 1. Previous line was a different type of at-rule, OR
+    // 2. Previous line was not an at-rule (and not empty)
     if (
-      isAtRule &&
-      i > 0 &&
-      lines[i - 1].trim() !== "" &&
-      !lines[i - 1].trim().startsWith("@")
+      currentType &&
+      prevLine.trim() !== "" &&
+      (prevType === null || (prevType !== null && prevType !== currentType))
     ) {
       result.push("");
     }
