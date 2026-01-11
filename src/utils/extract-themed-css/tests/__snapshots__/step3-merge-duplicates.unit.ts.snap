@@ -103,7 +103,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case a button > a button 1`] = `
 `;
 
 exports[`step3 - mergeDuplicates (snapshots) > case a global.css > a global.css 1`] = `
-"@layer theme,base,qds,qwik,components,components-2,utilities;
+"@layer theme, base, qds, qwik, components, components-2, utilities;
 
 @import "@qds.dev/ui/tailwind";
 @import "tailwindcss";

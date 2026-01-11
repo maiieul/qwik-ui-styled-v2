@@ -220,7 +220,19 @@ export async function generatePrettifiedCSS(
     parser: "css",
     plugins: [postcssPlugin],
   });
-  return addSpacingBetweenAtRuleGroups(formatted);
+  const withLayerSpacing =
+    preserveSpacesAfterCommasInLayerDeclarations(formatted);
+  return addSpacingBetweenAtRuleGroups(withLayerSpacing);
+}
+
+function preserveSpacesAfterCommasInLayerDeclarations(css: string): string {
+  // Prettier removes spaces after commas in @layer declarations.
+  // This function restores them: "theme,base" -> "theme, base"
+  return css.replace(/@layer\s+([^;{]+);/g, (match, layerList) => {
+    // Add space after each comma in the layer list
+    const withSpaces = layerList.replace(/,(\S)/g, ", $1");
+    return `@layer ${withSpaces};`;
+  });
 }
 
 function addSpacingBetweenAtRuleGroups(css: string): string {
