@@ -7,6 +7,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @layer theme {
+  /* general rules */
   .qwik:root {
     --default-border-width: 1.75px;
     --default-border-radius: 0rem;
@@ -157,21 +158,6 @@
     --alert-standalone-emphasis: var(--color-rose-30);
   }
 
-  .light .surface {
-  }
-  .dark .surface {
-  }
-
-  .light .overlay {
-  }
-  .dark .overlay {
-  }
-
-  .light .sidebar {
-  }
-  .dark .sidebar {
-  }
-  /* we can add even more themes (e.g. '.reverse .light', '.halloween .light', '.christmas .light', '.chinese-new-year .light', etc.) */
   .modern:root {
     /* base */
     --background-accent: var(--color-slate-5);
@@ -198,6 +184,23 @@
     --shadow-emphasis: var(--color-slate-80);
     --ring: var(--color-slate-80);
   }
+
+  /* .light .surface {
+  }
+  .dark .surface {
+  }
+
+  .light .overlay {
+  }
+  .dark .overlay {
+  }
+
+  .light .sidebar {
+  }
+  .dark .sidebar {
+  } */
+
+  /* we can add even more themes (e.g. '.reverse .light', '.halloween .light', '.christmas .light', '.chinese-new-year .light', etc.) */
 }
 
 @theme {
