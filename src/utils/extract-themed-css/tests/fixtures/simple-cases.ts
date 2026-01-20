@@ -242,4 +242,30 @@ export const cssFiles = {
     }
 }
 `,
+    "should-strip-comments": `
+/*
+ * This is a comment
+ */
+/* This is a comment */
+@layer components {
+    /*
+    * This is a comment
+    */
+    /* This is a comment */
+    .btn {
+        color: red;
+    }
+}
+/*
+ * This is a comment
+ */
+/* This is a comment */
+@theme {
+    /*
+    * This is a comment
+    */
+    /* This is a comment */
+    --theme-var: var(--color-red);
+}
+`,
 } as const;

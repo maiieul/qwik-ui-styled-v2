@@ -288,7 +288,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case a global.css > a global.
   --color-slate-deep: oklch(0.148 0.038 254);
   --color-slate-black: oklch(0 0 0);
 
-  /* sky */
   --color-sky-white: oklch(1 0 201.801);
   --color-sky-shallow: oklch(0.992 0.005 230.935);
   --color-sky-0: oklch(0.967 0.019 230.95);
@@ -315,7 +314,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case a global.css > a global.
   --color-sky-deep: oklch(0.154 0.031 231.003);
   --color-sky-black: oklch(0 0 0);
 
-  /* violet */
   --color-violet-white: oklch(1 0 201.801);
   --color-violet-shallow: oklch(0.991 0.005 300.105);
   --color-violet-0: oklch(0.971 0.016 300.097);
@@ -342,7 +340,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case a global.css > a global.
   --color-violet-deep: oklch(0.144 0.077 300);
   --color-violet-black: oklch(0 0 0);
 
-  /* rose */
   --color-rose-white: oklch(1 0 201.801);
   --color-rose-shallow: oklch(0.991 0.004 20);
   --color-rose-0: oklch(0.971 0.014 20);
@@ -383,7 +380,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case a global.css > a global.
   --color-shadow: var(--shadow);
   --color-ring: var(--ring);
 
-  /* main colors */
   --color-primary-background: var(--primary-background);
   --color-primary-background-accent: var(--primary-background-accent);
   --color-primary-foreground: var(--primary-foreground);
@@ -418,7 +414,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case a global.css > a global.
   --color-standalone-accent: var(--standalone-accent);
   --color-standalone-emphasis: var(--standalone-emphasis);
 
-  /* auxiliary colors */
   --color-alt-primary-background: var(--alt-primary-background);
   --color-alt-primary-background-accent: var(--alt-primary-background-accent);
   --color-alt-primary-foreground: var(--alt-primary-foreground);
@@ -457,7 +452,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case a global.css > a global.
   --color-alt-standalone-accent: var(--alt-standalone-accent);
   --color-alt-standalone-emphasis: var(--alt-standalone-emphasis);
 
-  /* alert colors */
   --color-alert-background: var(--alert-background);
   --color-alert-foreground: var(--alert-foreground);
   --color-alert-border: var(--alert-border);
@@ -755,6 +749,18 @@ exports[`step2 - removeThemePreludes (snapshots) > case recursively-nested-selec
       transform: translate(-2px, -2px);
     }
   }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case should-strip-comments > should-strip-comments 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+}
+
+@theme {
+  --theme-var: var(--color-red);
 }"
 `;
 

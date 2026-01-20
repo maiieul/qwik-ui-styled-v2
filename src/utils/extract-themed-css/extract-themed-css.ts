@@ -220,9 +220,19 @@ export async function generatePrettifiedCSS(
     parser: "css",
     plugins: [postcssPlugin],
   });
+  const withoutComments = stripAllComments(formatted);
   const withLayerSpacing =
-    preserveSpacesAfterCommasInLayerDeclarations(formatted);
+    preserveSpacesAfterCommasInLayerDeclarations(withoutComments);
   return addSpacingBetweenAtRuleGroups(withLayerSpacing);
+}
+
+function stripAllComments(css: string): string {
+  // Remove all CSS comments (/* ... */), including multi-line comments
+  // This regex matches /* ... */ comments, including those that span multiple lines
+  const withoutComments = css.replace(/\/\*[\s\S]*?\*\//g, "");
+  // Collapse multiple consecutive blank lines into a single blank line
+  // This cleans up extra blank lines left by comment removal
+  return withoutComments.replace(/\n\s*\n\s*\n/g, "\n\n");
 }
 
 function preserveSpacesAfterCommasInLayerDeclarations(css: string): string {
