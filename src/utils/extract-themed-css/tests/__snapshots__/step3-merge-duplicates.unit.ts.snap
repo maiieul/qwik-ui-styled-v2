@@ -535,7 +535,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case class-selectors > class-sele
 }"
 `;
 
-exports[`step3 - mergeDuplicates (snapshots) > case comma-separated > comma-separated 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case should-handle-comma-separated-classes > should-handle-comma-separated-classes 1`] = `
 "@layer components {
   .btn,
   .icon-btn {
@@ -544,18 +544,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case comma-separated > comma-sepa
 }"
 `;
 
-exports[`step3 - mergeDuplicates (snapshots) > case dark-variants > dark-variants 1`] = `
-"@layer components {
-  .btn {
-    color: yellow;
-  }
-  .dark .btn {
-    color: purple;
-  }
-}"
-`;
-
-exports[`step3 - mergeDuplicates (snapshots) > case duplicate-nested-media-overrides > duplicate-nested-media-overrides 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case should-handle-duplicate-nested-media-overrides > should-handle-duplicate-nested-media-overrides 1`] = `
 "@layer components {
   .btn {
     color: green;
@@ -574,18 +563,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case duplicate-nested-media-overr
 }"
 `;
 
-exports[`step3 - mergeDuplicates (snapshots) > case media-queries-in-selectors > media-queries-in-selectors 1`] = `
-"@layer components {
-  .btn {
-    color: green;
-    @media (max-width: 768px) {
-      color: yellow;
-    }
-  }
-}"
-`;
-
-exports[`step3 - mergeDuplicates (snapshots) > case mixed-selector-list > mixed-selector-list 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case should-handle-mixed-selector-list > should-handle-mixed-selector-list 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -593,7 +571,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case mixed-selector-list > mixed-
 }"
 `;
 
-exports[`step3 - mergeDuplicates (snapshots) > case multiple-at-layer-rules > multiple-at-layer-rules 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case should-handle-multiple-at-layer-rules > should-handle-multiple-at-layer-rules 1`] = `
 "@layer components {
   .btn {
     color: green;
@@ -607,37 +585,26 @@ exports[`step3 - mergeDuplicates (snapshots) > case multiple-at-layer-rules > mu
 }"
 `;
 
-exports[`step3 - mergeDuplicates (snapshots) > case nested-selectors > nested-selectors 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case should-handle-not-leading-theme-class > should-handle-not-leading-theme-class 1`] = `
+"@layer components {
+  .leading .btn {
+    color: green;
+  }
+}"
+`;
+
+exports[`step3 - mergeDuplicates (snapshots) > case should-keep-media-queries-in-selectors > should-keep-media-queries-in-selectors 1`] = `
 "@layer components {
   .btn {
     color: green;
-    background-color: blue;
-    border: 1px solid red;
-    &:focus-visible {
-      outline: 2px solid red;
-    }
-    &:active {
-      transform: translate(-2px, -2px);
-    }
-    &:hover {
-      transform: scale(0.99);
+    @media (max-width: 768px) {
+      color: yellow;
     }
   }
 }"
 `;
 
-exports[`step3 - mergeDuplicates (snapshots) > case no-combinator > no-combinator 1`] = `
-"@layer components {
-  .light {
-    color: green;
-  }
-  .dark {
-    color: blue;
-  }
-}"
-`;
-
-exports[`step3 - mergeDuplicates (snapshots) > case recursively-nested-selectors > recursively-nested-selectors 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case should-keep-recursively-nested-selectors > should-keep-recursively-nested-selectors 1`] = `
 "@layer components {
   .btn {
     color: green;
@@ -659,6 +626,36 @@ exports[`step3 - mergeDuplicates (snapshots) > case recursively-nested-selectors
 }"
 `;
 
+exports[`step3 - mergeDuplicates (snapshots) > case should-merge-dark-variants > should-merge-dark-variants 1`] = `
+"@layer components {
+  .btn {
+    color: yellow;
+  }
+  .dark .btn {
+    color: purple;
+  }
+}"
+`;
+
+exports[`step3 - mergeDuplicates (snapshots) > case should-merge-nested-selectors > should-merge-nested-selectors 1`] = `
+"@layer components {
+  .btn {
+    color: green;
+    background-color: blue;
+    border: 1px solid red;
+    &:focus-visible {
+      outline: 2px solid red;
+    }
+    &:active {
+      transform: translate(-2px, -2px);
+    }
+    &:hover {
+      transform: scale(0.99);
+    }
+  }
+}"
+`;
+
 exports[`step3 - mergeDuplicates (snapshots) > case should-strip-comments > should-strip-comments 1`] = `
 "@layer components {
   .btn {
@@ -671,10 +668,13 @@ exports[`step3 - mergeDuplicates (snapshots) > case should-strip-comments > shou
 }"
 `;
 
-exports[`step3 - mergeDuplicates (snapshots) > case theme-class-not-leading > theme-class-not-leading 1`] = `
+exports[`step3 - mergeDuplicates (snapshots) > case should-work-without-combinator > should-work-without-combinator 1`] = `
 "@layer components {
-  .container .btn {
+  .light {
     color: green;
+  }
+  .dark {
+    color: blue;
   }
 }"
 `;

@@ -47,7 +47,7 @@ export const cssFiles = {
 }
 `,
 
-  "nested-selectors": `
+  "should-merge-nested-selectors": `
 @layer components {
     .btn {
         color: red;
@@ -77,7 +77,7 @@ export const cssFiles = {
     }
 }
 `,
-  "recursively-nested-selectors": `
+  "should-keep-recursively-nested-selectors": `
 @layer components {
     .btn {
         color: red;
@@ -107,7 +107,7 @@ export const cssFiles = {
     }
 }
 `,
-  "dark-variants": `
+  "should-merge-dark-variants": `
 @layer components {
     .btn {
         color: red;
@@ -135,7 +135,7 @@ export const cssFiles = {
     }
 }
 `,
-  "comma-separated": `
+  "should-handle-comma-separated-classes": `
 @layer components {
     .btn,
     .icon-btn {
@@ -147,7 +147,7 @@ export const cssFiles = {
     }
 }
 `,
-  "mixed-selector-list": `
+  "should-handle-mixed-selector-list": `
 @layer components {
     .modern .btn,
     .qwik .btn {
@@ -155,19 +155,19 @@ export const cssFiles = {
     }
 }
 `,
-  "theme-class-not-leading": `
+  "should-handle-not-leading-theme-class": `
 @layer components {
-    .container .btn {
+    .leading .btn {
         color: red;
     }
-    .container .modern .btn {
+    .leading .modern .btn {
         color: green;
     }
-    .container .qwik .btn {
+    .leading .qwik .btn {
         color: blue;
     }
 }`,
-  "media-queries-in-selectors": `
+  "should-keep-media-queries-in-selectors": `
 @layer components {
     .btn {
         color: red;
@@ -180,7 +180,7 @@ export const cssFiles = {
     }
 }
 `,
-  "duplicate-nested-media-overrides": `
+  "should-handle-duplicate-nested-media-overrides": `
 @layer components {
     .btn {
         color: red;
@@ -207,7 +207,7 @@ export const cssFiles = {
     }
 }
 `,
-  "multiple-at-layer-rules": `
+  "should-handle-multiple-at-layer-rules": `
 @layer components {
     .btn {
         color: red;
@@ -226,7 +226,7 @@ export const cssFiles = {
     }
 }
 `,
-  "no-combinator": `
+  "should-work-without-combinator": `
 @layer components {
     .light {
         color: red;
