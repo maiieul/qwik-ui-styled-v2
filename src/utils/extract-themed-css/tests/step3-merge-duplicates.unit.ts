@@ -1,7 +1,8 @@
 // To understand the AST, use https://astexplorer.net/
 
 import { describe, it, expect } from "vitest";
-import { cssFiles, theme } from "./fixtures/simple-cases";
+import { cssFiles } from "./fixtures/simple-cases";
+
 import {
   normalize,
   withMergeDuplicates,
@@ -14,10 +15,12 @@ import { generatePrettifiedCSS } from "../extract-themed-css";
 
 describe("step3 - mergeDuplicates (snapshots)", () => {
   it.each(Object.entries({ ...cssFiles, ...globalCSS, ...buttonCSS }))(
-    "case %s",
+    "case: %s",
     async (name, css) => {
-      const result = await generateUpToMergeDuplicates(css, [theme]);
-      expect(normalize(result)).toMatchSnapshot(name);
+      const result = await generateUpToMergeDuplicates(css, ["modern"]);
+      expect(normalize(result)).toMatchSnapshot("modern");
+      const result2 = await generateUpToMergeDuplicates(css, ["qwik"]);
+      expect(normalize(result2)).toMatchSnapshot("qwik");
     },
   );
 });

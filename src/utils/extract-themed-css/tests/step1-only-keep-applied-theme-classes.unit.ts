@@ -1,7 +1,8 @@
 // To understand the AST, use https://astexplorer.net/
 
 import { describe, it, expect } from "vitest";
-import { cssFiles, theme } from "./fixtures/simple-cases";
+import { cssFiles } from "./fixtures/simple-cases";
+
 import { normalize, withOnlyKeepAppliedThemeClasses } from "./test-helpers";
 import { globalCSS } from "./fixtures/global.css";
 import { buttonCSS } from "./fixtures/button.css";
@@ -9,12 +10,16 @@ import { generatePrettifiedCSS } from "../extract-themed-css";
 
 describe("step1 - onlyKeepAppliedThemeClasses (snapshots)", () => {
   it.each(Object.entries({ ...cssFiles, ...globalCSS, ...buttonCSS }))(
-    "case %s",
+    "case: %s",
     async (name, css) => {
       const result = await generateUpToOnlyKeepAppliedThemeClasses(css, [
-        theme,
+        "modern",
       ]);
-      expect(normalize(result)).toMatchSnapshot(name);
+      expect(normalize(result)).toMatchSnapshot("modern");
+      const result2 = await generateUpToOnlyKeepAppliedThemeClasses(css, [
+        "qwik",
+      ]);
+      expect(normalize(result2)).toMatchSnapshot("qwik");
     },
   );
 });

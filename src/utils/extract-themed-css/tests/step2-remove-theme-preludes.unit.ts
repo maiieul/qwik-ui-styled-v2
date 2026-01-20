@@ -1,7 +1,8 @@
 // To understand the AST, use https://astexplorer.net/
 
 import { describe, it, expect } from "vitest";
-import { cssFiles, theme } from "./fixtures/simple-cases";
+import { cssFiles } from "./fixtures/simple-cases";
+
 import {
   normalize,
   withOnlyKeepAppliedThemeClasses,
@@ -13,10 +14,12 @@ import { generatePrettifiedCSS } from "../extract-themed-css";
 
 describe("step2 - removeThemePreludes (snapshots)", () => {
   it.each(Object.entries({ ...cssFiles, ...globalCSS, ...buttonCSS }))(
-    "case %s",
+    "case: %s",
     async (name, css) => {
-      const result = await generateUpToRemoveThemePreludes(css, [theme]);
-      expect(normalize(result)).toMatchSnapshot(name);
+      const result = await generateUpToRemoveThemePreludes(css, ["modern"]);
+      expect(normalize(result)).toMatchSnapshot("modern");
+      const result2 = await generateUpToRemoveThemePreludes(css, ["qwik"]);
+      expect(normalize(result2)).toMatchSnapshot("qwik");
     },
   );
 });

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`step2 - removeThemePreludes (snapshots) > case a button > a button 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: a button > modern 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 
@@ -116,7 +116,128 @@ exports[`step2 - removeThemePreludes (snapshots) > case a button > a button 1`] 
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case a global.css > a global.css 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: a button > qwik 1`] = `
+"@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn.variant-primary {
+    color: var(--primary-foreground);
+    &:focus-visible {
+      outline: 2px solid var(--primary-ring);
+    }
+  }
+  .btn.variant-primary {
+    box-shadow: var(--shadow-sm) var(--primary-shadow);
+    border: var(--default-border-width) solid var(--primary-border);
+    background-color: var(--primary-background);
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-md) var(--primary-shadow);
+    }
+  }
+  .btn.variant-secondary {
+    background-color: var(--secondary-background);
+    color: var(--secondary-foreground);
+    &:focus-visible {
+      outline: 2px solid var(--secondary-ring);
+    }
+  }
+  .btn.variant-secondary {
+    box-shadow: var(--shadow-sm) var(--secondary-shadow);
+    border: var(--default-border-width) solid var(--secondary-border);
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-md) var(--secondary-shadow);
+    }
+  }
+  .btn.variant-outline {
+    background-color: var(--background);
+    color: var(--foreground);
+    &:focus-visible {
+      outline: 2px solid var(--secondary-ring);
+    }
+  }
+  .btn.variant-outline {
+    box-shadow: var(--shadow-sm) var(--secondary-shadow);
+    border: var(--default-border-width) solid var(--secondary-border);
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-md) var(--secondary-shadow);
+    }
+  }
+  .btn.variant-link {
+    color: var(--primary-standalone);
+    &:hover {
+      text-decoration: underline;
+    }
+    &:focus-visible {
+      outline: 2px solid var(--secondary-ring);
+    }
+  }
+  .btn.variant-link {
+  }
+  .btn.variant-ghost {
+    border-radius: var(--radius-xl);
+    color: var(--foreground);
+    &:hover {
+      background-color: var(--background-accent);
+      color: var(--foreground-accent);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+    }
+  }
+  .btn.variant-ghost {
+  }
+  .btn.variant-vanilla {
+    color: var(--foreground);
+    &:focus-visible {
+      outline: 2px solid var(--secondary-ring);
+    }
+  }
+  .btn.variant-vanilla {
+  }
+  .btn.variant-alert {
+    box-shadow: var(--shadow-sm) var(--alert-shadow);
+    border: var(--default-border-width) solid var(--alert-border);
+    background-color: var(--alert-background);
+    color: var(--alert-foreground);
+    &:hover {
+      transform: scale(0.99);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--alert-ring);
+    }
+  }
+  .btn.variant-alert {
+  }
+  .btn.size-sm {
+    gap: 0.375rem;
+    padding: 0 0.75rem;
+    height: 2rem;
+    &:has(> svg) {
+      padding: 0 0.625rem;
+    }
+  }
+  .btn.size-md {
+    padding: 0.5rem 1rem;
+    height: 2.25rem;
+    &:has(> svg) {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+  .btn.size-lg {
+    padding: 0 1.5rem;
+    height: 2.5rem;
+    &:has(> svg) {
+      padding: 0 1rem;
+    }
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: a global.css > modern 1`] = `
 "@layer theme, base, qds, qwik, components, components-2, utilities;
 
 @import "@qds.dev/ui/tailwind";
@@ -544,7 +665,407 @@ exports[`step2 - removeThemePreludes (snapshots) > case a global.css > a global.
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case basic > basic 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: a global.css > qwik 1`] = `
+"@layer theme, base, qds, qwik, components, components-2, utilities;
+
+@import "@qds.dev/ui/tailwind";
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer theme {
+  :root {
+    --default-border-width: 1.75px;
+    --default-border-radius: 0rem;
+    --shadow-2xs: 1px 2px;
+    --shadow-xs: 3px 4px;
+    --shadow-sm: 5px 6px;
+    --shadow-md: 7px 8px;
+    --shadow-lg: 9px 10px;
+    --shadow-xl: 11px 12px;
+    --shadow-2xl: 13px 14px;
+  }
+  :root {
+    --background: white;
+    --background-accent: var(--color-sky-10);
+    --background-emphasis: var(--color-sky-15);
+    --foreground: var(--color-slate-95);
+    --foreground-muted: var(--color-slate-65);
+    --foreground-soft: var(--color-slate-80);
+    --foreground-accent: var(--color-slate-100);
+    --foreground-emphasis: var(--color-slate-deep);
+    --border: var(--color-sky-30);
+    --border-accent: var(--color-sky-40);
+    --border-emphasis: var(--color-sky-50);
+    --shadow: var(--color-sky-10);
+    --shadow-accent: var(--color-sky-20);
+    --shadow-emphasis: var(--color-sky-30);
+    --ring: var(--color-sky-30);
+    --standalone: var(--color-sky-70);
+    --standalone-accent: var(--color-sky-75);
+    --standalone-emphasis: var(--color-sky-80);
+    --primary-background: var(--color-violet-55);
+    --primary-foreground: var(--color-slate-0);
+    --primary-foreground-accent: var(--color-slate-5);
+    --primary-border: var(--color-violet-70);
+    --primary-border-accent: var(--color-violet-75);
+    --primary-shadow: var(--color-violet-65);
+    --primary-shadow-accent: var(--color-violet-70);
+    --primary-ring: var(--color-violet-70);
+    --primary-standalone: var(--color-violet-70);
+    --primary-standalone-accent: var(--color-violet-75);
+    --primary-standalone-emphasis: var(--color-violet-80);
+    --secondary-background: var(--color-violet-25);
+    --secondary-background-accent: var(--color-violet-30);
+    --secondary-foreground: var(--color-violet-90);
+    --secondary-foreground-accent: var(--color-violet-95);
+    --secondary-border: var(--color-violet-40);
+    --secondary-border-accent: var(--color-violet-45);
+    --secondary-shadow: var(--color-violet-30);
+    --secondary-shadow-accent: var(--color-violet-35);
+    --secondary-ring: var(--color-violet-40);
+    --alert-background: var(--color-rose-60);
+    --alert-foreground: var(--color-rose-0);
+    --alert-border: var(--color-rose-55);
+    --alert-shadow: var(--color-rose-15);
+    --alert-ring: var(--color-rose-60);
+    --alert-standalone: var(--color-rose-60);
+    --alert-standalone-accent: var(--color-rose-65);
+    --alert-standalone-emphasis: var(--color-rose-70);
+  }
+  .dark {
+    --background: var(--color-sky-deep);
+    --background-accent: var(--color-violet-95);
+    --background-emphasis: var(--color-violet-90);
+    --foreground: var(--color-slate-10);
+    --foreground-muted: var(--color-slate-40);
+    --foreground-soft: var(--color-slate-25);
+    --foreground-accent: var(--color-slate-5);
+    --foreground-emphasis: var(--color-slate-0);
+    --border: var(--color-violet-80);
+    --border-accent: var(--color-violet-75);
+    --border-emphasis: var(--color-violet-70);
+    --shadow: var(--color-violet-90);
+    --shadow-accent: var(--color-violet-85);
+    --shadow-emphasis: var(--color-violet-80);
+    --ring: var(--color-violet-80);
+    --primary-background: var(--color-sky-60);
+    --primary-background-accent: var(--color-sky-55);
+    --primary-foreground: var(--color-foreground);
+    --primary-foreground-accent: var(--color-foreground-accent);
+    --primary-border: var(--color-sky-65);
+    --primary-border-accent: var(--color-sky-60);
+    --primary-shadow: var(--color-sky-70);
+    --primary-shadow-accent: var(--color-sky-65);
+    --primary-ring: var(--color-sky-60);
+    --secondary-background: var(--color-sky-75);
+    --secondary-background-accent: var(--color-sky-70);
+    --secondary-foreground: var(--color-foreground);
+    --secondary-foreground-accent: var(--color-foreground-accent);
+    --secondary-border: var(--color-sky-80);
+    --secondary-border-accent: var(--color-sky-75);
+    --secondary-shadow: var(--color-sky-85);
+    --secondary-shadow-accent: var(--color-sky-80);
+    --secondary-ring: var(--color-sky-70);
+    --standalone: var(--color-sky-35);
+    --standalone-accent: var(--color-sky-30);
+    --standalone-emphasis: var(--color-sky-25);
+    --alert-background: var(--color-rose-60);
+    --alert-foreground: var(--color-rose-shallow);
+    --alert-border: var(--color-rose-70);
+    --alert-shadow: var(--color-rose-90);
+    --alert-ring: var(--color-rose-60);
+    --alert-standalone: var(--color-rose-40);
+    --alert-standalone-accent: var(--color-rose-35);
+    --alert-standalone-emphasis: var(--color-rose-30);
+  }
+}
+
+@theme {
+  --color-slate-white: oklch(1 0 201.801);
+  --color-slate-shallow: oklch(0.99 0.005 254);
+  --color-slate-0: oklch(0.97 0.015 253.891);
+  --color-slate-5: oklch(0.944 0.022 254);
+  --color-slate-10: oklch(0.92 0.026 254);
+  --color-slate-15: oklch(0.895 0.03 254);
+  --color-slate-20: oklch(0.87 0.032 254);
+  --color-slate-25: oklch(0.845 0.034 254);
+  --color-slate-30: oklch(0.817 0.037 254);
+  --color-slate-35: oklch(0.795 0.036 254);
+  --color-slate-40: oklch(0.764 0.036 254);
+  --color-slate-45: oklch(0.735 0.036 254);
+  --color-slate-50: oklch(0.706 0.036 254);
+  --color-slate-55: oklch(0.663 0.036 254);
+  --color-slate-60: oklch(0.63 0.036 254);
+  --color-slate-65: oklch(0.594 0.036 254);
+  --color-slate-70: oklch(0.557 0.037 254);
+  --color-slate-75: oklch(0.518 0.036 254);
+  --color-slate-80: oklch(0.479 0.035 254);
+  --color-slate-85: oklch(0.433 0.037 254);
+  --color-slate-90: oklch(0.385 0.036 254);
+  --color-slate-95: oklch(0.332 0.037 254);
+  --color-slate-100: oklch(0.256 0.036 254);
+  --color-slate-deep: oklch(0.148 0.038 254);
+  --color-slate-black: oklch(0 0 0);
+
+  --color-sky-white: oklch(1 0 201.801);
+  --color-sky-shallow: oklch(0.992 0.005 230.935);
+  --color-sky-0: oklch(0.967 0.019 230.95);
+  --color-sky-5: oklch(0.943 0.033 230.964);
+  --color-sky-10: oklch(0.917 0.05 230.978);
+  --color-sky-15: oklch(0.893 0.064 230.988);
+  --color-sky-20: oklch(0.867 0.081 230.997);
+  --color-sky-25: oklch(0.839 0.098 231);
+  --color-sky-30: oklch(0.81 0.118 231);
+  --color-sky-35: oklch(0.78 0.138 231);
+  --color-sky-40: oklch(0.752 0.152 231.003);
+  --color-sky-45: oklch(0.725 0.146 231.003);
+  --color-sky-50: oklch(0.69 0.139 231.003);
+  --color-sky-55: oklch(0.656 0.132 231.003);
+  --color-sky-60: oklch(0.622 0.125 231.003);
+  --color-sky-65: oklch(0.588 0.119 231.003);
+  --color-sky-70: oklch(0.553 0.112 231.003);
+  --color-sky-75: oklch(0.509 0.103 231.003);
+  --color-sky-80: oklch(0.472 0.095 231.003);
+  --color-sky-85: oklch(0.428 0.086 231.003);
+  --color-sky-90: oklch(0.377 0.076 231.003);
+  --color-sky-95: oklch(0.324 0.065 231.003);
+  --color-sky-100: oklch(0.248 0.05 231.003);
+  --color-sky-deep: oklch(0.154 0.031 231.003);
+  --color-sky-black: oklch(0 0 0);
+
+  --color-violet-white: oklch(1 0 201.801);
+  --color-violet-shallow: oklch(0.991 0.005 300.105);
+  --color-violet-0: oklch(0.971 0.016 300.097);
+  --color-violet-5: oklch(0.949 0.029 300.088);
+  --color-violet-10: oklch(0.924 0.043 300.077);
+  --color-violet-15: oklch(0.902 0.056 300.067);
+  --color-violet-20: oklch(0.878 0.07 300.056);
+  --color-violet-25: oklch(0.854 0.085 300.045);
+  --color-violet-30: oklch(0.83 0.1 300.033);
+  --color-violet-35: oklch(0.806 0.115 300.022);
+  --color-violet-40: oklch(0.775 0.135 300.007);
+  --color-violet-45: oklch(0.75 0.152 300);
+  --color-violet-50: oklch(0.72 0.172 300);
+  --color-violet-55: oklch(0.683 0.197 300);
+  --color-violet-60: oklch(0.653 0.219 300);
+  --color-violet-65: oklch(0.621 0.243 300);
+  --color-violet-70: oklch(0.582 0.272 300);
+  --color-violet-75: oklch(0.547 0.292 300);
+  --color-violet-80: oklch(0.501 0.267 300);
+  --color-violet-85: oklch(0.45 0.24 300);
+  --color-violet-90: oklch(0.398 0.213 300);
+  --color-violet-95: oklch(0.34 0.181 300);
+  --color-violet-100: oklch(0.264 0.141 300);
+  --color-violet-deep: oklch(0.144 0.077 300);
+  --color-violet-black: oklch(0 0 0);
+
+  --color-rose-white: oklch(1 0 201.801);
+  --color-rose-shallow: oklch(0.991 0.004 20);
+  --color-rose-0: oklch(0.971 0.014 20);
+  --color-rose-5: oklch(0.947 0.026 20);
+  --color-rose-10: oklch(0.924 0.039 20);
+  --color-rose-15: oklch(0.902 0.051 20);
+  --color-rose-20: oklch(0.879 0.064 20);
+  --color-rose-25: oklch(0.855 0.079 20);
+  --color-rose-30: oklch(0.831 0.094 20);
+  --color-rose-35: oklch(0.802 0.113 20);
+  --color-rose-40: oklch(0.776 0.131 20);
+  --color-rose-45: oklch(0.752 0.15 20);
+  --color-rose-50: oklch(0.72 0.174 20);
+  --color-rose-55: oklch(0.681 0.208 20);
+  --color-rose-60: oklch(0.645 0.241 20);
+  --color-rose-65: oklch(0.604 0.243 20);
+  --color-rose-70: oklch(0.566 0.227 20);
+  --color-rose-75: oklch(0.525 0.211 20);
+  --color-rose-80: oklch(0.481 0.193 20);
+  --color-rose-85: oklch(0.434 0.174 20);
+  --color-rose-90: oklch(0.382 0.153 20);
+  --color-rose-95: oklch(0.325 0.13 20);
+  --color-rose-100: oklch(0.242 0.097 20);
+  --color-rose-deep: oklch(0.118 0.047 20);
+  --color-rose-black: oklch(0 0 0);
+
+  --color-background: var(--background);
+  --color-background-accent: var(--background-accent);
+  --color-background-emphasis: var(--background-emphasis);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-soft: var(--foreground-soft);
+  --color-foreground-accent: var(--foreground-accent);
+  --color-foreground-emphasis: var(--foreground-emphasis);
+  --color-border: var(--border);
+  --color-border-accent: var(--border-accent);
+  --color-border-emphasis: var(--border-emphasis);
+  --color-shadow: var(--shadow);
+  --color-ring: var(--ring);
+
+  --color-primary-background: var(--primary-background);
+  --color-primary-background-accent: var(--primary-background-accent);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-foreground-accent: var(--primary-foreground-accent);
+  --color-primary-border: var(--primary-border);
+  --color-primary-border-accent: var(--primary-border-accent);
+  --color-primary-shadow: var(--primary-shadow);
+  --color-primary-shadow-accent: var(--primary-shadow-accent);
+  --color-primary-ring: var(--primary-ring);
+
+  --color-secondary-background: var(--secondary-background);
+  --color-secondary-background-accent: var(--secondary-background-accent);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-foreground-accent: var(--secondary-foreground-accent);
+  --color-secondary-border: var(--secondary-border);
+  --color-secondary-border-accent: var(--secondary-border-accent);
+  --color-secondary-shadow: var(--secondary-shadow);
+  --color-secondary-shadow-accent: var(--secondary-shadow-accent);
+  --color-secondary-ring: var(--secondary-ring);
+
+  --color-tertiary-background: var(--tertiary-background);
+  --color-tertiary-background-accent: var(--tertiary-background-accent);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+  --color-tertiary-foreground-accent: var(--tertiary-foreground-accent);
+  --color-tertiary-border: var(--tertiary-border);
+  --color-tertiary-border-accent: var(--tertiary-border-accent);
+  --color-tertiary-shadow: var(--tertiary-shadow);
+  --color-tertiary-shadow-accent: var(--tertiary-shadow-accent);
+  --color-tertiary-ring: var(--tertiary-ring);
+
+  --color-standalone: var(--standalone);
+  --color-standalone-accent: var(--standalone-accent);
+  --color-standalone-emphasis: var(--standalone-emphasis);
+
+  --color-alt-primary-background: var(--alt-primary-background);
+  --color-alt-primary-background-accent: var(--alt-primary-background-accent);
+  --color-alt-primary-foreground: var(--alt-primary-foreground);
+  --color-alt-primary-foreground-accent: var(--alt-primary-foreground-accent);
+  --color-alt-primary-border: var(--alt-primary-border);
+  --color-alt-primary-border-accent: var(--alt-primary-border-accent);
+  --color-alt-primary-shadow: var(--alt-primary-shadow);
+  --color-alt-primary-shadow-accent: var(--alt-primary-shadow-accent);
+  --color-alt-primary-ring: var(--alt-primary-ring);
+
+  --color-alt-secondary-background: var(--alt-secondary-background);
+  --color-alt-secondary-background-accent: var(
+    --alt-secondary-background-accent
+  );
+  --color-alt-secondary-foreground: var(--alt-secondary-foreground);
+  --color-alt-secondary-foreground-accent: var(
+    --alt-secondary-foreground-accent
+  );
+  --color-alt-secondary-border: var(--alt-secondary-border);
+  --color-alt-secondary-border-accent: var(--alt-secondary-border-accent);
+  --color-alt-secondary-shadow: var(--alt-secondary-shadow);
+  --color-alt-secondary-shadow-accent: var(--alt-secondary-shadow-accent);
+  --color-alt-secondary-ring: var(--alt-secondary-ring);
+
+  --color-alt-tertiary-background: var(--alt-tertiary-background);
+  --color-alt-tertiary-background-accent: var(--alt-tertiary-background-accent);
+  --color-alt-tertiary-foreground: var(--alt-tertiary-foreground);
+  --color-alt-tertiary-foreground-accent: var(--alt-tertiary-foreground-accent);
+  --color-alt-tertiary-border: var(--alt-tertiary-border);
+  --color-alt-tertiary-border-accent: var(--alt-tertiary-border-accent);
+  --color-alt-tertiary-shadow: var(--alt-tertiary-shadow);
+  --color-alt-tertiary-shadow-accent: var(--alt-tertiary-shadow-accent);
+  --color-alt-tertiary-ring: var(--alt-tertiary-ring);
+
+  --color-alt-standalone: var(--alt-standalone);
+  --color-alt-standalone-accent: var(--alt-standalone-accent);
+  --color-alt-standalone-emphasis: var(--alt-standalone-emphasis);
+
+  --color-alert-background: var(--alert-background);
+  --color-alert-foreground: var(--alert-foreground);
+  --color-alert-border: var(--alert-border);
+  --color-alert-shadow: var(--alert-shadow);
+  --color-alert-ring: var(--alert-ring);
+
+  --color-alert-standalone: var(--alert-standalone);
+  --color-alert-standalone-accent: var(--alert-standalone-accent);
+  --color-alert-standalone-emphasis: var(--alert-standalone-emphasis);
+
+  --default-border-width: var(--default-border-width);
+  --default-border-radius: var(--default-border-radius);
+
+  --radius-xs: var(--default-border-radius);
+  --radius-sm: calc(var(--default-border-radius) + 0.125rem);
+  --radius-md: calc(var(--default-border-radius) + 0.375rem);
+  --radius-lg: calc(var(--default-border-radius) + 0.5rem);
+  --radius-xl: calc(var(--default-border-radius) + 0.75rem);
+  --radius-2xl: calc(var(--default-border-radius) + 1rem);
+  --radius-3xl: calc(var(--default-border-radius) + 1.5rem);
+
+  --shadow-2xs: var(--shadow-2xs) var(--tw-shadow-color, currentcolor);
+  --shadow-xs: var(--shadow-xs) var(--tw-shadow-color, currentcolor);
+  --shadow-sm: var(--shadow-sm) var(--tw-shadow-color, currentcolor);
+  --shadow-md: var(--shadow-md) var(--tw-shadow-color, currentcolor);
+  --shadow-lg: var(--shadow-lg) var(--tw-shadow-color, currentcolor);
+  --shadow-xl: var(--shadow-xl) var(--tw-shadow-color, currentcolor);
+  --shadow-2xl: var(--shadow-2xl) var(--tw-shadow-color, currentcolor);
+
+  --animate-accordion-down: collapsible-down 0.2s ease-out forwards;
+  --animate-accordion-up: collapsible-up 0.2s ease-out forwards;
+
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--qwikui-collapsible-content-height);
+    }
+  }
+  @keyframes collapsible-up {
+    from {
+      height: var(--qwikui-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@utility border-width-* {
+  border: --value(--border-width-*);
+}
+
+@layer base {
+  * {
+    @apply border-border shadow-shadow outline-ring;
+  }
+  html {
+    font-size: 16px;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1 {
+    @apply mb-6 scroll-mt-24 pt-6 text-3xl font-bold text-foreground md:text-5xl;
+  }
+  h2 {
+    @apply mt-12 mb-4 scroll-mt-24 text-3xl font-bold text-foreground;
+  }
+  h3 {
+    @apply mt-8 mb-2 scroll-mt-20 text-xl font-semibold text-foreground;
+  }
+  h4 {
+    @apply mt-6 mb-4 text-lg font-medium text-foreground;
+  }
+  h5 {
+    @apply text-base font-medium text-foreground;
+  }
+  p {
+    @apply mb-6 last:mb-0;
+  }
+}
+
+@layer qwik {
+  dialog {
+    max-width: unset;
+    max-height: unset;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: basic > modern 1`] = `
 "@reference "../../../global.css";
 @import "./shared.css";
 
@@ -568,7 +1089,31 @@ exports[`step2 - removeThemePreludes (snapshots) > case basic > basic 1`] = `
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case class-selectors > class-selectors 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: basic > qwik 1`] = `
+"@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn {
+    color: red;
+  }
+  .btn {
+    color: blue;
+  }
+}
+
+@theme {
+  --theme-var: var(--color-red);
+}
+
+@media (max-width: 768px) {
+  .test {
+    color: yellow;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: class-selectors > modern 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -582,7 +1127,20 @@ exports[`step2 - removeThemePreludes (snapshots) > case class-selectors > class-
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-handle-comma-separated-classes > should-handle-comma-separated-classes 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: class-selectors > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+    background-color: blue;
+    padding: 8px;
+  }
+  .btn {
+    color: blue;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-comma-separated-classes > modern 1`] = `
 "@layer components {
   .btn,
   .icon-btn {
@@ -595,7 +1153,16 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-handle-comma-sepa
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-handle-duplicate-nested-media-overrides > should-handle-duplicate-nested-media-overrides 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-comma-separated-classes > qwik 1`] = `
+"@layer components {
+  .btn,
+  .icon-btn {
+    color: red;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-duplicate-nested-media-overrides > modern 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -623,7 +1190,56 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-handle-duplicate-
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-handle-mixed-selector-list > should-handle-mixed-selector-list 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-duplicate-nested-media-overrides > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+    @media (max-width: 768px) {
+      color: yellow;
+      background-color: blue;
+      &:hover {
+        transform: scale(0.99);
+      }
+    }
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-light-variant > modern 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+  .light .btn {
+    color: white;
+  }
+  .dark .btn {
+    color: gray;
+  }
+  .light .btn {
+    color: green;
+  }
+  .dark .btn {
+    color: blue;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-light-variant > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+  .light .btn {
+    color: white;
+  }
+  .dark .btn {
+    color: gray;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-mixed-selector-list > modern 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -631,7 +1247,15 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-handle-mixed-sele
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-handle-multiple-at-layer-rules > should-handle-multiple-at-layer-rules 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-mixed-selector-list > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-multiple-at-layer-rules > modern 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -651,7 +1275,21 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-handle-multiple-a
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-handle-not-leading-theme-class > should-handle-not-leading-theme-class 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-multiple-at-layer-rules > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+}
+
+@layer components {
+  .test {
+    color: pink;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-not-leading-theme-class > modern 1`] = `
 "@layer components {
   .leading .btn {
     color: green;
@@ -659,7 +1297,15 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-handle-not-leadin
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-keep-media-queries-in-selectors > should-keep-media-queries-in-selectors 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-handle-not-leading-theme-class > qwik 1`] = `
+"@layer components {
+  .leading .btn {
+    color: blue;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-keep-media-queries-in-selectors > modern 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -673,7 +1319,18 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-keep-media-querie
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-keep-recursively-nested-selectors > should-keep-recursively-nested-selectors 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-keep-media-queries-in-selectors > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+    @media (max-width: 768px) {
+      color: yellow;
+    }
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-keep-recursively-nested-selectors > modern 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -698,7 +1355,28 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-keep-recursively-
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-merge-dark-variants > should-merge-dark-variants 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-keep-recursively-nested-selectors > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+    background-color: blue;
+    &:focus-visible {
+      outline: 2px solid red;
+      &:active {
+        transform: translate(2px, 2px);
+      }
+    }
+  }
+  .btn {
+    color: blue;
+    &:hover {
+      transform: translate(-2px, -2px);
+    }
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-merge-dark-variants > modern 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -718,7 +1396,27 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-merge-dark-varian
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-merge-nested-selectors > should-merge-nested-selectors 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-merge-dark-variants > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+  .btn {
+    color: green;
+  }
+  .dark .btn {
+    color: gray;
+  }
+  .dark .btn {
+    color: blue;
+  }
+  .dark .btn {
+    color: orange;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-merge-nested-selectors > modern 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -743,7 +1441,77 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-merge-nested-sele
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-strip-comments > should-strip-comments 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-merge-nested-selectors > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+    background-color: blue;
+    &:focus-visible {
+      outline: 2px solid red;
+    }
+    &:active {
+      transform: translate(2px, 2px);
+    }
+  }
+  .btn {
+    color: blue;
+    &:hover {
+      transform: translate(-2px, -2px);
+    }
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-preserve-top-level-at-rules > modern 1`] = `
+"@custom-variant dark (&:where(.dark, .dark *));
+
+@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn {
+    color: red;
+  }
+  .btn {
+    color: green;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-test {
+    color: yellow;
+  }
+}
+
+@theme {
+  --my-var: var(--color-red);
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-preserve-top-level-at-rules > qwik 1`] = `
+"@custom-variant dark (&:where(.dark, .dark *));
+
+@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+  .btn {
+    color: red;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-test {
+    color: yellow;
+  }
+}
+
+@theme {
+  --my-var: var(--color-red);
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-strip-comments > modern 1`] = `
 "@layer components {
   .btn {
     color: red;
@@ -755,7 +1523,19 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-strip-comments > 
 }"
 `;
 
-exports[`step2 - removeThemePreludes (snapshots) > case should-work-without-combinator > should-work-without-combinator 1`] = `
+exports[`step2 - removeThemePreludes (snapshots) > case: should-strip-comments > qwik 1`] = `
+"@layer components {
+  .btn {
+    color: red;
+  }
+}
+
+@theme {
+  --theme-var: var(--color-red);
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-work-without-combinator > modern 1`] = `
 "@layer components {
   .light {
     color: red;
@@ -768,6 +1548,17 @@ exports[`step2 - removeThemePreludes (snapshots) > case should-work-without-comb
   }
   .dark {
     color: blue;
+  }
+}"
+`;
+
+exports[`step2 - removeThemePreludes (snapshots) > case: should-work-without-combinator > qwik 1`] = `
+"@layer components {
+  .light {
+    color: red;
+  }
+  .dark {
+    color: gray;
   }
 }"
 `;

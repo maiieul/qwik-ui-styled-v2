@@ -1,4 +1,3 @@
-export const theme = "modern" as const;
 
 export const cssFiles = {
   basic: `
@@ -242,7 +241,7 @@ export const cssFiles = {
     }
 }
 `,
-    "should-strip-comments": `
+  "should-strip-comments": `
 /*
  * This is a comment
  */
@@ -266,6 +265,49 @@ export const cssFiles = {
     */
     /* This is a comment */
     --theme-var: var(--color-red);
+}
+`,
+  "should-handle-light-variant": `
+@layer components {
+    .btn {
+        color: red;
+    }
+    .light .btn {
+        color: white;
+    }
+    .dark .btn {
+        color: gray;
+    }
+    .modern.light .btn {
+        color: green;
+    }
+    .modern.dark .btn {
+        color: blue;
+    }
+}
+`,
+  "should-preserve-top-level-at-rules": `
+@custom-variant dark (&:where(.dark, .dark *));
+@reference "../../../global.css";
+@import "./shared.css";
+
+@layer components {
+    .btn {
+        color: red;
+    }
+    .modern .btn {
+        color: green;
+    }
+}
+
+@media (min-width: 768px) {
+    .responsive-test {
+        color: yellow;
+    }
+}
+
+@theme {
+    --my-var: var(--color-red);
 }
 `,
 } as const;

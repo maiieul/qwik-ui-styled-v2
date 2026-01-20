@@ -1,30 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { extractThemedCSS } from "../extract-themed-css";
 
-describe("outputAppliedThemedCSS", () => {
-  it('should ignore "dark"/"light" variants in theme and keep only real theme tokens', async () => {
-    const css = `
-@layer components {
-  .btn {
-    color: red;
-  }
-  .dark .btn {
-    color: gray;
-  }
-  .modern .btn {
-    color: green;
-  }
-}
-`;
-
-    const out = await extractThemedCSS(css, "dark modern");
-    expect(out).toContain(".btn");
-    expect(out).toContain(".dark .btn");
-
-    expect(out).not.toContain(".modern");
-    expect(out).not.toContain(".qwik");
-  });
-
+describe("extractThemedCSS - error cases", () => {
   it("should throw if any declaration uses !important", async () => {
     const css = `
 @layer components {
@@ -37,22 +14,6 @@ describe("outputAppliedThemedCSS", () => {
     await expect(extractThemedCSS(css, "modern")).rejects.toThrow(
       "!important is not allowed in base components",
     );
-  });
-
-  it("should allow a theme class without a combinator (e.g. .modern.btn)", async () => {
-    const css = `
-@layer components {
-  .modern.btn {
-    color: red;
-  }
-  .modern .btn {
-    color: green;
-  }
-}
-`;
-
-    const out = await extractThemedCSS(css, "modern");
-    expect(out).toContain(".btn");
   });
 
   it("should throw if multiple theme classes are used in one selector (e.g. .modern.qwik .btn)", async () => {
@@ -100,6 +61,13 @@ describe("outputAppliedThemedCSS", () => {
 
     await expect(extractThemedCSS(css, "modern")).rejects.toThrow(
       'Components cannot contain duplicate declarations for the same selector property: "color".',
+    );
+  });
+
+  it("should throw if theme is empty", async () => {
+    const css = `@layer components { .btn { color: red; } }`;
+    await expect(extractThemedCSS(css, "")).rejects.toThrow(
+      "Theme must contain at least one theme class",
     );
   });
 });
