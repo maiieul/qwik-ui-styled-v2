@@ -63,9 +63,7 @@ export default component$(() => {
       <h2 class="text-2xl font-bold">Buttons</h2>
       <h3>3 options CTA (ghost-link + secondary + primary)</h3>
       <div class="my-10 flex justify-start gap-6">
-        <Button variant="vanilla" class="text-alert-standalone">
-          Delete listing
-        </Button>
+        <Button variant="vanilla">Delete listing</Button>
         <Button variant="secondary">Edit</Button>
         <Button variant="primary">Publish</Button>
       </div>

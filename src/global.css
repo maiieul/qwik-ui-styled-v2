@@ -124,6 +124,9 @@
     --primary-shadow: var(--color-sky-70);
     --primary-shadow-accent: var(--color-sky-65);
     --primary-ring: var(--color-sky-60);
+    --primary-standalone: var(--color-sky-35);
+    --primary-standalone-accent: var(--color-sky-30);
+    --primary-standalone-emphasis: var(--color-sky-25);
 
     --secondary-background: var(--color-sky-75);
     --secondary-background-accent: var(--color-sky-70);
@@ -134,10 +137,6 @@
     --secondary-shadow: var(--color-sky-85);
     --secondary-shadow-accent: var(--color-sky-80);
     --secondary-ring: var(--color-sky-70);
-
-    --standalone: var(--color-sky-35);
-    --standalone-accent: var(--color-sky-30);
-    --standalone-emphasis: var(--color-sky-25);
 
     /* Alert colors */
     /* 

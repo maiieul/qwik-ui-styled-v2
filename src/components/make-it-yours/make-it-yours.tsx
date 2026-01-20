@@ -5,7 +5,7 @@ import { Button, IconButton, Modal } from "~/components/ui";
 import CopyCssConfig from "~/components/copy-css-config/copy-css-config";
 
 import { useTheme } from "~/hooks/use-theme/provider";
-import { ThemeConfig } from "~/utils/theme/types";
+import { ThemeConfig } from "~/utils/extract-themed-css/types";
 
 export default component$<PropsOf<typeof Button>>(() => {
   const { themeSig } = useTheme();
