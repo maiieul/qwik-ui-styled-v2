@@ -1019,7 +1019,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case: basic > modern 1`] = `
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }
 
 @media (max-width: 768px) {
@@ -1040,7 +1040,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case: basic > qwik 1`] = `
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }
 
 @media (max-width: 768px) {
@@ -1351,7 +1351,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case: should-preserve-top-level-a
 }
 
 @theme {
-  --my-var: var(--color-red);
+  --my-var: var(--foreground);
 }"
 `;
 
@@ -1374,7 +1374,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case: should-preserve-top-level-a
 }
 
 @theme {
-  --my-var: var(--color-red);
+  --my-var: var(--foreground);
 }"
 `;
 
@@ -1386,7 +1386,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case: should-strip-comments > mod
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }"
 `;
 
@@ -1398,7 +1398,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case: should-strip-comments > qwi
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }"
 `;
 

@@ -1079,7 +1079,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: basic > modern 
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }
 
 @media (max-width: 768px) {
@@ -1103,7 +1103,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: basic > qwik 1`
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }
 
 @media (max-width: 768px) {
@@ -1484,7 +1484,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: should-preserve
 }
 
 @theme {
-  --my-var: var(--color-red);
+  --my-var: var(--foreground);
 }"
 `;
 
@@ -1507,7 +1507,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: should-preserve
 }
 
 @theme {
-  --my-var: var(--color-red);
+  --my-var: var(--foreground);
 }"
 `;
 
@@ -1519,7 +1519,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: should-strip-co
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }"
 `;
 
@@ -1531,7 +1531,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: should-strip-co
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }"
 `;
 

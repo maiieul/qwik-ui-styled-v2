@@ -1079,7 +1079,7 @@ exports[`step2 - removeThemePreludes (snapshots) > case: basic > modern 1`] = `
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }
 
 @media (max-width: 768px) {
@@ -1103,7 +1103,7 @@ exports[`step2 - removeThemePreludes (snapshots) > case: basic > qwik 1`] = `
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }
 
 @media (max-width: 768px) {
@@ -1484,7 +1484,7 @@ exports[`step2 - removeThemePreludes (snapshots) > case: should-preserve-top-lev
 }
 
 @theme {
-  --my-var: var(--color-red);
+  --my-var: var(--foreground);
 }"
 `;
 
@@ -1507,7 +1507,7 @@ exports[`step2 - removeThemePreludes (snapshots) > case: should-preserve-top-lev
 }
 
 @theme {
-  --my-var: var(--color-red);
+  --my-var: var(--foreground);
 }"
 `;
 
@@ -1519,7 +1519,7 @@ exports[`step2 - removeThemePreludes (snapshots) > case: should-strip-comments >
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }"
 `;
 
@@ -1531,7 +1531,7 @@ exports[`step2 - removeThemePreludes (snapshots) > case: should-strip-comments >
 }
 
 @theme {
-  --theme-var: var(--color-red);
+  --theme-var: var(--foreground);
 }"
 `;
 

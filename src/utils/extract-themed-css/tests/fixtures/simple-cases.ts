@@ -1,4 +1,3 @@
-
 export const cssFiles = {
   basic: `
 @reference "../../../global.css";
@@ -20,7 +19,7 @@ export const cssFiles = {
 }
 
 @theme {
-    --theme-var: var(--color-red);
+    --theme-var: var(--foreground);
 }
 
 @media (max-width: 768px) {
@@ -264,7 +263,7 @@ export const cssFiles = {
     * This is a comment
     */
     /* This is a comment */
-    --theme-var: var(--color-red);
+    --theme-var: var(--foreground);
 }
 `,
   "should-handle-light-variant": `
@@ -307,7 +306,7 @@ export const cssFiles = {
 }
 
 @theme {
-    --my-var: var(--color-red);
+    --my-var: var(--foreground);
 }
 `,
 } as const;
