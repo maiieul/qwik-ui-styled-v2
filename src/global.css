@@ -324,6 +324,9 @@
   --color-border-emphasis: var(--border-emphasis);
   --color-shadow: var(--shadow);
   --color-ring: var(--ring);
+  --color-standalone: var(--standalone);
+  --color-standalone-accent: var(--standalone-accent);
+  --color-standalone-emphasis: var(--standalone-emphasis);
 
   /* main colors */
   --color-primary-background: var(--primary-background);
@@ -335,6 +338,9 @@
   --color-primary-shadow: var(--primary-shadow);
   --color-primary-shadow-accent: var(--primary-shadow-accent);
   --color-primary-ring: var(--primary-ring);
+  --color-primary-standalone: var(--primary-standalone);
+  --color-primary-standalone-accent: var(--primary-standalone-accent);
+  --color-primary-standalone-emphasis: var(--primary-standalone-emphasis);
 
   --color-secondary-background: var(--secondary-background);
   --color-secondary-background-accent: var(--secondary-background-accent);
@@ -346,66 +352,12 @@
   --color-secondary-shadow-accent: var(--secondary-shadow-accent);
   --color-secondary-ring: var(--secondary-ring);
 
-  --color-tertiary-background: var(--tertiary-background);
-  --color-tertiary-background-accent: var(--tertiary-background-accent);
-  --color-tertiary-foreground: var(--tertiary-foreground);
-  --color-tertiary-foreground-accent: var(--tertiary-foreground-accent);
-  --color-tertiary-border: var(--tertiary-border);
-  --color-tertiary-border-accent: var(--tertiary-border-accent);
-  --color-tertiary-shadow: var(--tertiary-shadow);
-  --color-tertiary-shadow-accent: var(--tertiary-shadow-accent);
-  --color-tertiary-ring: var(--tertiary-ring);
-
-  --color-standalone: var(--standalone);
-  --color-standalone-accent: var(--standalone-accent);
-  --color-standalone-emphasis: var(--standalone-emphasis);
-
-  /* auxiliary colors */
-  --color-alt-primary-background: var(--alt-primary-background);
-  --color-alt-primary-background-accent: var(--alt-primary-background-accent);
-  --color-alt-primary-foreground: var(--alt-primary-foreground);
-  --color-alt-primary-foreground-accent: var(--alt-primary-foreground-accent);
-  --color-alt-primary-border: var(--alt-primary-border);
-  --color-alt-primary-border-accent: var(--alt-primary-border-accent);
-  --color-alt-primary-shadow: var(--alt-primary-shadow);
-  --color-alt-primary-shadow-accent: var(--alt-primary-shadow-accent);
-  --color-alt-primary-ring: var(--alt-primary-ring);
-
-  --color-alt-secondary-background: var(--alt-secondary-background);
-  --color-alt-secondary-background-accent: var(
-    --alt-secondary-background-accent
-  );
-  --color-alt-secondary-foreground: var(--alt-secondary-foreground);
-  --color-alt-secondary-foreground-accent: var(
-    --alt-secondary-foreground-accent
-  );
-  --color-alt-secondary-border: var(--alt-secondary-border);
-  --color-alt-secondary-border-accent: var(--alt-secondary-border-accent);
-  --color-alt-secondary-shadow: var(--alt-secondary-shadow);
-  --color-alt-secondary-shadow-accent: var(--alt-secondary-shadow-accent);
-  --color-alt-secondary-ring: var(--alt-secondary-ring);
-
-  --color-alt-tertiary-background: var(--alt-tertiary-background);
-  --color-alt-tertiary-background-accent: var(--alt-tertiary-background-accent);
-  --color-alt-tertiary-foreground: var(--alt-tertiary-foreground);
-  --color-alt-tertiary-foreground-accent: var(--alt-tertiary-foreground-accent);
-  --color-alt-tertiary-border: var(--alt-tertiary-border);
-  --color-alt-tertiary-border-accent: var(--alt-tertiary-border-accent);
-  --color-alt-tertiary-shadow: var(--alt-tertiary-shadow);
-  --color-alt-tertiary-shadow-accent: var(--alt-tertiary-shadow-accent);
-  --color-alt-tertiary-ring: var(--alt-tertiary-ring);
-
-  --color-alt-standalone: var(--alt-standalone);
-  --color-alt-standalone-accent: var(--alt-standalone-accent);
-  --color-alt-standalone-emphasis: var(--alt-standalone-emphasis);
-
   /* alert colors */
   --color-alert-background: var(--alert-background);
   --color-alert-foreground: var(--alert-foreground);
   --color-alert-border: var(--alert-border);
   --color-alert-shadow: var(--alert-shadow);
   --color-alert-ring: var(--alert-ring);
-
   --color-alert-standalone: var(--alert-standalone);
   --color-alert-standalone-accent: var(--alert-standalone-accent);
   --color-alert-standalone-emphasis: var(--alert-standalone-emphasis);
@@ -456,37 +408,72 @@
 
 @layer base {
   * {
-    @apply border-border shadow-shadow outline-ring;
+    @apply shadow-shadow;
+    outline-color: var(--ring);
+    border-color: var(--border);
   }
   html {
     font-size: 16px;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 
   h1 {
-    @apply mb-6 scroll-mt-24 pt-6 text-3xl font-bold text-foreground md:text-5xl;
+    margin-bottom: 0.25rem;
+    padding-top: 1.5rem;
+    scroll-margin-top: 4rem;
+    color: var(--foreground);
+    font-weight: 700;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl-line-height);
+    @media (width >= 768px) {
+      font-size: var(--text-5xl);
+    }
   }
 
   h2 {
-    @apply mt-12 mb-4 scroll-mt-24 text-3xl font-bold text-foreground;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    scroll-margin-top: 6rem;
+    color: var(--foreground);
+    font-weight: 700;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl-line-height);
   }
 
   h3 {
-    @apply mt-8 mb-2 scroll-mt-20 text-xl font-semibold text-foreground;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    scroll-margin-top: 4rem;
+    color: var(--foreground);
+    font-weight: 600;
+    font-size: var(--text-xl);
+    line-height: var(--text-xl-line-height);
   }
 
   h4 {
-    @apply mt-6 mb-4 text-lg font-medium text-foreground;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+    font-weight: 500;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg-line-height);
   }
 
   h5 {
-    @apply text-base font-medium text-foreground;
+    color: var(--foreground);
+    font-weight: 500;
+    font-size: var(--text-base);
+    line-height: var(--text-base-line-height);
   }
 
   p {
-    @apply mb-6 last:mb-0;
+    line-height: 1.75rem;
+    &:not(:first-child) {
+      margin-top: 1.5rem;
+    }
   }
 }
 
