@@ -1,4 +1,10 @@
-import { $, PropsOf, component$, useComputed$ } from "@qwik.dev/core";
+import {
+  $,
+  PropsOf,
+  component$,
+  useComputed$,
+  useSignal,
+} from "@qwik.dev/core";
 import { Lucide } from "@qds.dev/ui";
 
 import { Button, IconButton, Modal } from "~/components/ui";
@@ -6,10 +12,11 @@ import CopyCssConfig from "~/components/copy-css-config/copy-css-config";
 
 import { useTheme } from "~/hooks/use-theme/provider";
 import { ThemeConfig } from "~/utils/extract-themed-css/types";
+import { extractThemedCSS } from "~/utils/extract-themed-css/extract-themed-css";
+import globalCSS from "~/global.css?raw";
 
 export default component$<PropsOf<typeof Button>>(() => {
-  const { themeSig } = useTheme();
-
+  const { themeSig, storageKey, defaultTheme } = useTheme();
   const themeObjectComputed = useComputed$((): ThemeConfig => {
     if (!themeSig.value) {
       return {
@@ -31,9 +38,17 @@ export default component$<PropsOf<typeof Button>>(() => {
     const { mode, style } = themeObjectComputed.value;
     return [mode, style].filter(Boolean).join(" ");
   });
+
+  const cssThemeOutput = useSignal<string>("");
+
   return (
     <Modal.Root>
-      <Modal.Trigger asChild>
+      <Modal.Trigger
+        asChild
+        onClick$={$(() => {
+          themeSig.value = localStorage.getItem(storageKey) ?? defaultTheme;
+        })}
+      >
         <IconButton>
           <Lucide.WandSparkles class="size-5" />
         </IconButton>
@@ -50,6 +65,12 @@ export default component$<PropsOf<typeof Button>>(() => {
             onChange$={async (e, el) => {
               themeObjectComputed.value.style = el.value;
               themeSig.value = await computedThemeObjectToThemeArray();
+              cssThemeOutput.value = await extractThemedCSS(
+                globalCSS,
+                themeSig.value === "dark" || themeSig.value === "light"
+                  ? "border-radius-0 simple primary-cyan-600 light base-slate"
+                  : themeSig.value!,
+              );
             }}
           >
             <option value={"modern"}>Modern</option>
@@ -68,7 +89,7 @@ export default component$<PropsOf<typeof Button>>(() => {
           >
             Reset
           </Button>
-          <CopyCssConfig />
+          <CopyCssConfig cssThemeOutput={cssThemeOutput.value} />
         </footer>
         <Modal.Close class="fixed top-5 right-4" asChild>
           <IconButton>

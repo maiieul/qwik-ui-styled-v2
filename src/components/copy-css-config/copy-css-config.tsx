@@ -1,34 +1,16 @@
-import { $, component$, useSignal } from "@qwik.dev/core";
+import { $, component$ } from "@qwik.dev/core";
 import { IconButton, Modal } from "~/components/ui";
 import { Button } from "~/components/ui";
-import { extractThemedCSS } from "~/utils/extract-themed-css/extract-themed-css";
 import { Lucide } from "@qds.dev/ui";
-import { useTheme } from "~/hooks/use-theme/provider";
-import globalCSS from "~/global.css?raw";
 import { Highlight } from "../highlight/highlight";
 
-export default component$(() => {
-  const cssThemeOutput = useSignal<string>("");
-
-  const { themeSig, defaultTheme, storageKey } = useTheme();
-
+export default component$<{ cssThemeOutput: string }>(({ cssThemeOutput }) => {
   return (
     <Modal.Root>
-      <Modal.Trigger
-        asChild
-        onClick$={$(async () => {
-          themeSig.value = localStorage.getItem(storageKey) ?? defaultTheme;
-          cssThemeOutput.value = await extractThemedCSS(
-            globalCSS,
-            themeSig.value === "dark" || themeSig.value === "light"
-              ? "border-radius-0 simple primary-cyan-600 light base-slate"
-              : themeSig.value,
-          );
-        })}
-      >
+      <Modal.Trigger asChild>
         <Button variant="primary">Get config</Button>
       </Modal.Trigger>
-      <Modal.Content>
+      <Modal.Content class="max-w-2xl">
         <header>
           <h2 class="mb-2 text-lg font-bold">Copy config</h2>
           <p class="mb-6">
@@ -37,11 +19,7 @@ export default component$(() => {
           </p>
         </header>
         <div>
-          <Highlight
-            code={cssThemeOutput.value}
-            language="css"
-            class="border"
-          />
+          <Highlight code={cssThemeOutput} language="css" class="border" />
         </div>
       </Modal.Content>
       <Modal.Close class="absolute top-7 right-6" asChild>
