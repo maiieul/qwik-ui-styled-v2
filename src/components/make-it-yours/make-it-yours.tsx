@@ -16,7 +16,8 @@ import { extractThemedCSS } from "~/utils/extract-themed-css/extract-themed-css"
 import globalCSS from "~/global.css?raw";
 
 export default component$<PropsOf<typeof Button>>(() => {
-  const { themeSig, storageKey, defaultTheme } = useTheme();
+  const { themeSig, defaultTheme } = useTheme();
+
   const themeObjectComputed = useComputed$((): ThemeConfig => {
     if (!themeSig.value) {
       return {
@@ -43,12 +44,7 @@ export default component$<PropsOf<typeof Button>>(() => {
 
   return (
     <Modal.Root>
-      <Modal.Trigger
-        asChild
-        onClick$={$(() => {
-          themeSig.value = localStorage.getItem(storageKey) ?? defaultTheme;
-        })}
-      >
+      <Modal.Trigger asChild>
         <IconButton>
           <Lucide.WandSparkles class="size-5" />
         </IconButton>
@@ -69,7 +65,7 @@ export default component$<PropsOf<typeof Button>>(() => {
                 globalCSS,
                 themeSig.value === "dark" || themeSig.value === "light"
                   ? "border-radius-0 simple primary-cyan-600 light base-slate"
-                  : themeSig.value!,
+                  : (themeSig.value ?? defaultTheme),
               );
             }}
           >

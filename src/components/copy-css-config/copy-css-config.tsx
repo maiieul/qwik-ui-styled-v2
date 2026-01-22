@@ -1,4 +1,4 @@
-import { $, component$ } from "@qwik.dev/core";
+import { component$ } from "@qwik.dev/core";
 import { IconButton, Modal } from "~/components/ui";
 import { Button } from "~/components/ui";
 import { Lucide } from "@qds.dev/ui";

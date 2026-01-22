@@ -1,4 +1,4 @@
-import { Slot, component$ } from "@qwik.dev/core";
+import { Slot, component$, useVisibleTask$ } from "@qwik.dev/core";
 import { useContent, useDocumentHead } from "@qwik.dev/router";
 import { DocsNavigation } from "~/components/sidebar/sidebar";
 import { MDXProvider } from "~/components/mdx/provider";
@@ -7,12 +7,17 @@ import { DashboardTableOfContents } from "~/components/toc/toc";
 import Header from "~/components/header/header";
 import { useMenuItems } from "~/hooks/use-menu-items";
 import { horizontalLayout } from "./horizontal-layout.constant";
+import { useTheme } from "~/hooks/use-theme/provider";
 
 export default component$(() => {
   const { headings } = useContent();
   const { menuItemsGroups } = useMenuItems();
 
   const documentHead = useDocumentHead();
+  const { themeSig, storageKey, defaultTheme } = useTheme();
+  useVisibleTask$(() => {
+    themeSig.value = localStorage.getItem(storageKey) ?? defaultTheme;
+  });
 
   return (
     <>
