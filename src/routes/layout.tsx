@@ -31,7 +31,7 @@ export default component$(() => {
       <div class="grid">
         <div class={horizontalLayout}>
           <DocsNavigation
-            class="sticky top-0 mr-4 hidden h-[100vh] overflow-auto border-r shadow-xs lg:flex"
+            class="sticky top-0 mr-4 hidden h-screen overflow-auto border-r shadow-xs lg:flex"
             linksGroups={menuItemsGroups}
           />
           <main class="px-6 py-8 pt-24 lg:px-12">
