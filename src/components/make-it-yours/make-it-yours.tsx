@@ -18,6 +18,10 @@ import globalCSS from "~/global.css?raw";
 export default component$<PropsOf<typeof Button>>(() => {
   const { themeSig, defaultTheme } = useTheme();
 
+  const extractGlobalCSS = $(async () => {
+    return await extractThemedCSS(globalCSS, themeSig.value ?? defaultTheme);
+  });
+
   const themeObjectComputed = useComputed$((): ThemeConfig => {
     if (!themeSig.value) {
       return {
@@ -44,7 +48,12 @@ export default component$<PropsOf<typeof Button>>(() => {
 
   return (
     <Modal.Root>
-      <Modal.Trigger asChild>
+      <Modal.Trigger
+        asChild
+        onClick$={async () => {
+          cssThemeOutput.value = await extractGlobalCSS();
+        }}
+      >
         <IconButton>
           <Lucide.WandSparkles class="size-5" />
         </IconButton>
@@ -61,12 +70,7 @@ export default component$<PropsOf<typeof Button>>(() => {
             onChange$={async (e, el) => {
               themeObjectComputed.value.style = el.value;
               themeSig.value = await computedThemeObjectToThemeArray();
-              cssThemeOutput.value = await extractThemedCSS(
-                globalCSS,
-                themeSig.value === "dark" || themeSig.value === "light"
-                  ? "border-radius-0 simple primary-cyan-600 light base-slate"
-                  : (themeSig.value ?? defaultTheme),
-              );
+              cssThemeOutput.value = await extractGlobalCSS();
             }}
           >
             <option value={"modern"}>Modern</option>
@@ -85,7 +89,7 @@ export default component$<PropsOf<typeof Button>>(() => {
           >
             Reset
           </Button>
-          <CopyCssConfig cssThemeOutput={cssThemeOutput.value} />
+          <CopyCssConfig cssThemeOutput={cssThemeOutput} />
         </footer>
         <Modal.Close class="fixed top-5 right-4" asChild>
           <IconButton>

@@ -21,7 +21,6 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
 
     useVisibleTask$(async ({ track }) => {
       track(() => themeSig.value);
-
       const themedSnippetTabs = await Promise.all(
         rawSnippetTabs.map(async (rawSnippetTab: rawSnippetTab) => {
           return {
