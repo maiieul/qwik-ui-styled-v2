@@ -44,7 +44,7 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
             <Tabs.List class="w-52 shrink-0 border-r p-2">
               <div class="flex flex-col gap-1">
                 <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2 py-2 pl-2 text-sm text-foreground-muted">
+                  <div class="flex items-center gap-2 py-2 pl-2 text-sm">
                     {folderName}
                   </div>
                   <IconButton variant="ghost" class="mr-3">
