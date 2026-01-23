@@ -1,6 +1,5 @@
 export const cssFiles = {
   basic: `
-@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {
@@ -287,7 +286,6 @@ export const cssFiles = {
 `,
   "should-preserve-top-level-at-rules": `
 @custom-variant dark (&:where(.dark, .dark *));
-@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {

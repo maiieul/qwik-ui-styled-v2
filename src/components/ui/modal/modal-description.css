@@ -1,7 +1,6 @@
-@reference "../../../global.css";
-
 @layer components {
   .modal-description {
-    @apply text-sm text-foreground-soft;
+    color: var(--foreground-soft);
+    font-size: var(--text-sm);
   }
 }

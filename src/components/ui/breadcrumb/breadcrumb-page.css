@@ -1,7 +1,6 @@
-@reference "../../../global.css";
-
 @layer components {
   .breadcrumb-page {
-    @apply font-normal text-foreground;
+    color: var(--foreground);
+    font-weight: var(--font-weight-normal);
   }
 }

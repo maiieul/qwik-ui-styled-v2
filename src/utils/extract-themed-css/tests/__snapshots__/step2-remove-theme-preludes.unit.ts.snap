@@ -1,8 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`step2 - removeThemePreludes (snapshots) > case: a button > modern 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn.variant-primary {
@@ -117,8 +116,7 @@ exports[`step2 - removeThemePreludes (snapshots) > case: a button > modern 1`] =
 `;
 
 exports[`step2 - removeThemePreludes (snapshots) > case: a button > qwik 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn.variant-primary {
@@ -1066,8 +1064,7 @@ exports[`step2 - removeThemePreludes (snapshots) > case: a global.css > qwik 1`]
 `;
 
 exports[`step2 - removeThemePreludes (snapshots) > case: basic > modern 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn {
@@ -1090,8 +1087,7 @@ exports[`step2 - removeThemePreludes (snapshots) > case: basic > modern 1`] = `
 `;
 
 exports[`step2 - removeThemePreludes (snapshots) > case: basic > qwik 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn {
@@ -1465,7 +1461,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case: should-merge-nested-sel
 exports[`step2 - removeThemePreludes (snapshots) > case: should-preserve-top-level-at-rules > modern 1`] = `
 "@custom-variant dark (&:where(.dark, .dark *));
 
-@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {
@@ -1491,7 +1486,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case: should-preserve-top-lev
 exports[`step2 - removeThemePreludes (snapshots) > case: should-preserve-top-level-at-rules > qwik 1`] = `
 "@custom-variant dark (&:where(.dark, .dark *));
 
-@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {

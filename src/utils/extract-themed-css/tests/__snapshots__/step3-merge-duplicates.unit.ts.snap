@@ -1,8 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`step3 - mergeDuplicates (snapshots) > case: a button > modern 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn.variant-primary {
@@ -103,8 +102,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case: a button > modern 1`] = `
 `;
 
 exports[`step3 - mergeDuplicates (snapshots) > case: a button > qwik 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn.variant-primary {
@@ -1009,8 +1007,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case: a global.css > qwik 1`] = `
 `;
 
 exports[`step3 - mergeDuplicates (snapshots) > case: basic > modern 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn {
@@ -1030,8 +1027,7 @@ exports[`step3 - mergeDuplicates (snapshots) > case: basic > modern 1`] = `
 `;
 
 exports[`step3 - mergeDuplicates (snapshots) > case: basic > qwik 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn {
@@ -1335,7 +1331,6 @@ exports[`step3 - mergeDuplicates (snapshots) > case: should-merge-nested-selecto
 exports[`step3 - mergeDuplicates (snapshots) > case: should-preserve-top-level-at-rules > modern 1`] = `
 "@custom-variant dark (&:where(.dark, .dark *));
 
-@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {
@@ -1358,7 +1353,6 @@ exports[`step3 - mergeDuplicates (snapshots) > case: should-preserve-top-level-a
 exports[`step3 - mergeDuplicates (snapshots) > case: should-preserve-top-level-at-rules > qwik 1`] = `
 "@custom-variant dark (&:where(.dark, .dark *));
 
-@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {

@@ -1,8 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: a button > modern 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn.variant-primary {
@@ -117,8 +116,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: a button > mode
 `;
 
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: a button > qwik 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn.variant-primary {
@@ -1066,8 +1064,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: a global.css > 
 `;
 
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: basic > modern 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn {
@@ -1090,8 +1087,7 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: basic > modern 
 `;
 
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: basic > qwik 1`] = `
-"@reference "../../../global.css";
-@import "./shared.css";
+"@import "./shared.css";
 
 @layer components {
   .btn {
@@ -1465,7 +1461,6 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: should-merge-ne
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: should-preserve-top-level-at-rules > modern 1`] = `
 "@custom-variant dark (&:where(.dark, .dark *));
 
-@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {
@@ -1491,7 +1486,6 @@ exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: should-preserve
 exports[`step1 - onlyKeepAppliedThemeClasses (snapshots) > case: should-preserve-top-level-at-rules > qwik 1`] = `
 "@custom-variant dark (&:where(.dark, .dark *));
 
-@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {

@@ -1,7 +1,8 @@
-@reference "../../../global.css";
-
 @layer components {
   .breadcrumb-separator {
-    @apply size-3.5 stroke-foreground-muted stroke-2;
+    stroke-width: 2;
+    width: 0.875rem;
+    height: 0.875rem;
+    color: var(--foreground-muted);
   }
 }

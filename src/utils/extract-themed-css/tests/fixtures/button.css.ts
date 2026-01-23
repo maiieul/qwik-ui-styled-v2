@@ -2,7 +2,6 @@ export const theme = "modern" as const;
 
 export const buttonCSS = {
   "a button": `
-@reference "../../../global.css";
 @import "./shared.css";
 
 @layer components {

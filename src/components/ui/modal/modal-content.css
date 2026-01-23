@@ -1,5 +1,3 @@
-@reference "../../../global.css";
-
 /* TODO: fix ui-closed animations */
 @layer components {
   .modal-content {

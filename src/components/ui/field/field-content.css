@@ -1,7 +1,9 @@
-@reference "../../../global.css";
-
 @layer components {
   .field-content {
-    @apply flex flex-1 flex-col gap-1.5 leading-snug;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.375rem;
+    line-height: var(--leading-snug);
   }
 }
