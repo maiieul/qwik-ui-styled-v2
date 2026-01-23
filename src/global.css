@@ -42,6 +42,7 @@
     --background-accent: var(--color-sky-10);
     --background-emphasis: var(--color-sky-15);
     --foreground: var(--color-slate-95);
+    --foreground-placeholder: var(--color-slate-50);
     --foreground-muted: var(--color-slate-65);
     --foreground-soft: var(--color-slate-80);
     --foreground-accent: var(--color-slate-100);
@@ -105,6 +106,7 @@
     --foreground: var(--color-slate-10);
     --foreground-muted: var(--color-slate-40);
     --foreground-soft: var(--color-slate-25);
+    --foreground-placeholder: var(--color-slate-55);
     --foreground-accent: var(--color-slate-5);
     --foreground-emphasis: var(--color-slate-0);
     --border: var(--color-violet-80);

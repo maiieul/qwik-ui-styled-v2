@@ -22,7 +22,8 @@
       font-size: var(--text-sm);
     }
     &::placeholder {
-      color: var(--foreground-muted);
+      color: var(--foreground-placeholder);
+      font-weight: var(--font-weight-light);
     }
     &:focus-visible {
       outline: 2px solid var(--ring);
