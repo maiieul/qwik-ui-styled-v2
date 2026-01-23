@@ -13,37 +13,40 @@ import indexTsxRawCode from "~/components/ui/callout/index.tsx?raw";
 
 export const CalloutCodeSnippets = component$(() => {
   return (
-    <CodeSnippets
-      rawSnippetTabs={[
-        {
-          title: "Root.tsx",
-          code: CalloutRootRawCode,
-        },
-        {
-          title: "Root.css",
-          code: CalloutRootCssRawCode,
-        },
-        {
-          title: "Title.tsx",
-          code: CalloutTitleRawCode,
-        },
-        {
-          title: "Title.css",
-          code: CalloutTitleCssRawCode,
-        },
-        {
-          title: "Description.tsx",
-          code: CalloutDescriptionRawCode,
-        },
-        {
-          title: "Description.css",
-          code: CalloutDescriptionCssRawCode,
-        },
-        {
-          title: "index.tsx",
-          code: indexTsxRawCode,
-        },
-      ]}
-    />
+    <>
+      <CodeSnippets
+        folderName="Callout"
+        rawSnippetTabs={[
+          {
+            title: "Root.tsx",
+            code: CalloutRootRawCode,
+          },
+          {
+            title: "Root.css",
+            code: CalloutRootCssRawCode,
+          },
+          {
+            title: "Title.tsx",
+            code: CalloutTitleRawCode,
+          },
+          {
+            title: "Title.css",
+            code: CalloutTitleCssRawCode,
+          },
+          {
+            title: "Description.tsx",
+            code: CalloutDescriptionRawCode,
+          },
+          {
+            title: "Description.css",
+            code: CalloutDescriptionCssRawCode,
+          },
+          {
+            title: "index.tsx",
+            code: indexTsxRawCode,
+          },
+        ]}
+      />
+    </>
   );
 });
