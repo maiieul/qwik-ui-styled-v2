@@ -1,5 +1,5 @@
 import * as csstree from "css-tree";
-import { allowedVariantClasses, potentialThemes } from "./constants";
+import { colorModes, styles } from "../constants";
 
 export function onlyKeepAppliedThemeClasses(
   atRuleLayerRules: csstree.List<csstree.CssNode>,
@@ -41,8 +41,8 @@ export function onlyKeepAppliedThemeClasses(
         // Check if any class name is a known theme class (not a variant) that's not applied
         const hasNonAppliedThemeClass = classNames.some(
           (className) =>
-            !allowedVariantClasses.has(className) &&
-            potentialThemes.has(className) &&
+            !colorModes.includes(className) &&
+            styles.includes(className) &&
             !themeProperties.includes(className),
         );
 
@@ -74,9 +74,7 @@ export function onlyKeepAppliedThemeClasses(
       }
 
       if (leadingClassNames.length === 1) {
-        variantOnlyLeadingCompound = allowedVariantClasses.has(
-          leadingClassNames[0],
-        );
+        variantOnlyLeadingCompound = colorModes.includes(leadingClassNames[0]);
       }
 
       if (variantOnlyLeadingCompound) {

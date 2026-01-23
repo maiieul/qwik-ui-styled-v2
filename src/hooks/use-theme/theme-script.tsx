@@ -1,6 +1,6 @@
 import type { ThemeProviderProps } from "./types";
 
-const colorSchemes = ["light", "dark"];
+const colorModes = ["light", "dark"];
 
 export const ThemeScript = ({
   forcedTheme,
@@ -31,7 +31,7 @@ export const ThemeScript = ({
       return "";
     }
 
-    const fallback = colorSchemes.includes(defaultTheme) ? defaultTheme : null;
+    const fallback = colorModes.includes(defaultTheme) ? defaultTheme : null;
 
     if (fallback) {
       return `if(e==='light'||e==='dark'||!e)d.style.colorScheme=e||'${defaultTheme}'`;
@@ -52,7 +52,7 @@ export const ThemeScript = ({
       enableColorScheme &&
       setColorScheme &&
       !literal &&
-      colorSchemes.includes(name)
+      colorModes.includes(name)
     ) {
       text += `d.style.colorScheme = '${name}';`;
     }

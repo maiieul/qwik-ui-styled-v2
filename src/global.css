@@ -204,7 +204,7 @@
   /* we can add even more themes (e.g. '.reverse .light', '.halloween .light', '.christmas .light', '.chinese-new-year .light', etc.) */
 }
 
-@theme {
+@theme inline {
   /* slate */
   --color-slate-white: oklch(1 0 201.801);
   --color-slate-shallow: oklch(0.99 0.005 254);

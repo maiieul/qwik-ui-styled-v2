@@ -2,7 +2,7 @@ import * as csstree from "css-tree";
 import prettier from "prettier/standalone";
 import postcssPlugin from "prettier/plugins/postcss";
 
-import { allowedVariantClasses } from "./constants";
+import { colorModes } from "../constants";
 import { onlyKeepAppliedThemeClasses } from "./step1-only-keep-applied-theme-classes";
 import { removeThemePreludes } from "./step2-remove-theme-preludes";
 import { mergeDuplicates } from "./step3-merge-duplicates";
@@ -60,7 +60,7 @@ export function getPureThemeProperties(theme: string): string[] {
     .map((p) => p.trim())
     .filter(Boolean);
 
-  const pureThemeClasses = tokens.filter((t) => !allowedVariantClasses.has(t));
+  const pureThemeClasses = tokens.filter((t) => !colorModes.includes(t));
 
   if (pureThemeClasses.length === 0) {
     throw new Error(
@@ -115,7 +115,7 @@ export function assertNoMultipleThemePropertiesInOneSelector(
       let count = 0;
       selector.children.forEach((n) => {
         if (n.type !== "ClassSelector") return;
-        if (allowedVariantClasses.has(n.name)) return;
+        if (colorModes.includes(n.name)) return;
         if (!themeProperties.includes(n.name)) return;
 
         count++;
@@ -197,8 +197,7 @@ export function convertPureThemeRulesToRoot(
 
       // Convert selectors composed solely of the selected theme classes (no variants)
       // to :root, since we are outputting an already-applied theme.
-      const hasVariant = classNames.some((n) => allowedVariantClasses.has(n));
-      if (hasVariant) continue;
+      if (classNames.some((n) => colorModes.includes(n))) continue;
 
       const allAreSelectedThemes = classNames.every((n) =>
         themeProperties.includes(n),
