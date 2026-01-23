@@ -1,5 +1,6 @@
-import { component$, useSignal, useVisibleTask$ } from "@qwik.dev/core";
+import { $, component$, useSignal, useVisibleTask$ } from "@qwik.dev/core";
 import { Lucide, Tabs } from "@qds.dev/ui";
+import { strToU8, zipSync } from "fflate";
 import { Highlight } from "../highlight/highlight";
 import { useTheme } from "~/hooks/use-theme/provider";
 import { extractThemedCSS } from "~/utils/extract-themed-css/extract-themed-css";
@@ -21,6 +22,52 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
 
     const themedSnippetTabsSig = useSignal<rawSnippetTab[]>([]);
 
+    const downloadZip$ = $(async () => {
+      const sanitizeFolderName = (input: string) => {
+        const name = input.trim().replace(/[\\/]/g, "-");
+        return name.length ? name : "snippets";
+      };
+
+      const sanitizeFileName = (input: string) => {
+        const name = input.trim().replace(/[\\/]/g, "-");
+        return name.length ? name : "file.txt";
+      };
+
+      const tabs =
+        themedSnippetTabsSig.value.length > 0
+          ? themedSnippetTabsSig.value
+          : rawSnippetTabs;
+
+      if (tabs.length === 0) return;
+
+      const safeFolderName = sanitizeFolderName(folderName);
+      const files: Record<string, Uint8Array> = {};
+
+      for (const tab of tabs) {
+        const safeFileName = sanitizeFileName(tab.title);
+        files[`${safeFolderName}/${safeFileName}`] = strToU8(tab.code ?? "");
+      }
+
+      const zipped = zipSync(files, { level: 6 });
+      const blob = new Blob([zipped as unknown as BlobPart], {
+        type: "application/zip",
+      });
+      const url = URL.createObjectURL(blob);
+
+      try {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${safeFolderName}.zip`;
+        a.rel = "noopener";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } finally {
+        URL.revokeObjectURL(url);
+      }
+    });
+
+    // eslint-disable-next-line qwik/no-use-visible-task
     useVisibleTask$(async ({ track }) => {
       track(() => themeSig.value);
       const themedSnippetTabs = await Promise.all(
@@ -47,7 +94,13 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
                   <div class="flex items-center gap-2 py-2 pl-2 text-sm">
                     {folderName}
                   </div>
-                  <IconButton variant="ghost" class="mr-3">
+                  <IconButton
+                    variant="ghost"
+                    class="mr-3"
+                    onClick$={downloadZip$}
+                    aria-label={`Download ${folderName} snippets`}
+                    title={`Download ${folderName}.zip`}
+                  >
                     <Lucide.CloudDownload />
                   </IconButton>
                 </div>

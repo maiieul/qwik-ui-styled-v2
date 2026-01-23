@@ -80,6 +80,9 @@ importers:
       eslint-plugin-qwik:
         specifier: 2.0.0-beta.17
         version: 2.0.0-beta.17(eslint@9.32.0(jiti@2.6.1))(typescript@5.4.5)
+      fflate:
+        specifier: ^0.8.2
+        version: 0.8.2
       globals:
         specifier: 16.3.0
         version: 16.3.0
