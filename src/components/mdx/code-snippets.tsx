@@ -84,6 +84,7 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
                       style={{ backgroundColor: "#1b1e28", color: "#a6accd" }}
                     >
                       <Highlight
+                        canBeCopied={false}
                         code={themedSnippetTab.code || ""}
                         language={
                           themedSnippetTab.title.split(".")[1] as "tsx" | "css"

@@ -14,18 +14,27 @@ const shiki = await createHighlighter({
 
 export type HighlightProps = PropsOf<"div"> & {
   code: string;
+  canBeCopied?: boolean;
   copyCodeClass?: ClassList;
   language?: "tsx" | "html" | "css";
 };
 
 export const Highlight = component$(
-  ({ code, copyCodeClass, language = "tsx", ...props }: HighlightProps) => {
+  ({
+    canBeCopied = true,
+    code,
+    copyCodeClass,
+    language = "tsx",
+    ...props
+  }: HighlightProps) => {
     return (
       <div class="relative">
-        <CodeCopy
-          class={["absolute top-3 right-3", copyCodeClass]}
-          code={code}
-        />
+        {canBeCopied && (
+          <CodeCopy
+            class={["absolute top-3 right-3", copyCodeClass]}
+            code={code}
+          />
+        )}
         <div
           {...props}
           class={cn(
