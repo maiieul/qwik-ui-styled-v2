@@ -91,7 +91,7 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
 
     return (
       <div class="mb-12 overflow-hidden rounded-xl border bg-background shadow-md">
-        <Tabs.Root orientation="vertical" {...props}>
+        <Tabs.Root {...props}>
           <div class="flex h-120 min-w-0">
             <Tabs.List class="w-52 shrink-0 border-r p-2">
               <div class="flex flex-col gap-1">
