@@ -5,6 +5,7 @@ import { Highlight } from "../highlight/highlight";
 import { useTheme } from "~/hooks/use-theme/provider";
 import { extractThemedCSS } from "~/utils/extract-themed-css/extract-themed-css";
 import { Button, IconButton } from "../ui";
+import { styles } from "~/utils/constants";
 
 export type rawSnippetTab = {
   title: string;
@@ -67,6 +68,10 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
       }
     });
 
+    function getAppliedStyleName(styles: string[], theme: string) {
+      return styles.find((s) => theme.toLowerCase().includes(s.toLowerCase()));
+    }
+
     // eslint-disable-next-line qwik/no-use-visible-task
     useVisibleTask$(async ({ track }) => {
       track(() => themeSig.value);
@@ -85,18 +90,17 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
     });
 
     return (
-      <div class="mb-12 overflow-hidden rounded-xl border shadow-md">
-        <Tabs.Root {...props}>
+      <div class="mb-12 overflow-hidden rounded-xl border bg-background shadow-md">
+        <Tabs.Root orientation="vertical" {...props}>
           <div class="flex h-120 min-w-0">
             <Tabs.List class="w-52 shrink-0 border-r p-2">
               <div class="flex flex-col gap-1">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-2 py-2 pl-2 text-sm">
-                    {folderName}
+                    <em>{getAppliedStyleName(styles, themeSig.value ?? "")}</em>
                   </div>
                   <IconButton
                     variant="ghost"
-                    class="mr-3"
                     onClick$={downloadZip$}
                     aria-label={`Download ${folderName} snippets`}
                     title={`Download ${folderName}.zip`}
@@ -110,7 +114,7 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
                       <Tabs.Trigger key={themedSnippetTab.title} asChild>
                         <Button
                           variant="ghost"
-                          class="w-full justify-start text-foreground-muted hover:bg-background-accent hover:text-foreground-accent ui-selected:bg-background-emphasis ui-selected:text-foreground-emphasis"
+                          class="w-full justify-start font-normal text-foreground-muted hover:bg-background-accent hover:text-foreground-accent ui-selected:bg-background-emphasis ui-selected:text-foreground-emphasis"
                         >
                           <span class="mr-2">
                             {themedSnippetTab.title.split(".")[1] === "css" ? (
