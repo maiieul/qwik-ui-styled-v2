@@ -5,7 +5,7 @@ import { Button, IconButton, Modal } from "~/components/ui";
 export default component$(() => {
   const show = useSignal(false);
   return (
-    <Modal.Root bind:show={show}>
+    <Modal.Root bind:open={show}>
       <Modal.Trigger asChild>
         <Button>Open modal</Button>
       </Modal.Trigger>

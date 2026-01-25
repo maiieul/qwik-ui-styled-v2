@@ -20,7 +20,7 @@ export const Sheet = component$<PropsOf<typeof Modal.Content>>(
   ({ ...props }) => {
     const show = useSignal(false);
     return (
-      <Modal.Root bind:show={show}>
+      <Modal.Root bind:open={show}>
         <Modal.Trigger asChild>
           <Button>
             <Slot />
