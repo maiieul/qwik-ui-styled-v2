@@ -1,66 +1,56 @@
 # Contributing
 
-Thanks for your interest in contributing to qwikui.com. We're happy to have you here.
+Thanks for your interest in contributing to Qwik UI. We're happy to have you here.
 
-Please take a moment to review this document before submitting your first pull request. We also strongly recommend that you check for open issues and pull requests to see if someone else is working on something similar.
+Please take a moment to review this document before submitting your first pull request or issue. We also strongly recommend that you check for open issues and pull requests to see if someone else is already on the same boat.
+
+> Creating clear issues with a minimal reproduction for bugs goes a long way. If you care about the project and want its success long term, this is often the first and most important step in improving the project.
 
 If you need any help, feel free to reach out to @maiieul on the [Qwik UI Discord](https://discord.gg/PVWUUejrez).
 
-## About this repository
+## About this project
 
-This repository is a monorepo.
-
-- We use [pnpm](https://pnpm.io) and [`workspaces`](https://pnpm.io/workspaces) for development.
-- We use [changesets](https://github.com/changesets/changesets) for managing releases.
+Qwik UI is a highly customizable component collection for Qwik. It provides copy-paste, reusable UI components built on top of [QDS](https://github.com/kunai-consulting/qwik-design-system) headless components (`@qds.dev/ui`), styled with a semantic color token system designed for easier theming.
 
 ## Structure
 
-This repository is structured as follows:
-
 ```
-apps
-└── www
-    ├── app
-    ├── components
-    ├── content
-    └── registry
-        ├── default
-        │   ├── example
-        │   └── ui
-        └── new-york
-            ├── example
-            └── ui
-packages
-└── cli
+src/
+├── components/
+│   ├── ui/           # Styled components (avatar, button, callout, card, etc.)
+│   ├── mdx/          # MDX provider components
+│   ├── header/       # Site header
+│   ├── sidebar/      # Site sidebar
+│   └── toc/          # Table of contents
+├── routes/
+│   ├── docs/         # Component documentation pages
+│   └── index@landing.tsx
+├── hooks/            # Custom hooks
+├── utils/            # Utility functions
+└── global.css        # Design token system
 ```
 
-| Path                  | Description                              |
-| --------------------- | ---------------------------------------- |
-| `apps/www/app`        | The Next.js application for the website. |
-| `apps/www/components` | The React components for the website.    |
-| `apps/www/content`    | The content for the website.             |
-| `apps/www/registry`   | The registry for the components.         |
-| `packages/cli`        | The `shadcn-ui` package.                 |
+| Path                 | Description                                              |
+| -------------------- | -------------------------------------------------------- |
+| `src/components/ui/` | Styled component wrappers around QDS headless primitives |
+| `src/routes/docs/`   | Documentation pages for each component                   |
+| `src/global.css`     | Design token system (themes, colors, layers)             |
 
 ## Development
 
-### Fork this repo
+### Prerequisites
 
-You can fork this repo by clicking the fork button in the top right corner of this page.
+- Node.js ≥22.0.0
+- pnpm 10.24.0
 
-### Clone on your local machine
-
-```bash
-git clone https://github.com/your-username/ui.git
-```
-
-### Navigate to project directory
+### Fork and clone
 
 ```bash
-cd ui
+git clone https://github.com/your-username/qwik-ui-styled-v2.git
+cd qwik-ui-styled-v2
 ```
 
-### Create a new Branch
+### Create a new branch
 
 ```bash
 git checkout -b my-new-branch
@@ -72,139 +62,77 @@ git checkout -b my-new-branch
 pnpm install
 ```
 
-### Run a workspace
-
-You can use the `pnpm --filter=[WORKSPACE]` command to start the development process for a workspace.
-
-#### Examples
-
-1. To run the `ui.shadcn.com` website:
+### Start the dev server
 
 ```bash
-pnpm --filter=www dev
+pnpm dev
 ```
 
-2. To run the `shadcn-ui` package:
-
-```bash
-pnpm --filter=shadcn-ui dev
-```
-
-## Running the CLI Locally
-
-To run the CLI locally, you can follow the workflow:
-
-1. Start by running the registry (main site) to make sure the components are up to date:
-
-   ```bash
-   pnpm v4:dev
-   ```
-
-2. Run the development script for the CLI:
-
-   ```bash
-   pnpm shadcn:dev
-   ```
-
-3. In another terminal tab, test the CLI by running:
-
-   ```bash
-   pnpm shadcn
-   ```
-
-   To test the CLI in a specific app, use a command like:
-
-   ```bash
-   pnpm shadcn <init | add | ...> -c ~/Desktop/my-app
-   ```
-
-4. To run the tests for the CLI:
-
-   ```bash
-   pnpm --filter=shadcn test
-   ```
-
-This workflow ensures that you are running the most recent version of the registry and testing the CLI properly in your local environment.
-
-## Documentation
-
-The documentation for this project is located in the `www` workspace. You can run the documentation locally by running the following command:
-
-```bash
-pnpm --filter=www dev
-```
-
-Documentation is written using [MDX](https://mdxjs.com). You can find the documentation files in the `apps/www/content/docs` directory.
+This starts the Qwik dev server in SSR mode.
 
 ## Components
 
-We use a registry system for developing components. You can find the source code for the components under `apps/www/registry`. The components are organized by styles.
-
-```bash
-apps
-└── www
-    └── registry
-        ├── default
-        │   ├── example
-        │   └── ui
-        └── new-york
-            ├── example
-            └── ui
-```
+Styled components live in `src/components/ui/`. Each component wraps a QDS headless primitive from `@qds.dev/ui` and applies styling via Tailwind CSS classes and design tokens.
 
 When adding or modifying components, please ensure that:
 
-1. You make the changes for every style.
-2. You update the documentation.
-3. You run `pnpm build:registry` to update the registry.
+1. You use QDS headless components as the base — don't reimplement behavior.
+2. You use design tokens from `global.css` instead of hardcoded colors.
+3. You add or update documentation in `src/routes/docs/`.
+4. You add browser tests (`*.browser.tsx`) for any new component.
 
-## Commit Convention
+## Theming
 
-Before you create a Pull Request, please check whether your commits comply with
-the commit conventions used in this repository.
+The design token system is in `src/global.css`. It supports:
 
-When you create a commit we kindly ask you to follow the convention
-`category(scope or module): message` in your commit message while using one of
-the following categories:
+- **Theme classes:** `.modern`, `.qwik`
+- **Dark mode** via CSS custom properties
+- **Purpose-based tokens:** `--background`, `--foreground`, `--border`, `--shadow`, `--ring`, `--standalone`
+- **Color variants:** `--primary-*`, `--secondary-*`, `--alert-*`
+- **CSS layers:** `theme`, `base`, `qds`, `qwik`, `components`, `components-2`, `utilities`
 
-- `feat / feature`: all changes that introduce completely new code or new
-  features
-- `fix`: changes that fix a bug (ideally you will additionally reference an
-  issue if present)
-- `refactor`: any code related change that is not a fix nor a feature
-- `docs`: changing existing or creating new documentation (i.e. README, docs for
-  usage of a lib or cli usage)
-- `build`: all changes regarding the build of the software, changes to
-  dependencies or the addition of new dependencies
-- `test`: all changes regarding tests (adding new tests or changing existing
-  ones)
-- `ci`: all changes regarding the configuration of continuous integration (i.e.
-  github actions, ci system)
-- `chore`: all changes to the repository that do not fit into any of the above
-  categories
-
-  e.g. `feat(components): add new prop to the avatar component`
-
-If you are interested in the detailed specification you can visit
-https://www.conventionalcommits.org/ or check out the
-[Angular Commit Message Guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
-
-## Requests for new components
-
-If you have a request for a new component, please open a discussion on GitHub. We'll be happy to help you out.
-
-## CLI
-
-The `shadcn-ui` package is a CLI for adding components to your project. You can find the documentation for the CLI [here](https://ui.shadcn.com/docs/cli).
-
-Any changes to the CLI should be made in the `packages/cli` directory. If you can, it would be great if you could add tests for your changes.
+Understand the layer and token structure before modifying `global.css`.
 
 ## Testing
 
-Tests are written using [Vitest](https://vitest.dev). You can run all the tests from the root of the repository.
+Tests are written using [Vitest](https://vitest.dev) with two test environments:
+
+- **Unit tests** (`*.unit.ts`) —
+- **Browser/component tests** (`*.browser.tsx`) — run in Chromium via Playwright
+
+Run all tests:
 
 ```bash
 pnpm test
 ```
 
-Please ensure that the tests are passing when submitting a pull request. If you're adding new features, please include tests.
+Run a single test file:
+
+```bash
+pnpm vitest run src/components/ui/input/input.browser.tsx
+```
+
+Run tests with coverage:
+
+```bash
+pnpm test.coverage
+```
+
+Please ensure that tests pass before submitting a pull request. If you're adding new components, include browser tests.
+
+## Linting and formatting
+
+- **Linter:** ESLint (`pnpm lint`)
+- **Formatter:** Prettier with Tailwind CSS plugin (`pnpm fmt`)
+
+Check formatting without writing:
+
+```bash
+pnpm fmt.check
+```
+
+## Commit Convention
+
+When you create a commit we kindly ask you to follow [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+Example: `feat(button): add loading state variant`
