@@ -4,10 +4,10 @@ import {
   assertNoDuplicateDeclarationsInTheSameRule,
   assertNoImportantDeclarations,
   assertNoMultipleThemePropertiesInOneSelector,
-  convertPureThemeRulesToRoot,
   getLayerName,
   getPureThemeProperties,
 } from "../extract-themed-css";
+import { convertPureThemeRulesToRoot } from "../global-css-pre-processing";
 import { onlyKeepAppliedThemeClasses } from "../step1-only-keep-applied-theme-classes";
 import { removeThemePreludes } from "../step2-remove-theme-preludes";
 import { mergeDuplicates } from "../step3-merge-duplicates";

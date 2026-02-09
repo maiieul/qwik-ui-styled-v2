@@ -20,7 +20,7 @@ export type ButtonProps = {
 
 export const Button = component$<
   PropsOf<"button"> & ButtonProps & { asChild?: true }
->(({ variant = "main", size = "md", ...props }) => {
+>(({ variant = "primary", size = "md", ...props }) => {
   useStyles$(buttonStyles);
   return (
     <Render

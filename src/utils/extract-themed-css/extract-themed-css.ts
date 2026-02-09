@@ -3,6 +3,11 @@ import prettier from "prettier/standalone";
 import postcssPlugin from "prettier/plugins/postcss";
 
 import { colorModes } from "../constants";
+import { convertPureThemeRulesToRoot } from "./global-css-pre-processing";
+import {
+  removeGlobalCssUndefinedTokens,
+  replaceNewLineMarkers,
+} from "./global-css-post-processing";
 import { onlyKeepAppliedThemeClasses } from "./step1-only-keep-applied-theme-classes";
 import { removeThemePreludes } from "./step2-remove-theme-preludes";
 import { mergeDuplicates } from "./step3-merge-duplicates";
@@ -48,10 +53,14 @@ export async function extractThemedCSS(
         themeProperties,
       );
       atRule.block.children = mergeDuplicates(atRule.block.children);
+      atRule.block.children = removeGlobalCssUndefinedTokens(
+        atRule.block.children,
+      );
     },
   });
 
-  return generatePrettifiedCSS(ast);
+  const prettified = await generatePrettifiedCSS(ast);
+  return replaceNewLineMarkers(prettified);
 }
 
 export function getPureThemeProperties(theme: string): string[] {
@@ -145,6 +154,7 @@ export function assertNoDuplicateDeclarationsInTheSameRule(
         if (child.type !== "Declaration") continue;
 
         const property = child.property;
+        if (property === "marker") continue;
         if (seen.has(property)) {
           throw new Error(
             `Components cannot contain duplicate declarations for the same selector property: "${property}".`,
@@ -163,52 +173,6 @@ export function getLayerName(atRule: csstree.Atrule): string | null {
   } catch {
     return null;
   }
-}
-
-function convertSelectorToRoot(selector: csstree.Selector): void {
-  const rootSelectorAst = csstree.parse(":root", {
-    context: "selector",
-  }) as csstree.Selector;
-  selector.children = rootSelectorAst.children;
-}
-
-export function convertPureThemeRulesToRoot(
-  children: csstree.List<csstree.CssNode>,
-  themeProperties: string[],
-): csstree.List<csstree.CssNode> {
-  for (const child of children) {
-    if (child.type !== "Rule" || child.prelude.type !== "SelectorList")
-      continue;
-
-    for (const selector of child.prelude.children) {
-      if (selector.type !== "Selector") continue;
-
-      const hasCombinator = selector.children.some(
-        (n) => n.type === "Combinator",
-      );
-      if (hasCombinator) continue;
-
-      const classNames: string[] = [];
-      for (const n of selector.children) {
-        if (n.type === "ClassSelector") classNames.push(n.name);
-      }
-
-      if (classNames.length === 0) continue;
-
-      // Convert selectors composed solely of the selected theme classes (no variants)
-      // to :root, since we are outputting an already-applied theme.
-      if (classNames.some((n) => colorModes.includes(n))) continue;
-
-      const allAreSelectedThemes = classNames.every((n) =>
-        themeProperties.includes(n),
-      );
-      if (!allAreSelectedThemes) continue;
-
-      convertSelectorToRoot(selector);
-    }
-  }
-
-  return children;
 }
 
 export async function generatePrettifiedCSS(

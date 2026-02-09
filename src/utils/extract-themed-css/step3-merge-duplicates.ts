@@ -55,6 +55,16 @@ export function mergeDuplicates(
     for (const n of children) {
       if (n.type === "Declaration") {
         const property = n.property;
+
+        // Marker declarations are positional — each occurrence is preserved
+        // in order rather than being deduplicated by property name.
+        if (property.startsWith("marker")) {
+          const uniqueKey = `${property}__${state.declarationOrder.length}`;
+          state.declarationOrder.push(uniqueKey);
+          state.lastDeclarationByProperty.set(uniqueKey, n);
+          continue;
+        }
+
         if (!state.lastDeclarationByProperty.has(property)) {
           state.declarationOrder.push(property);
         }

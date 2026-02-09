@@ -5,7 +5,7 @@ import { Lucide } from "@qds.dev/ui";
 import { Highlight } from "../highlight/highlight";
 
 export default component$<{ cssThemeOutput: Signal<string> }>(
-  ({ cssThemeOutput }) => {
+  ({ cssThemeOutput }: { cssThemeOutput: Signal<string> }) => {
     return (
       <Modal.Root>
         <Modal.Trigger asChild>
