@@ -198,12 +198,12 @@
     --background: var(--color-zinc-deep);
     --background-accent: var(--color-zinc-95);
     --background-emphasis: var(--color-zinc-90);
-    --foreground: var(--color-slate-10);
-    --foreground-muted: var(--color-slate-40);
-    --foreground-soft: var(--color-slate-25);
-    --foreground-placeholder: var(--color-slate-55);
-    --foreground-accent: var(--color-slate-5);
-    --foreground-emphasis: var(--color-slate-0);
+    --foreground: var(--color-zinc-10);
+    --foreground-muted: var(--color-zinc-40);
+    --foreground-soft: var(--color-zinc-25);
+    --foreground-placeholder: var(--color-zinc-55);
+    --foreground-accent: var(--color-zinc-5);
+    --foreground-emphasis: var(--color-zinc-0);
     --border: var(--color-zinc-95);
     --border-accent: var(--color-zinc-85);
     --border-emphasis: var(--color-zinc-75);
