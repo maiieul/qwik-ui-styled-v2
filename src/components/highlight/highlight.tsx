@@ -7,7 +7,7 @@ import { createHighlighter } from "shiki/bundle/web";
 const jsEngine = createJavaScriptRegexEngine();
 
 const shiki = await createHighlighter({
-  themes: ["poimandres"],
+  themes: ["poimandres", "github-light"],
   langs: ["tsx", "html", "css"],
   engine: jsEngine,
 });
@@ -46,7 +46,11 @@ export const Highlight = component$(
             class="[&>pre]:py-4 [&>pre]:pr-12 [&>pre]:pl-4"
             dangerouslySetInnerHTML={shiki.codeToHtml(code, {
               lang: language,
-              theme: "poimandres",
+              themes: {
+                light: "github-light",
+                dark: "poimandres",
+              },
+              defaultColor: false,
             })}
           />
         </div>

@@ -137,8 +137,7 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
                   return (
                     <Tabs.Content
                       key={themedSnippetTab.title}
-                      class="relative h-full"
-                      style={{ backgroundColor: "#1b1e28", color: "#a6accd" }}
+                      class="relative h-full bg-(--shiki-light-bg) dark:bg-(--shiki-dark-bg)"
                     >
                       <Highlight
                         canBeCopied={false}

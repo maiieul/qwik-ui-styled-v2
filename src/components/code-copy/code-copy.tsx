@@ -19,8 +19,8 @@ export const CodeCopy = component$<CodeCopyProps>(({ code = "", ...props }) => {
       class={cn(
         "bg-transparent",
         copied.value
-          ? "text-white hover:text-white"
-          : "text-slate-10 hover:text-white",
+          ? "text-foreground"
+          : "text-foreground-muted hover:text-foreground",
         props.class,
       )}
       onClick$={async () => {
@@ -33,9 +33,9 @@ export const CodeCopy = component$<CodeCopyProps>(({ code = "", ...props }) => {
       }}
     >
       {copied.value ? (
-        <Lucide.Check class="size-4 fill-black" />
+        <Lucide.Check class="size-4" />
       ) : (
-        <Lucide.Copy class="size-4 fill-black" />
+        <Lucide.Copy class="size-4" />
       )}
     </IconButton>
   );

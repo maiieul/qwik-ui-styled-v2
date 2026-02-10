@@ -22,14 +22,7 @@ export const Showcase = component$<ShowcaseProps>(({ rawCode, ...props }) => {
           <Slot />
         </section>
       </Tabs.Content>
-      <Tabs.Content
-        class="relative mb-16 h-120 rounded-xl border p-2 shadow-md"
-        style={{
-          backgroundColor: "#1b1e28",
-          color: "#a6accd",
-          // padding: "2px",
-        }}
-      >
+      <Tabs.Content class="relative mb-16 h-120 rounded-xl border bg-(--shiki-light-bg) p-2 shadow-md dark:bg-(--shiki-dark-bg)">
         <Highlight class="rounded-t-none" code={rawCode || ""} />
       </Tabs.Content>
     </Tabs.Root>

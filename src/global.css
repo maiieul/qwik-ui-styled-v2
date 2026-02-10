@@ -571,6 +571,28 @@
   }
 }
 
+@layer components {
+  /* Shiki dual theme: fallback bg vars for wrapper elements outside <pre> */
+  :root {
+    --shiki-light-bg: #fff;
+    --shiki-dark-bg: #1b1e28;
+  }
+
+  /* Light mode (default) */
+  .shiki,
+  .shiki span {
+    background-color: var(--shiki-light-bg);
+    color: var(--shiki-light);
+  }
+
+  /* Dark mode */
+  .dark .shiki,
+  .dark .shiki span {
+    background-color: var(--shiki-dark-bg);
+    color: var(--shiki-dark);
+  }
+}
+
 @layer qwik {
   dialog {
     max-width: unset;
