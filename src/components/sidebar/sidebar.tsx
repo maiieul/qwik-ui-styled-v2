@@ -36,7 +36,7 @@ export const DocsNavigation = component$(
     const location = useLocation();
     useStyles$(sidebarStyles);
     return (
-      <nav {...props} class={["flex-col gap-4 pb-6", props.class]}>
+      <nav {...props} class={["flex-col gap-4 py-8", props.class]}>
         {linksGroups?.map((group) => {
           return (
             <div class="px-6" key={group.name}>
