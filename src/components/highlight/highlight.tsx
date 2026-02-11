@@ -1,7 +1,13 @@
-import { type ClassList, type PropsOf, component$ } from "@qwik.dev/core";
+import {
+  type ClassList,
+  type PropsOf,
+  component$,
+  useStyles$,
+} from "@qwik.dev/core";
 import { CodeCopy } from "../code-copy/code-copy";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 import { createHighlighter } from "shiki/bundle/web";
+import highlightStyles from "./highlight.css?inline";
 
 const jsEngine = createJavaScriptRegexEngine();
 
@@ -26,6 +32,7 @@ export const Highlight = component$(
     language = "tsx",
     ...props
   }: HighlightProps) => {
+    useStyles$(highlightStyles);
     return (
       <div class="relative">
         {canBeCopied && (
