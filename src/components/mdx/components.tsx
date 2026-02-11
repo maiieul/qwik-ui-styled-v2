@@ -46,7 +46,7 @@ export const components: Record<string, Component> = {
   >(({ rawCodeString, ...props }) => {
     return (
       <div
-        class="code-example data-pagefind-ignore relative mb-6"
+        class="code-example data-pagefind-ignore relative mt-4 mb-6"
         data-pagefind-ignore="all"
       >
         <CodeCopy class="absolute top-3 right-3 z-10" code={rawCodeString} />
