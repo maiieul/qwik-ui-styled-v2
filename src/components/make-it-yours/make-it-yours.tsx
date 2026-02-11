@@ -83,8 +83,8 @@ export default component$<PropsOf<typeof Button>>(() => {
             variant="vanilla"
             onClick$={() => {
               themeSig.value = themeSig.value?.includes("dark")
-                ? "dark"
-                : "light";
+                ? "dark qwik"
+                : "light qwik";
             }}
           >
             Reset
