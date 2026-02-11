@@ -240,7 +240,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case: a global.css > modern 1
 
 @import "@qds.dev/ui/tailwind";
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -668,7 +667,6 @@ exports[`step2 - removeThemePreludes (snapshots) > case: a global.css > qwik 1`]
 
 @import "@qds.dev/ui/tailwind";
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 

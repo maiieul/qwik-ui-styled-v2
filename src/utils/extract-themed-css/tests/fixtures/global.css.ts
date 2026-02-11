@@ -6,7 +6,6 @@ export const globalCSS = {
 @layer theme, base, qds, qwik, components, components-2, utilities;
 @import "@qds.dev/ui/tailwind";
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
