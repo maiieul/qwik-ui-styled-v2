@@ -49,8 +49,6 @@
     "eslint-plugin-qwik": "2.0.0-beta.21",
     "fflate": "^0.8.2",
     "globals": "17.3.0",
-    "oxc-parser": "^0.112.0",
-    "oxc-walker": "^0.7.0",
     "playwright": "^1.58.2",
     "prettier": "3.8.1",
     "prettier-plugin-css-order": "^2.2.0",
