@@ -85,6 +85,10 @@ This project **depends on** QDS headless components:
 
 Styled components in `src/components/ui/` wrap QDS headless components with Tailwind CSS classes and design tokens.
 
+### Make it Yours
+
+The Make it Yours feature is core to Qwik UI. It is achieved using a client-side css-tree ast traversal to extract the applied make-it-yours theme classes.
+
 ### Theming System
 
 The design token system lives in `src/global.css` and supports multiple themes:
@@ -97,12 +101,22 @@ The design token system lives in `src/global.css` and supports multiple themes:
 
 ### Component Pattern
 
-Each styled component wraps a QDS headless primitive:
+Styled components live in `src/components/ui/`. Each component wraps a QDS headless primitive from `@qds.dev/ui` and applies styling via vanilla CSS classes and design tokens. Each component contains classes for each Make it Yours themes.
+
+When adding or modifying components, please ensure that:
+
+1. You use html or QDS headless components as the base — don't reimplement behavior.
+2. You use design tokens from `global.css` instead of hardcoded colors.
+3. You make sure that the component supports all the existing themes (e.g. modern, brutalist, etc.)
+4. You add or update documentation in `src/routes/docs/`.
+5. You document your design choices in the .md file
 
 ```
 src/components/ui/button/
 ├── button.tsx           # Styled wrapper around QDS headless button
-├── button.browser.tsx   # Browser tests (if present)
+├── button.css           # button styles
+├── button.browser.tsx   # Browser tests
+├── button.md            # design decisions
 └── index.ts             # Public exports
 ```
 
