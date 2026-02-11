@@ -32,8 +32,6 @@
     "@oddbird/popover-polyfill": "^0.6.1",
     "@qds.dev/tools": "https://pkg.pr.new/kunai-consulting/qwik-design-system/@qds.dev/tools@380",
     "@qds.dev/ui": "0.8.5",
-    "@qwik-ui/styled": "^0.4.1",
-    "@qwik-ui/utils": "^0.3.3",
     "@qwik.dev/core": "2.0.0-beta.21",
     "@qwik.dev/router": "2.0.0-beta.21",
     "@shikijs/rehype": "^3.13.0",

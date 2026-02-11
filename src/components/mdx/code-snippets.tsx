@@ -100,7 +100,7 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
                     <em>{getAppliedStyleName(styles, themeSig.value ?? "")}</em>
                   </div>
                   <IconButton
-                    variant="ghost"
+                    variant="vanilla"
                     onClick$={downloadZip$}
                     aria-label={`Download ${folderName} snippets`}
                     title={`Download ${folderName}.zip`}

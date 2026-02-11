@@ -1,5 +1,4 @@
 import { ContentHeading } from "@qwik.dev/router";
-import { cn } from "@qwik-ui/utils";
 import { component$, useSignal, $, useOnWindow } from "@qwik.dev/core";
 
 export const DashboardTableOfContents = component$(
@@ -102,7 +101,7 @@ type RecursiveListProps = {
 const RecursiveList = component$<RecursiveListProps>(
   ({ tree, activeItem, limit = 3 }) => {
     return tree?.children?.length && tree.level < limit ? (
-      <ul class={cn("m-0 list-none", { "pl-4": tree.level !== 1 })}>
+      <ul class={["m-0 list-none", tree.level !== 1 && "pl-4"]}>
         {tree.children.map((childNode) => (
           <li key={childNode.id} class="mt-0 list-none pt-2">
             <Anchor node={childNode} activeItem={activeItem} />
@@ -177,11 +176,11 @@ const Anchor = component$<AnchorProps>(({ node, activeItem }) => {
           }
         }),
       ]}
-      class={cn(
+      class={[
         node.level > 2 && "ml-2",
         "inline-block no-underline transition-colors hover:text-foreground",
         isActive ? "font-medium text-foreground" : "text-foreground-muted",
-      )}
+      ]}
     >
       {node.text}
     </a>

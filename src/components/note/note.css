@@ -1,0 +1,57 @@
+@layer components {
+  .note {
+    position: relative;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .note {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .note-info {
+    background-color: color-mix(
+      in oklch,
+      var(--color-primary-background) 30%,
+      transparent
+    );
+    border-left: 2px solid var(--color-primary-border);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .note-warning {
+    background-color: color-mix(
+      in oklch,
+      var(--color-secondary-background) 30%,
+      transparent
+    );
+    border-left: 2px solid var(--color-secondary-border);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .note-alert {
+    background-color: color-mix(
+      in oklch,
+      var(--color-alert-background) 30%,
+      transparent
+    );
+    border-left: 2px solid var(--color-alert-border);
+    margin-bottom: 1rem;
+    display: block;
+  }
+}
+
+

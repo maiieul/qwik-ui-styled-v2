@@ -1,6 +1,5 @@
 import { type ClassList, type PropsOf, component$ } from "@qwik.dev/core";
 import { CodeCopy } from "../code-copy/code-copy";
-import { cn } from "@qwik-ui/utils";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 import { createHighlighter } from "shiki/bundle/web";
 
@@ -35,13 +34,7 @@ export const Highlight = component$(
             code={code}
           />
         )}
-        <div
-          {...props}
-          class={cn(
-            "tab-size max-h-118 max-w-full overflow-auto rounded-sm text-sm",
-            props.class,
-          )}
-        >
+        <div {...props} class={["highlight", props.class]}>
           <div
             class="[&>pre]:py-4 [&>pre]:pr-12 [&>pre]:pl-4"
             dangerouslySetInnerHTML={shiki.codeToHtml(code, {

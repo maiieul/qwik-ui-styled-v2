@@ -1,6 +1,5 @@
 import { PropsOf, component$, useSignal } from "@qwik.dev/core";
 import { Button, IconButton } from "~/components/ui";
-import { cn } from "@qwik-ui/utils";
 import copy from "clipboard-copy";
 import { Lucide } from "@qds.dev/ui";
 
@@ -16,13 +15,13 @@ export const CodeCopy = component$<CodeCopyProps>(({ code = "", ...props }) => {
       {...props}
       variant="vanilla"
       title={copied.value ? "Copied to Clipboard" : "Copy to Clipboard"}
-      class={cn(
+      class={[
         "bg-transparent",
         copied.value
           ? "text-foreground"
           : "text-foreground-muted hover:text-foreground",
         props.class,
-      )}
+      ]}
       onClick$={async () => {
         await copy(code);
         copied.value = true;

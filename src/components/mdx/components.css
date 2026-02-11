@@ -1,0 +1,13 @@
+@layer components {
+  .mdx-a {
+    @apply font-semibold underline underline-offset-4 hover:opacity-90;
+  }
+
+  .mdx-ul {
+    @apply mb-4 list-disc px-6 font-medium;
+  }
+
+  .mdx-li {
+    @apply py-2;
+  }
+}

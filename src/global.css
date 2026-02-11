@@ -579,16 +579,20 @@
   }
 
   /* Light mode (default) */
-  .shiki,
-  .shiki span {
+  .shiki {
     background-color: var(--shiki-light-bg);
+    color: var(--shiki-light);
+  }
+  .shiki span {
     color: var(--shiki-light);
   }
 
   /* Dark mode */
-  .dark .shiki,
-  .dark .shiki span {
+  .dark .shiki {
     background-color: var(--shiki-dark-bg);
+    color: var(--shiki-dark);
+  }
+  .dark .shiki span {
     color: var(--shiki-dark);
   }
 }

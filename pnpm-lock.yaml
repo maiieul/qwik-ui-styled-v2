@@ -26,12 +26,6 @@ importers:
       '@qds.dev/ui':
         specifier: 0.8.5
         version: 0.8.5(@qwik.dev/core@2.0.0-beta.21(prettier@3.6.2)(vite@7.1.7(@types/node@20.19.0)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass@1.97.3)(stylus@0.62.0)(yaml@2.8.2))(vitest@4.0.18))
-      '@qwik-ui/styled':
-        specifier: ^0.4.1
-        version: 0.4.1(@builder.io/qwik@1.18.0(vite@7.1.7(@types/node@20.19.0)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass@1.97.3)(stylus@0.62.0)(yaml@2.8.2)))
-      '@qwik-ui/utils':
-        specifier: ^0.3.3
-        version: 0.3.3
       '@qwik.dev/core':
         specifier: 2.0.0-beta.21
         version: 2.0.0-beta.21(prettier@3.6.2)(vite@7.1.7(@types/node@20.19.0)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass@1.97.3)(stylus@0.62.0)(yaml@2.8.2))(vitest@4.0.18)
@@ -1599,12 +1593,6 @@ packages:
     resolution: {integrity: sha512-ozZglTEJA6v5fbhKPSVptlMgpA0wPcoYC+J3969ST7ceubHwwUkfPe5jLbTvbI3M5qZGkNpfQgcQ85OvrsJWaA==}
     peerDependencies:
       '@qwik.dev/core': '>=2.0.0-beta.15'
-
-  '@qwik-ui/styled@0.4.1':
-    resolution: {integrity: sha512-eUUTYFitQ3fvHsUoUTuYpWASJ1mxV440uEuZMH0Wgb56s3/o9OlbW3GqAUlLI/frzLdM0zrYtcl59Fs11Apdtg==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@builder.io/qwik': '>=1.3.1'
 
   '@qwik-ui/utils@0.3.3':
     resolution: {integrity: sha512-oSZiLoZSIQeFzQXtylPL6W0wgXdFAywG5gvzLCMbaSQ3rARfcmVTYnuwJ2POEbBbQ0GZuHivpwA6IyKQSbwggw==}
@@ -6255,10 +6243,6 @@ snapshots:
     dependencies:
       '@oddbird/css-anchor-positioning': 0.6.1
       '@qwik.dev/core': 2.0.0-beta.21(prettier@3.6.2)(vite@7.1.7(@types/node@20.19.0)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass@1.97.3)(stylus@0.62.0)(yaml@2.8.2))(vitest@4.0.18)
-
-  '@qwik-ui/styled@0.4.1(@builder.io/qwik@1.18.0(vite@7.1.7(@types/node@20.19.0)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass@1.97.3)(stylus@0.62.0)(yaml@2.8.2)))':
-    dependencies:
-      '@builder.io/qwik': 1.18.0(vite@7.1.7(@types/node@20.19.0)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass@1.97.3)(stylus@0.62.0)(yaml@2.8.2))
 
   '@qwik-ui/utils@0.3.3':
     dependencies:

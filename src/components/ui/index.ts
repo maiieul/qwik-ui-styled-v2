@@ -1,4 +1,3 @@
-export * from "./avatar/avatar";
 export * from "./breadcrumb";
 export * from "./button/button";
 export * from "./button/icon-button";

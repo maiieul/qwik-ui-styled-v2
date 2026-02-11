@@ -1,0 +1,5 @@
+@layer components {
+  .highlight {
+    @apply tab-size max-h-118 max-w-full overflow-auto rounded-sm text-sm;
+  }
+}

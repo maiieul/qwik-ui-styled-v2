@@ -1,5 +1,5 @@
-import { component$, PropsOf, Slot } from "@qwik.dev/core";
-import { cn } from "@qwik-ui/utils";
+import { component$, PropsOf, Slot, useStyles$ } from "@qwik.dev/core";
+import noteStyles from "./note.css?inline";
 
 export enum NoteStatus {
   Info = "info",
@@ -10,6 +10,18 @@ export enum NoteStatus {
 export type NoteProps = {
   status?: NoteStatus;
 };
+
+function getNoteClassByStatus(status?: NoteStatus) {
+  switch (status) {
+    case NoteStatus.Warning:
+      return "note-warning";
+    case NoteStatus.Alert:
+      return "note-alert";
+    case NoteStatus.Info:
+    default:
+      return "note-info";
+  }
+}
 
 function getIconByStatus(status?: NoteStatus) {
   switch (status) {
@@ -25,26 +37,14 @@ function getIconByStatus(status?: NoteStatus) {
   }
 }
 
-function getBackgroundByStatus(status?: NoteStatus) {
-  switch (status) {
-    case NoteStatus.Info:
-      return "bg-primary-background/30 border-primary-border border-l-2 mb-4 block";
-    case NoteStatus.Warning:
-      return "bg-yellow-400/30 border-yellow-400 border-l-2 mb-4 block";
-    case NoteStatus.Alert:
-      return "bg-alert/30 border-alert-border border-l-2 mb-4 block";
-    default:
-      return "bg-primary-background/30 border-primary-border border-l-2 mb-4 block";
-  }
-}
-
 export const Note = component$<NoteProps>(({ status }) => {
+  useStyles$(noteStyles);
+
+  const noteStatusClass = getNoteClassByStatus(status);
+
   return (
     <aside
-      class={cn(
-        getBackgroundByStatus(status ?? NoteStatus.Info),
-        "note-link relative mx-2 my-12 px-5 py-4 lg:px-8 lg:py-6",
-      )}
+      class={["note", noteStatusClass]}
     >
       <div class="absolute top-[-17.5px] left-[-17.5px] hidden h-8 w-8 rounded-full bg-white lg:block dark:bg-slate-900">
         <div class="flex h-8 w-8 items-center justify-center">
