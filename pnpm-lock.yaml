@@ -21,8 +21,8 @@ importers:
         specifier: ^0.6.1
         version: 0.6.1
       '@qds.dev/tools':
-        specifier: 0.8.5
-        version: 0.8.5
+        specifier: https://pkg.pr.new/kunai-consulting/qwik-design-system/@qds.dev/tools@380
+        version: https://pkg.pr.new/kunai-consulting/qwik-design-system/@qds.dev/tools@380
       '@qds.dev/ui':
         specifier: 0.8.5
         version: 0.8.5(@qwik.dev/core@2.0.0-beta.21(prettier@3.6.2)(vite@7.1.7(@types/node@20.19.0)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass@1.97.3)(stylus@0.62.0)(yaml@2.8.2))(vitest@4.0.18))
@@ -1591,8 +1591,9 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@qds.dev/tools@0.8.5':
-    resolution: {integrity: sha512-ommKlCyCQbRJ6yPrQEMWdMMceO5k7AsSaa9vGFZl/BBSPVWF56un6Olzhmv94IM7BpJalgdvlLd5IJ3rXVCWiQ==}
+  '@qds.dev/tools@https://pkg.pr.new/kunai-consulting/qwik-design-system/@qds.dev/tools@380':
+    resolution: {tarball: https://pkg.pr.new/kunai-consulting/qwik-design-system/@qds.dev/tools@380}
+    version: 0.8.5
 
   '@qds.dev/ui@0.8.5':
     resolution: {integrity: sha512-ozZglTEJA6v5fbhKPSVptlMgpA0wPcoYC+J3969ST7ceubHwwUkfPe5jLbTvbI3M5qZGkNpfQgcQ85OvrsJWaA==}
@@ -6235,7 +6236,7 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@qds.dev/tools@0.8.5':
+  '@qds.dev/tools@https://pkg.pr.new/kunai-consulting/qwik-design-system/@qds.dev/tools@380':
     dependencies:
       '@iconify/json': 2.2.431
       '@iconify/utils': 3.1.0

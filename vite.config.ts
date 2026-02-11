@@ -49,7 +49,11 @@ export default defineConfig(async (command: any, mode: any): Promise<UserConfig>
             [
               shikiRehype,
               {
-                theme: "poimandres",
+                themes: {
+                  light: "github-light",
+                  dark: "poimandres",
+                },
+                defaultColor: false,
                 transformers: [transformerSourceAsPreProp()],
               },
             ],

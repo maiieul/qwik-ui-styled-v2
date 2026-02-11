@@ -30,7 +30,7 @@
     "@floating-ui/dom": "^1.7.4",
     "@iconify/utils": "^3.0.2",
     "@oddbird/popover-polyfill": "^0.6.1",
-    "@qds.dev/tools": "0.8.5",
+    "@qds.dev/tools": "https://pkg.pr.new/kunai-consulting/qwik-design-system/@qds.dev/tools@380",
     "@qds.dev/ui": "0.8.5",
     "@qwik-ui/styled": "^0.4.1",
     "@qwik-ui/utils": "^0.3.3",
