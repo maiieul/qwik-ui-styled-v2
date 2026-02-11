@@ -42,7 +42,9 @@ export default component$(() => {
               {documentHead.meta.find((m) => m.name === "description")?.content}
             </p>
             <MDXProvider components={components}>
-              <Slot />
+              <div class="mdx-container">
+                <Slot />
+              </div>
             </MDXProvider>
           </main>
           <div class="mx-6 hidden text-sm xl:block">
