@@ -187,3 +187,18 @@ Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `perf`, `build`, `ci`
 3. **Don't hardcode colors** — Use design tokens (`var(--primary)`, etc.) instead of raw color values.
 4. **Don't skip browser tests for new components** — Components that render UI should have `*.browser.tsx` tests.
 5. **Don't edit generated files** — Files in `dist/`, `lib/`, `server/`, and `coverage/` are generated.
+
+## Cursor Cloud specific instructions
+
+This is a self-contained front-end Qwik application with no external services, databases, Docker, or environment variables required.
+
+**Services:** Single Vite SSR dev server (`pnpm dev` on port 5173). No backend or external dependencies.
+
+**Key commands:** See the Key Commands table above — all standard `pnpm` scripts. `pnpm test` runs both unit and Playwright browser tests in one pass.
+
+**Non-obvious caveats:**
+
+- Browser tests (`*.browser.tsx`) require Playwright Chromium. Run `npx playwright install chromium` if browsers are missing (you'll see a Playwright error about missing browser executable).
+- `pnpm install` may warn about ignored build scripts for `less`. This is harmless and does not affect functionality — `less` is a transitive dependency whose build script is not required.
+- `pnpm build` runs lint, type-check, and client build in parallel. The build produces a "Missing an integration" message at the end — this is expected and means no server adapter (e.g. Cloudflare, Netlify) is configured, which is fine for local development.
+- The dev server starts quickly (~1.5s) and supports hot module replacement.
