@@ -31,25 +31,26 @@
 
     /* vibrant colors  */
     --primary-background: var(--color-violet-55);
+    --primary-background-accent: var(--color-violet-50);
     --primary-foreground: var(--color-slate-0);
-    --primary-foreground-accent: x;
+    --primary-foreground-accent: var(--color-slate-5);
     --primary-border: var(--color-violet-70);
-    --primary-border-accent: x;
+    --primary-border-accent: var(--color-violet-75);
     --primary-shadow: var(--color-violet-65);
-    --primary-shadow-accent: x;
+    --primary-shadow-accent: var(--color-violet-70);
     --primary-ring: var(--color-violet-70);
     --primary-standalone: var(--color-violet-70);
-    --primary-standalone-accent: x;
+    --primary-standalone-accent: var(--color-violet-75);
     --primary-standalone-emphasis: var(--color-violet-80);
 
     --secondary-background: var(--color-violet-25);
-    --secondary-background-accent: x;
+    --secondary-background-accent: var(--color-violet-30);
     --secondary-foreground: var(--color-violet-90);
-    --secondary-foreground-accent: x;
+    --secondary-foreground-accent: var(--color-violet-95);
     --secondary-border: var(--color-violet-40);
-    --secondary-border-accent: x;
+    --secondary-border-accent: var(--color-violet-45);
     --secondary-shadow: var(--color-violet-30);
-    --secondary-shadow-accent: x;
+    --secondary-shadow-accent: var(--color-violet-35);
     --secondary-ring: var(--color-violet-40);
 
     --alert-background: var(--color-rose-60);
@@ -58,8 +59,8 @@
     --alert-shadow: var(--color-rose-15);
     --alert-ring: var(--color-rose-60);
     --alert-standalone: var(--color-rose-60);
-    --alert-standalone-accent: x;
-    --alert-standalone-emphasis: x;
+    --alert-standalone-accent: var(--color-rose-65);
+    --alert-standalone-emphasis: var(--color-rose-70);
   }
 
   .dark {
@@ -84,26 +85,26 @@
     --standalone-emphasis: x;
 
     --primary-background: var(--color-sky-60);
-    --primary-background-accent: x;
+    --primary-background-accent: var(--color-sky-55);
     --primary-foreground: var(--color-foreground);
-    --primary-foreground-accent: x;
+    --primary-foreground-accent: var(--color-foreground-accent);
     --primary-border: var(--color-sky-65);
-    --primary-border-accent: x;
+    --primary-border-accent: var(--color-sky-60);
     --primary-shadow: var(--color-sky-70);
-    --primary-shadow-accent: x;
+    --primary-shadow-accent: var(--color-sky-65);
     --primary-ring: var(--color-sky-60);
     --primary-standalone: var(--color-sky-35);
-    --primary-standalone-accent: x;
+    --primary-standalone-accent: var(--color-sky-30);
     --primary-standalone-emphasis: var(--color-sky-25);
 
     --secondary-background: var(--color-sky-75);
-    --secondary-background-accent: x;
+    --secondary-background-accent: var(--color-sky-70);
     --secondary-foreground: var(--color-foreground);
-    --secondary-foreground-accent: x;
+    --secondary-foreground-accent: var(--color-foreground-accent);
     --secondary-border: var(--color-sky-80);
-    --secondary-border-accent: x;
+    --secondary-border-accent: var(--color-sky-75);
     --secondary-shadow: var(--color-sky-85);
-    --secondary-shadow-accent: x;
+    --secondary-shadow-accent: var(--color-sky-80);
     --secondary-ring: var(--color-sky-70);
 
     --alert-background: var(--color-rose-60);
@@ -112,13 +113,14 @@
     --alert-shadow: var(--color-rose-90);
     --alert-ring: var(--color-rose-60);
     --alert-standalone: var(--color-rose-40);
-    --alert-standalone-accent: x;
-    --alert-standalone-emphasis: x;
+    --alert-standalone-accent: var(--color-rose-35);
+    --alert-standalone-emphasis: var(--color-rose-30);
   }
 
   .qwik:root {
     /* base */
     --background: white;
+    --background-outline: white;
     --background-accent: var(--color-sky-10);
     --background-emphasis: var(--color-sky-15);
     --foreground: var(--color-slate-95);
@@ -163,8 +165,8 @@
 
   .modern:root {
     --background: white;
-    --background-accent: var(--color-zinc-5);
-    --background-emphasis: var(--color-zinc-10);
+    --background-accent: var(--color-zinc-0);
+    --background-emphasis: var(--color-zinc-5);
     --foreground: var(--color-zinc-95);
     --foreground-placeholder: var(--color-zinc-50);
     --foreground-muted: var(--color-zinc-65);
@@ -178,20 +180,6 @@
     --shadow-accent: var(--color-sky-50);
     --shadow-emphasis: var(--color-violet-50);
     --ring: var(--color-zinc-30);
-
-    /* vibrant colors  */
-    --primary-background-accent: var(--color-violet-50);
-    --primary-foreground-accent: var(--color-slate-5);
-    --primary-border-accent: var(--color-violet-75);
-    --primary-shadow-accent: var(--color-violet-70);
-
-    --secondary-background-accent: var(--color-violet-30);
-    --secondary-foreground-accent: var(--color-violet-95);
-    --secondary-border-accent: var(--color-violet-45);
-    --secondary-shadow-accent: var(--color-violet-35);
-
-    --alert-standalone-accent: var(--color-rose-65);
-    --alert-standalone-emphasis: var(--color-rose-70);
   }
   .modern.dark {
     --background: var(--color-zinc-deep);
@@ -210,16 +198,6 @@
     --shadow-accent: var(--color-sky-90);
     --shadow-emphasis: var(--color-violet-90);
     --ring: var(--color-zinc-80);
-
-    --primary-background-accent: var(--color-sky-55);
-    --primary-foreground-accent: var(--color-foreground-accent);
-    --primary-border-accent: var(--color-sky-60);
-    --primary-shadow-accent: var(--color-sky-65);
-
-    --secondary-background-accent: var(--color-sky-70);
-    --secondary-foreground-accent: var(--color-foreground-accent);
-    --secondary-border-accent: var(--color-sky-75);
-    --secondary-shadow-accent: var(--color-sky-80);
   }
 
   .qwik:root {

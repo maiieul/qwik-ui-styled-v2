@@ -263,8 +263,10 @@ const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
           Use cases vary. For example it can be used to display a confirmation
           step, a login form, or a side menu for navigation.
         </p>
-        <footer class="mt-9 flex justify-end gap-4">
+        <footer class="mt-9 flex justify-between gap-4">
+          <Button variant="ghost">Cancel</Button>
           <div class="flex gap-4">
+            <Button variant="outline">Update</Button>
             <Button variant="primary">Continue</Button>
           </div>
         </footer>
