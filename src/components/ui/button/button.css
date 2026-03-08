@@ -47,7 +47,7 @@
   }
 
   .btn.variant-outline {
-    background-color: var(--background);
+    background-color: var(--background-outline);
     color: var(--foreground);
     &:focus-visible {
       outline: 2px solid var(--secondary-ring);

@@ -10,6 +10,7 @@
   :root {
     /* base */
     --background: x;
+    --background-outline: x;
     --background-accent: x;
     --background-emphasis: x;
     --foreground: x;
@@ -65,6 +66,7 @@
 
   .dark {
     --background: x;
+    --background-outline: x;
     --background-accent: x;
     --background-emphasis: x;
     --foreground: x;
@@ -142,7 +144,8 @@
   }
 
   .qwik.dark {
-    --background: var(--color-sky-deep);
+    --background: var(--color-slate-deep);
+    --background-outline: var(--color-sky-100);
     --background-accent: var(--color-violet-95);
     --background-emphasis: var(--color-violet-90);
     --foreground: var(--color-slate-10);
@@ -165,6 +168,7 @@
 
   .modern:root {
     --background: white;
+    --background-outline: white;
     --background-accent: var(--color-zinc-0);
     --background-emphasis: var(--color-zinc-5);
     --foreground: var(--color-zinc-95);
@@ -183,6 +187,7 @@
   }
   .modern.dark {
     --background: var(--color-zinc-deep);
+    --background-outline: var(--color-zinc-deep);
     --background-accent: var(--color-zinc-95);
     --background-emphasis: var(--color-zinc-90);
     --foreground: var(--color-zinc-10);
