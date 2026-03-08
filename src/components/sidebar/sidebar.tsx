@@ -52,7 +52,7 @@ export const DocsNavigation = component$(
                         class={[
                           "btn-base btn size-md sidebar-link",
                           isLinkActive
-                            ? "bg-background-emphasis text-foreground-emphasis"
+                            ? "bg-background-accent text-foreground-accent dark:bg-background-emphasis dark:text-foreground-emphasis"
                             : "",
                         ]}
                       >
