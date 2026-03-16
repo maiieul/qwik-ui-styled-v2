@@ -439,9 +439,13 @@
 
   /* alert colors */
   --color-alert-background: var(--alert-background);
+  --color-alert-background-accent: var(--alert-background-accent);
   --color-alert-foreground: var(--alert-foreground);
+  --color-alert-foreground-accent: var(--alert-foreground-accent);
   --color-alert-border: var(--alert-border);
+  --color-alert-border-accent: var(--alert-border-accent);
   --color-alert-shadow: var(--alert-shadow);
+  --color-alert-shadow-accent: var(--alert-shadow-accent);
   --color-alert-ring: var(--alert-ring);
   --color-alert-standalone: var(--alert-standalone);
   --color-alert-standalone-accent: var(--alert-standalone-accent);
