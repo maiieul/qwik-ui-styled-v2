@@ -38,11 +38,11 @@ export default component$(() => {
             <h1 class="mb-6 scroll-mt-24 pt-6 text-3xl font-extrabold md:text-5xl">
               {documentHead.title}
             </h1>
-            <p class="mb-6 last:mb-0">
+            <p class="mb-6 text-foreground last:mb-0">
               {documentHead.meta.find((m) => m.name === "description")?.content}
             </p>
             <MDXProvider components={components}>
-              <div class="mdx-container">
+              <div class="mdx">
                 <Slot />
               </div>
             </MDXProvider>

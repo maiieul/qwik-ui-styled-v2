@@ -119,10 +119,6 @@
     border: var(--default-border-width) solid var(--alert-border);
     background-color: var(--alert-background);
     color: var(--alert-foreground);
-    &:hover {
-      background-color: var(--alert-background-accent);
-      color: var(--alert-foreground-accent);
-    }
     &:focus-visible {
       outline: 2px solid var(--alert-ring);
     }
@@ -132,6 +128,10 @@
   }
   .modern .btn.variant-alert {
     box-shadow: var(--shadow-sm);
+    &:hover {
+      background-color: var(--alert-background-accent);
+      color: var(--alert-foreground-accent);
+    }
   }
 
   /* sizes */

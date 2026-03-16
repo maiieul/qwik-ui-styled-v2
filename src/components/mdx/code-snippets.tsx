@@ -114,7 +114,7 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
                       <Tabs.Trigger key={themedSnippetTab.title} asChild>
                         <Button
                           variant="ghost"
-                          class="w-full justify-start font-normal text-foreground-muted hover:bg-background-accent hover:text-foreground-accent ui-selected:bg-background-emphasis ui-selected:text-foreground-emphasis"
+                          class="w-full justify-start font-normal text-foreground hover:bg-background-accent hover:text-foreground-accent ui-selected:bg-background-accent ui-selected:text-foreground-accent dark:ui-selected:bg-background-emphasis dark:ui-selected:text-foreground-emphasis"
                         >
                           <span class="mr-2">
                             {themedSnippetTab.title.split(".")[1] === "css" ? (
