@@ -34,7 +34,7 @@
     --primary-background: var(--color-violet-55);
     --primary-background-accent: var(--color-violet-60);
     --primary-foreground: var(--color-slate-shallow);
-    --primary-foreground-accent: var(--color-slate-0);
+    --primary-foreground-accent: var(--color-slate-5);
     --primary-border: var(--color-violet-65);
     --primary-border-accent: var(--color-violet-70);
     --primary-shadow: var(--color-violet-75);
@@ -105,8 +105,8 @@
 
     --secondary-background: var(--color-sky-85);
     --secondary-background-accent: var(--color-sky-80);
-    --secondary-foreground: var(--color-sky-25);
-    --secondary-foreground-accent: var(--color-sky-20);
+    --secondary-foreground: var(--color-sky-5);
+    --secondary-foreground-accent: var(--color-sky-0);
     --secondary-border: var(--color-sky-65);
     --secondary-border-accent: var(--color-sky-60);
     --secondary-shadow: var(--color-sky-55);
@@ -119,8 +119,8 @@
     --alert-foreground-accent: var(--color-rose-0);
     --alert-border: var(--color-rose-60);
     --alert-border-accent: var(--color-rose-55);
-    --alert-shadow: var(--color-rose-55);
-    --alert-shadow-accent: var(--color-rose-50);
+    --alert-shadow: var(--color-rose-80);
+    --alert-shadow-accent: var(--color-rose-75);
     --alert-ring: var(--color-rose-60);
     --alert-standalone: var(--color-rose-35);
     --alert-standalone-accent: var(--color-rose-30);
@@ -143,8 +143,8 @@
     --border-accent: var(--color-sky-45);
     --border-emphasis: var(--color-sky-55);
     --shadow: var(--color-sky-15);
-    --shadow-accent: var(--color-sky-35);
-    --shadow-emphasis: var(--color-sky-45);
+    --shadow-accent: var(--color-sky-25);
+    --shadow-emphasis: var(--color-sky-35);
     --ring: var(--color-sky-35);
     --standalone: var(--color-sky-65);
     --standalone-accent: var(--color-sky-75);
