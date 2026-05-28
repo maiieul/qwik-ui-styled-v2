@@ -16,6 +16,7 @@ node_modules
 .cache
 .mf
 .rollup.cache
+.rolldown.cache
 tsconfig.tsbuildinfo
 
 # Logs

@@ -5,17 +5,8 @@ import {
   useStyles$,
 } from "@qwik.dev/core";
 import { CodeCopy } from "../code-copy/code-copy";
-import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
-import { createHighlighter } from "shiki/bundle/web";
+import { shiki } from "./shiki";
 import highlightStyles from "./highlight.css?inline";
-
-const jsEngine = createJavaScriptRegexEngine();
-
-const shiki = await createHighlighter({
-  themes: ["poimandres", "github-light"],
-  langs: ["tsx", "html", "css"],
-  engine: jsEngine,
-});
 
 export type HighlightProps = PropsOf<"div"> & {
   code: string;

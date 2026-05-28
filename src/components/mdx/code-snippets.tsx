@@ -72,7 +72,6 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
       return styles.find((s) => theme.toLowerCase().includes(s.toLowerCase()));
     }
 
-    // eslint-disable-next-line qwik/no-use-visible-task
     useTask$(async ({ track }) => {
       track(() => themeSig.value);
 

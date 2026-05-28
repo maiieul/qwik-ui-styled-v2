@@ -15,6 +15,7 @@ export default component$(() => {
 
   const documentHead = useDocumentHead();
   const { themeSig, storageKey, defaultTheme } = useTheme();
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     themeSig.value = localStorage.getItem(storageKey) ?? defaultTheme;
   });

@@ -22,7 +22,6 @@ const {
 };
 errorOnDuplicatesPkgDeps(devDependencies, dependencies);
 
-const qwikLibs = ["maiieul-qwik-v2-lib", "@qds.dev/ui"]
 
 // @ts-ignore
 export default defineConfig(async (command: any, mode: any): Promise<UserConfig> => {
@@ -30,6 +29,9 @@ export default defineConfig(async (command: any, mode: any): Promise<UserConfig>
 
   return {
     root: "./",
+    build: {
+      minify: false,
+    },
     plugins: [
       asChild(),
       icons(),
@@ -65,12 +67,6 @@ export default defineConfig(async (command: any, mode: any): Promise<UserConfig>
       tailwindcss(),
 
     ],
-    optimizeDeps: {
-      exclude: qwikLibs,
-    },
-    ssr: {
-      noExternal: qwikLibs,
-    },
     server: {
       headers: {
         // Don't cache the server response in dev mode

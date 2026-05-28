@@ -22,10 +22,12 @@ tsdoc-metadata.json
 target
 output
 rollup.config.js
+rolldown.config.js
 build
 .cache
 .vscode
 .rollup.cache
+.rolldown.cache
 tsconfig.tsbuildinfo
 vite.config.ts
 *.spec.tsx
