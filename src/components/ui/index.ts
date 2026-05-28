@@ -5,6 +5,5 @@ export * from "./card";
 export * from "./callout";
 export * from "./chip/chip";
 export * from "./input/input";
-export * from "./field";
 export * from "./modal";
 export * from "./separator/separator";

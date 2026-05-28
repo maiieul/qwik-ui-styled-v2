@@ -1,4 +1,4 @@
-import { $, component$, useSignal, useVisibleTask$ } from "@qwik.dev/core";
+import { $, component$, useSignal, useTask$ } from "@qwik.dev/core";
 import { Lucide, Tabs } from "@qds.dev/ui";
 import { strToU8, zipSync } from "fflate";
 import { Highlight } from "../highlight/highlight";
@@ -73,14 +73,16 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
     }
 
     // eslint-disable-next-line qwik/no-use-visible-task
-    useVisibleTask$(async ({ track }) => {
+    useTask$(async ({ track }) => {
       track(() => themeSig.value);
+
+      console.log("themeSig.value", themeSig.value);
       const themedSnippetTabs = await Promise.all(
         rawSnippetTabs.map(async (rawSnippetTab: rawSnippetTab) => {
           return {
             title: rawSnippetTab.title,
             code: rawSnippetTab.title.endsWith(".css")
-              ? await extractThemedCSS(rawSnippetTab.code, themeSig.value!)
+              ? await extractThemedCSS(rawSnippetTab.code, themeSig.value ?? "light qwik")
               : rawSnippetTab.code,
           };
         }),

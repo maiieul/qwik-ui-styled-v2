@@ -3,7 +3,6 @@ import {
   Fragment,
   Slot,
   component$,
-  createContextId,
   useContext,
   useContextProvider,
   useOnWindow,
@@ -12,15 +11,9 @@ import {
   useVisibleTask$,
 } from "@qwik.dev/core";
 import { ThemeScript } from "./theme-script";
-import type {
-  SystemTheme,
-  Theme,
-  ThemeProviderProps,
-  UseThemeProps,
-} from "./types";
+import type { SystemTheme, Theme, ThemeProviderProps } from "./types";
 import { isServer } from "@qwik.dev/core/build";
-
-const ThemeContext = createContextId<UseThemeProps>("theme-context");
+import { ThemeContext } from "./context";
 
 export const useTheme = () => useContext(ThemeContext);
 

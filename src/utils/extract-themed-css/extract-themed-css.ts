@@ -71,11 +71,11 @@ export function getPureThemeProperties(theme: string): string[] {
 
   const pureThemeClasses = tokens.filter((t) => !colorModes.includes(t));
 
-  if (pureThemeClasses.length === 0) {
-    throw new Error(
-      "Theme must contain at least one theme class (e.g. 'modern')",
-    );
-  }
+  // if (pureThemeClasses.length === 0) {
+  //   throw new Error(
+  //     "Theme must contain at least one theme class (e.g. 'modern')",
+  //   );
+  // }
 
   return pureThemeClasses;
 }
