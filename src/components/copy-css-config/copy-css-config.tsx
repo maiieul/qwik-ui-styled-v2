@@ -28,12 +28,12 @@ export default component$<{ cssThemeOutput: Signal<string> }>(
               class="border"
             />
           </div>
+          <Modal.Close class="absolute top-7 right-6" asChild>
+            <IconButton>
+              <lucide.x />
+            </IconButton>
+          </Modal.Close>
         </Modal.Content>
-        <Modal.Close class="absolute top-7 right-6" asChild>
-          <IconButton>
-            <lucide.x />
-          </IconButton>
-        </Modal.Close>
       </Modal.Root>
     );
   },
