@@ -1,7 +1,7 @@
 import { component$, Signal } from "@qwik.dev/core";
 import { IconButton, Modal } from "~/components/ui";
 import { Button } from "~/components/ui";
-import { Lucide } from "@qds.dev/ui";
+import { lucide } from "@qds.dev/ui";
 import { Highlight } from "../highlight/highlight";
 
 export default component$<{ cssThemeOutput: Signal<string> }>(
@@ -31,7 +31,7 @@ export default component$<{ cssThemeOutput: Signal<string> }>(
         </Modal.Content>
         <Modal.Close class="absolute top-7 right-6" asChild>
           <IconButton>
-            <Lucide.X />
+            <lucide.x />
           </IconButton>
         </Modal.Close>
       </Modal.Root>

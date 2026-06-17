@@ -1,5 +1,5 @@
 import { PropsOf, Slot, component$, useSignal } from "@qwik.dev/core";
-import { Lucide } from "@qds.dev/ui";
+import { lucide } from "@qds.dev/ui";
 import { Button, IconButton, Modal } from "~/components/ui";
 
 export default component$(() => {
@@ -47,7 +47,7 @@ export const Sheet = component$<PropsOf<typeof Modal.Content>>(
           </footer>
           <Modal.Close asChild type="submit">
             <IconButton class="absolute top-2 right-3">
-              <Lucide.X />
+              <lucide.x />
             </IconButton>
           </Modal.Close>
         </Modal.Content>

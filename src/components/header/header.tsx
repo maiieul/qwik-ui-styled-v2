@@ -1,6 +1,6 @@
 import { $, PropsOf, component$, useSignal, useOnWindow } from "@qwik.dev/core";
 
-import { Lucide } from "@qds.dev/ui";
+import { lucide } from "@qds.dev/ui";
 import { IconButton, Modal } from "~/components/ui";
 
 import { DocsNavigation } from "../sidebar/sidebar";
@@ -66,7 +66,7 @@ export default component$(() => {
           </IconButton>
           <IconButton asChild>
             <a href="https://github.com/qwikifiers/qwik-ui" target="_blank">
-              <Lucide.Github />
+              <lucide.github />
             </a>
           </IconButton>
           <DarkModeToggle />
@@ -77,7 +77,7 @@ export default component$(() => {
               class={["flex lg:hidden"]}
             >
               <IconButton>
-                <Lucide.Menu />
+                <lucide.menu />
               </IconButton>
             </Modal.Trigger>
             <Modal.Content position="right">
@@ -89,7 +89,7 @@ export default component$(() => {
                 onClick$={() => (isSidebarOpenedSig.value = false)}
                 class="absolute top-6 right-6"
               >
-                <Lucide.X />
+                <lucide.x />
               </Modal.Close>
             </Modal.Content>
           </Modal.Root>
@@ -123,10 +123,10 @@ const DarkModeToggle = component$<PropsOf<typeof IconButton>>(
         }}
       >
         <span class="hidden dark:block">
-          <Lucide.Moon class="size-5" />
+          <lucide.moon class="size-5" />
         </span>
         <span class="block dark:hidden">
-          <Lucide.Sun class="size-5" />
+          <lucide.sun class="size-5" />
         </span>
       </IconButton>
     );

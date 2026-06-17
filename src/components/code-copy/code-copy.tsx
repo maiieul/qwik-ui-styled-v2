@@ -1,7 +1,7 @@
 import { PropsOf, component$, useSignal } from "@qwik.dev/core";
 import { Button, IconButton } from "~/components/ui";
 import copy from "clipboard-copy";
-import { Lucide } from "@qds.dev/ui";
+import { lucide } from "@qds.dev/ui";
 
 export type CodeCopyProps = PropsOf<typeof Button> & {
   code?: string;
@@ -32,9 +32,9 @@ export const CodeCopy = component$<CodeCopyProps>(({ code = "", ...props }) => {
       }}
     >
       {copied.value ? (
-        <Lucide.Check class="size-4" />
+        <lucide.check class="size-4" />
       ) : (
-        <Lucide.Copy class="size-4" />
+        <lucide.copy class="size-4" />
       )}
     </IconButton>
   );

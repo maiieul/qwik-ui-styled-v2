@@ -16,7 +16,7 @@ import {
   Input,
   IconButton,
 } from "~/components/ui";
-import { Lucide } from "@qds.dev/ui";
+import { lucide } from "@qds.dev/ui";
 
 export default component$(() => {
   const twoWayDataBindingSignal = useSignal("");
@@ -31,7 +31,7 @@ export default component$(() => {
       </div>
       <div class="my-10 flex justify-start gap-6">
         <Chip variant="alert">
-          <Lucide.TriangleAlert name="icon" class="mr-1 size-4" /> Expired
+          <lucide.trianglealert name="icon" class="mr-1 size-4" /> Expired
         </Chip>
       </div>
       <h2 class="text-2xl font-bold">Inputs</h2>
@@ -85,11 +85,11 @@ export default component$(() => {
       <h3>disabled</h3>
       <div class="my-10 flex justify-start gap-6">
         <Button variant="primary" disabled>
-          <Lucide.Loader class="size-5 animate-spin" />
+          <lucide.loader class="size-5 animate-spin" />
           Confirm
         </Button>
         <Button variant="secondary" disabled>
-          <Lucide.Loader class="size-5 animate-spin" />
+          <lucide.loader class="size-5 animate-spin" />
           Add to cart
         </Button>
       </div>
@@ -97,19 +97,19 @@ export default component$(() => {
       <div class="my-10 flex justify-start gap-6">
         <Button variant="outline" size="sm">
           Confirm
-          <Lucide.Check name="icon" />
+          <lucide.check name="icon" />
         </Button>
       </div>
       <div class="my-10 flex justify-start gap-6">
         <Button variant="outline" size="md">
           Confirm
-          <Lucide.Check name="icon" />
+          <lucide.check name="icon" />
         </Button>
       </div>
       <div class="my-10 flex justify-start gap-6">
         <Button variant="outline" size="lg">
           Confirm
-          <Lucide.Check name="icon" />
+          <lucide.check name="icon" />
         </Button>
       </div>
       <h3>alert (always as a secondary confirmation step)</h3>
@@ -121,25 +121,25 @@ export default component$(() => {
       <h3>variants (vanilla, ghost, outline)</h3>
       <div class="my-10 flex flex-col justify-start gap-6">
         <IconButton variant="vanilla">
-          <Lucide.Rocket name="icon" />
+          <lucide.rocket name="icon" />
         </IconButton>
         <IconButton variant="ghost">
-          <Lucide.Rocket name="icon" />
+          <lucide.rocket name="icon" />
         </IconButton>
         <IconButton variant="outline">
-          <Lucide.Rocket name="icon" />
+          <lucide.rocket name="icon" />
         </IconButton>
       </div>
       <h3>sizes (sm + md + lg)</h3>
       <div class="my-10 flex justify-start gap-6">
         <IconButton variant="outline" size="sm">
-          <Lucide.Rocket name="icon" />
+          <lucide.rocket name="icon" />
         </IconButton>
         <IconButton variant="outline" size="md">
-          <Lucide.Rocket name="icon" />
+          <lucide.rocket name="icon" />
         </IconButton>
         <IconButton variant="outline" size="lg">
-          <Lucide.Rocket name="icon" />
+          <lucide.rocket name="icon" />
         </IconButton>
       </div>
       <h2 class="text-2xl font-bold">Callouts</h2>
@@ -211,9 +211,9 @@ const CalloutExample = component$<
       <>
         <Callout.Root variant={variant} {...props}>
           {variant === "alert" ? (
-            <Lucide.TriangleAlert name="icon" class="size-5" />
+            <lucide.trianglealert name="icon" class="size-5" />
           ) : (
-            <Lucide.Info name="icon" class="size-5" />
+            <lucide.info name="icon" class="size-5" />
           )}
           <Callout.Title>{title}</Callout.Title>
           <Callout.Description>{description}</Callout.Description>
@@ -268,7 +268,7 @@ const ModalExample = component$<PropsOf<typeof Modal.Root>>(() => {
         </footer>
         <Modal.Close class="absolute top-4 right-6" asChild>
           <IconButton variant="vanilla">
-            <Lucide.X name="icon" />
+            <lucide.x name="icon" />
           </IconButton>
         </Modal.Close>
       </Modal.Content>

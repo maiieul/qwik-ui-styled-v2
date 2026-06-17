@@ -1,8 +1,8 @@
 import { type PropsOf, Slot, component$, useStyles$ } from "@qwik.dev/core";
-import { Modal as HeadlessModal } from "@qds.dev/ui";
+import { modal } from "@qds.dev/ui";
 import contentStyles from "./modal-content.css?inline";
 
-type ContentProps = PropsOf<typeof HeadlessModal.Content> & {
+type ContentProps = PropsOf<typeof modal.content> & {
   position?: "center" | "top" | "bottom" | "left" | "right";
   variant?: "primary" | "secondary" | "outline";
 };
@@ -11,7 +11,7 @@ export const Content = component$<ContentProps>(
   ({ position = "center", variant = "outline", ...props }) => {
     useStyles$(contentStyles);
     return (
-      <HeadlessModal.Content
+      <modal.content
         {...props}
         class={[
           "modal-content",
@@ -21,7 +21,7 @@ export const Content = component$<ContentProps>(
         ]}
       >
         <Slot />
-      </HeadlessModal.Content>
+      </modal.content>
     );
   },
 );

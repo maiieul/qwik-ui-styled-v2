@@ -1,5 +1,5 @@
 import { $, component$, useSignal, useTask$ } from "@qwik.dev/core";
-import { Lucide, Tabs } from "@qds.dev/ui";
+import { lucide, tabs } from "@qds.dev/ui";
 import { strToU8, zipSync } from "fflate";
 import { Highlight } from "../highlight/highlight";
 import { useTheme } from "~/hooks/use-theme/provider";
@@ -81,7 +81,10 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
           return {
             title: rawSnippetTab.title,
             code: rawSnippetTab.title.endsWith(".css")
-              ? await extractThemedCSS(rawSnippetTab.code, themeSig.value ?? "light qwik")
+              ? await extractThemedCSS(
+                  rawSnippetTab.code,
+                  themeSig.value ?? "light qwik",
+                )
               : rawSnippetTab.code,
           };
         }),
@@ -92,9 +95,9 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
 
     return (
       <div class="mb-12 overflow-hidden rounded-xl border bg-background shadow-md">
-        <Tabs.Root {...props}>
+        <tabs.root {...props}>
           <div class="flex h-120 min-w-0">
-            <Tabs.List class="w-52 shrink-0 border-r p-2">
+            <tabs.list class="w-52 shrink-0 border-r p-2">
               <div class="flex flex-col gap-1">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-2 py-2 pl-2 text-sm">
@@ -106,37 +109,37 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
                     aria-label={`Download ${folderName} snippets`}
                     title={`Download ${folderName}.zip`}
                   >
-                    <Lucide.CloudDownload />
+                    <lucide.clouddownload />
                   </IconButton>
                 </div>
                 {themedSnippetTabsSig.value.map(
                   (themedSnippetTab: rawSnippetTab) => {
                     return (
-                      <Tabs.Trigger key={themedSnippetTab.title} asChild>
+                      <tabs.trigger key={themedSnippetTab.title} asChild>
                         <Button
                           variant="ghost"
                           class="w-full justify-start font-normal text-foreground hover:bg-background-accent hover:text-foreground-accent ui-selected:bg-background-accent ui-selected:text-foreground-accent dark:ui-selected:bg-background-emphasis dark:ui-selected:text-foreground-emphasis"
                         >
                           <span class="mr-2">
                             {themedSnippetTab.title.split(".")[1] === "css" ? (
-                              <Lucide.Hash />
+                              <lucide.hash />
                             ) : (
-                              <Lucide.Code />
+                              <lucide.code />
                             )}
                           </span>
                           <span class="truncate">{themedSnippetTab.title}</span>
                         </Button>
-                      </Tabs.Trigger>
+                      </tabs.trigger>
                     );
                   },
                 )}
               </div>
-            </Tabs.List>
+            </tabs.list>
             <div class="min-w-0 flex-1">
               {themedSnippetTabsSig.value.map(
                 (themedSnippetTab: rawSnippetTab) => {
                   return (
-                    <Tabs.Content
+                    <tabs.content
                       key={themedSnippetTab.title}
                       class="relative h-full bg-(--shiki-light-bg) dark:bg-(--shiki-dark-bg)"
                     >
@@ -147,13 +150,13 @@ export const CodeSnippets = component$<CodeSnippetsProps>(
                           themedSnippetTab.title.split(".")[1] as "tsx" | "css"
                         }
                       />
-                    </Tabs.Content>
+                    </tabs.content>
                   );
                 },
               )}
             </div>
           </div>
-        </Tabs.Root>
+        </tabs.root>
       </div>
     );
   },

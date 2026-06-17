@@ -1,3 +1,3 @@
-import { Modal as HeadlessModal } from "@qds.dev/ui";
+import { modal } from "@qds.dev/ui";
 
-export const Root = HeadlessModal.Root;
+export const Root = modal.root;

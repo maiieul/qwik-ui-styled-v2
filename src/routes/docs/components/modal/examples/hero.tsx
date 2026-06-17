@@ -1,5 +1,5 @@
 import { component$, useSignal } from "@qwik.dev/core";
-import { Lucide } from "@qds.dev/ui";
+import { lucide } from "@qds.dev/ui";
 import { Button, IconButton, Modal } from "~/components/ui";
 
 export default component$(() => {
@@ -40,7 +40,7 @@ export default component$(() => {
         </footer>
         <Modal.Close asChild>
           <IconButton class="absolute top-2 right-3">
-            <Lucide.X class="h-5 w-5" />
+            <lucide.x class="h-5 w-5" />
           </IconButton>
         </Modal.Close>
       </Modal.Content>

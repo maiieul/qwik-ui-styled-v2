@@ -1,4 +1,4 @@
-import { Lucide } from "@qds.dev/ui";
+import { lucide } from "@qds.dev/ui";
 import { $, component$, JSXOutput, PropsOf, Slot } from "@qwik.dev/core";
 import { Callout } from "~/components/ui";
 
@@ -15,11 +15,11 @@ export const DocsCallout = component$<
 
     switch (icon) {
       case "info":
-        return <Lucide.Info name="icon" class="h-5 w-5" />;
+        return <lucide.info name="icon" class="h-5 w-5" />;
       case "warning":
-        return <Lucide.TriangleAlert name="icon" class="h-5 w-5" />;
+        return <lucide.trianglealert name="icon" class="h-5 w-5" />;
       case "alert":
-        return <Lucide.OctagonAlert name="icon" class="h-5 w-5" />;
+        return <lucide.octagonalert name="icon" class="h-5 w-5" />;
       default:
         return icon;
     }

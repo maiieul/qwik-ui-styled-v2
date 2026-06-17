@@ -1,3 +1,3 @@
-import { Modal as HeadlessModal } from "@qds.dev/ui";
+import { modal } from "@qds.dev/ui";
 
-export const Trigger = HeadlessModal.Trigger;
+export const Trigger = modal.trigger;

@@ -9,22 +9,18 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import pkg from "./package.json";
 import tailwindcss from "@tailwindcss/vite";
 import { ShikiTransformer } from "shiki";
-import { asChild, icons } from "@qds.dev/tools/vite";
+import {qds } from "@qds.dev/tools/vite";
 
 type PkgDep = Record<string, string>;
-const {
-  dependencies = {},
-  devDependencies = {},
-} = pkg as any as {
+const { dependencies = {}, devDependencies = {} } = pkg as any as {
   dependencies: PkgDep;
   devDependencies: PkgDep;
   [key: string]: unknown;
 };
 errorOnDuplicatesPkgDeps(devDependencies, dependencies);
 
-
 // @ts-ignore
-export default defineConfig(async (command: any, mode: any): Promise<UserConfig> => {
+export default defineConfig(async (): Promise<UserConfig> => {
   const { default: shikiRehype } = await import("@shikijs/rehype");
 
   return {
@@ -32,9 +28,13 @@ export default defineConfig(async (command: any, mode: any): Promise<UserConfig>
     build: {
       minify: false,
     },
+    optimizeDeps: {},
     plugins: [
-      asChild(),
-      icons(),
+      qds({
+        debug: true,
+        asChild: true,
+        icons: true,
+      }), 
       qwikVite({
         lint: false,
         debug: false,
@@ -65,7 +65,6 @@ export default defineConfig(async (command: any, mode: any): Promise<UserConfig>
 
       tsconfigPaths({ root: "." }),
       tailwindcss(),
-
     ],
     server: {
       headers: {

@@ -5,7 +5,7 @@ import {
   useComputed$,
   useSignal,
 } from "@qwik.dev/core";
-import { Lucide } from "@qds.dev/ui";
+import { lucide } from "@qds.dev/ui";
 
 import { Button, IconButton, Modal } from "~/components/ui";
 import CopyCssConfig from "~/components/copy-css-config/copy-css-config";
@@ -55,7 +55,7 @@ export default component$<PropsOf<typeof Button>>(() => {
         }}
       >
         <IconButton>
-          <Lucide.WandSparkles class="size-5" />
+          <lucide.wandsparkles class="size-5" />
         </IconButton>
       </Modal.Trigger>
       <Modal.Content position="right">
@@ -91,9 +91,10 @@ export default component$<PropsOf<typeof Button>>(() => {
           </Button>
           <CopyCssConfig cssThemeOutput={cssThemeOutput} />
         </footer>
+
         <Modal.Close class="fixed top-5 right-4" asChild>
           <IconButton>
-            <Lucide.X />
+            <lucide.x />
           </IconButton>
         </Modal.Close>
       </Modal.Content>
